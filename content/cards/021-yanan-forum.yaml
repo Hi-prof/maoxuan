@@ -1,0 +1,32 @@
+id: b7c08afb-3ff0-5405-9cf5-7f9f0ffc1649
+revision: 2
+status: published
+quote: '为什么人的问题，是一个根本的问题，原则的问题。'
+literature:
+  series: 毛泽东选集
+  volume: 第三卷
+  workTitle: 在延安文艺座谈会上的讲话
+  authoredAt: '1942-05'
+themes:
+  - 文艺
+  - 人民
+interpretation:
+  coreMeaning: '“为什么人”追问文艺工作的立场和服务对象。选择写谁、采用谁能理解的语言、怎样评价作品，都受这个根本问题影响，因此它先于许多具体的创作方法讨论。'
+  keyPoint: '明确服务对象不等于忽视艺术规律，也不是要求作品只有一种形式。讲话随后讨论深入生活、熟悉群众语言和改造思想，说明立场要通过对对象的真实了解转化为创作能力。'
+  contemporaryRelevance: '做内容或公共表达前，应先说清主要受众是谁、他们面对什么处境。若只从表达者自己的习惯出发，即使技巧熟练，也可能让信息无法抵达真正需要它的人。'
+contextExcerpt: '这个根本问题不解决，其它许多问题也就不易解决。'
+background: '一九四二年五月，延安文艺座谈会分两次举行。讲话围绕文艺工作者的立场、态度、对象、学习和服务方向展开。'
+story: '文章先问文艺“为什么人”，再谈怎样服务。它要求文艺工作者深入群众和实际生活，并在这个过程中改变自己的立足点和表达方式。'
+imageId: original-printing-press
+sources:
+  - name: 中文马克思主义文库《在延安文艺座谈会上的讲话》全文
+    url: https://www.marxists.org/chinese/maozedong/marxist.org-chinese-mao-194205.htm
+    accessedAt: '2026-07-28'
+    type: original
+  - name: 共产党员网《毛泽东选集（第三卷）》
+    url: https://www.12371.cn/special/mzdxj/d3j/
+    accessedAt: '2026-07-28'
+    type: authoritative
+review:
+  status: verified
+  checkedAt: '2026-07-28'

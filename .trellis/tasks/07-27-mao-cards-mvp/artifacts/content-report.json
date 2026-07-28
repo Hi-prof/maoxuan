@@ -1,0 +1,284 @@
+{
+  "contentVersion": "1.0.0",
+  "images": [
+    {
+      "creator": "星火摘读项目",
+      "id": "original-dawn-city",
+      "license": "CC0-1.0",
+      "sha256": "72afd5727f1ef3dbdc53b43fa80766eaba7e376edc98272241072f5cfa25ed74",
+      "shareAllowed": true,
+      "uses": 5
+    },
+    {
+      "creator": "星火摘读项目",
+      "id": "original-distant-mountains",
+      "license": "CC0-1.0",
+      "sha256": "ae25056f04a54a1389c97765aab24552f94c3f0ca3f0e6ffdc3f120af1234bc0",
+      "shareAllowed": true,
+      "uses": 3
+    },
+    {
+      "creator": "星火摘读项目",
+      "id": "original-field-paths",
+      "license": "CC0-1.0",
+      "sha256": "8bd818c549d9f10f59df1066bffe78e671d6f2f37fac219c3c94f0a66f881e59",
+      "shareAllowed": true,
+      "uses": 4
+    },
+    {
+      "creator": "星火摘读项目",
+      "id": "original-memorial-pine",
+      "license": "CC0-1.0",
+      "sha256": "63f08cef5321be3e294c7e9c1b965bdcedad8d77421a0b58279a61d409bf0e87",
+      "shareAllowed": true,
+      "uses": 3
+    },
+    {
+      "creator": "星火摘读项目",
+      "id": "original-printing-press",
+      "license": "CC0-1.0",
+      "sha256": "0ada736ee55b0e43f5592902b0a04e9ce1d3292464908cffb8ed4a25a2f001f1",
+      "shareAllowed": true,
+      "uses": 4
+    },
+    {
+      "creator": "星火摘读项目",
+      "id": "original-reading-lamp",
+      "license": "CC0-1.0",
+      "sha256": "770ed670d72e20e27e5e998776f135ce1b94ad4664f3fd0bb9ca782192f0f519",
+      "shareAllowed": true,
+      "uses": 4
+    },
+    {
+      "creator": "星火摘读项目",
+      "id": "original-river-bridge",
+      "license": "CC0-1.0",
+      "sha256": "94625286fa7098b8448b69e811b7379d9bb8b07234bbdffabdf304785d682b2e",
+      "shareAllowed": true,
+      "uses": 5
+    },
+    {
+      "creator": "星火摘读项目",
+      "id": "original-workshop",
+      "license": "CC0-1.0",
+      "sha256": "b453c92ae107d51353a2ede034e988ceb037d545bf6c8b24c6ea68abbc529a41",
+      "shareAllowed": true,
+      "uses": 2
+    }
+  ],
+  "publishedCards": 30,
+  "quoteLengths": {
+    "average": 34.97,
+    "cards": [
+      {
+        "codePoints": 57,
+        "id": "0aa241e5-e429-5e9e-8912-dcf8d1ba78a0",
+        "workTitle": "实践论"
+      },
+      {
+        "codePoints": 21,
+        "id": "0cc98b81-bcd6-5e6c-b2cc-3c5c4e3a315d",
+        "workTitle": "反对党八股"
+      },
+      {
+        "codePoints": 26,
+        "id": "189e81c3-ffeb-5f4c-a450-05c221d53cf8",
+        "workTitle": "中国共产党在民族战争中的地位"
+      },
+      {
+        "codePoints": 21,
+        "id": "201e92cd-2c76-55ba-adf8-8deeb4f45129",
+        "workTitle": "论持久战"
+      },
+      {
+        "codePoints": 20,
+        "id": "266f2a69-7850-53c4-a651-c2dbd8807aa1",
+        "workTitle": "论联合政府"
+      },
+      {
+        "codePoints": 30,
+        "id": "27c246ac-775a-57e8-bc83-c0bbb21c564a",
+        "workTitle": "青年运动的方向"
+      },
+      {
+        "codePoints": 21,
+        "id": "417781d4-7355-5e4b-bf7a-38fc8c7c1e9e",
+        "workTitle": "愚公移山"
+      },
+      {
+        "codePoints": 10,
+        "id": "41e48840-c462-5053-8ad3-2dbbd8e029c9",
+        "workTitle": "反对本本主义"
+      },
+      {
+        "codePoints": 43,
+        "id": "4388cd1b-bf75-57ea-8b68-abae9bb422ac",
+        "workTitle": "目前形势和我们的任务"
+      },
+      {
+        "codePoints": 47,
+        "id": "56c0857f-a0d7-5862-a610-b6c16416c110",
+        "workTitle": "《农村调查》的序言和跋"
+      },
+      {
+        "codePoints": 25,
+        "id": "6c901f85-8ab9-5e84-a712-9525b3c10242",
+        "workTitle": "反对自由主义"
+      },
+      {
+        "codePoints": 35,
+        "id": "7ac4f48d-4ee3-544b-8867-89f631327ad4",
+        "workTitle": "关于领导方法的若干问题"
+      },
+      {
+        "codePoints": 74,
+        "id": "8a3e739a-9b89-5840-a47a-6bb2c6435c1c",
+        "workTitle": "星星之火，可以燎原"
+      },
+      {
+        "codePoints": 49,
+        "id": "987c2a94-7bde-5f45-aca8-17beb0a2ef35",
+        "workTitle": "湖南农民运动考察报告"
+      },
+      {
+        "codePoints": 57,
+        "id": "9d79ff91-4e31-5e8c-b783-536300367ccf",
+        "workTitle": "新民主主义论"
+      },
+      {
+        "codePoints": 36,
+        "id": "9e91e6e3-8764-5d65-824a-d7d610683de3",
+        "workTitle": "关心群众生活，注意工作方法"
+      },
+      {
+        "codePoints": 33,
+        "id": "a03adb4a-bb69-5c4c-8447-d65cbf03c4e7",
+        "workTitle": "为人民服务"
+      },
+      {
+        "codePoints": 33,
+        "id": "ab6292fe-bd85-57a6-9955-78ed907f5b20",
+        "workTitle": "关于建立报告制度"
+      },
+      {
+        "codePoints": 23,
+        "id": "b7c08afb-3ff0-5405-9cf5-7f9f0ffc1649",
+        "workTitle": "在延安文艺座谈会上的讲话"
+      },
+      {
+        "codePoints": 21,
+        "id": "c4bd6f66-16a3-5fdb-818e-60fc03074d4e",
+        "workTitle": "在中国共产党第七届中央委员会第二次全体会议上的报告"
+      },
+      {
+        "codePoints": 43,
+        "id": "c59b0b3e-2900-5707-99a1-18aff664a5be",
+        "workTitle": "对晋绥日报编辑人员的谈话"
+      },
+      {
+        "codePoints": 21,
+        "id": "c99ebbf7-0b9e-50c3-b1c1-d9adc72fd1c4",
+        "workTitle": "必须注意经济工作"
+      },
+      {
+        "codePoints": 29,
+        "id": "d99d5cbc-1193-5d91-8896-7969c9393c53",
+        "workTitle": "中国社会各阶级的分析"
+      },
+      {
+        "codePoints": 45,
+        "id": "e4cf09ca-b2ea-5772-b80b-d3e1a854bae8",
+        "workTitle": "《共产党人》发刊词"
+      },
+      {
+        "codePoints": 64,
+        "id": "ed84f746-2057-5aeb-a86a-d619da9d89f6",
+        "workTitle": "纪念白求恩"
+      },
+      {
+        "codePoints": 23,
+        "id": "f18b9594-8592-50ed-84f5-836cecf659bd",
+        "workTitle": "中国革命战争的战略问题"
+      },
+      {
+        "codePoints": 48,
+        "id": "f8988df2-c35a-58e9-99a7-bca215e9b7ef",
+        "workTitle": "改造我们的学习"
+      },
+      {
+        "codePoints": 31,
+        "id": "f996d191-815b-5adc-a688-c27b646cd19e",
+        "workTitle": "矛盾论"
+      },
+      {
+        "codePoints": 44,
+        "id": "fda228fb-3afc-56d6-b3c5-eeee7ac2fe65",
+        "workTitle": "整顿党的作风"
+      },
+      {
+        "codePoints": 19,
+        "id": "ff120928-f761-5d79-9306-e54246df7b2d",
+        "workTitle": "关于工商业政策"
+      }
+    ],
+    "maximum": 74,
+    "minimum": 10
+  },
+  "readingSections": {
+    "withBackground": 30,
+    "withContext": 30,
+    "withStory": 30
+  },
+  "seriesAndVolumes": {
+    "毛泽东选集 / 第一卷": 9,
+    "毛泽东选集 / 第三卷": 9,
+    "毛泽东选集 / 第二卷": 7,
+    "毛泽东选集 / 第四卷": 5
+  },
+  "sourceDomains": {
+    "12371.cn": 30,
+    "marxists.org": 30
+  },
+  "themes": {
+    "为人民服务": 2,
+    "人民": 2,
+    "作风建设": 2,
+    "信念": 3,
+    "党的建设": 2,
+    "历史": 1,
+    "历史进程": 1,
+    "原则": 1,
+    "品格": 1,
+    "奋斗": 1,
+    "学习": 3,
+    "实事求是": 3,
+    "实践": 2,
+    "宣传": 1,
+    "工作方法": 2,
+    "建设": 1,
+    "形势判断": 2,
+    "抗战": 1,
+    "担当": 1,
+    "政策": 1,
+    "文艺": 1,
+    "文风": 1,
+    "新民主主义": 1,
+    "方法论": 1,
+    "组织纪律": 1,
+    "经济建设": 2,
+    "群众": 2,
+    "群众生活": 1,
+    "群众路线": 3,
+    "群众运动": 1,
+    "自我批评": 1,
+    "艰苦奋斗": 1,
+    "表达": 1,
+    "认识论": 1,
+    "调查研究": 3,
+    "辩证法": 1,
+    "阶级分析": 1,
+    "青年": 1,
+    "革命方法": 2,
+    "领导方法": 1
+  }
+}

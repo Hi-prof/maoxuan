@@ -1,0 +1,32 @@
+id: c4bd6f66-16a3-5fdb-818e-60fc03074d4e
+revision: 2
+status: published
+quote: '夺取全国胜利，这只是万里长征走完了第一步。'
+literature:
+  series: 毛泽东选集
+  volume: 第四卷
+  workTitle: 在中国共产党第七届中央委员会第二次全体会议上的报告
+  authoredAt: '1949-03-05'
+themes:
+  - 艰苦奋斗
+  - 建设
+interpretation:
+  coreMeaning: '把全国胜利比作长征第一步，是提醒人们：一个重大阶段的完成，只是新任务的起点。取得政权之后，经济建设、城市工作和国家治理会提出更长、更复杂的要求。'
+  keyPoint: '这不是削弱胜利意义，而是反对因阶段成果而高估完成度。报告在胜利临近时强调谦虚、谨慎和艰苦奋斗，说明环境越有利，越要警惕骄傲和享乐。'
+  contemporaryRelevance: '项目达到里程碑后，应及时把“已经完成什么”和“下一阶段仍缺什么”分开。庆祝成果可以稳定信心，但资源、能力和风险需要重新盘点，不能沿用成功前的惯性判断。'
+contextExcerpt: '剧是必须从序幕开始的，但序幕还不是高潮。'
+background: '七届二中全会在西柏坡举行，三大战役结束后全国胜利已近。报告讨论工作重心由乡村转到城市以及胜利后的经济、政治和外交任务。'
+story: '正因为胜利临近，文章把更长远的建设工作放在眼前，提醒警惕骄傲、享乐和“糖衣炮弹”，并强调革命后的路程更长、工作更艰苦。'
+imageId: original-dawn-city
+sources:
+  - name: 中文马克思主义文库《在中国共产党第七届中央委员会第二次全体会议上的报告》全文
+    url: https://www.marxists.org/chinese/maozedong/marxist.org-chinese-mao-19490305.htm
+    accessedAt: '2026-07-28'
+    type: original
+  - name: 共产党员网《毛泽东选集（第四卷）》
+    url: https://www.12371.cn/special/mzdxj/d4j/
+    accessedAt: '2026-07-28'
+    type: authoritative
+review:
+  status: verified
+  checkedAt: '2026-07-28'

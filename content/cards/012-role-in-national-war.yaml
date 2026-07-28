@@ -1,0 +1,32 @@
+id: 189e81c3-ffeb-5f4c-a450-05c221d53cf8
+revision: 2
+status: published
+quote: '共产党员应是实事求是的模范，又是具有远见卓识的模范。'
+literature:
+  series: 毛泽东选集
+  volume: 第二卷
+  workTitle: 中国共产党在民族战争中的地位
+  authoredAt: '1938-10-14'
+themes:
+  - 实事求是
+  - 学习
+interpretation:
+  coreMeaning: '这句话把两种能力放在一起：面对眼前任务，要尊重事实、把事情办成；面对长期道路，又要看见局部之外的方向。只有其中一面，行动都可能失衡。'
+  keyPoint: '实事求是不是只顾眼前，远见也不是离开事实大胆想象。原文把二者同时列为模范要求，说明长期判断要由现实材料支撑，具体工作也要接受整体方向检验。'
+  contemporaryRelevance: '制定计划时，可分别检查“目前证据支持什么”和“这一步将把事情带向哪里”。短期结果很好但方向错误，或目标宏大却没有可执行步骤，都需要及时调整。'
+contextExcerpt: '因为只有实事求是，才能完成确定的任务；只有远见卓识，才能不失前进的方向。'
+background: '文章是中共扩大的六届六中全会结论的一部分，讨论党员在民族战争中的先锋作用、组织纪律和学习任务。'
+story: '引文之后紧接着提出“每天都是民众的教师，但又每天都是民众的学生”，把模范作用同向群众、环境和友军学习联系起来。'
+imageId: original-river-bridge
+sources:
+  - name: 中文马克思主义文库《中国共产党在民族战争中的地位》全文
+    url: https://www.marxists.org/chinese/maozedong/marxist.org-chinese-mao-19381014.htm
+    accessedAt: '2026-07-28'
+    type: original
+  - name: 共产党员网《毛泽东选集（第二卷）》
+    url: https://www.12371.cn/special/mzdxj/dej/
+    accessedAt: '2026-07-28'
+    type: authoritative
+review:
+  status: verified
+  checkedAt: '2026-07-28'

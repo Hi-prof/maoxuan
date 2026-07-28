@@ -1,0 +1,32 @@
+id: f996d191-815b-5adc-a688-c27b646cd19e
+revision: 2
+status: published
+quote: '事物的矛盾法则，即对立统一的法则，是唯物辩证法的最根本的法则。'
+literature:
+  series: 毛泽东选集
+  volume: 第一卷
+  workTitle: 矛盾论
+  authoredAt: '1937-08'
+themes:
+  - 辩证法
+  - 方法论
+interpretation:
+  coreMeaning: '这句话把对立统一看作理解事物运动的根本方法。事物内部存在相互联系又相互排斥的方面，它们的关系变化推动事物发展，不能只从外部寻找原因。'
+  keyPoint: '承认矛盾普遍存在，不等于用同一套公式解释所有问题。全文同时讨论矛盾的特殊性、主要矛盾和主要方面，要求具体分析不同阶段、不同关系中的实际结构。'
+  contemporaryRelevance: '遇到复杂问题时，不妨先找出彼此牵制的目标、条件和力量，再判断哪一组关系当前最影响全局。列出“都有道理”的两面还不够，关键是弄清它们怎样联系、何时转化。'
+contextExcerpt: '列宁常称这个法则为辩证法的本质，又称之为辩证法的核心。'
+background: '文章继《实践论》之后写成，也源于延安抗日军事政治大学的讲演。全文围绕矛盾的普遍性、特殊性以及主要矛盾等问题展开。'
+story: '写作不是孤立的哲学讨论，而是为了克服党内严重的教条主义思想。收入《毛泽东选集》第一版时，作者又作了补充、删节和修改。'
+imageId: original-reading-lamp
+sources:
+  - name: 中文马克思主义文库《矛盾论》全文
+    url: https://www.marxists.org/chinese/maozedong/marxist.org-chinese-mao-193708.htm
+    accessedAt: '2026-07-28'
+    type: original
+  - name: 共产党员网《毛泽东选集（第一卷）》
+    url: https://www.12371.cn/special/mzdxj/dyj/
+    accessedAt: '2026-07-28'
+    type: authoritative
+review:
+  status: verified
+  checkedAt: '2026-07-28'

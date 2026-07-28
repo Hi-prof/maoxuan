@@ -1,0 +1,32 @@
+id: ab6292fe-bd85-57a6-9955-78ed907f5b20
+revision: 2
+status: published
+quote: '全党各级领导机关，必须改正对上级事前不请示、事后不报告的不良习惯。'
+literature:
+  series: 毛泽东选集
+  volume: 第四卷
+  workTitle: 关于建立报告制度
+  authoredAt: '1948-01-07'
+themes:
+  - 组织纪律
+  - 工作方法
+interpretation:
+  coreMeaning: '请示和报告把分散地区的实际情况带进共同决策，使上级能在行动前提供帮助，也能在行动后总结偏差。它解决的是组织扩大后信息不对称和各自为政的问题。'
+  keyPoint: '报告制度不是增加形式材料。指示要求负责人亲自动手，并在有限篇幅内同时说明成绩、问题和解决办法；只有数字堆积而没有政策信息，同样达不到沟通目的。'
+  contemporaryRelevance: '跨团队协作时，应约定哪些事项事前同步、哪些结果事后复盘。报告要短而有判断，让接收者知道发生了什么、风险在哪里、需要什么决定，避免把写材料本身当成成果。'
+contextExcerpt: '为了及时反映情况，使中央有可能在事先或事后帮助各地不犯或少犯错误，争取革命战争更加伟大的胜利起见，从今年起，规定如下的报告制度。'
+background: '随着解放区连成大片、城市陆续解放，跨地区工作的协调要求提高。毛泽东为中共中央起草这份党内指示，建立定期综合报告制度。'
+story: '指示不仅要求报告，还限定负责人亲自动手、篇幅约一千字，并要求同时写成绩、问题和解决办法，避免只有技术数字而缺少政策信息。'
+imageId: original-river-bridge
+sources:
+  - name: 中文马克思主义文库《关于建立报告制度》全文
+    url: https://www.marxists.org/chinese/maozedong/marxist.org-chinese-mao-19480107.htm
+    accessedAt: '2026-07-28'
+    type: original
+  - name: 共产党员网《毛泽东选集（第四卷）》
+    url: https://www.12371.cn/special/mzdxj/d4j/
+    accessedAt: '2026-07-28'
+    type: authoritative
+review:
+  status: verified
+  checkedAt: '2026-07-28'

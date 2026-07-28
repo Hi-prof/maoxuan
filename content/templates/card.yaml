@@ -1,0 +1,31 @@
+id: 00000000-0000-0000-0000-000000000000
+revision: 1
+status: draft
+quote: 在此填写不超过 90 个汉字的连续原文
+literature:
+  series: 毛泽东选集
+  volume: 第一卷
+  workTitle: 篇名
+  authoredAt: '1937-07'
+themes:
+  - 实践
+interpretation:
+  coreMeaning: 在此说明原句在篇章语境中的主要含义
+  keyPoint: 在此说明理解时需要把握的边界
+  contemporaryRelevance: 在此用克制的当代语言说明可供思考之处
+contextExcerpt:
+background:
+story:
+imageId: image-id
+sources:
+  - name: 原文或权威出版来源
+    url: https://example.com/source-a
+    accessedAt: '2026-07-28'
+    type: original
+  - name: 独立交叉核验来源
+    url: https://example.org/source-b
+    accessedAt: '2026-07-28'
+    type: authoritative
+review:
+  status: draft
+  checkedAt: '2026-07-28'

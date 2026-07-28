@@ -1,0 +1,32 @@
+id: c59b0b3e-2900-5707-99a1-18aff664a5be
+revision: 2
+status: published
+quote: '我们的报纸也要靠大家来办，靠全体人民群众来办，靠全党来办，而不能只靠少数人关起门来办。'
+literature:
+  series: 毛泽东选集
+  volume: 第四卷
+  workTitle: 对晋绥日报编辑人员的谈话
+  authoredAt: '1948-04-02'
+themes:
+  - 群众路线
+  - 宣传
+interpretation:
+  coreMeaning: '这句话反对少数人关起门来办报，要求把报纸同全党和群众的实际经验连接起来。政策宣传只有被人理解、讨论并用于行动，报纸才不是编辑部内部的自我表达。'
+  keyPoint: '“靠大家来办”不等于取消编辑责任或专业判断。谈话用检查错字的例子说明，编辑部仍要组织问题、追查原因、形成办法，只是信息来源和质量责任不能限于少数人。'
+  contemporaryRelevance: '做面向公众的内容时，应建立来自使用者和一线人员的反馈渠道，也要有人负责核实、编辑和纠错。开放参与与专业把关结合，内容才更贴近真实问题。'
+contextExcerpt: '办报和办别的事一样，都要认真地办，才能办好，才能有生气。'
+background: '谈话从土地改革政策的宣传谈起，强调政策不仅要让领导干部知道，也要让广大群众理解，报纸承担着连接政策与群众行动的作用。'
+story: '文章用报纸错字这个小例子说明群众路线：把全报社人员集合起来查明错误、原因和办法，连续认真处理，小问题也能形成共同责任。'
+imageId: original-printing-press
+sources:
+  - name: 中文马克思主义文库《对晋绥日报编辑人员的谈话》全文
+    url: https://www.marxists.org/chinese/maozedong/marxist.org-chinese-mao-19480402.htm
+    accessedAt: '2026-07-28'
+    type: original
+  - name: 共产党员网《毛泽东选集（第四卷）》
+    url: https://www.12371.cn/special/mzdxj/d4j/
+    accessedAt: '2026-07-28'
+    type: authoritative
+review:
+  status: verified
+  checkedAt: '2026-07-28'

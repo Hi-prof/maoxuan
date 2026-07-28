@@ -1,0 +1,32 @@
+id: f18b9594-8592-50ed-84f5-836cecf659bd
+revision: 2
+status: published
+quote: '读书是学习，使用也是学习，而且是更重要的学习。'
+literature:
+  series: 毛泽东选集
+  volume: 第一卷
+  workTitle: 中国革命战争的战略问题
+  authoredAt: '1936-12'
+themes:
+  - 学习
+  - 实践
+interpretation:
+  coreMeaning: '这句话把学习分成书本学习和实际运用，并把使用看作更重要的一环。知识只有进入具体行动，才会暴露适用条件、遗漏之处和错误判断，并转化为处理问题的能力。'
+  keyPoint: '“使用更重要”不等于读书无用，也不是凭经验排斥理论。文章主张吸收书本中适用的结论，再用自身实践检验和补充；读与用之间是往返关系，不是二选一。'
+  contemporaryRelevance: '掌握一种方法后，应尽快在可控制的真实任务中试用，记录结果并回看原理。只停留在记忆概念容易产生熟悉感，却未必会做；只凭旧经验又可能重复盲点。'
+contextExcerpt: '从战争学习战争——这是我们的主要方法。'
+background: '长征结束后，毛泽东系统总结国内革命战争的经验，讨论怎样研究战争、战略防御和反“围剿”等问题。引文位于第一章“如何研究战争”。'
+story: '文章把书本结论视作需要回到自身经验中检验的知识：吸收适用的，拒绝不适用的，并补充自身实际中独有的部分。'
+imageId: original-river-bridge
+sources:
+  - name: 中文马克思主义文库《中国革命战争的战略问题》全文
+    url: https://www.marxists.org/chinese/maozedong/marxist.org-chinese-mao-193612.htm
+    accessedAt: '2026-07-28'
+    type: original
+  - name: 共产党员网《毛泽东选集（第一卷）》
+    url: https://www.12371.cn/special/mzdxj/dyj/
+    accessedAt: '2026-07-28'
+    type: authoritative
+review:
+  status: verified
+  checkedAt: '2026-07-28'

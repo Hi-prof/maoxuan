@@ -1,0 +1,14 @@
+Noto Serif SC variable font
+
+Source:
+https://github.com/google/fonts/tree/main/ofl/notoserifsc
+
+Downloaded file:
+https://raw.githubusercontent.com/google/fonts/main/ofl/notoserifsc/NotoSerifSC%5Bwght%5D.ttf
+
+SHA-256:
+050080d9255a86808f2945bffac582b31ef32bc36411ce29563b4961670c66f9
+
+License:
+SIL Open Font License 1.1. The complete license text is stored alongside this file as
+OFL-NotoSerifSC.txt and is packaged with the application.

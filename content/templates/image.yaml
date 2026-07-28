@@ -1,0 +1,8 @@
+id: image-id
+file: image.jpg
+sourceUrl: https://example.com/image
+creator: 作者或机构
+license: Public domain or explicit license
+licenseEvidence: https://example.com/license
+verifiedAt: '2026-07-28'
+shareAllowed: true

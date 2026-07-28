@@ -1,0 +1,32 @@
+id: 417781d4-7355-5e4b-bf7a-38fc8c7c1e9e
+revision: 2
+status: published
+quote: '下定决心，不怕牺牲，排除万难，去争取胜利。'
+literature:
+  series: 毛泽东选集
+  volume: 第三卷
+  workTitle: 愚公移山
+  authoredAt: '1945-06-11'
+themes:
+  - 奋斗
+  - 信念
+interpretation:
+  coreMeaning: '“下定决心”到“争取胜利”概括了面对长期困难所需的意志和行动：目标确定后，要准备承受代价、持续处理障碍，而不是因一时受挫就放弃。'
+  keyPoint: '原文紧接着说，仅有少数人的决心还不够，还要使广大群众自觉参与。寓言中的力量也被重新解释为人民大众，因此这句话不是把胜利归结为个人意志。'
+  contemporaryRelevance: '长期项目需要稳定目标，也需要把大困难拆成可处理的步骤，并让相关的人理解为何参与。只喊坚持容易耗尽热情；不断解决具体障碍，才能让决心转化为进展。'
+contextExcerpt: '但这还不够，还必须使全国广大人民群众觉悟，甘心情愿和我们一起奋斗，去争取胜利。'
+background: '这是中国共产党第七次全国代表大会的闭幕词。大会完成路线、党章和中央委员会三项主要议程后，讲话转向怎样把路线带回各地。'
+story: '文章借中国古代愚公移山的寓言说明长期坚持，又重新解释故事中的“上帝”：真正能够搬走重压的，是被充分动员起来的人民大众。'
+imageId: original-distant-mountains
+sources:
+  - name: 中文马克思主义文库《愚公移山》全文
+    url: https://www.marxists.org/chinese/maozedong/marxist.org-chinese-mao-19450611.htm
+    accessedAt: '2026-07-28'
+    type: original
+  - name: 共产党员网《毛泽东选集（第三卷）》
+    url: https://www.12371.cn/special/mzdxj/d3j/
+    accessedAt: '2026-07-28'
+    type: authoritative
+review:
+  status: verified
+  checkedAt: '2026-07-28'

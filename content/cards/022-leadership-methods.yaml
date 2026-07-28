@@ -1,0 +1,32 @@
+id: 7ac4f48d-4ee3-544b-8867-89f631327ad4
+revision: 2
+status: published
+quote: '在我党的一切实际工作中，凡属正确的领导，必须是从群众中来，到群众中去。'
+literature:
+  series: 毛泽东选集
+  volume: 第三卷
+  workTitle: 关于领导方法的若干问题
+  authoredAt: '1943-06-01'
+themes:
+  - 群众路线
+  - 领导方法
+interpretation:
+  coreMeaning: '“从群众中来，到群众中去”描述的是一个往返过程：先收集分散的经验和意见，经过研究形成较集中的主张，再回到群众实践中说明、执行并接受检验。'
+  keyPoint: '它既不是少数人关门决定，也不是把零散意见原样相加。领导工作的责任在于辨别、集中和提出可行动的方案；方案回到实践后，还要根据新的结果重新修正。'
+  contemporaryRelevance: '制定影响很多人的方案时，可把访谈、归纳、试行和复盘连成闭环。只征求意见却不反馈，或方案确定后拒绝再改，都会让参与变成形式，失去真实信息。'
+contextExcerpt: '如此无限循环，一次比一次地更正确、更生动、更丰富。'
+background: '这是毛泽东为中共中央起草的决定，集中说明“一般和个别相结合”以及“领导和群众相结合”两种工作方法。'
+story: '文中给出的闭环很具体：先把分散意见集中研究，再回到群众中解释和实践，在行动中检验，然后重新集中。它不是一次性的意见征集。'
+imageId: original-river-bridge
+sources:
+  - name: 中文马克思主义文库《关于领导方法的若干问题》全文
+    url: https://www.marxists.org/chinese/maozedong/marxist.org-chinese-mao-19430601.htm
+    accessedAt: '2026-07-28'
+    type: original
+  - name: 共产党员网《毛泽东选集（第三卷）》
+    url: https://www.12371.cn/special/mzdxj/d3j/
+    accessedAt: '2026-07-28'
+    type: authoritative
+review:
+  status: verified
+  checkedAt: '2026-07-28'

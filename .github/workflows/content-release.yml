@@ -1,0 +1,95 @@
+name: Publish content release
+
+on:
+  push:
+    tags:
+      - "content-v*.*.*"
+
+permissions:
+  contents: write
+
+concurrency:
+  group: content-release-${{ github.ref }}
+  cancel-in-progress: false
+
+jobs:
+  publish:
+    name: Validate and publish content assets
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out tagged source
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+          cache-dependency-path: content-tool/pyproject.toml
+
+      - name: Install content tool
+        run: python -m pip install -e "./content-tool[dev]"
+
+      - name: Match tag to source version
+        env:
+          RELEASE_TAG: ${{ github.ref_name }}
+        run: |
+          python - <<'PY'
+          import os
+          from pathlib import Path
+
+          import yaml
+
+          tag = os.environ["RELEASE_TAG"]
+          expected = f"content-v{yaml.safe_load(Path('content/project.yaml').read_text(encoding='utf-8'))['contentVersion']}"
+          if tag != expected:
+              raise SystemExit(f"tag {tag!r} does not match source version {expected!r}")
+          PY
+
+      - name: Lint and test content tool
+        run: |
+          python -m ruff check content-tool
+          python -m pytest content-tool
+
+      - name: Validate and build immutable assets
+        run: >-
+          python -m xinghuo_content build content
+          --output dist
+          --formal
+          --verify-deterministic
+
+      - name: Create or resume draft release
+        env:
+          GH_TOKEN: ${{ github.token }}
+          RELEASE_TAG: ${{ github.ref_name }}
+        run: |
+          if gh release view "$RELEASE_TAG" >/dev/null 2>&1; then
+            IS_DRAFT="$(gh api "repos/${GITHUB_REPOSITORY}/releases/tags/${RELEASE_TAG}" --jq .draft)"
+            if [ "$IS_DRAFT" != "true" ]; then
+              echo "Refusing to modify an already published release: $RELEASE_TAG" >&2
+              exit 1
+            fi
+          else
+            gh release create "$RELEASE_TAG" \
+              --draft \
+              --verify-tag \
+              --title "星火摘读内容 ${RELEASE_TAG#content-v}" \
+              --notes "由 ${RELEASE_TAG} 标签自动构建并完成正式内容校验。"
+          fi
+
+      - name: Upload complete release assets
+        env:
+          GH_TOKEN: ${{ github.token }}
+          RELEASE_TAG: ${{ github.ref_name }}
+        run: |
+          VERSION="${RELEASE_TAG#content-v}"
+          gh release upload "$RELEASE_TAG" \
+            "dist/content-v${VERSION}.zip" \
+            "dist/manifest.json" \
+            --clobber
+
+      - name: Publish only after all uploads succeed
+        env:
+          GH_TOKEN: ${{ github.token }}
+          RELEASE_TAG: ${{ github.ref_name }}
+        run: gh release edit "$RELEASE_TAG" --draft=false --latest

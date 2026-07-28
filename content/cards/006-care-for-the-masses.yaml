@@ -1,0 +1,32 @@
+id: 9e91e6e3-8764-5d65-824a-d7d610683de3
+revision: 2
+status: published
+quote: '同志们，真正的铜墙铁壁是什么？是群众，是千百万真心实意地拥护革命的群众。'
+literature:
+  series: 毛泽东选集
+  volume: 第一卷
+  workTitle: 关心群众生活，注意工作方法
+  authoredAt: '1934-01-27'
+themes:
+  - 群众路线
+  - 工作方法
+interpretation:
+  coreMeaning: '“铜墙铁壁”不是物质工事的比喻，而是说真正可靠的力量来自群众真心实意的支持。这样的支持不能靠命令取得，要在共同目标和实际生活问题中逐步形成。'
+  keyPoint: '文章把战争动员同穿衣、吃饭、住房和卫生联系起来，说明关心群众生活本身就是组织工作。它既反对只会下任务，也反对提出目标后不解决实现目标的方法。'
+  contemporaryRelevance: '任何依赖广泛参与的工作，都要回答参与者为什么愿意投入、现实困难怎样解决。口头动员代替不了具体服务；能否持续获得信任，要看承诺是否落实到日常问题。'
+contextExcerpt: '在革命政府的周围团结起千百万群众来，发展我们的革命战争，我们就能消灭一切反革命，我们就能夺取全中国。'
+background: '文章是第二次全国工农兵代表大会上的结论之一，讨论如何把战争动员同群众的穿衣、吃饭、住房、疾病卫生等实际生活问题联系起来。'
+story: '文中对比只会下任务的汀州市和重视群众生活的长冈乡、才溪乡。后半篇又用“过河要有桥或船”说明提出任务之后还必须解决方法。'
+imageId: original-river-bridge
+sources:
+  - name: 中文马克思主义文库《关心群众生活，注意工作方法》全文
+    url: https://www.marxists.org/chinese/maozedong/marxist.org-chinese-mao-19340127.htm
+    accessedAt: '2026-07-28'
+    type: original
+  - name: 共产党员网《毛泽东选集（第一卷）》
+    url: https://www.12371.cn/special/mzdxj/dyj/
+    accessedAt: '2026-07-28'
+    type: authoritative
+review:
+  status: verified
+  checkedAt: '2026-07-28'

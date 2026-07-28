@@ -1,0 +1,60 @@
+package com.xuhuangbin.xinghuozhaidu.domain.model
+
+data class CardSource(
+    val name: String,
+    val url: String,
+    val accessedAt: String,
+    val evidenceType: String,
+)
+
+data class CardInterpretation(
+    val coreMeaning: String,
+    val keyPoint: String,
+    val contemporaryRelevance: String,
+)
+
+data class QuoteCard(
+    val id: String,
+    val revision: Int,
+    val quote: String,
+    val series: String,
+    val volume: String,
+    val workTitle: String,
+    val authoredAt: String,
+    val themes: List<String>,
+    val interpretation: CardInterpretation,
+    val contextExcerpt: String?,
+    val background: String?,
+    val story: String?,
+    val imagePath: String,
+    val sources: List<CardSource>,
+    val isWithdrawn: Boolean,
+    val isLiked: Boolean,
+    val isFavorited: Boolean,
+    val likedAt: Long?,
+    val favoritedAt: Long?,
+)
+
+data class ReaderState(
+    val roundId: Long? = null,
+    val cards: List<QuoteCard> = emptyList(),
+    val readCardIds: Set<String> = emptySet(),
+    val currentIndex: Int = 0,
+    val isComplete: Boolean = false,
+)
+
+data class InstalledContentState(
+    val contentVersion: String,
+    val publishedAt: String,
+    val lastCheckedAt: Long?,
+    val lastUpdatedAt: Long,
+)
+
+data class PersonalNote(
+    val id: Long,
+    val cardId: String?,
+    val title: String?,
+    val body: String,
+    val createdAt: Long,
+    val updatedAt: Long,
+)

@@ -1,0 +1,32 @@
+id: ed84f746-2057-5aeb-a86a-d619da9d89f6
+revision: 2
+status: published
+quote: '一个人能力有大小，但只要有这点精神，就是一个高尚的人，一个纯粹的人，一个有道德的人，一个脱离了低级趣味的人，一个有益于人民的人。'
+literature:
+  series: 毛泽东选集
+  volume: 第二卷
+  workTitle: 纪念白求恩
+  authoredAt: '1939-12-21'
+themes:
+  - 为人民服务
+  - 品格
+interpretation:
+  coreMeaning: '这段评价把人的价值同能力大小区分开来。能力有高低，但只要在工作中保持毫不自私、对他人负责的精神，就能使有限的能力产生对人民有益的作用。'
+  keyPoint: '“这点精神”承接全文对白求恩国际主义、责任心和毫不利己品格的概括，不是泛泛赞美。它也没有说专业能力不重要，而是强调能力必须由怎样的目的和态度来支配。'
+  contemporaryRelevance: '评价一个人或一项工作，除看结果和技能，也应看是否认真承担责任、是否把他人的需要放在心上。能力可以学习提高，可靠的责任感则决定这些能力会被怎样使用。'
+contextExcerpt: '我们大家要学习他毫无自私自利之心的精神。'
+background: '加拿大医生诺尔曼·白求恩在中国抗日前线从事医疗工作，因手术感染于一九三九年十一月逝世。一个多月后，毛泽东写下这篇纪念文章。'
+story: '毛泽东与白求恩只见过一面，后来收到过多封来信。文章没有停留在追悼，而是从国际主义、工作责任心和毫不利己的精神三个层面总结其品格。'
+imageId: original-memorial-pine
+sources:
+  - name: 中文马克思主义文库《纪念白求恩》全文
+    url: https://www.marxists.org/chinese/maozedong/marxist.org-chinese-mao-19391221.htm
+    accessedAt: '2026-07-28'
+    type: original
+  - name: 共产党员网《毛泽东选集（第二卷）》
+    url: https://www.12371.cn/special/mzdxj/dej/
+    accessedAt: '2026-07-28'
+    type: authoritative
+review:
+  status: verified
+  checkedAt: '2026-07-28'

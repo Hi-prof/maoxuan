@@ -1,0 +1,32 @@
+id: 0aa241e5-e429-5e9e-8912-dcf8d1ba78a0
+revision: 2
+status: published
+quote: '实践、认识、再实践、再认识，这种形式，循环往复以至无穷，而实践和认识之每一循环的内容，都比较地进到了高一级的程度。'
+literature:
+  series: 毛泽东选集
+  volume: 第一卷
+  workTitle: 实践论
+  authoredAt: '1937-07'
+themes:
+  - 实践
+  - 认识论
+interpretation:
+  coreMeaning: '认识不是一次完成的。人从实践中取得材料，形成判断，再把判断放回实践检验；新的结果又会带来新的认识。每轮循环都可能比上一轮更具体、更接近实际。'
+  keyPoint: '循环并不是原地重复，也不保证每次自动进步。只有认真处理新事实、修正旧判断，认识才会“进到高一级”。理论和经验各自封闭，都会切断这个往返过程。'
+  contemporaryRelevance: '做计划时可以把“行动、反馈、修正”看成连续过程。先在有限范围内验证，保留事实记录，再根据结果调整假设，比追求一次写出永远正确的方案更可靠。'
+contextExcerpt: '这就是辩证唯物论的全部认识论，这就是辩证唯物论的知行统一观。'
+background: '这篇哲学论文源于延安抗日军事政治大学的讲演，旨在从认识论角度批评轻视实践的教条主义和轻视理论的经验主义。'
+story: '全文从生产活动、阶级斗争和科学实验谈认识的来源，再讨论感性认识上升为理性认识、理性认识回到实践接受检验的循环。'
+imageId: original-reading-lamp
+sources:
+  - name: 中文马克思主义文库《实践论》全文
+    url: https://www.marxists.org/chinese/maozedong/marxist.org-chinese-mao-193707.htm
+    accessedAt: '2026-07-28'
+    type: original
+  - name: 共产党员网《毛泽东选集（第一卷）》
+    url: https://www.12371.cn/special/mzdxj/dyj/
+    accessedAt: '2026-07-28'
+    type: authoritative
+review:
+  status: verified
+  checkedAt: '2026-07-28'

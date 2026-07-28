@@ -1,0 +1,32 @@
+id: fda228fb-3afc-56d6-b3c5-eeee7ac2fe65
+revision: 2
+status: published
+quote: '反对主观主义以整顿学风，反对宗派主义以整顿党风，反对党八股以整顿文风，这就是我们的任务。'
+literature:
+  series: 毛泽东选集
+  volume: 第三卷
+  workTitle: 整顿党的作风
+  authoredAt: '1942-02-01'
+themes:
+  - 作风建设
+  - 党的建设
+interpretation:
+  coreMeaning: '这句话把整风任务分到学风、党风和文风三个方面。主观主义影响怎样认识问题，宗派主义影响怎样处理组织和群众关系，党八股则影响思想怎样表达和传播。'
+  keyPoint: '三项任务不是只改文字或礼节，而是同一种作风问题在认识、组织和表达上的不同表现。若思想方法不变，只修辞句；或只谈团结，不检查立场和工作，整顿都难以深入。'
+  contemporaryRelevance: '复盘团队问题时，不妨同时检查依据是否可靠、协作是否开放、表达是否让人听懂。很多执行故障并非单点失误，而是这几方面互相强化，需要放在一起修正。'
+contextExcerpt: '只要我们党的作风完全正派了，全国人民就会跟我们学。'
+background: '这是毛泽东在中共中央党校开学典礼上的演说，也是延安整风的重要文献。文章把学风、党风和文风放在同一套作风问题中检查。'
+story: '演说先用“窑洞有风”的比喻引出三股不良作风，随后分别分析其历史根源、思想方法和组织表现，要求通过研究和教育加以克服。'
+imageId: original-reading-lamp
+sources:
+  - name: 中文马克思主义文库《整顿党的作风》全文
+    url: https://www.marxists.org/chinese/maozedong/marxist.org-chinese-mao-19420201.htm
+    accessedAt: '2026-07-28'
+    type: original
+  - name: 共产党员网《毛泽东选集（第三卷）》
+    url: https://www.12371.cn/special/mzdxj/d3j/
+    accessedAt: '2026-07-28'
+    type: authoritative
+review:
+  status: verified
+  checkedAt: '2026-07-28'

@@ -1,0 +1,32 @@
+id: 6c901f85-8ab9-5e84-a712-9525b3c10242
+revision: 2
+status: published
+quote: '我们要用马克思主义的积极精神，克服消极的自由主义。'
+literature:
+  series: 毛泽东选集
+  volume: 第二卷
+  workTitle: 反对自由主义
+  authoredAt: '1937-09-07'
+themes:
+  - 作风建设
+  - 原则
+interpretation:
+  coreMeaning: '这里所说的自由主义，是组织生活中回避原则、迁就错误和只顾私人关系的消极态度。文章要求用公开、负责的方式处理分歧，使共同规则不被人情和敷衍慢慢掏空。'
+  keyPoint: '它批评的是特定的组织行为，不是在讨论个人生活方式或一般意义的自由。坚持原则也不等于逞强争胜；批评应当针对事实和工作，并以解决问题、维护团结为目的。'
+  contemporaryRelevance: '团队发现问题时，最好在合适场合把事实、影响和建议说清楚。为了表面和气而长期沉默，或只在背后议论，都会让小问题积累，也使真正承担责任的人得不到准确信息。'
+contextExcerpt: '自由主义是机会主义的一种表现，是和马克思主义根本冲突的。'
+background: '全面抗战开始后不久，文章集中批评组织生活中回避原则、只顾私人关系和当面不说背后议论等自由主义表现。'
+story: '正文先逐项列出十一种表现，再说明其共同后果：削弱集体生活、损害群众联系，并让消极态度在组织中保留下来。'
+imageId: original-memorial-pine
+sources:
+  - name: 中文马克思主义文库《反对自由主义》全文
+    url: https://www.marxists.org/chinese/maozedong/marxist.org-chinese-mao-19370907.htm
+    accessedAt: '2026-07-28'
+    type: original
+  - name: 共产党员网《毛泽东选集（第二卷）》
+    url: https://www.12371.cn/special/mzdxj/dej/
+    accessedAt: '2026-07-28'
+    type: authoritative
+review:
+  status: verified
+  checkedAt: '2026-07-28'

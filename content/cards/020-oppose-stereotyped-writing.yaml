@@ -1,0 +1,32 @@
+id: 0cc98b81-bcd6-5e6c-b2cc-3c5c4e3a315d
+revision: 2
+status: published
+quote: '党八股的第一条罪状是：空话连篇，言之无物。'
+literature:
+  series: 毛泽东选集
+  volume: 第三卷
+  workTitle: 反对党八股
+  authoredAt: '1942-02-08'
+themes:
+  - 文风
+  - 表达
+interpretation:
+  coreMeaning: '“空话连篇，言之无物”批评的是文字占了很大篇幅，却没有事实、观点或解决问题的作用。文章长短不是首要标准，内容是否对准对象、能否让读者理解才是。'
+  keyPoint: '反对长而空，并不等于一味追求短。复杂问题需要足够篇幅说清证据和逻辑；真正要删掉的是装腔作势、重复套话和同读者无关的内容，而不是必要的论证。'
+  contemporaryRelevance: '写作前先明确读者要解决什么问题，再选择材料和结构。完成后逐段检查：这段是否提供了新信息，能否推动理解；若删除后意思完全不变，就应考虑压缩。'
+contextExcerpt: '我们有些同志欢喜写长文章，但是没有什么内容。'
+background: '这篇演说延续整风主题，以“八大罪状”逐项分析空洞冗长、装腔作势、无的放矢和语言无味等问题。'
+story: '文章故意借八股文的形式“以毒攻毒”，但论证落点很实际：文章必须有人看、有人懂，并能解决问题；长短本身不是标准，内容才是。'
+imageId: original-printing-press
+sources:
+  - name: 中文马克思主义文库《反对党八股》全文
+    url: https://www.marxists.org/chinese/maozedong/marxist.org-chinese-mao-19420208.htm
+    accessedAt: '2026-07-28'
+    type: original
+  - name: 共产党员网《毛泽东选集（第三卷）》
+    url: https://www.12371.cn/special/mzdxj/d3j/
+    accessedAt: '2026-07-28'
+    type: authoritative
+review:
+  status: verified
+  checkedAt: '2026-07-28'

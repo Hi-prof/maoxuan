@@ -1,0 +1,32 @@
+id: c99ebbf7-0b9e-50c3-b1c1-d9adc72fd1c4
+revision: 2
+status: published
+quote: '为着这一切，就需要进行经济方面的建设工作。'
+literature:
+  series: 毛泽东选集
+  volume: 第一卷
+  workTitle: 必须注意经济工作
+  authoredAt: '1933-08-12'
+themes:
+  - 经济建设
+  - 群众生活
+interpretation:
+  coreMeaning: '这句话说明，在战争压力之下，经济建设不是可以无限推迟的附属工作。物资供给、生产组织和群众生活构成长期行动的基础，缺少这些条件，前线任务也难以持续。'
+  keyPoint: '这里的“建设”有明确的现实尺度，并非脱离条件追求大而全。原文讨论的是当时必要且可能的合作社、粮食调剂和生产安排，重点在于把有限资源组织起来。'
+  contemporaryRelevance: '推进紧迫任务时，不能只盯着最显眼的一线指标。人员保障、资源供给和日常运转看似靠后，却决定工作能坚持多久；安排目标时应把这些基础条件一并计算。'
+contextExcerpt: '革命战争的激烈发展，要求我们动员群众，立即开展经济战线上的运动，进行各项必要和可能的经济建设事业。'
+background: '这段文字出自中央革命根据地南部十七县经济建设大会上的报告。文章把物资供给、改善群众生活和组织群众都纳入经济工作的目标。'
+story: '面对“战争已经忙不过来，哪有工夫建设经济”的看法，报告反问长期战争靠什么保障，并以合作社、粮食调剂和生产计划说明建设不能等待。'
+imageId: original-workshop
+sources:
+  - name: 中文马克思主义文库《必须注意经济工作》全文
+    url: https://www.marxists.org/chinese/maozedong/marxist.org-chinese-mao-19330812.htm
+    accessedAt: '2026-07-28'
+    type: original
+  - name: 共产党员网《毛泽东选集（第一卷）》
+    url: https://www.12371.cn/special/mzdxj/dyj/
+    accessedAt: '2026-07-28'
+    type: authoritative
+review:
+  status: verified
+  checkedAt: '2026-07-28'

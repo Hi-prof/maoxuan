@@ -1,0 +1,7 @@
+schemaVersion: 2
+contentVersion: 1.1.0
+publishedAt: '2026-07-28T00:00:00Z'
+minimumAppVersionCode: 2
+releaseNotes: 新增逐卡离线解读
+repositoryOwner: Hi-prof
+repositoryName: maoxuan

@@ -1,0 +1,32 @@
+id: 266f2a69-7850-53c4-a651-c2dbd8807aa1
+revision: 2
+status: published
+quote: '人民，只有人民，才是创造世界历史的动力。'
+literature:
+  series: 毛泽东选集
+  volume: 第三卷
+  workTitle: 论联合政府
+  authoredAt: '1945-04-24'
+themes:
+  - 人民
+  - 历史
+interpretation:
+  coreMeaning: '这句话把人民的生产、斗争和社会实践看作历史变化的根本动力。历史不是少数人物单独创造的；大规模制度和社会转变，最终要通过广大人民的实际行动才能发生。'
+  keyPoint: '肯定人民的决定作用，并不否认组织、领导者或具体制度的影响。它改变的是观察历史的重心：这些因素能否发挥作用，要看是否联系人民需要，并转化为广泛参与的行动。'
+  contemporaryRelevance: '评价一项公共事业时，不能只看少数代表人物的设计，还要看普通参与者是否理解、是否有能力行动、实际生活是否改变。没有这些检验，宏大叙述容易停在表面。'
+contextExcerpt: '战争教育了人民，人民将赢得战争，赢得和平，又赢得进步。'
+background: '这是毛泽东在中国共产党第七次全国代表大会上的政治报告。抗战胜利临近，报告讨论国内外形势、联合政府和建设新中国的政策。'
+story: '引文出现在国际形势部分。文章先分析反法西斯战争中的人民力量，再把这种判断转向中国，作为团结、民主和动员群众的立论基础。'
+imageId: original-dawn-city
+sources:
+  - name: 中文马克思主义文库《论联合政府》全文
+    url: https://www.marxists.org/chinese/maozedong/marxist.org-chinese-mao-19450424.htm
+    accessedAt: '2026-07-28'
+    type: original
+  - name: 共产党员网《毛泽东选集（第三卷）》
+    url: https://www.12371.cn/special/mzdxj/d3j/
+    accessedAt: '2026-07-28'
+    type: authoritative
+review:
+  status: verified
+  checkedAt: '2026-07-28'

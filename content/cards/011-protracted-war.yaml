@@ -1,0 +1,32 @@
+id: 201e92cd-2c76-55ba-adf8-8deeb4f45129
+revision: 2
+status: published
+quote: '战争的伟力之最深厚的根源，存在于民众之中。'
+literature:
+  series: 毛泽东选集
+  volume: 第二卷
+  workTitle: 论持久战
+  authoredAt: '1938-05'
+themes:
+  - 群众
+  - 抗战
+interpretation:
+  coreMeaning: '这句话把战争能够长期坚持并取得胜利的深层力量放在民众之中。兵力和装备固然重要，但如果广大人民没有被组织起来，战争就缺少持续补充、情报、生产和政治支持。'
+  keyPoint: '“民众”不是抽象人数，也不是等待动员的被动资源。引文所在章节同时讨论政治动员、军民关系和尊重人民，说明力量要通过组织、理解和共同承担才能形成。'
+  contemporaryRelevance: '需要很多人长期参与的工作，不能只靠少数骨干硬撑。应让参与者理解目标、拥有实际作用，并建立反馈和协作方式；否则表面人数再多，也难形成稳定的共同力量。'
+contextExcerpt: '日本敢于欺负我们，主要的原因在于中国民众的无组织状态。'
+background: '一九三八年，抗日战争正处在艰难阶段。毛泽东在延安连续讲演，反驳亡国论和速胜论，分析战争为何持久以及怎样争取最后胜利。'
+story: '引文位于“兵民是胜利之本”一节。文章随后把政治动员、军民关系和尊重人民视为长期战争能否坚持的重要条件。'
+imageId: original-distant-mountains
+sources:
+  - name: 中文马克思主义文库《论持久战》全文
+    url: https://www.marxists.org/chinese/maozedong/marxist.org-chinese-mao-193805b.htm
+    accessedAt: '2026-07-28'
+    type: original
+  - name: 共产党员网《毛泽东选集（第二卷）》
+    url: https://www.12371.cn/special/mzdxj/dej/
+    accessedAt: '2026-07-28'
+    type: authoritative
+review:
+  status: verified
+  checkedAt: '2026-07-28'

@@ -1,0 +1,32 @@
+id: 4388cd1b-bf75-57ea-8b68-abae9bb422ac
+revision: 2
+status: published
+quote: '当着天空中出现乌云的时候，我们就指出：这不过是暂时的现象，黑暗即将过去，曙光即在前头。'
+literature:
+  series: 毛泽东选集
+  volume: 第四卷
+  workTitle: 目前形势和我们的任务
+  authoredAt: '1947-12-25'
+themes:
+  - 信念
+  - 形势判断
+interpretation:
+  coreMeaning: '乌云和曙光的比喻是在说明：眼前的黑暗现象可能很强烈，却未必代表长期方向。判断形势要穿过短期表象，看哪些更深的条件正在持续变化，而不是停留在眼前印象。'
+  keyPoint: '这种信心来自对战争性质、人心向背和战略转折的分析，不是遇到困难就断言“很快会好”。如果支撑方向判断的条件改变，结论也必须重新检验。'
+  contemporaryRelevance: '处在低谷时，可以把短期波动同长期趋势分开，列出支持判断的具体证据。这样既能避免被一时坏消息完全支配，也能防止用盲目乐观逃避现实问题。'
+contextExcerpt: '中国人民的革命战争，现在已经达到了一个转折点。'
+background: '报告作于陕北杨家沟会议。人民解放军由战略防御转入全国规模的进攻后，文章总结形势、军事原则、土地改革和经济政策。'
+story: '引文回顾全面内战开始时的判断：不能只看一时的兵力和装备，还要看战争性质、人心向背等持续起作用的因素。'
+imageId: original-dawn-city
+sources:
+  - name: 中文马克思主义文库《目前形势和我们的任务》全文
+    url: https://www.marxists.org/chinese/maozedong/marxist.org-chinese-mao-19471225.htm
+    accessedAt: '2026-07-28'
+    type: original
+  - name: 共产党员网《毛泽东选集（第四卷）》
+    url: https://www.12371.cn/special/mzdxj/d4j/
+    accessedAt: '2026-07-28'
+    type: authoritative
+review:
+  status: verified
+  checkedAt: '2026-07-28'

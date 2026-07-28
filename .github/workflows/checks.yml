@@ -1,0 +1,74 @@
+name: Checks
+
+on:
+  push:
+    branches:
+      - "**"
+    tags-ignore:
+      - "content-v*"
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  content:
+    name: Content tool and formal content
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+          cache-dependency-path: content-tool/pyproject.toml
+
+      - name: Install content tool
+        run: python -m pip install -e "./content-tool[dev]"
+
+      - name: Lint Python
+        run: python -m ruff check content-tool
+
+      - name: Test content tool
+        run: python -m pytest content-tool
+
+      - name: Validate formal content
+        run: python -m xinghuo_content validate content --formal
+
+      - name: Verify deterministic content build
+        run: >-
+          python -m xinghuo_content build content
+          --output dist
+          --formal
+          --verify-deterministic
+
+  android:
+    name: Android unit, lint, and assemble
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Set up JDK 17
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: "17"
+
+      - name: Set up Gradle
+        uses: gradle/actions/setup-gradle@v4
+
+      - name: Make Gradle wrapper executable
+        run: chmod +x gradlew
+
+      - name: Run Android checks
+        run: >-
+          ./gradlew
+          :app:testDebugUnitTest
+          :app:lintDebug
+          :app:assembleDebug
+          --no-daemon
+          --stacktrace

@@ -1,0 +1,32 @@
+id: f8988df2-c35a-58e9-99a7-bca215e9b7ef
+revision: 2
+status: published
+quote: '“实事”就是客观存在着的一切事物，“是”就是客观事物的内部联系，即规律性，“求”就是我们去研究。'
+literature:
+  series: 毛泽东选集
+  volume: 第三卷
+  workTitle: 改造我们的学习
+  authoredAt: '1941-05-19'
+themes:
+  - 实事求是
+  - 学习
+interpretation:
+  coreMeaning: '这段话逐字解释“实事求是”：先承认客观存在的事物，再研究它们内部的联系和规律。“求”是主动调查研究的过程，不是等待一个现成答案。'
+  keyPoint: '实事求是不是罗列现象，也不是给既有结论寻找例子。规律要从材料中研究出来，并继续接受实践检验。离开具体对象空谈理论，或只见零散事实不作分析，都不符合这里的方法。'
+  contemporaryRelevance: '处理问题时，可以先把事实、推测和价值选择分开。确认哪些材料已经掌握，哪些联系仍需验证，再让方案对准具体对象；这样能减少用漂亮概念替代真实研究。'
+contextExcerpt: '这种态度，就是有的放矢的态度。'
+background: '这篇报告在延安干部会议上作出，针对只会背诵个别词句、不了解国内外实际情况以及理论与实践相分离的学习方法。'
+story: '文章借“有的放矢”解释理论与中国实际的关系，又对“实事求是”逐字说明，使它从传统表述转化为调查、研究和行动的方法。'
+imageId: original-reading-lamp
+sources:
+  - name: 中文马克思主义文库《改造我们的学习》全文
+    url: https://www.marxists.org/chinese/maozedong/marxist.org-chinese-mao-19410519.htm
+    accessedAt: '2026-07-28'
+    type: original
+  - name: 共产党员网《毛泽东选集（第三卷）》
+    url: https://www.12371.cn/special/mzdxj/d3j/
+    accessedAt: '2026-07-28'
+    type: authoritative
+review:
+  status: verified
+  checkedAt: '2026-07-28'
