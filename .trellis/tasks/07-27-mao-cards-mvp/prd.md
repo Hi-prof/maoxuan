@@ -192,7 +192,8 @@
 ## Notes
 
 - MVP 已按本文实施并完成本地质量门禁；实际交付和验证记录见 `delivery.md`。
-- GitHub 远端仓库已建立；用户已于 2026-07-28 授权提交本次增量并发布 `content-v1.2.0` 标签和公开 Release。正式 APK 签名仍须另行授权。
+- GitHub 远端仓库已建立；用户已于 2026-07-28 授权提交本次内容增量并发布 `content-v1.2.0` 标签和公开 Release。
+- 用户已于 2026-07-28 选择正式签名 APK，并允许在本机生成长期 keystore、把签名材料写入 GitHub Secrets；APK 工作流的提交、`app-v1.2.0` 标签和公开 Release 仍须在实际执行前单独确认。
 - 未来若增加账号体系，应能把本机点赞与收藏合并进首个登录账号；该迁移不属于 MVP。
 
 ## Increment: 第 31 张正式卡片
@@ -213,3 +214,24 @@
 - [x] 正式校验按 `expectedPublishedCards` 检查当前发布数量；声明为 31 时少一张或多一张都明确失败。
 - [x] 正式内容报告显示 31 张卡片、8 张图片、0 个下架项，确定性构建连续两次产生相同字节。
 - [x] `app/src/main/assets/bootstrap.zip` 包含内容版本 `1.2.0` 和全部 31 张卡片，Android 严格解析测试、lint 与 debug 编译通过。
+
+## Increment: 正式签名 APK 1.2.0
+
+### Confirmed Scope
+
+- Android 应用版本提升为 `versionCode = 3`、`versionName = "1.2.0"`，应用 ID 继续使用 `com.xuhuangbin.xinghuozhaidu`。
+- 生成一份由用户长期持有的正式 Android keystore，固定保存在 `%USERPROFILE%\.android\xinghuo-release.keystore`；keystore、密码和恢复材料不得进入 Git 仓库。
+- GitHub Actions 通过加密 Secrets 临时恢复 keystore 并构建正式签名 APK；Gradle 仅从环境变量读取签名参数，不在源码、Gradle 属性或日志中保存秘密。
+- 新增 `app-vX.Y.Z` 标签触发的独立 APK Release 工作流；标签必须与 Android `versionName` 完全一致。
+- APK Release 必须明确设置为非 `latest`，确保 `content-v1.2.0` 继续承载稳定的 `releases/latest/download/manifest.json` 内容更新地址。
+- Release 上传正式签名 APK 及其 SHA-256 校验文件；发布前执行 Android 单元测试、lint、release 构建和 APK 签名验证。
+- 本次不实现应用内 APK 自动更新、不发布 AAB、不把正式密钥复制到仓库或 Release 资产。
+
+### Acceptance Criteria
+
+- [ ] 无签名环境变量时，debug 和 personal 构建保持可用，正式 release 构建不会产出可误发布的未签名 APK。
+- [ ] `app-v1.2.0` 标签与 `versionName = "1.2.0"` 匹配，工作流可恢复临时 keystore 并生成签名有效的 release APK。
+- [ ] APK 的 package name、`versionCode = 3`、`versionName = "1.2.0"` 和证书摘要均可由 Android Build Tools 验证。
+- [ ] GitHub Release 同时包含名称稳定的 APK 和 SHA-256 文件，远端下载文件的哈希与工作流产物一致。
+- [ ] `app-v1.2.0` 发布后不是仓库 latest Release，`content-v1.2.0` 仍为 latest，公开 `manifest.json` 与内容 ZIP 继续可访问。
+- [ ] Git 历史、工作流日志和 Release 资产均不包含 keystore、明文密码或 Base64 keystore 内容。

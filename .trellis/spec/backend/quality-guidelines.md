@@ -30,6 +30,7 @@ Run instrumentation on API 28 and the latest configured API before release.
 - UI/DAO code that reimplements package validation.
 - Automatic launch/background update checks.
 - Committing `dist/`, APKs, local databases, SDK paths, virtual environments, or signing material.
+- Printing signing passwords, keystore bytes, or Base64 keystore content in CI logs.
 
 ## Required Patterns
 
@@ -47,6 +48,9 @@ Run instrumentation on API 28 and the latest configured API before release.
 - Repository tests cover first import, revision, withdrawal, restoration, and local state preservation.
 - Reading-round tests cover stable order, backtracking, additions, withdrawals, completion, and restart semantics.
 - Release workflow validates `content-vX.Y.Z` against `project.yaml` before publishing assets.
+- App release workflow validates `app-vX.Y.Z` against Android `versionName`,
+  verifies the signed APK and publishes it as non-latest so the content manifest
+  remains available through the stable latest-release URL.
 
 ## Windows Gradle Gotcha
 

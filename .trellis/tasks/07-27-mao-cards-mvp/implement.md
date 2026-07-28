@@ -533,3 +533,266 @@ git status --short
 - [x] Run Ruff, all content-tool tests, formal validation, formal report and deterministic build.
 - [x] Run `:app:testDebugUnitTest`, `:app:lintDebug` and `:app:assembleDebug` with JDK 17.
 - [x] Run `git diff --check`, inspect the scoped changes and record any verification that cannot run; do not commit or publish.
+
+## Increment: 正式签名 APK 1.2.0 Implementation Plan
+
+> **For agentic workers:** 按本节顺序内联执行；每个任务完成后更新复选框并复核产物。受项目规则约束，提交、标签和 Release 必须在执行前取得用户明确确认。
+
+**Goal:** 为星火摘读 1.2.0 建立可重复、不会破坏内容更新通道的正式签名 APK 发布链。
+
+**Architecture:** Gradle 从环境变量读取正式签名参数，GitHub Actions 从 Repository Secrets 临时恢复 keystore，并由 app-vX.Y.Z 标签驱动测试、签名、校验和 Release。APK Release 始终为非 latest，现有内容 Release 继续提供稳定 manifest。
+
+**Tech Stack:** Android Gradle Plugin/Kotlin DSL、JDK 17 keytool、Android Build Tools apksigner/aapt、GitHub Actions、GitHub CLI。
+
+### Global Constraints
+
+- 应用 ID 固定为 com.xuhuangbin.xinghuozhaidu。
+- 本次 App 版本固定为 versionCode = 3、versionName = "1.2.0"。
+- 正式标签固定为 app-v1.2.0，内容标签继续使用独立的 content-vX.Y.Z 前缀。
+- keystore、密码、Base64 keystore 和 runner 临时文件均不得进入 Git、Release 资产或日志。
+- app-v1.2.0 必须是非 latest Release；releases/latest/download/manifest.json 必须继续指向内容 Release。
+- 不新增依赖、不发布 AAB、不实现应用内 APK 自动更新。
+
+### Task 1: Provision the long-lived signing identity
+
+**Files:**
+
+- Create outside repository: %USERPROFILE%\.android\xinghuo-release.keystore
+- Create outside repository: %USERPROFILE%\.android\xinghuo-release-credentials.clixml
+- Configure repository settings: four GitHub Actions Secrets
+
+**Interfaces:**
+
+- Produces alias xinghuo-release, an RSA 4096-bit JKS keystore, and four Secrets consumed by Task 2 and Task 3.
+- The CLIXML file stores passwords as Windows DPAPI-protected SecureString values for the current Windows account; it is only a supplemental local recovery copy, not a portable backup.
+
+- [x] **Step 1: Resolve JDK 17 and refuse to overwrite an existing identity**
+
+Run:
+
+~~~powershell
+$keystore = Join-Path $env:USERPROFILE '.android\xinghuo-release.keystore'
+$credentials = Join-Path $env:USERPROFILE '.android\xinghuo-release-credentials.clixml'
+if (Test-Path -LiteralPath $keystore) { throw "Refusing to overwrite $keystore" }
+if (Test-Path -LiteralPath $credentials) { throw "Refusing to overwrite $credentials" }
+~~~
+
+Expected: both paths are absent; an existing path is a recovery decision and is never overwritten.
+
+- [x] **Step 2: Generate the keystore without placing passwords on the command line**
+
+Use RandomNumberGenerator.GetBytes(32) for independent store/key passwords, assign them to process-scoped XINGHUO_STORE_PASSWORD and XINGHUO_KEY_PASSWORD, and run:
+
+~~~powershell
+& $keytool -genkeypair -v -keystore $keystore -storetype JKS -storepass:env XINGHUO_STORE_PASSWORD -keypass:env XINGHUO_KEY_PASSWORD -alias 'xinghuo-release' -keyalg RSA -keysize 4096 -validity 10000 -dname 'CN=Xinghuo Zhaidu, OU=Android, O=xuhuangbin, C=CN'
+~~~
+
+Expected: exactly one PrivateKeyEntry named xinghuo-release. Remove both temporary environment variables in a finally block.
+
+- [x] **Step 3: Persist only a DPAPI-protected local recovery record**
+
+~~~powershell
+[pscustomobject]@{
+    KeyAlias = 'xinghuo-release'
+    StorePassword = ConvertTo-SecureString $storePassword -AsPlainText -Force
+    KeyPassword = ConvertTo-SecureString $keyPassword -AsPlainText -Force
+} | Export-Clixml -LiteralPath $credentials
+~~~
+
+Expected: the XML does not contain either plaintext password. A separate portable password-manager record and offline keystore copy remain the user's required backup.
+
+- [x] **Step 4: Set four Repository Secrets without printing their values**
+
+~~~powershell
+[Convert]::ToBase64String([IO.File]::ReadAllBytes($keystore)) | gh secret set ANDROID_RELEASE_KEYSTORE_BASE64 --repo Hi-prof/maoxuan
+$storePassword | gh secret set ANDROID_RELEASE_STORE_PASSWORD --repo Hi-prof/maoxuan
+'xinghuo-release' | gh secret set ANDROID_RELEASE_KEY_ALIAS --repo Hi-prof/maoxuan
+$keyPassword | gh secret set ANDROID_RELEASE_KEY_PASSWORD --repo Hi-prof/maoxuan
+~~~
+
+Expected: gh secret list --repo Hi-prof/maoxuan lists all four names; no value appears in output or repository files.
+
+- [x] **Step 5: Verify the identity and retain only public metadata**
+
+Use keytool -list -v with -storepass:env. Verify alias, PrivateKeyEntry, RSA 4096 and validity; record only the SHA-256 certificate fingerprint in delivery.md.
+
+### Task 2: Enforce release signing in Gradle
+
+**Files:**
+
+- Modify: app/build.gradle.kts
+
+**Interfaces:**
+
+- Consumes ANDROID_RELEASE_KEYSTORE_PATH, ANDROID_RELEASE_STORE_PASSWORD, ANDROID_RELEASE_KEY_ALIAS, and ANDROID_RELEASE_KEY_PASSWORD.
+- Produces signed app/build/outputs/apk/release/app-release.apk only when all values are valid.
+- Produces :app:printVersionName and :app:printVersionCode for workflow validation.
+
+- [x] **Step 1: Capture the current unsigned-release behavior**
+
+Run .\gradlew.bat :app:assembleRelease --no-daemon --stacktrace with no signing variables.
+
+Expected before implementation: release assembly can complete without a formal signing identity, demonstrating the missing guard.
+
+- [x] **Step 2: Add version 1.2.0 and environment-only signing**
+
+Set versionCode = 3 and versionName = "1.2.0". Resolve this exact map:
+
+~~~kotlin
+val releaseSigningValues = mapOf(
+    "ANDROID_RELEASE_KEYSTORE_PATH" to System.getenv("ANDROID_RELEASE_KEYSTORE_PATH"),
+    "ANDROID_RELEASE_STORE_PASSWORD" to System.getenv("ANDROID_RELEASE_STORE_PASSWORD"),
+    "ANDROID_RELEASE_KEY_ALIAS" to System.getenv("ANDROID_RELEASE_KEY_ALIAS"),
+    "ANDROID_RELEASE_KEY_PASSWORD" to System.getenv("ANDROID_RELEASE_KEY_PASSWORD"),
+)
+val hasReleaseSigning = releaseSigningValues.values.all { !it.isNullOrBlank() }
+~~~
+
+Reject partially configured input, create the release signing config only when all values are nonblank, and attach it only to the release build type.
+
+- [x] **Step 3: Fail before release packaging when signing is absent**
+
+Add a task-graph guard covering assembleRelease, bundleRelease, packageRelease, and installRelease task families. When one is present and hasReleaseSigning is false, throw a GradleException before any task starts. Do not require signing for lintRelease, debug, or personal tasks.
+
+- [x] **Step 4: Add machine-readable version tasks**
+
+~~~kotlin
+tasks.register("printVersionName") {
+    doLast { println(android.defaultConfig.versionName) }
+}
+tasks.register("printVersionCode") {
+    doLast { println(android.defaultConfig.versionCode) }
+}
+~~~
+
+- [x] **Step 5: Verify missing, partial, and full input**
+
+Without variables, require assembleDebug, assemblePersonal, and lintRelease to pass; require assembleRelease to fail before producing a new APK. With only ANDROID_RELEASE_KEY_ALIAS, require configuration to fail. With all four values loaded from CLIXML, run:
+
+~~~powershell
+.\gradlew.bat :app:testDebugUnitTest :app:lintRelease :app:assembleRelease --no-daemon --stacktrace
+~~~
+
+Expected: tests, lint and signed release build pass. Clear all four process variables in a finally block.
+
+### Task 3: Add the tag-driven APK Release workflow
+
+**Files:**
+
+- Create: .github/workflows/app-release.yml
+- Modify: .github/workflows/checks.yml
+
+**Interfaces:**
+
+- Consumes app-v*.*.* tags and the four Repository Secrets.
+- Produces xinghuo-zhaidu-v1.2.0.apk and xinghuo-zhaidu-v1.2.0.apk.sha256 on a non-latest Release.
+
+- [x] **Step 1: Add the isolated trigger and least privilege**
+
+~~~yaml
+on:
+  push:
+    tags:
+      - "app-v*.*.*"
+permissions:
+  contents: write
+concurrency:
+  group: app-release-${{ github.ref }}
+  cancel-in-progress: false
+~~~
+
+Add app-v* to checks.yml tags-ignore so an App tag does not duplicate the Android checks.
+
+- [x] **Step 2: Validate tag/version and capture the content latest tag**
+
+~~~bash
+APP_VERSION="$(./gradlew -q :app:printVersionName --no-daemon)"
+APP_VERSION_CODE="$(./gradlew -q :app:printVersionCode --no-daemon)"
+EXPECTED_TAG="app-v$APP_VERSION"
+test "$GITHUB_REF_NAME" = "$EXPECTED_TAG"
+test "$APP_VERSION_CODE" = "3"
+CONTENT_LATEST_TAG="$(gh api "repos/$GITHUB_REPOSITORY/releases/latest" --jq .tag_name)"
+case "$CONTENT_LATEST_TAG" in content-v*) ;; *) exit 1 ;; esac
+~~~
+
+Persist only public version values and CONTENT_LATEST_TAG through GITHUB_ENV.
+
+- [x] **Step 3: Restore signing material in RUNNER_TEMP**
+
+Bind Secrets only to steps that need them, require all four values to be nonempty, decode with base64 --decode to $RUNNER_TEMP/xinghuo-release.keystore, set mode 600, and export only ANDROID_RELEASE_KEYSTORE_PATH. Never enable shell tracing.
+
+- [x] **Step 4: Test, lint, build, and verify**
+
+Run Gradle testDebugUnitTest, lintRelease, and assembleRelease. Locate apksigner/aapt in the newest installed Android Build Tools and run:
+
+~~~bash
+apksigner verify --verbose --print-certs app/build/outputs/apk/release/app-release.apk
+aapt dump badging app/build/outputs/apk/release/app-release.apk
+~~~
+
+Require badging to contain com.xuhuangbin.xinghuozhaidu, versionCode 3, and versionName 1.2.0.
+
+- [x] **Step 5: Normalize assets and publish draft-first**
+
+Copy the APK to dist/xinghuo-zhaidu-v1.2.0.apk and run sha256sum from dist. Create or resume a draft Release, refuse to modify an already published same-tag Release, upload both complete assets, then run:
+
+~~~bash
+gh release edit "$GITHUB_REF_NAME" --draft=false --prerelease=false --latest=false
+~~~
+
+- [x] **Step 6: Prove content latest remains intact**
+
+Re-read the latest Release tag. If it differs from captured CONTENT_LATEST_TAG, immediately mark CONTENT_LATEST_TAG as latest; then require equality. Download releases/latest/download/manifest.json, parse it as JSON, and require nonempty contentVersion and packageUrl.
+
+### Task 4: Run the local security and quality gate
+
+**Files:**
+
+- Modify: .trellis/tasks/07-27-mao-cards-mvp/delivery.md
+- Modify after the convention is proven: relevant .trellis/spec/ files
+
+- [x] **Step 1: Validate workflow and whitespace**
+
+Run actionlint for app-release.yml and checks.yml when available, plus git diff --check. If actionlint is unavailable, record that exact gap; generic YAML parsing is not sufficient to claim GitHub Actions validity.
+
+- [x] **Step 2: Run unsigned-environment regression**
+
+~~~powershell
+.\gradlew.bat :app:testDebugUnitTest :app:lintDebug :app:assembleDebug :app:assemblePersonal --no-daemon --stacktrace
+~~~
+
+Expected: all existing debug/personal behavior passes without signing variables.
+
+- [x] **Step 3: Run signed-release verification**
+
+Load DPAPI credentials only into process environment, run lintRelease/assembleRelease, then verify with apksigner and aapt. Record APK bytes, SHA-256, package/version and certificate SHA-256 fingerprint only.
+
+- [x] **Step 4: Scan for secret leakage**
+
+Search tracked and untracked repository files for generated password values, the Base64 keystore value, xinghuo-release.keystore, and private-key markers. Require git status to contain no JKS, keystore, CLIXML, APK, build output, or unrelated changes.
+
+- [x] **Step 5: Update delivery and reusable specs**
+
+Record commands and actual results in delivery.md. Update Trellis specs only with proven reusable rules: environment-only signing, no unsigned release packaging, non-latest APK Release, and the content-latest postcondition.
+
+### Task 5: Commit and publish behind an explicit gate
+
+- [x] **Step 1: Present scoped diff and verification**
+
+Report changed files, local checks, signed APK metadata, certificate fingerprint and tool gaps. Ask one explicit question authorizing commit, main push, app-v1.2.0 tag push, and public Release.
+
+- [ ] **Step 2: Commit and push only after approval**
+
+Stage only reviewed files. Commit message: feat: publish signed Android 1.2.0. Push main without amending or including unrelated work.
+
+- [ ] **Step 3: Create the immutable tag**
+
+Require local HEAD, main, and origin/main to match; confirm app-v1.2.0 does not exist locally or remotely; create an annotated tag and push only that tag.
+
+- [ ] **Step 4: Monitor to terminal success**
+
+Use gh run list --workflow app-release.yml and gh run watch --exit-status. Do not stop while the job is queued or running. On failure, inspect logs without printing Secrets and fix forward.
+
+- [ ] **Step 5: Verify the public Release**
+
+Download both assets to a temporary directory, verify SHA-256, signature, package and version; confirm App Release is non-latest; then confirm content-v1.2.0 remains latest and its manifest plus content ZIP are reachable.

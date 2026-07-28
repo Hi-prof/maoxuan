@@ -4,8 +4,9 @@
 
 - 本地 MVP 实现完成。
 - Android 客户端、内容工具、31 张正式卡片、8 张原创背景图、静态更新链路、CI 与文档均已落地。
-- 已生成可直接安装的 `1.1.0` 个人版 APK；该构建使用 Release 优化和本机 Android 标准调试证书。
+- 已生成并验证 `1.2.0` 正式签名 APK；个人版继续使用 Release 优化和本机 Android 标准调试证书。
 - 公共源码仓库为 `Hi-prof/maoxuan`；内容 `1.2.0` 通过 `content-v1.2.0` 标签触发 GitHub Actions 正式发布。
+- 正式 APK 发布工作流已在本地完成实现和验证；提交、`app-v1.2.0` 标签与公开 Release 尚待用户最终授权。
 
 ## Delivered
 
@@ -20,7 +21,7 @@
 - Room 保存内容、用户状态、个人笔记、轮次、下架快照和版本状态；笔记引用会参与下架快照保留与清理。
 - 完整快照更新：手动检查、二次确认、取消、下载、SHA-256/ZIP/JSON/图片校验、原子导入、下架和恢复。
 - Python YAML 校验、正式内容报告和确定性 ZIP/manifest 构建。
-- GitHub Actions 普通检查工作流与 `content-vX.Y.Z` 内容发布工作流。
+- GitHub Actions 普通检查、`content-vX.Y.Z` 内容发布与 `app-vX.Y.Z` 正式签名 APK 发布工作流。
 - 31 张双源核验正式卡片和 8 张 `CC0-1.0` 原创背景图，随 APK 内置。
 - 完整 Noto Serif SC 字体、OFL 许可和来源记录。
 
@@ -49,7 +50,11 @@ Personal APK interpretation open/scroll/detail smoke test on API 28: passed
 Personal APK four-tab/note-list smoke test and retained note associations on API 35: passed
 ```
 
-The final full-scope run passed `clean check`, Debug/Personal JVM tests, Debug/Personal lint, `assemblePersonal`, API 28/API 35 instrumentation, `actionlint 1.7.12`, formal content validation, deterministic content build, and release tag/source-version validation. A separate earlier gate also passed the unsigned `assembleRelease` build.
+The prior full-scope run passed `clean check`, Debug/Personal JVM tests, Debug/Personal lint, `assemblePersonal`, API 28/API 35 instrumentation, `actionlint 1.7.12`, formal content validation, deterministic content build, and content release tag/source-version validation.
+
+正式 APK 增量使用 Temurin 17.0.19 完成以下验证：修改前 `assembleRelease` 会生成 `app-release-unsigned.apk`；修改后无签名配置和部分签名配置均在任务执行前失败，且 debug、personal、release lint 不依赖正式密钥。`testDebugUnitTest`、`lintDebug`、`lintRelease`、`assembleDebug`、`assemblePersonal` 和带正式签名的 `assembleRelease` 均通过。`actionlint 1.7.12` 检查三个工作流无错误；秘密扫描覆盖 337 个仓库文本文件，未发现密码、Base64 keystore 或签名文件泄露。
+
+本次重跑 API 28 instrumentation 时发现初始化回归仍把内置内容版本期望写死为 `1.1.0`；结构化检查确认当前 bootstrap 为 `1.2.0`、31 张卡片，目标卡 revision 仍为 2，因此只更新陈旧期望，不修改初始化逻辑。修复后 API 28 与 API 35 均为 19/19 通过。
 
 Visual artifacts are under `artifacts/screenshots/`, including minimum-height long-card front/back checks, three target viewports, system-dark fixed bars, and the final API 35 reader screen.
 
@@ -63,11 +68,14 @@ Visual artifacts are under `artifacts/screenshots/`, including minimum-height lo
 
 ## Artifacts
 
-- Current personal APK: `app/build/outputs/apk/personal/app-personal.apk`, 21,147,051 bytes, SHA-256 `921cff2759422b873ece2f046b4f868635f3cebe85eb05a8aacd27018d815e56`.
+- Current signed release APK: `app/build/outputs/apk/release/app-release.apk`, 21,151,147 bytes, SHA-256 `259424ecb5850be67f368b3b3b42e378cf508c4a659dc550e9d44721d2bff8bc`.
+- Release signer: Xinghuo Zhaidu, RSA 4096, certificate SHA-256 `26cbe74325edda68654627cc1fdc7a71c0a4ce14f3b4875ded635ca0a23ba411`, APK Signature Scheme v2.
+- Release package metadata: `com.xuhuangbin.xinghuozhaidu`, version code `3`, version name `1.2.0`.
+- Current personal APK: `app/build/outputs/apk/personal/app-personal.apk`, 21,147,051 bytes, SHA-256 `7339923fff6fde5a50934e06cde75c8bc0bd8971f14210f4c659cf91b1c56078`.
 - Personal signer: Android Debug, RSA 2048, certificate SHA-256 `627f7ff3e7d35d0af6f7399dcd9dd1cdee2ad4905d3f3f55cf95754c5c4e1f57`, APK Signature Scheme v2.
 - Reproducible Gradle output: `app/build/outputs/apk/personal/app-personal.apk` from `./gradlew :app:assemblePersonal`.
 - Versioned local personal APK: `dist/xinghuo-zhaidu-v1.1.0-personal.apk` remains the prior `1.1.0` delivery and was not overwritten by this increment.
-- Debug APK: `app/build/outputs/apk/debug/app-debug.apk`, 81,077,298 bytes, SHA-256 `c8c3abd951a4cf29e670c9c30ea55894f082e4ea4e12d2891683ab25183cc13d`.
+- Debug APK: `app/build/outputs/apk/debug/app-debug.apk`, 78,545,963 bytes, SHA-256 `b3033b2b2bdc1596fd4bceed907f98e5d02f0f68a81fdc89595b6c57dc738564`.
 - Bundled bootstrap: `app/src/main/assets/bootstrap.zip`, 2,531,665 bytes, SHA-256 `570ba7c3c54efc2a5a9a21bbf7fbdca42dc61968ddee5b754d882bafe5059a32`.
 - Local content package: `dist/content-v1.2.0.zip` (ignored build output)
 - Local manifest: `dist/manifest.json` (ignored build output)
@@ -78,4 +86,4 @@ Visual artifacts are under `artifacts/screenshots/`, including minimum-height lo
 - Release page: `https://github.com/Hi-prof/maoxuan/releases/tag/content-v1.2.0`.
 - Latest manifest: `https://github.com/Hi-prof/maoxuan/releases/latest/download/manifest.json`.
 - The tag workflow validates Python 3.12 compatibility, formal content and deterministic output before uploading `content-v1.2.0.zip` and `manifest.json`; it publishes only after both assets exist.
-- No production signing key has been created or used. The personal APK uses the local Android debug certificate; the public `release` build remains unsigned.
+- A production signing key exists only under the user's local Android directory and encrypted GitHub Secrets; no signing material is stored in the repository. The APK Release has not yet been published.

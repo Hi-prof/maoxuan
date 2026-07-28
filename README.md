@@ -50,9 +50,18 @@ python -m pip install -e ".\content-tool[dev]"
 .\gradlew.bat :app:assemblePersonal
 ```
 
-产物位于 `app/build/outputs/apk/personal/app-personal.apk`。后续覆盖安装必须继续使用同一份 `%USERPROFILE%\.android\debug.keystore`；该证书仅适合个人本地使用，公开发布时应使用单独长期保管的正式签名证书。普通 `release` 构建仍保持未签名。
+产物位于 `app/build/outputs/apk/personal/app-personal.apk`。后续覆盖安装必须继续使用同一份 `%USERPROFILE%\.android\debug.keystore`；该证书仅适合个人本地使用。
 
-当前 `1.1.0` 的版本化本地交付副本为 `dist/xinghuo-zhaidu-v1.1.0-personal.apk`。`dist/` 是忽略的构建输出目录，不提交 APK 到源码仓库。
+正式 `release` 构建使用长期保管的独立证书，只从以下环境变量读取签名配置：
+
+```text
+ANDROID_RELEASE_KEYSTORE_PATH
+ANDROID_RELEASE_STORE_PASSWORD
+ANDROID_RELEASE_KEY_ALIAS
+ANDROID_RELEASE_KEY_PASSWORD
+```
+
+四项配置缺一时，Gradle 会在正式打包任务执行前失败；debug、personal 和 lint 不依赖正式密钥。keystore 与密码不得写入仓库、Gradle 属性或构建日志。当前 App 版本为 `1.2.0`（version code 3），`dist/` 仍是忽略的本地构建目录，不提交 APK 到源码仓库。
 
 客户端当前配置的内容地址为：
 
@@ -91,9 +100,11 @@ python -m xinghuo_content build content `
 
 ## 发布与回滚
 
-普通 push 和 pull request 只运行 Python、正式内容、Android 单元测试、lint 与构建检查，不会发布内容。
+普通 push 和 pull request 只运行 Python、正式内容、Android 单元测试、lint 与构建检查，不会发布内容或 APK。
 
 内容发布由与源版本完全一致的标签触发，例如 `content/project.yaml` 中为 `1.2.0` 时，标签必须是 `content-v1.2.0`。工作流先完成正式校验和确定性构建，再创建草稿 Release、上传 `content-v1.2.0.zip` 与 `manifest.json`，最后才公开 Release。创建标签和推送属于人工发布操作。
+
+正式 APK 由与 Android `versionName` 完全一致的 `app-vX.Y.Z` 标签触发。工作流从 GitHub Secrets 临时恢复 keystore，运行单元测试、release lint、R8 构建、`apksigner` 和包版本校验，再上传 `xinghuo-zhaidu-vX.Y.Z.apk` 及 SHA-256。APK Release 明确设为非 latest，确保客户端的 `releases/latest/download/manifest.json` 始终继续指向内容 Release。
 
 已经发布的错误内容不覆盖历史 Release，也不降低版本号。回滚时恢复上一份可信内容源，提升 patch 版本并发布新的完整快照；客户端仍按正常升级路径处理。
 

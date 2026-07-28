@@ -6,6 +6,7 @@ on:
       - "**"
     tags-ignore:
       - "content-v*"
+      - "app-v*"
   pull_request:
 
 permissions:

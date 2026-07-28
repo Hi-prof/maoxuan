@@ -10,6 +10,24 @@ tasks.withType<Test>().configureEach {
     systemProperty("file.encoding", "UTF-8")
 }
 
+val releaseSigningValues = mapOf(
+    "ANDROID_RELEASE_KEYSTORE_PATH" to System.getenv("ANDROID_RELEASE_KEYSTORE_PATH"),
+    "ANDROID_RELEASE_STORE_PASSWORD" to System.getenv("ANDROID_RELEASE_STORE_PASSWORD"),
+    "ANDROID_RELEASE_KEY_ALIAS" to System.getenv("ANDROID_RELEASE_KEY_ALIAS"),
+    "ANDROID_RELEASE_KEY_PASSWORD" to System.getenv("ANDROID_RELEASE_KEY_PASSWORD"),
+)
+val configuredReleaseSigningValues = releaseSigningValues.filterValues { !it.isNullOrBlank() }
+val hasReleaseSigning = configuredReleaseSigningValues.size == releaseSigningValues.size
+
+if (configuredReleaseSigningValues.isNotEmpty() && !hasReleaseSigning) {
+    val missingNames = releaseSigningValues
+        .filterValues { it.isNullOrBlank() }
+        .keys
+        .sorted()
+        .joinToString()
+    throw GradleException("Incomplete Android release signing configuration. Missing: $missingNames")
+}
+
 android {
     namespace = "com.xuhuangbin.xinghuozhaidu"
     compileSdk = 35
@@ -18,8 +36,8 @@ android {
         applicationId = "com.xuhuangbin.xinghuozhaidu"
         minSdk = 28
         targetSdk = 35
-        versionCode = 2
-        versionName = "1.1.0"
+        versionCode = 3
+        versionName = "1.2.0"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         vectorDrawables.useSupportLibrary = true
@@ -30,10 +48,29 @@ android {
         )
     }
 
+    signingConfigs {
+        if (hasReleaseSigning) {
+            create("release") {
+                val keystorePath = checkNotNull(releaseSigningValues["ANDROID_RELEASE_KEYSTORE_PATH"])
+                val keystoreFile = file(keystorePath)
+                if (!keystoreFile.isFile) {
+                    throw GradleException("Android release keystore does not exist: $keystorePath")
+                }
+                storeFile = keystoreFile
+                storePassword = checkNotNull(releaseSigningValues["ANDROID_RELEASE_STORE_PASSWORD"])
+                keyAlias = checkNotNull(releaseSigningValues["ANDROID_RELEASE_KEY_ALIAS"])
+                keyPassword = checkNotNull(releaseSigningValues["ANDROID_RELEASE_KEY_PASSWORD"])
+            }
+        }
+    }
+
     buildTypes {
         release {
             isMinifyEnabled = true
             isShrinkResources = true
+            if (hasReleaseSigning) {
+                signingConfig = signingConfigs.getByName("release")
+            }
             proguardFiles(
                 getDefaultProguardFile("proguard-android-optimize.txt"),
                 "proguard-rules.pro",
@@ -75,6 +112,37 @@ android {
 
     sourceSets {
         getByName("androidTest").assets.srcDir("$projectDir/schemas")
+    }
+}
+
+val releasePackagingTaskName = Regex("^(assemble|bundle|package|install).*Release$")
+
+gradle.taskGraph.whenReady {
+    val releasePackagingRequested = allTasks.any { task ->
+        task.project == project && releasePackagingTaskName.matches(task.name)
+    }
+    if (releasePackagingRequested && !hasReleaseSigning) {
+        throw GradleException(
+            "Android release packaging requires ANDROID_RELEASE_KEYSTORE_PATH, " +
+                "ANDROID_RELEASE_STORE_PASSWORD, ANDROID_RELEASE_KEY_ALIAS, and " +
+                "ANDROID_RELEASE_KEY_PASSWORD.",
+        )
+    }
+}
+
+tasks.register("printVersionName") {
+    group = "help"
+    description = "Prints the configured Android application version name."
+    doLast {
+        println(android.defaultConfig.versionName)
+    }
+}
+
+tasks.register("printVersionCode") {
+    group = "help"
+    description = "Prints the configured Android application version code."
+    doLast {
+        println(android.defaultConfig.versionCode)
     }
 }
 

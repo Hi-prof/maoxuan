@@ -17,7 +17,14 @@ For an installable personal build:
 .\gradlew.bat :app:assemblePersonal --no-daemon
 ```
 
-`personal` inherits Release minification/resource shrinking and uses the standard local Android debug certificate. It is for local installation only. Keep `release` unsigned until a separately protected production certificate is configured.
+`personal` inherits Release minification/resource shrinking and uses the standard local Android debug certificate. It is for local installation only.
+
+Production `release` packaging consumes only `ANDROID_RELEASE_KEYSTORE_PATH`,
+`ANDROID_RELEASE_STORE_PASSWORD`, `ANDROID_RELEASE_KEY_ALIAS`, and
+`ANDROID_RELEASE_KEY_PASSWORD`. Missing or partial configuration must fail
+before any release packaging task executes; Debug, Personal, and Release lint
+remain usable without production credentials. Never commit the keystore or put
+credentials in Gradle properties.
 
 Keep `isMinifyEnabled = true` and `isShrinkResources = true` explicit on `personal`. Do not assume `initWith(release)` registers every optimization task: the build is acceptable only when its task graph contains both `minifyPersonalWithR8` and `shrinkPersonalRes`.
 
@@ -68,5 +75,9 @@ source.bottom <= card.bottom
   progress blocks duplicate actions and system-back navigation.
 - Pager state survives switching bottom tabs and detail/list return preserves position.
 - APK permissions remain limited to network plus AndroidX's generated internal receiver permission.
+- A production APK passes `apksigner verify --verbose --print-certs`; `aapt dump badging`
+  reports the expected application ID, version code, and version name.
+- An `app-vX.Y.Z` Release is explicitly non-latest, and the repository latest
+  Release still serves the public content `manifest.json` after APK publication.
 - Room `3 -> 4` migration and note CRUD/withdrawal lifecycle tests run on API 28
   and the latest configured API.

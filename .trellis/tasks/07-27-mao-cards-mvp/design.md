@@ -4,7 +4,7 @@
 
 - 已按用户批准的 A 方案完成实现，并在 Android API 28 与 API 35 上通过本地质量门禁。
 - 离线卡片解读、收藏/点赞同页与个人笔记增量均已实现并进入最终复验。
-- 本文记录当前 MVP 的已实现边界；公开仓库已建立，`content-v1.2.0` 内容 Release 已获授权，正式 APK 签名仍待单独授权。
+- 本文记录当前 MVP 的已实现边界；公开仓库与 `content-v1.2.0` 内容 Release 已建立，正式签名 APK 方案已获用户批准并进入增量设计阶段。
 - 本文是 MVP 的实现边界；若实现中发现与 `prd.md` 冲突，以 `prd.md` 的用户需求为准，并先返回规划阶段修订。
 
 ## Architecture Summary
@@ -418,3 +418,50 @@ https://github.com/<owner>/<repo>/releases/latest/download/manifest.json
 ### Verification
 
 内容工具测试先证明声明数量不匹配会失败，再实现字段和比较逻辑。完成后运行 Ruff、pytest、正式内容校验、正式报告及确定性构建；随后使用生成的 bootstrap 运行 Android 单元测试、lint 和 debug 编译。由于没有 UI 或交互变化，本增量不要求新增截图或 instrumentation 场景。
+
+## Increment Design: 正式签名 APK 1.2.0
+
+### Chosen Release Model
+
+采用“GitHub Actions 使用 Repository Secrets 恢复正式 keystore 并自动签名”的方案。相比本机手工签名和上传，该方案能让标签、源码版本、测试结果、签名验证和 Release 资产形成可复现的单条发布链；相比继续使用 debug key 的 personal APK，它提供稳定的正式升级证书。正式 keystore 仍由用户长期持有，GitHub 只保存加密 Secrets。
+
+应用 ID 固定为 `com.xuhuangbin.xinghuozhaidu`。本次把 App 提升为 `versionCode = 3`、`versionName = "1.2.0"`，与 `app-v1.2.0` 标签对应。内容版本与 App 版本恰好同为 `1.2.0`，但两条 Release 通道使用不同标签前缀，构建和 latest 语义彼此独立。
+
+### Signing Boundary
+
+本机长期文件固定为 `%USERPROFILE%\.android\xinghuo-release.keystore`，使用强随机 store password、key password 和明确 alias。密钥生成后把以下值写入 GitHub Repository Secrets：
+
+- `ANDROID_RELEASE_KEYSTORE_BASE64`
+- `ANDROID_RELEASE_STORE_PASSWORD`
+- `ANDROID_RELEASE_KEY_ALIAS`
+- `ANDROID_RELEASE_KEY_PASSWORD`
+
+Gradle 只通过环境变量创建 `release` signing config。四个变量全部存在时配置正式签名；任一缺失时，普通 debug/personal 任务仍能配置和运行，但 release assemble 必须在执行前给出明确错误，不能静默生成未签名 APK。工作流把 Base64 解码到 runner 临时目录，job 结束即销毁；任何步骤都不得输出秘密值或 keystore 内容。
+
+keystore 是后续覆盖升级的唯一证书来源。仓库、GitHub Release 和 CI artifact 均不承担长期恢复职责，用户必须独立备份 keystore 及密码；遗失后只能以新应用身份重新分发，不能覆盖已安装正式版。
+
+### App Release Workflow
+
+新增 `.github/workflows/app-release.yml`，仅由 `app-v*.*.*` 标签触发，并使用最小 `contents: write` 权限。执行顺序为：
+
+1. 检出标签源码，安装 JDK 17 和 Gradle。
+2. 从 `app/build.gradle.kts` 读取 `versionName`，要求标签严格等于 `app-v${versionName}`。
+3. 检查四个签名 Secret 非空，把 Base64 keystore 解码到 runner 临时目录。
+4. 运行 `:app:testDebugUnitTest`、`:app:lintRelease` 和 `:app:assembleRelease`。
+5. 使用 Android SDK `apksigner verify --verbose --print-certs` 验证 APK 已签名，并使用 `aapt dump badging` 核对 package/version。
+6. 把 APK 复制为稳定文件名 `xinghuo-zhaidu-v${versionName}.apk`，生成同名 `.sha256` 文件。
+7. 创建或恢复 draft Release，上传两项完整资产后发布为非 draft、非 prerelease，并明确设置 `latest=false`。
+
+发布步骤拒绝修改已经公开的同名 Release，避免标签重跑覆盖历史产物。上传失败时 Release 保持 draft；签名、版本或测试任一失败时不得产生公开 APK Release。
+
+### Content Latest Compatibility
+
+客户端当前固定访问 `https://github.com/Hi-prof/maoxuan/releases/latest/download/manifest.json`，因此 App Release 不能成为 GitHub latest。工作流发布 `app-v1.2.0` 时显式使用 `--latest=false`；发布后再通过 GitHub API 确认 `content-v1.2.0` 的 `make_latest` 结果和公开 latest 跳转。如 GitHub 行为仍改变 latest，立即把 `content-v1.2.0` 重新标为 latest，再继续对外报告 APK 发布完成。
+
+### Verification And Rollback
+
+本地先在不注入秘密的环境中验证 debug/personal 回归、Gradle 配置和工作流语法，再以正式环境变量执行一次 `assembleRelease` 和 `apksigner` 验证。不得在工作区保留解码后的 keystore 副本。
+
+远端发布完成后下载 Release APK，重新校验 SHA-256、证书摘要、package name、version code/name 和 ZIP 签名。最后访问稳定 manifest URL，并下载其指向的内容 ZIP 核对可用性。
+
+若标签工作流失败，修复代码后使用更高 App patch 版本重新发布，原则上不移动已公开的版本标签。若公开 Release 资产错误，在尚无安装用户时可删除错误 Release 并按用户明确授权重建；已有安装用户时必须保留签名密钥并提升 `versionCode` 发布修正版。
