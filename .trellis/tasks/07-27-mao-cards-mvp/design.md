@@ -4,7 +4,7 @@
 
 - 已按用户批准的 A 方案完成实现，并在 Android API 28 与 API 35 上通过本地质量门禁。
 - 离线卡片解读、收藏/点赞同页与个人笔记增量均已实现并进入最终复验。
-- 本文记录当前 MVP 的已实现边界；公开仓库、签名和内容 Release 仍待单独授权。
+- 本文记录当前 MVP 的已实现边界；公开仓库已建立，`content-v1.2.0` 内容 Release 已获授权，正式 APK 签名仍待单独授权。
 - 本文是 MVP 的实现边界；若实现中发现与 `prd.md` 冲突，以 `prd.md` 的用户需求为准，并先返回规划阶段修订。
 
 ## Architecture Summary
@@ -390,3 +390,31 @@ https://github.com/<owner>/<repo>/releases/latest/download/manifest.json
 - 首次构建前确认最终应用 ID；默认采用 `com.xuhuangbin.xinghuozhaidu`。
 - 选择并记录中文字体的开放许可，收集首批图片时逐项保存许可证据。
 - 安装 JDK 17 和 Android 模拟器，或连接 API 28 及最新 API 的测试设备。
+
+## Increment Design: 第 31 张正式卡片
+
+### Content Choice
+
+新增 `content/cards/031-chongqing-negotiations.yaml`，稳定 ID 为 `29a34b55-c4dd-5f05-9cc4-83fd1a9ea778`。正文采用《关于重庆谈判》的连续原文“前途是光明的，道路是曲折的。”，主题落在艰苦奋斗与长期主义。卡片沿用现有 YAML schema、三段离线解读和双源核验规则，复用现有允许 App 展示及分享图再分发的原创背景图。
+
+### Formal Count Contract
+
+`formal=True` 继续承担“发布前严格门禁”，但不再把首批规模 30 硬编码到 Python。`content/project.yaml` 新增正整数 `expectedPublishedCards: 31`，`ContentProject` 显式承载该字段，`validate_content` 在正式模式下要求实际 published 数量与声明完全相等。普通 fixture 也声明其期望数量，因此测试可以同时覆盖相等、少于和多于三种情况；该字段只属于作者端项目元数据，不改变发布 ZIP 或 Android DTO。
+
+### Version And Data Flow
+
+数据流保持不变：
+
+```text
+031 YAML + project.yaml 1.2.0
+  -> Python strict validation
+  -> deterministic schema-2 ZIP
+  -> app/src/main/assets/bootstrap.zip
+  -> existing Android package parser and atomic bootstrap refresh
+```
+
+`contentVersion` 提升为 `1.2.0`，`publishedAt` 和 `releaseNotes` 同步更新。包 schema 仍为 2，最低 App 版本仍为 2，因此无需修改 Android 数据模型、Room migration 或应用版本。现有初始化逻辑会在本地已安装内容低于 `1.2.0` 时导入新版内置包，并保留点赞、收藏、轮次和笔记。
+
+### Verification
+
+内容工具测试先证明声明数量不匹配会失败，再实现字段和比较逻辑。完成后运行 Ruff、pytest、正式内容校验、正式报告及确定性构建；随后使用生成的 bootstrap 运行 Android 单元测试、lint 和 debug 编译。由于没有 UI 或交互变化，本增量不要求新增截图或 instrumentation 场景。

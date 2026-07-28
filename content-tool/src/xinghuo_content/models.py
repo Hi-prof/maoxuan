@@ -62,6 +62,7 @@ class ContentProject:
     content_version: str
     published_at: str
     minimum_app_version_code: int
+    expected_published_cards: int
     release_notes: str
     repository_owner: str
     repository_name: str

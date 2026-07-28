@@ -1,5 +1,5 @@
 {
-  "contentVersion": "1.1.0",
+  "contentVersion": "1.2.0",
   "images": [
     {
       "creator": "星火摘读项目",
@@ -15,7 +15,7 @@
       "license": "CC0-1.0",
       "sha256": "ae25056f04a54a1389c97765aab24552f94c3f0ca3f0e6ffdc3f120af1234bc0",
       "shareAllowed": true,
-      "uses": 3
+      "uses": 4
     },
     {
       "creator": "星火摘读项目",
@@ -67,14 +67,14 @@
     }
   ],
   "interpretations": {
-    "averageCodePoints": 213.23,
-    "complete": 30,
+    "averageCodePoints": 213.61,
+    "complete": 31,
     "maximumCodePoints": 228,
     "minimumCodePoints": 202
   },
-  "publishedCards": 30,
+  "publishedCards": 31,
   "quoteLengths": {
-    "average": 34.97,
+    "average": 34.29,
     "cards": [
       {
         "codePoints": 57,
@@ -105,6 +105,11 @@
         "codePoints": 30,
         "id": "27c246ac-775a-57e8-bc83-c0bbb21c564a",
         "workTitle": "青年运动的方向"
+      },
+      {
+        "codePoints": 14,
+        "id": "29a34b55-c4dd-5f05-9cc4-83fd1a9ea778",
+        "workTitle": "关于重庆谈判"
       },
       {
         "codePoints": 21,
@@ -231,25 +236,25 @@
     "minimum": 10
   },
   "readingSections": {
-    "withBackground": 30,
-    "withContext": 30,
-    "withStory": 30
+    "withBackground": 31,
+    "withContext": 31,
+    "withStory": 31
   },
   "seriesAndVolumes": {
     "毛泽东选集 / 第一卷": 9,
     "毛泽东选集 / 第三卷": 9,
     "毛泽东选集 / 第二卷": 7,
-    "毛泽东选集 / 第四卷": 5
+    "毛泽东选集 / 第四卷": 6
   },
   "sourceDomains": {
-    "12371.cn": 30,
-    "marxists.org": 30
+    "12371.cn": 31,
+    "marxists.org": 31
   },
   "themes": {
     "为人民服务": 2,
     "人民": 2,
     "作风建设": 2,
-    "信念": 3,
+    "信念": 4,
     "党的建设": 2,
     "历史": 1,
     "历史进程": 1,
@@ -282,6 +287,7 @@
     "认识论": 1,
     "调查研究": 3,
     "辩证法": 1,
+    "长期主义": 1,
     "阶级分析": 1,
     "青年": 1,
     "革命方法": 2,

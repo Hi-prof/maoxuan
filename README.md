@@ -4,7 +4,7 @@
 
 ## MVP 能力
 
-- APK 内置首批 30 张正式卡片和 8 张原创背景图，首次安装可完全离线使用。
+- APK 当前内置 31 张正式卡片和 8 张原创背景图；首批 30 张之后新增的卡片也可在首次安装时离线阅读。
 - 同一轮次使用持久化随机顺序，未读优先、不重复，支持连续回看。
 - 卡片停留满 3 秒后记为已读；翻面可以滚动查看出处、背景、故事和来源。
 - 点赞与收藏保持独立，在同一个“收藏与点赞”页面中切换查看。
@@ -60,14 +60,14 @@ python -m pip install -e ".\content-tool[dev]"
 https://github.com/Hi-prof/maoxuan/releases/latest/download/manifest.json
 ```
 
-在首个内容 Release 发布前，手动检查更新会返回网络错误，但不会影响内置内容和本地阅读。
+当前内容 Release 为 [`content-v1.2.0`](https://github.com/Hi-prof/maoxuan/releases/tag/content-v1.2.0)，App 通过上述稳定清单地址手动检查更新；GitHub 暂时不可访问时仍不影响内置内容和本地阅读。
 
 ## 编辑内容
 
 1. 参考 `content/templates/card.yaml` 新建卡片 YAML，使用不可复用的 UUID，并在修改既有卡片时递增 `revision`。
 2. 为正式卡片记录准确系列、卷次、篇名、日期和至少两个独立来源；名言必须是连续原文且不超过 90 个 Unicode code point。
 3. 新图片放入 `content/images/`，同时创建同名 YAML，记录来源、作者、许可和 `shareAllowed: true`。
-4. 修改 `content/project.yaml` 中的 `contentVersion`、发布时间和发布说明。
+4. 修改 `content/project.yaml` 中的 `contentVersion`、发布时间、发布说明和 `expectedPublishedCards`；正式校验要求声明数量与实际发布卡片数完全一致。
 
 正式内容校验和报告：
 
@@ -93,7 +93,7 @@ python -m xinghuo_content build content `
 
 普通 push 和 pull request 只运行 Python、正式内容、Android 单元测试、lint 与构建检查，不会发布内容。
 
-内容发布由与源版本完全一致的标签触发，例如 `content/project.yaml` 中为 `1.1.0` 时，标签必须是 `content-v1.1.0`。工作流先完成正式校验和确定性构建，再创建草稿 Release、上传 `content-v1.1.0.zip` 与 `manifest.json`，最后才公开 Release。创建标签和推送属于人工发布操作。
+内容发布由与源版本完全一致的标签触发，例如 `content/project.yaml` 中为 `1.2.0` 时，标签必须是 `content-v1.2.0`。工作流先完成正式校验和确定性构建，再创建草稿 Release、上传 `content-v1.2.0.zip` 与 `manifest.json`，最后才公开 Release。创建标签和推送属于人工发布操作。
 
 已经发布的错误内容不覆盖历史 Release，也不降低版本号。回滚时恢复上一份可信内容源，提升 patch 版本并发布新的完整快照；客户端仍按正常升级路径处理。
 

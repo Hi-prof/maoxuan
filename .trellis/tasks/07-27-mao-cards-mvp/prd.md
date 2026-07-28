@@ -192,5 +192,24 @@
 ## Notes
 
 - MVP 已按本文实施并完成本地质量门禁；实际交付和验证记录见 `delivery.md`。
-- GitHub 远端仓库、正式签名、内容标签和公开 Release 尚未执行，必须由用户另行授权。
+- GitHub 远端仓库已建立；用户已于 2026-07-28 授权提交本次增量并发布 `content-v1.2.0` 标签和公开 Release。正式 APK 签名仍须另行授权。
 - 未来若增加账号体系，应能把本机点赞与收藏合并进首个登录账号；该迁移不属于 MVP。
+
+## Increment: 第 31 张正式卡片
+
+### Confirmed Scope
+
+- 根据 `资料/01-毛泽东著作.md` 新增一张正式卡片，原句为“前途是光明的，道路是曲折的。”
+- 出处固定为毛泽东《关于重庆谈判》，1945-10-17，《毛泽东选集》第四卷；使用资料中已定位的原文与权威卷次页面交叉核验。
+- 新卡片使用稳定 UUID `29a34b55-c4dd-5f05-9cc4-83fd1a9ea778`、`revision: 1` 和现有可分享原创背景图，不扩展卡片 schema，不新增图片资产。
+- 内容版本由 `1.1.0` 提升为 `1.2.0`，内置 `bootstrap.zip` 同步重建，使全新安装和已安装旧内容的设备都能离线导入第 31 张卡片。
+- `project.yaml` 明确声明正式卡片期望数量为 31；正式校验必须严格比较声明数量，不能退化为仅检查“至少 30 张”。
+- 本次不修改 Android UI、Room schema、包 schema、App `versionCode` 或 `versionName`。提交、推送、标签和 Release 原须单独授权，用户已于 2026-07-28 明确授权执行。
+
+### Acceptance Criteria
+
+- [x] `content/cards/031-chongqing-negotiations.yaml` 包含连续原文、准确篇名卷次日期、双独立来源、三段完整解读和已核验状态，并通过 90 字及 600 code point 限制。
+- [x] `content/project.yaml` 的 `contentVersion` 为 `1.2.0`、`expectedPublishedCards` 为 31，发布说明准确描述本次新增内容。
+- [x] 正式校验按 `expectedPublishedCards` 检查当前发布数量；声明为 31 时少一张或多一张都明确失败。
+- [x] 正式内容报告显示 31 张卡片、8 张图片、0 个下架项，确定性构建连续两次产生相同字节。
+- [x] `app/src/main/assets/bootstrap.zip` 包含内容版本 `1.2.0` 和全部 31 张卡片，Android 严格解析测试、lint 与 debug 编译通过。

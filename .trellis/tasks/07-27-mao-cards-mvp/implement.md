@@ -487,3 +487,49 @@ git status --short
 - [x] Verify database migration `3 -> 4`, note CRUD/order/restart behavior, multiple notes per card and withdrawn snapshot retention/cleanup.
 - [x] Inspect “收藏 / 点赞” switching, the four-item bottom bar, note empty/list/editor/delete/unsaved states and card actions at `360 x 640`, `360 x 800` and `412 x 915`.
 - [x] Run `git diff --check` and review all scoped changes without committing or including unrelated untracked files.
+
+## Increment: 第 31 张正式卡片
+
+### Task 1: Make the formal card count project-declared
+
+**Files:**
+
+- Modify `content/project.yaml`
+- Modify `content-tool/src/xinghuo_content/models.py`
+- Modify `content-tool/src/xinghuo_content/validator.py`
+- Modify `content-tool/tests/test_content_tool.py`
+
+**Interface:** `ContentProject.expected_published_cards: int` is parsed from required YAML field `expectedPublishedCards`; `validate_content(root, formal=True)` rejects any actual count that differs from it.
+
+- [x] Add `expectedPublishedCards: 1` to the test fixture and replace the hard-coded-30 regression with exact declared-count pass/fail cases.
+- [x] Run the focused pytest cases and confirm they fail because the project field is unknown or the old hard-coded check still applies.
+- [x] Add the field to `PROJECT_FIELDS`, validate it as a positive integer, carry it through `ContentProject`, and compare it with `published_count` only in formal mode.
+- [x] Run the focused tests and the full content-tool suite.
+
+### Task 2: Author and package card 31
+
+**Files:**
+
+- Create `content/cards/031-chongqing-negotiations.yaml`
+- Modify `content/project.yaml`
+- Modify `app/src/main/assets/bootstrap.zip` through the content builder
+- Update `.trellis/tasks/07-27-mao-cards-mvp/artifacts/content-report.json` through the report command
+
+- [x] Author UUID `29a34b55-c4dd-5f05-9cc4-83fd1a9ea778`, revision 1, the exact quote and metadata, two independent sources, three contextual interpretation sections, optional context/background/story, and a reusable licensed image ID.
+- [x] Set `contentVersion: 1.2.0`, `expectedPublishedCards: 31`, the UTC publication timestamp and release notes in `content/project.yaml`.
+- [x] Run formal validation and inspect the report for 31 published cards, 8 images and 0 withdrawals.
+- [x] Build twice with `--formal --verify-deterministic`, write the resulting ZIP to `app/src/main/assets/bootstrap.zip`, and confirm the package metadata and card count.
+
+### Task 3: Align executable documentation and verify consumers
+
+**Files:**
+
+- Modify `.trellis/spec/backend/content-package-contract.md`
+- Modify `.trellis/spec/backend/quality-guidelines.md`
+- Modify `.trellis/spec/backend/index.md`
+- Modify `README.md`
+
+- [x] Document `expectedPublishedCards` as the authoring-side exact formal-count contract and distinguish the original 30-card `1.1.0` bootstrap from current `1.2.0` content.
+- [x] Run Ruff, all content-tool tests, formal validation, formal report and deterministic build.
+- [x] Run `:app:testDebugUnitTest`, `:app:lintDebug` and `:app:assembleDebug` with JDK 17.
+- [x] Run `git diff --check`, inspect the scoped changes and record any verification that cannot run; do not commit or publish.

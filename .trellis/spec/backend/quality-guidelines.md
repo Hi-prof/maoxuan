@@ -9,7 +9,7 @@ $env:PYTHONPATH='content-tool/src'
 python -m ruff check content-tool
 python -m pytest content-tool
 python -m xinghuo_content validate content --formal
-python -m xinghuo_content build content --output dist --verify-deterministic
+python -m xinghuo_content build content --output dist --formal --verify-deterministic
 ```
 
 For Android persistence or package changes:
@@ -37,8 +37,9 @@ Run instrumentation on API 28 and the latest configured API before release.
 - Producer and consumer validation change together.
 - User state survives content revision, withdrawal snapshot retention, and restoration.
 - File writes precede the Room reference switch; cleanup follows commit/failure.
-- Formal content has exactly 30 published cards for bootstrap `1.1.0`, and
-  every active card has all three interpretation fields.
+- Formal content has exactly the positive `expectedPublishedCards` count declared
+  in `content/project.yaml`; current content `1.2.0` declares 31 published cards.
+- Every active card has all three interpretation fields.
 
 ## Test Review Checklist
 

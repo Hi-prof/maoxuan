@@ -1,0 +1,32 @@
+id: 29a34b55-c4dd-5f05-9cc4-83fd1a9ea778
+revision: 1
+status: published
+quote: '前途是光明的，道路是曲折的。'
+literature:
+  series: 毛泽东选集
+  volume: 第四卷
+  workTitle: 关于重庆谈判
+  authoredAt: '1945-10-17'
+themes:
+  - 信念
+  - 长期主义
+interpretation:
+  coreMeaning: '这句话把总体趋势和具体进程区分开来。文章判断战后世界和中国的发展方向将走向进步，同时承认革命道路上仍有障碍和困难；有信心，不等于期待过程笔直顺利。'
+  keyPoint: '“光明”建立在对进步力量、人民觉悟和现实条件的分析上；“曲折”则要求如实承认困难、分析困难并同困难斗争。二者不能拆开：既不能因波折否定方向，也不能以乐观回避问题。'
+  contemporaryRelevance: '面对长期任务，可以同时写下目标为何值得相信、当前有哪些具体阻碍，再把阻碍转成可处理的事项。这样既保留方向感，也给延期、反复和调整留下现实空间。'
+contextExcerpt: '我们要承认困难，分析困难，向困难作斗争。世界上没有直路，要准备走曲折的路，不要贪便宜。'
+background: '抗日战争胜利后，毛泽东赴重庆谈判四十三天，回到延安后向干部作报告。文章在肯定《双十协定》收获的同时，指出纸面协议仍需经过努力才能成为现实，国内局势仍动荡不定。'
+story: '报告末段从第二次世界大战后的世界形势谈到中国前途：进步是总趋势，但革命道路仍有障碍。因而一面要求宣传光明前途、建立胜利信心，一面要求如实承认并分析困难。'
+imageId: original-distant-mountains
+sources:
+  - name: 中文马克思主义文库《关于重庆谈判》全文
+    url: https://www.marxists.org/chinese/maozedong/marxist.org-chinese-mao-19451017.htm
+    accessedAt: '2026-07-28'
+    type: original
+  - name: 共产党员网《毛泽东选集（第四卷）》
+    url: https://www.12371.cn/special/mzdxj/d4j/
+    accessedAt: '2026-07-28'
+    type: authoritative
+review:
+  status: verified
+  checkedAt: '2026-07-28'

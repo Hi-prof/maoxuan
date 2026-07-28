@@ -1,7 +1,8 @@
 schemaVersion: 2
-contentVersion: 1.1.0
-publishedAt: '2026-07-28T00:00:00Z'
+contentVersion: 1.2.0
+publishedAt: '2026-07-28T11:50:23Z'
 minimumAppVersionCode: 2
-releaseNotes: 新增逐卡离线解读
+expectedPublishedCards: 31
+releaseNotes: 新增《关于重庆谈判》卡片
 repositoryOwner: Hi-prof
 repositoryName: maoxuan

@@ -34,7 +34,8 @@ Personal reading state never leaves the device.
 ## Quality Check
 
 - Run the commands in `quality-guidelines.md`.
-- Confirm formal validation still reports 30 cards and all referenced images.
+- Confirm formal validation reports the exact `expectedPublishedCards` count
+  declared by the project (31 for content `1.2.0`) and all referenced images.
 - Confirm two deterministic builds produce identical ZIP and manifest bytes.
 - Run parser, repository, and instrumentation tests when the package or database contract changes.
 - Verify a failed or cancelled update leaves the prior `content_state` and readable cards intact.

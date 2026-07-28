@@ -1,6 +1,7 @@
 package com.xuhuangbin.xinghuozhaidu.data.content
 
 import java.io.ByteArrayOutputStream
+import java.io.File
 import java.security.MessageDigest
 import java.util.zip.ZipEntry
 import java.util.zip.ZipOutputStream
@@ -20,6 +21,22 @@ class ContentPackageReaderTest {
         assertEquals(1, parsed.cards.size)
         assertEquals("认识必须回到实践中检验。", parsed.cards.single().interpretation.coreMeaning)
         assertEquals(imageBytes.toList(), parsed.assets.values.single().toList())
+    }
+
+    @Test
+    fun readsCurrentBundledContentPackage() {
+        val parsed = ContentPackageReader().read(
+            File("src/main/assets/bootstrap.zip").readBytes(),
+        )
+
+        assertEquals("1.2.0", parsed.info.contentVersion)
+        assertEquals(31, parsed.cards.size)
+        assertEquals(
+            "前途是光明的，道路是曲折的。",
+            parsed.cards.single {
+                it.id == "29a34b55-c4dd-5f05-9cc4-83fd1a9ea778"
+            }.quote,
+        )
     }
 
     @Test

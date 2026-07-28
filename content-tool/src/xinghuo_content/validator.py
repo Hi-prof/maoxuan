@@ -30,6 +30,7 @@ PROJECT_FIELDS = {
     "contentVersion",
     "publishedAt",
     "minimumAppVersionCode",
+    "expectedPublishedCards",
     "releaseNotes",
     "repositoryOwner",
     "repositoryName",
@@ -151,6 +152,10 @@ def _validate_project(root: Path, issues: list[str]) -> ContentProject | None:
     if not isinstance(minimum_app_version_code, int) or minimum_app_version_code < 1:
         issues.append(f"{path}: minimumAppVersionCode must be a positive integer")
         minimum_app_version_code = 1
+    expected_published_cards = data.get("expectedPublishedCards")
+    if type(expected_published_cards) is not int or expected_published_cards < 1:
+        issues.append(f"{path}: expectedPublishedCards must be a positive integer")
+        expected_published_cards = 1
     release_notes = _require_text(data, "releaseNotes", path, issues)
     repository_owner = _require_text(data, "repositoryOwner", path, issues)
     repository_name = _require_text(data, "repositoryName", path, issues)
@@ -159,6 +164,7 @@ def _validate_project(root: Path, issues: list[str]) -> ContentProject | None:
         content_version=content_version,
         published_at=published_at,
         minimum_app_version_code=minimum_app_version_code,
+        expected_published_cards=expected_published_cards,
         release_notes=release_notes,
         repository_owner=repository_owner,
         repository_name=repository_name,
@@ -424,10 +430,14 @@ def validate_content(root: Path, *, formal: bool = False) -> ValidatedContent:
     if unused_images:
         issues.append(f"unreferenced image IDs: {unused_images}")
     published_count = sum(card.status == "published" for card in card_records)
-    if formal and published_count != 30:
+    if (
+        formal
+        and project is not None
+        and published_count != project.expected_published_cards
+    ):
         issues.append(
-            "formal bootstrap content must contain exactly 30 published cards, "
-            f"got {published_count}"
+            "expectedPublishedCards requires exactly "
+            f"{project.expected_published_cards} published cards, got {published_count}"
         )
     if project is None:
         issues.append(f"{root / 'project.yaml'}: project metadata is required")

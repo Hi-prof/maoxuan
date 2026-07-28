@@ -3,9 +3,9 @@
 ## Status
 
 - 本地 MVP 实现完成。
-- Android 客户端、内容工具、30 张正式卡片、8 张原创背景图、静态更新链路、CI 与文档均已落地。
+- Android 客户端、内容工具、31 张正式卡片、8 张原创背景图、静态更新链路、CI 与文档均已落地。
 - 已生成可直接安装的 `1.1.0` 个人版 APK；该构建使用 Release 优化和本机 Android 标准调试证书。
-- 初始公共源码仓库已创建为 `Hi-prof/maoxuan`；本次交付仅推送源码，不创建内容标签或 GitHub Release。
+- 公共源码仓库为 `Hi-prof/maoxuan`；内容 `1.2.0` 通过 `content-v1.2.0` 标签触发 GitHub Actions 正式发布。
 
 ## Delivered
 
@@ -21,7 +21,7 @@
 - 完整快照更新：手动检查、二次确认、取消、下载、SHA-256/ZIP/JSON/图片校验、原子导入、下架和恢复。
 - Python YAML 校验、正式内容报告和确定性 ZIP/manifest 构建。
 - GitHub Actions 普通检查工作流与 `content-vX.Y.Z` 内容发布工作流。
-- 30 张双源核验正式卡片和 8 张 `CC0-1.0` 原创背景图，随 APK 内置。
+- 31 张双源核验正式卡片和 8 张 `CC0-1.0` 原创背景图，随 APK 内置。
 - 完整 Noto Serif SC 字体、OFL 许可和来源记录。
 
 ## Latest Verification
@@ -30,14 +30,14 @@
 
 ```text
 Ruff: passed
-pytest: 13 passed
-formal content: 30 cards, 30 interpretations, 8 images
+pytest: 20 passed
+formal content: 31 cards, 31 interpretations, 8 images
 interpretation length: 202 to 228 code points
 deterministic content build: passed
-content ZIP SHA-256: 26bbf841d3637e1b79610a2f85e9379e2267db90a35a98f6dba437da87eba700
-content ZIP bytes: 2,530,977
+content ZIP SHA-256: 570ba7c3c54efc2a5a9a21bbf7fbdca42dc61968ddee5b754d882bafe5059a32
+content ZIP bytes: 2,531,665
 
-Debug JVM tests: 11 passed
+Debug JVM tests: 12 passed
 Android Lint Debug: passed
 Debug APK assembly: passed
 Personal APK assembly with R8/resource shrinking: passed
@@ -59,25 +59,23 @@ Visual artifacts are under `artifacts/screenshots/`, including minimum-height lo
 
 收藏/点赞与个人笔记增量完成了 Room `3 -> 4` migration、独立及同卡多篇笔记、修改时间排序、编辑删除、下架快照保留/清理和保存中返回竞态回归。API 35 上实际创建独立笔记与关联笔记后，强制停止并重启 App，两篇正文及关联卡片摘要仍可见；`360 x 640`、`360 x 800` 和约 `412 x 915` 视口均已检查四栏导航、分段控件、卡片操作区、笔记列表和编辑器。
 
+内容 `1.2.0` 增量新增《关于重庆谈判》“前途是光明的，道路是曲折的。”卡片，并把正式卡片数量门禁改为由 `project.yaml` 的 `expectedPublishedCards` 精确声明。JVM 回归直接解析内置 `bootstrap.zip`，确认版本 `1.2.0`、31 张卡片和新增 UUID 均存在。
+
 ## Artifacts
 
-- Current personal APK: `app/build/outputs/apk/personal/app-personal.apk`, 21,146,367 bytes, SHA-256 `4c141514f9ca45836c7af48d66cdd2b6283db80fbd290b361fca02e806a0c826`.
+- Current personal APK: `app/build/outputs/apk/personal/app-personal.apk`, 21,147,051 bytes, SHA-256 `921cff2759422b873ece2f046b4f868635f3cebe85eb05a8aacd27018d815e56`.
 - Personal signer: Android Debug, RSA 2048, certificate SHA-256 `627f7ff3e7d35d0af6f7399dcd9dd1cdee2ad4905d3f3f55cf95754c5c4e1f57`, APK Signature Scheme v2.
 - Reproducible Gradle output: `app/build/outputs/apk/personal/app-personal.apk` from `./gradlew :app:assemblePersonal`.
-- Versioned local personal APK: `dist/xinghuo-zhaidu-v1.1.0-personal.apk`, same bytes and SHA-256 as the current personal APK (ignored build output).
-- Debug APK: `app/build/outputs/apk/debug/app-debug.apk`, 78,629,717 bytes, SHA-256 `32c50a80c80cdd03c22ecf36a74631659abb3ad624e11319bdc49306a9892891`.
-- Bundled bootstrap: `app/src/main/assets/bootstrap.zip`, 2,530,977 bytes, SHA-256 `26bbf841d3637e1b79610a2f85e9379e2267db90a35a98f6dba437da87eba700`.
-- Local content package: `dist/content-v1.1.0.zip` (ignored build output)
+- Versioned local personal APK: `dist/xinghuo-zhaidu-v1.1.0-personal.apk` remains the prior `1.1.0` delivery and was not overwritten by this increment.
+- Debug APK: `app/build/outputs/apk/debug/app-debug.apk`, 81,077,298 bytes, SHA-256 `c8c3abd951a4cf29e670c9c30ea55894f082e4ea4e12d2891683ab25183cc13d`.
+- Bundled bootstrap: `app/src/main/assets/bootstrap.zip`, 2,531,665 bytes, SHA-256 `570ba7c3c54efc2a5a9a21bbf7fbdca42dc61968ddee5b754d882bafe5059a32`.
+- Local content package: `dist/content-v1.2.0.zip` (ignored build output)
 - Local manifest: `dist/manifest.json` (ignored build output)
 
-## Not Published
+## Content Release
 
-- No tag has been pushed and no GitHub Release has been published.
+- Release tag: `content-v1.2.0`.
+- Release page: `https://github.com/Hi-prof/maoxuan/releases/tag/content-v1.2.0`.
+- Latest manifest: `https://github.com/Hi-prof/maoxuan/releases/latest/download/manifest.json`.
+- The tag workflow validates Python 3.12 compatibility, formal content and deterministic output before uploading `content-v1.2.0.zip` and `manifest.json`; it publishes only after both assets exist.
 - No production signing key has been created or used. The personal APK uses the local Android debug certificate; the public `release` build remains unsigned.
-- The source repository is `Hi-prof/maoxuan`. The live update check returns HTTP 404 until the first `content-v1.1.0` Release publishes `manifest.json`.
-
-## Release Preconditions
-
-1. Confirm the initial `main` push passes GitHub Actions.
-2. Configure secure Android release signing outside the repository if a distributable release APK is required.
-3. Review the formal content report, then explicitly authorize a `content-v1.1.0` tag and Release.

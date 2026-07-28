@@ -26,6 +26,7 @@ def _write_fixture(root: Path, *, quote: str = "实践是检验真理的标准�
                 "contentVersion": "1.1.0",
                 "publishedAt": "2026-07-28T00:00:00Z",
                 "minimumAppVersionCode": 2,
+                "expectedPublishedCards": 1,
                 "releaseNotes": "fixture",
                 "repositoryOwner": "example",
                 "repositoryName": "xinghuo",
@@ -168,11 +169,70 @@ def test_interpretation_over_600_code_points_is_rejected(tmp_path: Path) -> None
         validate_content(root)
 
 
-def test_formal_content_requires_exactly_30_cards(tmp_path: Path) -> None:
+def test_formal_content_accepts_declared_published_count(tmp_path: Path) -> None:
     root = tmp_path / "content"
     _write_fixture(root)
 
-    with pytest.raises(ValidationError, match="exactly 30"):
+    validated = validate_content(root, formal=True)
+
+    assert len(validated.published_cards) == 1
+
+
+@pytest.mark.parametrize("value", [None, 0, -1, True, "1"])
+def test_expected_published_cards_must_be_a_positive_integer(
+    tmp_path: Path,
+    value: object,
+) -> None:
+    root = tmp_path / "content"
+    _write_fixture(root)
+    project_path = root / "project.yaml"
+    project = yaml.safe_load(project_path.read_text(encoding="utf-8"))
+    project["expectedPublishedCards"] = value
+    project_path.write_text(
+        yaml.safe_dump(project, allow_unicode=True),
+        encoding="utf-8",
+    )
+
+    with pytest.raises(
+        ValidationError,
+        match="expectedPublishedCards must be a positive integer",
+    ):
+        validate_content(root)
+
+
+def test_formal_content_rejects_fewer_cards_than_declared(tmp_path: Path) -> None:
+    root = tmp_path / "content"
+    _write_fixture(root)
+    project_path = root / "project.yaml"
+    project = yaml.safe_load(project_path.read_text(encoding="utf-8"))
+    project["expectedPublishedCards"] = 2
+    project_path.write_text(
+        yaml.safe_dump(project, allow_unicode=True),
+        encoding="utf-8",
+    )
+
+    with pytest.raises(
+        ValidationError,
+        match="expectedPublishedCards requires exactly 2 published cards, got 1",
+    ):
+        validate_content(root, formal=True)
+
+
+def test_formal_content_rejects_more_cards_than_declared(tmp_path: Path) -> None:
+    root = tmp_path / "content"
+    _write_fixture(root)
+    first_path = root / "cards" / "card.yaml"
+    second = yaml.safe_load(first_path.read_text(encoding="utf-8"))
+    second["id"] = "5b6cb1c2-01ad-4aee-933b-25bb21c40777"
+    (root / "cards" / "second.yaml").write_text(
+        yaml.safe_dump(second, allow_unicode=True),
+        encoding="utf-8",
+    )
+
+    with pytest.raises(
+        ValidationError,
+        match="expectedPublishedCards requires exactly 1 published cards, got 2",
+    ):
         validate_content(root, formal=True)
 
 

@@ -53,7 +53,7 @@ AppRepository.importPackage(
 
 ## 3. Contracts
 
-Authoring uses `content/project.yaml`, one UTF-8 YAML file per card under `content/cards/`, and one metadata YAML per image under `content/images/`.
+Authoring uses `content/project.yaml`, one UTF-8 YAML file per card under `content/cards/`, and one metadata YAML per image under `content/images/`. Project metadata includes a positive integer `expectedPublishedCards`; formal validation requires the actual published-card count to match it exactly. This authoring-only field is not emitted into the release ZIP.
 
 A ZIP contains exactly these JSON files plus declared assets:
 
@@ -78,6 +78,7 @@ changes.added, changes.updated, changes.withdrawn, releaseNotes
 Required invariants:
 
 - `contentVersion` is `MAJOR.MINOR.PATCH`; `publishedAt` is UTC ISO-8601.
+- `expectedPublishedCards` is a positive integer and, in formal mode, exactly matches the number of published card YAML files.
 - A card ID is a stable UUID that is never reassigned. `revision` is a positive integer.
 - A published quote is NFC, one paragraph, and at most 90 Unicode code points.
 - Every published card contains `interpretation.coreMeaning`,
@@ -101,6 +102,7 @@ The builder sorts payloads, serializes compact sorted-key JSON with a trailing n
 | --- | --- | --- |
 | Unknown YAML/JSON field | Validation error | Strict serialization error |
 | Unsupported schema | Validation error | `ContentPackageException` |
+| Published count differs from `expectedPublishedCards` | Formal validation error | N/A; producer must not emit the package |
 | Quote over 90 code points | Validation error | `ContentPackageException` |
 | Missing interpretation object/child or blank child | Field-specific validation error | Strict serialization or `ContentPackageException` |
 | Interpretation is non-NFC or exceeds 600 code points | Validation error | `ContentPackageException` |
@@ -119,7 +121,7 @@ Assets are decoded and written to a content-addressed internal directory before 
 ## 5. Good / Base / Bad Cases
 
 - Good: publish a new UUID at revision 1 with two sources and a licensed image; it joins the current unread tail after import.
-- Base: rebuild unchanged `1.1.0`; ZIP SHA-256 and manifest bytes remain identical.
+- Base: rebuild unchanged `1.2.0`; ZIP SHA-256 and manifest bytes remain identical.
 - Good: revise a card from revision 1 to 2 and add all three interpretation
   fields; App `1.1.0` imports it and preserves local user/round state.
 - Bad: add only `coreMeaning`, leave a child blank, or exceed 600 combined code
@@ -134,7 +136,7 @@ Assets are decoded and written to a content-addressed internal directory before 
 
 - Python: schema, UUID/revision, source independence, quote and interpretation
   length/NFC, required interpretation children, image bounds/license, and
-  formal-count validation.
+  exact declared formal-count validation, including both missing and surplus cards.
 - Python: build twice and assert identical package SHA-256 and identical manifest bytes.
 - JVM: valid schema-2 package parse plus blank/oversized interpretation,
   traversal, duplicate entry, unknown schema, bad hash, invalid revision, and
