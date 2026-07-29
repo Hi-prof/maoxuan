@@ -4,9 +4,9 @@
 
 - 本地 MVP 实现完成。
 - Android 客户端、内容工具、31 张正式卡片、8 张原创背景图、静态更新链路、CI 与文档均已落地。
-- 已完成内容和 App `1.3.0` 的本地实现、正式内容包与 personal/debug 构建；远端仍保持已发布的 `1.2.0`。
-- 公共源码仓库为 `Hi-prof/maoxuan`；`content-v1.3.0` 和 `app-v1.3.0` 尚未创建或公开发布。
-- 正式 APK 发布工作流已更新到 `versionCode = 4`；提交、推送、标签与公开 Release 等待用户最终授权。
+- 内容与 App `1.3.0` 已提交到 `main`，并通过两个独立标签完成公开发布。
+- `content-v1.3.0` 是仓库 latest Release；`app-v1.3.0` 保持非 latest，稳定内容清单地址不变。
+- 正式 APK 为 `versionCode = 4`、`versionName = 1.3.0`，继续使用既有正式签名证书。
 
 ## Delivered
 
@@ -36,9 +36,11 @@ formal content: 31 cards, 8 images, 0 withdrawals
 inspiration length: 108 to 126 code points, average 117.45
 explanation length: 217 to 271 code points, average 253.87
 historical event length: 34 to 44 code points, average 40.58
-deterministic content build: passed
-content ZIP SHA-256: de93d59e78609d4895e04be1dbbde6e6d1d99b0cb1c08098f637b9e153b764a5
-content ZIP bytes: 2,537,118
+same-environment deterministic content build: passed
+local bootstrap ZIP SHA-256: de93d59e78609d4895e04be1dbbde6e6d1d99b0cb1c08098f637b9e153b764a5
+local bootstrap ZIP bytes: 2,537,118
+published Linux ZIP SHA-256: b7c8be751f39f4518d79c3a1c6e1c3c7e23e44aec0e2132c19387a8ed6157582
+published Linux ZIP bytes: 2,536,035
 
 Debug JVM tests: passed
 Android Lint Debug: passed
@@ -49,10 +51,14 @@ API 35 instrumentation: 19 passed
 Fresh schema-5 bootstrap import on both emulators: passed
 Room 4 -> 5 data migration: intentionally omitted; destructive rebuild approved
 git diff --check: passed
-actionlint: unavailable locally; release workflow execution remains pending
+main Checks workflow: passed (30441684996)
+content Release workflow: passed (30441890196)
+signed App Release workflow: passed (30442181639)
 ```
 
 `contextExcerpt` and the three schema-2 interpretation children are absent from all content YAML, generated schema-3 payloads, Android production models, and Room schema 5. Their remaining source occurrence is limited to an explicit rejection test; historical Room schemas and migrations remain unchanged.
+
+Windows 与 GitHub Ubuntu 构建的 ZIP 因 zlib 实现不同而压缩字节不同；逐条目核验确认 12 个条目的解压后 SHA-256、长度、时间戳与权限完全一致。公开 `manifest.json` 与 Ubuntu 生成的 ZIP 大小和哈希自洽，客户端以公开 manifest 为下载校验依据。
 
 2026-07-28 本机验证：
 
@@ -95,9 +101,9 @@ Visual artifacts are under `artifacts/screenshots/`, including minimum-height lo
 
 ## Artifacts
 
-- Prior signed `1.2.0` release APK: `app/build/outputs/apk/release/app-release.apk`, 21,151,147 bytes, SHA-256 `259424ecb5850be67f368b3b3b42e378cf508c4a659dc550e9d44721d2bff8bc`.
+- Published signed `1.3.0` APK: `xinghuo-zhaidu-v1.3.0.apk`, 21,156,643 bytes, SHA-256 `f0dd85b8b1e43252ff82666b37f209ff4c16b64b20841e40c1a8166977239060`.
 - Release signer: Xinghuo Zhaidu, RSA 4096, certificate SHA-256 `26cbe74325edda68654627cc1fdc7a71c0a4ce14f3b4875ded635ca0a23ba411`, APK Signature Scheme v2.
-- Release package metadata: `com.xuhuangbin.xinghuozhaidu`, version code `3`, version name `1.2.0`.
+- Release package metadata: `com.xuhuangbin.xinghuozhaidu`, version code `4`, version name `1.3.0`.
 - Current `1.3.0` personal APK: `app/build/outputs/apk/personal/app-personal.apk`, 21,152,551 bytes, SHA-256 `78e5942b9a5029229e2db9417fcbf96163e3461d86fe98a2c397e734646cd022`.
 - Personal signer: Android Debug, RSA 2048, certificate SHA-256 `627f7ff3e7d35d0af6f7399dcd9dd1cdee2ad4905d3f3f55cf95754c5c4e1f57`, APK Signature Scheme v2.
 - Reproducible Gradle output: `app/build/outputs/apk/personal/app-personal.apk` from `./gradlew :app:assemblePersonal`.
@@ -109,8 +115,9 @@ Visual artifacts are under `artifacts/screenshots/`, including minimum-height lo
 
 ## Content Release
 
-- Release tag: `content-v1.2.0`.
-- Release page: `https://github.com/Hi-prof/maoxuan/releases/tag/content-v1.2.0`.
+- Release tag: `content-v1.3.0`.
+- Release page: `https://github.com/Hi-prof/maoxuan/releases/tag/content-v1.3.0`.
 - Latest manifest: `https://github.com/Hi-prof/maoxuan/releases/latest/download/manifest.json`.
-- The tag workflow validates Python 3.12 compatibility, formal content and deterministic output before uploading `content-v1.2.0.zip` and `manifest.json`; it publishes only after both assets exist.
-- A production signing key exists only under the user's local Android directory and encrypted GitHub Secrets; no signing material is stored in the repository. The APK Release has not yet been published.
+- The tag workflow validated Python 3.12 compatibility and formal content before uploading `content-v1.3.0.zip` and `manifest.json`; both public assets were downloaded and independently verified.
+- App Release: `https://github.com/Hi-prof/maoxuan/releases/tag/app-v1.3.0` (non-latest).
+- A production signing key exists only under the user's local Android directory and encrypted GitHub Secrets; no signing material is stored in the repository.

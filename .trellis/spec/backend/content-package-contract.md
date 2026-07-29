@@ -98,7 +98,13 @@ Required invariants:
 - Content `1.3.0` requires Android `versionCode >= 4`. App `1.3.0` reads package
   schema 3 only; older package schemas are not silently accepted as partial data.
 
-The builder sorts payloads, serializes compact sorted-key JSON with a trailing newline, fixes ZIP timestamps to `1980-01-01`, and writes regular-file permissions. The same sources must therefore produce byte-identical assets.
+The builder sorts payloads, serializes compact sorted-key JSON with a trailing
+newline, fixes ZIP timestamps to `1980-01-01`, and writes regular-file
+permissions. Repeated builds in the same Python/zlib environment must be
+byte-identical. Different operating-system zlib builds may produce different
+compressed ZIP bytes while every uncompressed entry and its metadata remain
+identical; the published manifest's `packageBytes` and `packageSha256` are the
+authoritative download contract.
 
 ## 4. Validation & Error Matrix
 
