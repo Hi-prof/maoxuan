@@ -38,3 +38,38 @@
 ### Next Steps
 
 - None - task complete
+
+
+## Session 2: 发布星火摘读 1.4.0
+
+**Date**: 2026-07-29
+**Task**: 发布星火摘读 1.4.0
+**Branch**: `main`
+
+### Summary
+
+扩充至150张经典名句卡片，升级 Android 至 1.4.0（versionCode 5），发布并复验 content-v1.4.0 与正式签名 app-v1.4.0 APK。
+
+### Main Changes
+
+(Add details)
+
+### Git Commits
+
+| Hash | Message |
+|------|---------|
+| `4fdff28` | (see git log) |
+| `3eb5f33` | (see git log) |
+| `824dd16` | (see git log) |
+
+### Testing
+
+- [OK] (Add test results)
+
+### Status
+
+[OK] **Completed**
+
+### Next Steps
+
+- None - task complete
