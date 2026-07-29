@@ -1,5 +1,8 @@
 package com.xuhuangbin.xinghuozhaidu.ui.components
 
+import android.content.Intent
+import android.net.Uri
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -7,22 +10,29 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.heightIn
 import androidx.compose.foundation.layout.navigationBarsPadding
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.outlined.Close
+import androidx.compose.material.icons.automirrored.outlined.OpenInNew
+import androidx.compose.material.icons.outlined.ExpandLess
+import androidx.compose.material.icons.outlined.ExpandMore
 import androidx.compose.material3.BottomSheetDefaults
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.Icon
-import androidx.compose.material3.IconButton
 import androidx.compose.material3.ModalBottomSheet
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalConfiguration
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
@@ -36,12 +46,14 @@ import com.xuhuangbin.xinghuozhaidu.ui.theme.SpiritRed
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun InterpretationSheet(
+fun BackgroundSheet(
     card: QuoteCard,
     onDismissRequest: () -> Unit,
     modifier: Modifier = Modifier,
 ) {
+    val context = LocalContext.current
     val maxSheetHeight = LocalConfiguration.current.screenHeightDp.dp * 0.9f
+    var sourcesExpanded by remember(card.id) { mutableStateOf(false) }
 
     ModalBottomSheet(
         onDismissRequest = onDismissRequest,
@@ -57,61 +69,125 @@ fun InterpretationSheet(
                 .heightIn(max = maxSheetHeight)
                 .navigationBarsPadding(),
         ) {
-            Row(
+            Column(
                 modifier = Modifier
                     .fillMaxWidth()
-                    .padding(start = 20.dp, end = 8.dp, bottom = 14.dp),
-                horizontalArrangement = Arrangement.SpaceBetween,
-                verticalAlignment = Alignment.CenterVertically,
+                    .padding(horizontal = 20.dp, vertical = 14.dp),
             ) {
-                Column(
-                    modifier = Modifier.weight(1f),
-                    verticalArrangement = Arrangement.spacedBy(4.dp),
-                ) {
-                    Text(
-                        text = "解读",
-                        color = Ink,
-                        fontSize = 20.sp,
-                        fontWeight = FontWeight.Bold,
-                        letterSpacing = 0.sp,
-                    )
-                    Text(
-                        text = "《${card.workTitle}》",
-                        color = MutedInk,
-                        fontSize = 13.sp,
-                        lineHeight = 19.sp,
-                        letterSpacing = 0.sp,
-                    )
-                }
-                IconButton(onClick = onDismissRequest) {
-                    Icon(
-                        imageVector = Icons.Outlined.Close,
-                        contentDescription = "关闭解读",
-                        tint = MutedInk,
-                    )
-                }
+                Text(
+                    text = "背景",
+                    color = Ink,
+                    fontSize = 20.sp,
+                    fontWeight = FontWeight.Bold,
+                    letterSpacing = 0.sp,
+                )
             }
             HorizontalDivider(color = Divider)
             Column(
                 modifier = Modifier
                     .weight(1f, fill = false)
                     .verticalScroll(rememberScrollState())
-                    .testTag("interpretationContent")
+                    .testTag("backgroundContent")
                     .padding(horizontal = 20.dp, vertical = 20.dp),
                 verticalArrangement = Arrangement.spacedBy(18.dp),
             ) {
-                InterpretationSection("核心意思", card.interpretation.coreMeaning)
+                BackgroundSection("历史节点") {
+                    Text(
+                        card.authoredAt,
+                        color = MutedInk,
+                        fontSize = 13.sp,
+                        lineHeight = 20.sp,
+                        letterSpacing = 0.sp,
+                    )
+                    BackgroundBody(card.historicalEvent)
+                }
                 HorizontalDivider(color = Divider)
-                InterpretationSection("理解重点", card.interpretation.keyPoint)
+                BackgroundSection("时代背景") { BackgroundBody(card.background) }
                 HorizontalDivider(color = Divider)
-                InterpretationSection("现实启示", card.interpretation.contemporaryRelevance)
+                BackgroundSection("篇名") {
+                    BackgroundBody("《${card.workTitle}》")
+                }
+                HorizontalDivider(color = Divider)
+                BackgroundSection("出处") {
+                    BackgroundBody("${card.series} · ${card.volume}")
+                }
+                HorizontalDivider(color = Divider)
+                BackgroundSection("相关故事") { BackgroundBody(card.story) }
+                HorizontalDivider(color = Divider)
+                Column {
+                    Row(
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .clickable { sourcesExpanded = !sourcesExpanded }
+                            .padding(vertical = 6.dp),
+                        horizontalArrangement = Arrangement.SpaceBetween,
+                        verticalAlignment = Alignment.CenterVertically,
+                    ) {
+                        Text(
+                            "参考来源（${card.sources.size}）",
+                            color = Ink,
+                            fontWeight = FontWeight.SemiBold,
+                            letterSpacing = 0.sp,
+                        )
+                        Icon(
+                            imageVector = if (sourcesExpanded) {
+                                Icons.Outlined.ExpandLess
+                            } else {
+                                Icons.Outlined.ExpandMore
+                            },
+                            contentDescription = if (sourcesExpanded) {
+                                "收起参考来源"
+                            } else {
+                                "展开参考来源"
+                            },
+                            tint = MutedInk,
+                        )
+                    }
+                    if (sourcesExpanded) {
+                        card.sources.forEach { source ->
+                            Row(
+                                modifier = Modifier
+                                    .fillMaxWidth()
+                                    .clickable {
+                                        context.startActivity(
+                                            Intent(Intent.ACTION_VIEW, Uri.parse(source.url)),
+                                        )
+                                    }
+                                    .padding(vertical = 10.dp),
+                                verticalAlignment = Alignment.Top,
+                            ) {
+                                Column(Modifier.weight(1f)) {
+                                    Text(
+                                        source.name,
+                                        color = Ink,
+                                        fontSize = 14.sp,
+                                        lineHeight = 20.sp,
+                                        letterSpacing = 0.sp,
+                                    )
+                                    Text(
+                                        "访问于 ${source.accessedAt}",
+                                        color = MutedInk,
+                                        fontSize = 12.sp,
+                                        letterSpacing = 0.sp,
+                                    )
+                                }
+                                Icon(
+                                    Icons.AutoMirrored.Outlined.OpenInNew,
+                                    contentDescription = "在浏览器打开",
+                                    modifier = Modifier.size(18.dp),
+                                    tint = SpiritRed,
+                                )
+                            }
+                        }
+                    }
+                }
             }
         }
     }
 }
 
 @Composable
-private fun InterpretationSection(title: String, body: String) {
+private fun BackgroundSection(title: String, content: @Composable () -> Unit) {
     Column(verticalArrangement = Arrangement.spacedBy(8.dp)) {
         Text(
             text = title,
@@ -120,12 +196,17 @@ private fun InterpretationSection(title: String, body: String) {
             fontWeight = FontWeight.Bold,
             letterSpacing = 0.sp,
         )
-        Text(
-            text = body,
-            color = Ink,
-            fontSize = 15.sp,
-            lineHeight = 25.sp,
-            letterSpacing = 0.sp,
-        )
+        content()
     }
+}
+
+@Composable
+private fun BackgroundBody(text: String) {
+    Text(
+        text = text,
+        color = Ink,
+        fontSize = 15.sp,
+        lineHeight = 25.sp,
+        letterSpacing = 0.sp,
+    )
 }

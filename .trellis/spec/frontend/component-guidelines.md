@@ -14,7 +14,7 @@ fun FlippableQuoteCard(
 )
 
 @Composable
-fun InterpretationSheet(
+fun BackgroundSheet(
     card: QuoteCard,
     onDismissRequest: () -> Unit,
     modifier: Modifier = Modifier,
@@ -25,9 +25,9 @@ fun InterpretationSheet(
 - Hoist state when it affects navigation, persistence, or another component.
 - Keep transient presentation state local with a stable `remember` key, for example source expansion keyed by card ID.
 - Do not pass DAO entities, serialized DTOs, `Context`, or a ViewModel into reusable display components.
-- `CardActions` owns the shared action ordering. `onInterpret` renders as the
-  text action immediately left of `read background / return to front` in both
-  reader and detail routes.
+- `CardActions` owns the shared action ordering. `onBackground` renders one
+  `读背景` text action in both reader and detail routes; do not add a separate
+  visible interpretation or return-to-front action.
 - `CardActions` exposes an `onNote` callback in both reader and detail routes.
   Like, favorite, note, and share are four accessible `48.dp` icon targets.
   When available width is below `360.dp`, icon and reading actions use two rows;
@@ -41,16 +41,17 @@ fun InterpretationSheet(
 - When `maxHeight < 480.dp`, compact tiers are 25/22/20 sp for `33-60`, `61-75`, and `76-90`.
 - The quote area uses `weight(1f)` so the title/source block always retains space.
 - Background images fill the card at approximately 17% alpha and remain visual context, not a separate illustration panel.
-- Back content owns vertical scrolling. While flipped, the parent pager must not consume that gesture.
+- The interpretation face owns vertical scrolling. While flipped, the parent pager must not consume that gesture.
 
 The compact threshold and font tiers are a tested system. Any change must update the 90-character bounds test and screenshots for all target viewports.
 
 ### Flip Gesture Contract
 
 - `FlippableQuoteCard` owns an `Orientation.Horizontal` drag gesture. A left or right drag toggles either face; a drag below 22% of card width settles back unless horizontal velocity reaches 900 dp/s.
+- Do not attach a whole-card click handler. The quote/interpretation faces toggle only through horizontal dragging, and the interpretation face has no visible return icon.
 - Drag distance directly drives `rotationY`. One 180-degree flip spans 72% of card width, and release settles with a non-bouncy medium-low-stiffness spring.
 - Switch front/back content only after the rotation crosses 90 degrees, and rotate back content by 180 degrees so text is never mirrored.
-- Horizontal dragging must not consume vertical motion. Back content keeps its own `verticalScroll`, and the reader disables `VerticalPager` user scrolling while the back is open.
+- Horizontal dragging must not consume vertical motion. Interpretation content keeps its own `verticalScroll`, and the reader disables `VerticalPager` user scrolling while the interpretation face is open.
 - Keep the perspective layer's shadow elevation at zero and use the `Surface`'s stable `2.dp` shadow. A transformed dynamic shadow produces an oversized rectangular projection on API 28.
 - Release settling must clear transient state in `finally`, so an interrupted animation cannot block later gestures.
 
@@ -62,17 +63,19 @@ Required instrumentation assertions: swipe left to back, swipe right to front, a
 - Do not add gradients, decorative orbs, heavy black borders, fake-antique textures, nested cards, or full-screen red fills.
 - Use Material icons already in the project for actions; do not draw common icons manually.
 - Keep dimensions stable so selection, loading, long labels, and state changes do not shift the main card.
-- Interpretation uses a Material 3 modal bottom sheet with an `8.dp` top radius,
-  a fixed header/close action, and one independently scrolling column. Its
-  three sections are unframed; do not wrap them in nested cards.
+- Background uses a Material 3 modal bottom sheet with an `8.dp` top radius,
+  a fixed text header, no close icon, and one independently scrolling column. Its
+  source/context/background/story sections are unframed; do not wrap them in nested cards.
+- Keep the standard drag handle visible. Swipe-down is the primary dismiss
+  interaction; scrim taps and system back retain Material 3 default behavior.
 
 ## Accessibility
 
 - Every actionable icon has a Chinese `contentDescription` or a visible text label.
 - Decorative background imagery has `contentDescription = null`.
 - Touch targets remain usable at the smallest viewport.
-- Preserve the four `48.dp` icon targets when adding text actions. The compact
-  action row must fit without clipping at `360.dp` width.
+- Preserve the four `48.dp` icon targets next to the background text action.
+  The compact action row must fit without clipping at `360.dp` width.
 - Text must be readable under large system font settings where practical; never resolve clipping by allowing overlap.
 
 ## Search Interaction
@@ -105,6 +108,7 @@ Required instrumentation assertions: swipe left to back, swipe right to front, a
 - Adding animated `shadowElevation` to the rotating perspective layer instead of keeping shadow on the stable card `Surface`.
 - Shrinking all normal cards because only the compact viewport needs a smaller tier.
 - Putting like/favorite/share controls over quote text.
+- Reintroducing a visible interpretation/return action or a whole-card click handler after the interaction was intentionally reduced to horizontal swipes.
 - Reusing one list state for both saved segments, which makes switching one
   segment move the other.
 - Letting system back leave a note editor while save/delete is in progress.

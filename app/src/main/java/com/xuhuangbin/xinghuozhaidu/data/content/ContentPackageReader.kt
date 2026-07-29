@@ -177,9 +177,8 @@ class ContentPackageReader(
             throw ContentPackageException("卡片 ${card.id} 至少需要一个主题")
         }
         val interpretationParts = listOf(
-            "核心意思" to card.interpretation.coreMeaning,
-            "理解重点" to card.interpretation.keyPoint,
-            "现实启示" to card.interpretation.contemporaryRelevance,
+            "启示" to card.interpretation.inspiration,
+            "解读" to card.interpretation.explanation,
         )
         interpretationParts.forEach { (label, value) ->
             requireText(value, "卡片 ${card.id} 的解读·$label")
@@ -193,9 +192,31 @@ class ContentPackageReader(
         if (interpretationCodePoints > MAX_INTERPRETATION_CODE_POINTS) {
             throw ContentPackageException("卡片 ${card.id} 的解读超过 600 个字符")
         }
-        listOf(card.contextExcerpt, card.background, card.story).forEach { optionalText ->
-            if (optionalText != null && optionalText.isBlank()) {
-                throw ContentPackageException("卡片 ${card.id} 包含空白选填内容")
+        if (card.interpretation.inspiration.codePointCount(0, card.interpretation.inspiration.length) >
+            MAX_INSPIRATION_CODE_POINTS
+        ) {
+            throw ContentPackageException("卡片 ${card.id} 的启示超过 220 个字符")
+        }
+        if (card.interpretation.explanation.codePointCount(0, card.interpretation.explanation.length) >
+            MAX_EXPLANATION_CODE_POINTS
+        ) {
+            throw ContentPackageException("卡片 ${card.id} 的解读超过 420 个字符")
+        }
+        val historicalEvent = requireText(card.historicalEvent, "卡片 ${card.id} 的历史事件")
+        if (historicalEvent.contains('\n') || historicalEvent.contains('\r') ||
+            historicalEvent.codePointCount(0, historicalEvent.length) >
+            MAX_HISTORICAL_EVENT_CODE_POINTS ||
+            !Normalizer.isNormalized(historicalEvent, Normalizer.Form.NFC)
+        ) {
+            throw ContentPackageException("卡片 ${card.id} 的历史事件无效")
+        }
+        listOf(
+            "时代背景" to card.background,
+            "相关故事" to card.story,
+        ).forEach { (label, text) ->
+            requireText(text, "卡片 ${card.id} 的$label")
+            if (!Normalizer.isNormalized(text, Normalizer.Form.NFC)) {
+                throw ContentPackageException("卡片 ${card.id} 的${label}不是 NFC 文本")
             }
         }
         requireText(card.imageId, "卡片 ${card.id} 的图片 ID")
@@ -296,13 +317,16 @@ class ContentPackageReader(
         .joinToString("") { byte -> "%02x".format(byte) }
 
     private companion object {
-        const val SUPPORTED_SCHEMA = 2
+        const val SUPPORTED_SCHEMA = 3
         const val MAX_PACKAGE_BYTES = 50 * 1024 * 1024
         const val MAX_ENTRY_BYTES = 10 * 1024 * 1024
         const val MAX_TOTAL_BYTES = 75 * 1024 * 1024
         const val MAX_ENTRY_COUNT = 1_000
         const val MAX_QUOTE_CODE_POINTS = 90
         const val MAX_INTERPRETATION_CODE_POINTS = 600
+        const val MAX_INSPIRATION_CODE_POINTS = 220
+        const val MAX_EXPLANATION_CODE_POINTS = 420
+        const val MAX_HISTORICAL_EVENT_CODE_POINTS = 100
         const val MIN_IMAGE_EDGE = 720
         const val MAX_IMAGE_EDGE = 8_192
         const val MAX_IMAGE_PIXELS = 40_000_000L

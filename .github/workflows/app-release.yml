@@ -44,8 +44,8 @@ jobs:
             echo "Tag ${GITHUB_REF_NAME} does not match Android version ${EXPECTED_TAG}." >&2
             exit 1
           fi
-          if [ "${APP_VERSION_CODE}" != "3" ]; then
-            echo "Expected Android version code 3, got ${APP_VERSION_CODE}." >&2
+          if [ "${APP_VERSION_CODE}" != "4" ]; then
+            echo "Expected Android version code 4, got ${APP_VERSION_CODE}." >&2
             exit 1
           fi
           CONTENT_LATEST_TAG="$(gh api "repos/${GITHUB_REPOSITORY}/releases/latest" --jq .tag_name)"

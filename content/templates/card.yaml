@@ -10,10 +10,9 @@ literature:
 themes:
   - 实践
 interpretation:
-  coreMeaning: 在此说明原句在篇章语境中的主要含义
-  keyPoint: 在此说明理解时需要把握的边界
-  contemporaryRelevance: 在此用克制的当代语言说明可供思考之处
-contextExcerpt:
+  inspiration: 在此用平易近人的语言写约一百五十字启示
+  explanation: 在此用通俗易懂的语言写约三百字解读
+historicalEvent: 在此用一句话说明该日期发生的相关历史事件
 background:
 story:
 imageId: image-id

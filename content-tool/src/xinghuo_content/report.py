@@ -23,9 +23,20 @@ def build_content_report(content: ValidatedContent) -> dict[str, Any]:
         for source in card.payload["sources"]
     )
     quote_lengths = [len(str(card.payload["quote"])) for card in cards]
+    inspiration_lengths = [
+        len(str(card.payload["interpretation"]["inspiration"])) for card in cards
+    ]
+    explanation_lengths = [
+        len(str(card.payload["interpretation"]["explanation"])) for card in cards
+    ]
     interpretation_lengths = [
-        sum(len(str(value)) for value in card.payload["interpretation"].values())
-        for card in cards
+        inspiration + explanation
+        for inspiration, explanation in zip(
+            inspiration_lengths, explanation_lengths, strict=True
+        )
+    ]
+    historical_event_lengths = [
+        len(str(card.payload["historicalEvent"])) for card in cards
     ]
     images = sorted(content.images, key=lambda image: image.id)
     return {
@@ -36,7 +47,9 @@ def build_content_report(content: ValidatedContent) -> dict[str, Any]:
             f"{card.payload['series']} / {card.payload['volume']}" for card in cards
         ),
         "readingSections": {
-            "withContext": sum(bool(card.payload["contextExcerpt"]) for card in cards),
+            "withHistoricalEvent": sum(
+                bool(card.payload["historicalEvent"]) for card in cards
+            ),
             "withBackground": sum(bool(card.payload["background"]) for card in cards),
             "withStory": sum(bool(card.payload["story"]) for card in cards),
         },
@@ -65,6 +78,40 @@ def build_content_report(content: ValidatedContent) -> dict[str, Any]:
                 sum(interpretation_lengths) / len(interpretation_lengths), 2
             )
             if interpretation_lengths
+            else 0,
+            "inspiration": {
+                "minimum": min(inspiration_lengths, default=0),
+                "maximum": max(inspiration_lengths, default=0),
+                "average": round(sum(inspiration_lengths) / len(inspiration_lengths), 2)
+                if inspiration_lengths
+                else 0,
+            },
+            "explanation": {
+                "minimum": min(explanation_lengths, default=0),
+                "maximum": max(explanation_lengths, default=0),
+                "average": round(sum(explanation_lengths) / len(explanation_lengths), 2)
+                if explanation_lengths
+                else 0,
+            },
+            "cards": [
+                {
+                    "id": card.id,
+                    "workTitle": card.payload["workTitle"],
+                    "inspirationCodePoints": inspiration,
+                    "explanationCodePoints": explanation,
+                }
+                for card, inspiration, explanation in zip(
+                    cards, inspiration_lengths, explanation_lengths, strict=True
+                )
+            ],
+        },
+        "historicalEventLengths": {
+            "minimum": min(historical_event_lengths, default=0),
+            "maximum": max(historical_event_lengths, default=0),
+            "average": round(
+                sum(historical_event_lengths) / len(historical_event_lengths), 2
+            )
+            if historical_event_lengths
             else 0,
         },
         "sourceDomains": source_domains,

@@ -24,7 +24,8 @@ Run instrumentation on API 28 and the latest configured API before release.
 ## Forbidden Patterns
 
 - Lenient JSON parsing (`ignoreUnknownKeys = true`) for release assets.
-- Destructive Room migrations.
+- Undocumented destructive Room migrations or destructive upgrades without
+  explicit acceptance of local-data loss.
 - Silent card deletion from snapshot omission.
 - Non-monotonic revisions or mutable image IDs.
 - UI/DAO code that reimplements package validation.
@@ -39,8 +40,9 @@ Run instrumentation on API 28 and the latest configured API before release.
 - User state survives content revision, withdrawal snapshot retention, and restoration.
 - File writes precede the Room reference switch; cleanup follows commit/failure.
 - Formal content has exactly the positive `expectedPublishedCards` count declared
-  in `content/project.yaml`; current content `1.2.0` declares 31 published cards.
-- Every active card has all three interpretation fields.
+  in `content/project.yaml`; current content `1.3.0` declares 31 published cards.
+- Every active card has both interpretation fields plus historical event,
+  background, and story; removed schema-2 fields are rejected.
 
 ## Test Review Checklist
 

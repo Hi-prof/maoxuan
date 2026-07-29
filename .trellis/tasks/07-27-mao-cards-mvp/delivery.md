@@ -4,9 +4,9 @@
 
 - 本地 MVP 实现完成。
 - Android 客户端、内容工具、31 张正式卡片、8 张原创背景图、静态更新链路、CI 与文档均已落地。
-- 已生成并验证 `1.2.0` 正式签名 APK；个人版继续使用 Release 优化和本机 Android 标准调试证书。
-- 公共源码仓库为 `Hi-prof/maoxuan`；内容 `1.2.0` 通过 `content-v1.2.0` 标签触发 GitHub Actions 正式发布。
-- 正式 APK 发布工作流已在本地完成实现和验证；提交、`app-v1.2.0` 标签与公开 Release 尚待用户最终授权。
+- 已完成内容和 App `1.3.0` 的本地实现、正式内容包与 personal/debug 构建；远端仍保持已发布的 `1.2.0`。
+- 公共源码仓库为 `Hi-prof/maoxuan`；`content-v1.3.0` 和 `app-v1.3.0` 尚未创建或公开发布。
+- 正式 APK 发布工作流已更新到 `versionCode = 4`；提交、推送、标签与公开 Release 等待用户最终授权。
 
 ## Delivered
 
@@ -15,7 +15,7 @@
 - 卡片翻面、背面滚动、来源展开、点赞、收藏、搜索、详情和“阅读 / 收藏 / 笔记 / 我的”四栏导航。
 - 收藏与点赞保持独立，并在同一页面通过分段控件切换，各自保留列表位置。
 - 本地个人笔记支持独立笔记、卡片关联笔记、同卡多篇、编辑、确认删除和未保存返回提示；卡片操作区可直接新建关联笔记。
-- 主阅读页与收藏/点赞/搜索详情页共用“解读”操作，以可滚动底部弹层离线展示“核心意思、理解重点、现实启示”。
+- 卡片背面依次离线展示“启示、解读”；“读背景”弹层依次展示历史节点、时代背景、篇名、出处、相关故事和参考来源。
 - 搜索历史仅在提交时保存，跨重启保留最近 10 条，并支持单条删除和全部清空。
 - 固定 `1080 x 1440` 分享图与 Android 系统分享面板。
 - Room 保存内容、用户状态、个人笔记、轮次、下架快照和版本状态；笔记引用会参与下架快照保留与清理。
@@ -26,6 +26,33 @@
 - 完整 Noto Serif SC 字体、OFL 许可和来源记录。
 
 ## Latest Verification
+
+2026-07-29 `1.3.0` 内容与卡片结构增量：
+
+```text
+Ruff: passed
+pytest: 23 passed
+formal content: 31 cards, 8 images, 0 withdrawals
+inspiration length: 108 to 126 code points, average 117.45
+explanation length: 217 to 271 code points, average 253.87
+historical event length: 34 to 44 code points, average 40.58
+deterministic content build: passed
+content ZIP SHA-256: de93d59e78609d4895e04be1dbbde6e6d1d99b0cb1c08098f637b9e153b764a5
+content ZIP bytes: 2,537,118
+
+Debug JVM tests: passed
+Android Lint Debug: passed
+Debug APK assembly: passed
+Personal APK assembly with R8/resource shrinking: passed
+API 28 instrumentation: 19 passed
+API 35 instrumentation: 19 passed
+Fresh schema-5 bootstrap import on both emulators: passed
+Room 4 -> 5 data migration: intentionally omitted; destructive rebuild approved
+git diff --check: passed
+actionlint: unavailable locally; release workflow execution remains pending
+```
+
+`contextExcerpt` and the three schema-2 interpretation children are absent from all content YAML, generated schema-3 payloads, Android production models, and Room schema 5. Their remaining source occurrence is limited to an explicit rejection test; historical Room schemas and migrations remain unchanged.
 
 2026-07-28 本机验证：
 
@@ -68,16 +95,16 @@ Visual artifacts are under `artifacts/screenshots/`, including minimum-height lo
 
 ## Artifacts
 
-- Current signed release APK: `app/build/outputs/apk/release/app-release.apk`, 21,151,147 bytes, SHA-256 `259424ecb5850be67f368b3b3b42e378cf508c4a659dc550e9d44721d2bff8bc`.
+- Prior signed `1.2.0` release APK: `app/build/outputs/apk/release/app-release.apk`, 21,151,147 bytes, SHA-256 `259424ecb5850be67f368b3b3b42e378cf508c4a659dc550e9d44721d2bff8bc`.
 - Release signer: Xinghuo Zhaidu, RSA 4096, certificate SHA-256 `26cbe74325edda68654627cc1fdc7a71c0a4ce14f3b4875ded635ca0a23ba411`, APK Signature Scheme v2.
 - Release package metadata: `com.xuhuangbin.xinghuozhaidu`, version code `3`, version name `1.2.0`.
-- Current personal APK: `app/build/outputs/apk/personal/app-personal.apk`, 21,147,051 bytes, SHA-256 `7339923fff6fde5a50934e06cde75c8bc0bd8971f14210f4c659cf91b1c56078`.
+- Current `1.3.0` personal APK: `app/build/outputs/apk/personal/app-personal.apk`, 21,152,551 bytes, SHA-256 `78e5942b9a5029229e2db9417fcbf96163e3461d86fe98a2c397e734646cd022`.
 - Personal signer: Android Debug, RSA 2048, certificate SHA-256 `627f7ff3e7d35d0af6f7399dcd9dd1cdee2ad4905d3f3f55cf95754c5c4e1f57`, APK Signature Scheme v2.
 - Reproducible Gradle output: `app/build/outputs/apk/personal/app-personal.apk` from `./gradlew :app:assemblePersonal`.
 - Versioned local personal APK: `dist/xinghuo-zhaidu-v1.1.0-personal.apk` remains the prior `1.1.0` delivery and was not overwritten by this increment.
-- Debug APK: `app/build/outputs/apk/debug/app-debug.apk`, 78,545,963 bytes, SHA-256 `b3033b2b2bdc1596fd4bceed907f98e5d02f0f68a81fdc89595b6c57dc738564`.
-- Bundled bootstrap: `app/src/main/assets/bootstrap.zip`, 2,531,665 bytes, SHA-256 `570ba7c3c54efc2a5a9a21bbf7fbdca42dc61968ddee5b754d882bafe5059a32`.
-- Local content package: `dist/content-v1.2.0.zip` (ignored build output)
+- Debug APK: `app/build/outputs/apk/debug/app-debug.apk`, 78,551,339 bytes, SHA-256 `c5b69092f120d0083aa7826e0a4bea3d14e8efb421458dd7ff5fc3b790f6a519`.
+- Bundled bootstrap: `app/src/main/assets/bootstrap.zip`, 2,537,118 bytes, SHA-256 `de93d59e78609d4895e04be1dbbde6e6d1d99b0cb1c08098f637b9e153b764a5`.
+- Local content package: `dist/content-v1.3.0.zip` (ignored build output)
 - Local manifest: `dist/manifest.json` (ignored build output)
 
 ## Content Release

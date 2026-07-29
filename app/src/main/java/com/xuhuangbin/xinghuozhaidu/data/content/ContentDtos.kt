@@ -27,9 +27,9 @@ data class CardDto(
     val authoredAt: String,
     val themes: List<String>,
     val interpretation: InterpretationDto,
-    val contextExcerpt: String? = null,
-    val background: String? = null,
-    val story: String? = null,
+    val historicalEvent: String,
+    val background: String,
+    val story: String,
     val imageId: String,
     val sources: List<SourceDto>,
     val reviewedAt: String,
@@ -37,9 +37,8 @@ data class CardDto(
 
 @Serializable
 data class InterpretationDto(
-    val coreMeaning: String,
-    val keyPoint: String,
-    val contemporaryRelevance: String,
+    val inspiration: String,
+    val explanation: String,
 )
 
 @Serializable

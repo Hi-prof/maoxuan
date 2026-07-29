@@ -9,6 +9,7 @@ import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.test.assertIsDisplayed
 import androidx.compose.ui.test.junit4.createComposeRule
+import androidx.compose.ui.test.onNodeWithContentDescription
 import androidx.compose.ui.test.onNodeWithTag
 import androidx.compose.ui.test.onNodeWithText
 import androidx.compose.ui.test.performTouchInput
@@ -41,9 +42,9 @@ class QuoteCardInstrumentedTest {
             authoredAt = "1930-01-05",
             themes = listOf("前途"),
             interpretation = testInterpretation(),
-            contextExcerpt = null,
-            background = null,
-            story = null,
+            historicalEvent = "1930年1月5日，毛泽东写信分析革命形势。",
+            background = "文章回应红军内部对革命前途的悲观估计。",
+            story = "这封信后来以今天通行的篇名公开发表。",
             imagePath = "",
             sources = emptyList(),
             isWithdrawn = false,
@@ -101,9 +102,19 @@ class QuoteCardInstrumentedTest {
             }
         }
 
+        composeRule.onNodeWithTag("swipeQuoteCard").performTouchInput {
+            down(center)
+            advanceEventTime(100)
+            up()
+        }
+        composeRule.waitForIdle()
+        assertFalse("tapping the card must not flip it", flipped)
+
         composeRule.onNodeWithTag("swipeQuoteCard").performTouchInput { swipeLeft() }
         composeRule.waitUntil(timeoutMillis = 3_000) { flipped }
-        composeRule.onNodeWithText("出处与背景").assertIsDisplayed()
+        composeRule.onNodeWithText("解读").assertIsDisplayed()
+        composeRule.onNodeWithText("启示").assertIsDisplayed()
+        composeRule.onNodeWithContentDescription("返回正面").assertDoesNotExist()
 
         composeRule.onNodeWithTag("swipeQuoteCard").performTouchInput { swipeRight() }
         composeRule.waitUntil(timeoutMillis = 3_000) { !flipped }
@@ -123,7 +134,8 @@ class QuoteCardInstrumentedTest {
 
         composeRule.onNodeWithTag("swipeQuoteCard").performTouchInput { swipeRight() }
         composeRule.waitUntil(timeoutMillis = 3_000) { flipped }
-        composeRule.onNodeWithText("出处与背景").assertIsDisplayed()
+        composeRule.onNodeWithText("解读").assertIsDisplayed()
+        composeRule.onNodeWithContentDescription("返回正面").assertDoesNotExist()
 
         composeRule.onNodeWithTag("swipeQuoteCard").performTouchInput { swipeLeft() }
         composeRule.waitUntil(timeoutMillis = 3_000) { !flipped }
@@ -140,9 +152,9 @@ class QuoteCardInstrumentedTest {
         authoredAt = "1930-05",
         themes = listOf("调查研究"),
         interpretation = testInterpretation(),
-        contextExcerpt = "调查就是解决问题。",
+        historicalEvent = "1930年5月，毛泽东针对脱离实际的倾向写下这篇文章。",
         background = "这篇文章围绕调查研究与实际工作的关系展开。",
-        story = null,
+        story = "正文进一步讨论怎样开调查会和记录问题。",
         imagePath = "",
         sources = emptyList(),
         isWithdrawn = false,
@@ -153,8 +165,7 @@ class QuoteCardInstrumentedTest {
     )
 
     private fun testInterpretation() = CardInterpretation(
-        coreMeaning = "从实际情况出发认识问题。",
-        keyPoint = "调查是形成判断的前提。",
-        contemporaryRelevance = "先了解事实，再作决定。",
+        inspiration = "先了解事实，再作决定。",
+        explanation = "从实际情况出发认识问题，调查是形成判断的前提。",
     )
 }

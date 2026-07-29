@@ -31,15 +31,16 @@ Keep `isMinifyEnabled = true` and `isShrinkResources = true` explicit on `person
 ## Required Visual Coverage
 
 - Viewports: `360 x 640`, `360 x 800`, and `412 x 915` dp.
-- Content: short, medium, 90-character quote, longest work title/source, long back, missing optional sections, withdrawn state.
+- Content: short, medium, 90-character quote, longest work title/source, long interpretation face, long background sheet, missing optional sections, withdrawn state.
 - Themes: system light and dark settings must both render the same fixed light app palette.
 - Interactions: vertical forward/back paging, flip, back scrolling without paging, like, favorite, search, navigation restoration, update confirmation/cancel/error.
 - Saved/notes: independent favorite/liked segment switching, four-item bottom
   navigation, note empty/list/editor states, standalone and linked note entry,
   delete/discard confirmation, persistence after restart, and withdrawn card
   summaries.
-- Interpretation: action order at `360 x 640`, all three headings, long-body
-  scrolling, close/back-state preservation, and sheet navigation-bar insets.
+- Reading modes: the action row exposes only `读背景`; taps do not flip the card;
+  left/right swipes reach all three interpretation headings without a visible
+  return icon; the long background sheet scrolls and preserves flip state when closed.
 - Share output: exactly `1080 x 1440`, nonblank, background pixels present, quote/title/source in bounds, no UI controls.
 
 ## Regression Requirement
@@ -50,6 +51,12 @@ Every clipping, overlap, gesture, lifecycle, or accessibility bug gets an instru
 quote.bottom <= source.top
 source.bottom <= card.bottom
 ```
+
+Compose touch-injection coordinates are physical pixels. Bottom-sheet dismiss
+regressions must derive drag distance from semantics bounds rather than using a
+fixed pixel value. A modal sheet may create multiple semantics roots, so select
+the largest root height and use at least 60% of it; this crosses the hide
+threshold on both API 28 and current high-density devices.
 
 ## Forbidden Patterns
 
@@ -65,11 +72,12 @@ source.bottom <= card.bottom
 - All visible actions have labels or content descriptions.
 - Stable dimensions prevent state/content from shifting the card or toolbar.
 - `letterSpacing` remains `0.sp`; font size does not scale with viewport width.
-- The full back remains reachable at the minimum viewport.
-- The interpretation sheet keeps its title, close action, and all three sections
-  reachable at every target viewport without moving the underlying page.
+- The full interpretation face remains reachable at the minimum viewport.
+- The background sheet has no close icon and keeps its title, drag handle,
+  source/context/background/story sections, and expandable references reachable
+  without moving the underlying page.
 - The four card icon actions keep `48.dp` targets. At minimum width the icon
-  actions and interpretation/background actions may form two stable rows, but
+  actions and the background action may form two stable rows, but
   must not overlap the card, navigation, or one another.
 - Note title/body/error content stays reachable above the IME; save/delete in
   progress blocks duplicate actions and system-back navigation.

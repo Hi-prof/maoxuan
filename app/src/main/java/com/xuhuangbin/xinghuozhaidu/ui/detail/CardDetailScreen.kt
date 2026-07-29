@@ -26,7 +26,7 @@ import androidx.compose.ui.unit.sp
 import com.xuhuangbin.xinghuozhaidu.domain.model.QuoteCard
 import com.xuhuangbin.xinghuozhaidu.ui.components.CardActions
 import com.xuhuangbin.xinghuozhaidu.ui.components.FlippableQuoteCard
-import com.xuhuangbin.xinghuozhaidu.ui.components.InterpretationSheet
+import com.xuhuangbin.xinghuozhaidu.ui.components.BackgroundSheet
 import com.xuhuangbin.xinghuozhaidu.ui.share.ShareCardRenderer
 import com.xuhuangbin.xinghuozhaidu.ui.theme.SpiritRed
 import kotlinx.coroutines.launch
@@ -42,7 +42,7 @@ fun CardDetailScreen(
     val context = LocalContext.current
     val coroutineScope = rememberCoroutineScope()
     var flipped by remember(card.id) { mutableStateOf(false) }
-    var showInterpretation by remember(card.id) { mutableStateOf(false) }
+    var showBackground by remember(card.id) { mutableStateOf(false) }
     Column(
         Modifier
             .fillMaxSize()
@@ -72,9 +72,7 @@ fun CardDetailScreen(
         )
         CardActions(
             card = card,
-            isFlipped = flipped,
-            onInterpret = { showInterpretation = true },
-            onFlip = { flipped = !flipped },
+            onBackground = { showBackground = true },
             onLike = onLike,
             onFavorite = onFavorite,
             onNote = onNote,
@@ -88,10 +86,10 @@ fun CardDetailScreen(
             },
         )
     }
-    if (showInterpretation) {
-        InterpretationSheet(
+    if (showBackground) {
+        BackgroundSheet(
             card = card,
-            onDismissRequest = { showInterpretation = false },
+            onDismissRequest = { showBackground = false },
         )
     }
 }

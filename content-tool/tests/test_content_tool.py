@@ -22,10 +22,10 @@ def _write_fixture(root: Path, *, quote: str = "实践是检验真理的标准�
     (root / "project.yaml").write_text(
         yaml.safe_dump(
             {
-                "schemaVersion": 2,
-                "contentVersion": "1.1.0",
+                "schemaVersion": 3,
+                "contentVersion": "1.3.0",
                 "publishedAt": "2026-07-28T00:00:00Z",
-                "minimumAppVersionCode": 2,
+                "minimumAppVersionCode": 4,
                 "expectedPublishedCards": 1,
                 "releaseNotes": "fixture",
                 "repositoryOwner": "example",
@@ -67,12 +67,17 @@ def _write_fixture(root: Path, *, quote: str = "实践是检验真理的标准�
                 },
                 "themes": ["实践"],
                 "interpretation": {
-                    "coreMeaning": "这句话说明，认识是否可靠，不能只靠推论，而要回到实践中检验。",
-                    "keyPoint": "这里说的实践不是一次偶然尝试，而是能反复接受事实检验的社会活动。",
-                    "contemporaryRelevance": (
+                    "inspiration": (
                         "面对具体问题，应先收集事实、形成判断，再根据结果修正原有看法。"
                     ),
+                    "explanation": (
+                        "这句话说明，认识是否可靠，不能只靠推论，而要回到实践中检验。"
+                        "这里说的实践不是一次偶然尝试，而是能反复接受事实检验的社会活动。"
+                    ),
                 },
+                "historicalEvent": "1937年7月，毛泽东在延安讲授哲学问题。",
+                "background": "抗日战争全面爆发前后，认识与实践问题受到集中讨论。",
+                "story": "这次讲授的内容后来整理为《实践论》。",
                 "imageId": "paper",
                 "sources": [
                     {
@@ -125,16 +130,12 @@ def test_quote_over_90_code_points_is_rejected(tmp_path: Path) -> None:
     [
         (lambda card: card.pop("interpretation"), "interpretation must be a mapping"),
         (
-            lambda card: card["interpretation"].pop("coreMeaning"),
-            "coreMeaning must be a non-empty string",
+            lambda card: card["interpretation"].pop("inspiration"),
+            "inspiration must be a non-empty string",
         ),
         (
-            lambda card: card["interpretation"].update({"keyPoint": "   "}),
-            "keyPoint must be a non-empty string",
-        ),
-        (
-            lambda card: card["interpretation"].pop("contemporaryRelevance"),
-            "contemporaryRelevance must be a non-empty string",
+            lambda card: card["interpretation"].update({"explanation": "   "}),
+            "explanation must be a non-empty string",
         ),
     ],
 )
@@ -159,13 +160,69 @@ def test_interpretation_over_600_code_points_is_rejected(tmp_path: Path) -> None
     _write_fixture(root)
     path = root / "cards" / "card.yaml"
     card = yaml.safe_load(path.read_text(encoding="utf-8"))
-    card["interpretation"]["coreMeaning"] = "实" * 601
+    card["interpretation"]["inspiration"] = "实" * 220
+    card["interpretation"]["explanation"] = "践" * 381
     path.write_text(yaml.safe_dump(card, allow_unicode=True), encoding="utf-8")
 
     with pytest.raises(
         ValidationError,
         match="interpretation has 6[0-9]{2} code points; maximum is 600",
     ):
+        validate_content(root)
+
+
+@pytest.mark.parametrize(
+    ("field", "length", "maximum"),
+    [("inspiration", 221, 220), ("explanation", 421, 420)],
+)
+def test_interpretation_section_limit_is_enforced(
+    tmp_path: Path,
+    field: str,
+    length: int,
+    maximum: int,
+) -> None:
+    root = tmp_path / "content"
+    _write_fixture(root)
+    path = root / "cards" / "card.yaml"
+    card = yaml.safe_load(path.read_text(encoding="utf-8"))
+    card["interpretation"][field] = "实" * length
+    path.write_text(yaml.safe_dump(card, allow_unicode=True), encoding="utf-8")
+
+    with pytest.raises(
+        ValidationError,
+        match=rf"interpretation\.{field} has {length} code points; maximum is {maximum}",
+    ):
+        validate_content(root)
+
+
+def test_published_card_requires_background_sections(tmp_path: Path) -> None:
+    root = tmp_path / "content"
+    _write_fixture(root)
+    path = root / "cards" / "card.yaml"
+    card = yaml.safe_load(path.read_text(encoding="utf-8"))
+    card["historicalEvent"] = "实" * 101
+    card["background"] = "   "
+    card.pop("story")
+    path.write_text(yaml.safe_dump(card, allow_unicode=True), encoding="utf-8")
+
+    with pytest.raises(ValidationError) as caught:
+        validate_content(root)
+
+    message = str(caught.value)
+    assert "historicalEvent has 101 code points; maximum is 100" in message
+    assert "background must be a non-empty string" in message
+    assert "story must be a non-empty string" in message
+
+
+def test_context_excerpt_is_rejected_as_unknown(tmp_path: Path) -> None:
+    root = tmp_path / "content"
+    _write_fixture(root)
+    path = root / "cards" / "card.yaml"
+    card = yaml.safe_load(path.read_text(encoding="utf-8"))
+    card["contextExcerpt"] = "不再进入内容协议。"
+    path.write_text(yaml.safe_dump(card, allow_unicode=True), encoding="utf-8")
+
+    with pytest.raises(ValidationError, match="unknown fields.*contextExcerpt"):
         validate_content(root)
 
 
@@ -260,7 +317,7 @@ def test_published_sources_must_use_independent_hosts(tmp_path: Path) -> None:
         validate_content(root)
 
 
-def test_optional_reading_section_must_be_text(tmp_path: Path) -> None:
+def test_required_background_must_be_non_empty_text(tmp_path: Path) -> None:
     root = tmp_path / "content"
     _write_fixture(root)
     path = root / "cards" / "card.yaml"
@@ -268,7 +325,7 @@ def test_optional_reading_section_must_be_text(tmp_path: Path) -> None:
     card["background"] = ["not", "text"]
     path.write_text(yaml.safe_dump(card, allow_unicode=True), encoding="utf-8")
 
-    with pytest.raises(ValidationError, match="background must be a string"):
+    with pytest.raises(ValidationError, match="background must be a non-empty string"):
         validate_content(root)
 
 
@@ -287,11 +344,13 @@ def test_package_contains_only_declared_files(tmp_path: Path) -> None:
 
     assert {"package.json", "cards.json", "images.json", "withdrawals.json"} < names
     assert len([name for name in names if name.startswith("assets/")]) == 1
-    assert package_info["schemaVersion"] == 2
-    assert cards["schemaVersion"] == 2
-    assert images["schemaVersion"] == 2
-    assert withdrawals["schemaVersion"] == 2
-    assert cards["cards"][0]["interpretation"]["coreMeaning"]
+    assert package_info["schemaVersion"] == 3
+    assert cards["schemaVersion"] == 3
+    assert images["schemaVersion"] == 3
+    assert withdrawals["schemaVersion"] == 3
+    assert cards["cards"][0]["interpretation"]["inspiration"]
+    assert cards["cards"][0]["historicalEvent"]
+    assert "contextExcerpt" not in cards["cards"][0]
 
 
 def test_content_report_summarizes_review_dimensions(tmp_path: Path) -> None:
@@ -305,5 +364,8 @@ def test_content_report_summarizes_review_dimensions(tmp_path: Path) -> None:
     assert report["quoteLengths"]["maximum"] == len("实践是检验真理的标准。")
     assert report["interpretations"]["complete"] == 1
     assert report["interpretations"]["maximumCodePoints"] > 0
+    assert report["interpretations"]["inspiration"]["maximum"] > 0
+    assert report["interpretations"]["explanation"]["maximum"] > 0
+    assert report["readingSections"]["withHistoricalEvent"] == 1
     assert report["sourceDomains"] == {"example.com": 1, "example.org": 1}
     assert report["images"][0]["uses"] == 1

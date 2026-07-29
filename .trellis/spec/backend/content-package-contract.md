@@ -35,9 +35,8 @@ Android boundary:
 
 ```kotlin
 data class InterpretationDto(
-    val coreMeaning: String,
-    val keyPoint: String,
-    val contemporaryRelevance: String,
+    val inspiration: String,
+    val explanation: String,
 )
 
 ContentPackageReader.read(packageBytes: ByteArray): ParsedContentPackage
@@ -65,7 +64,7 @@ withdrawals.json
 assets/<sha256>.<jpg|jpeg|png|webp>
 ```
 
-The four JSON envelopes inside the ZIP use `schemaVersion: 2`. The remote
+The four JSON envelopes inside the ZIP use `schemaVersion: 3`. The remote
 `manifest.json` remains `schemaVersion: 1` so an older client can reject the
 package by `minimumAppVersionCode` before downloading it. Its fields are:
 
@@ -81,18 +80,23 @@ Required invariants:
 - `expectedPublishedCards` is a positive integer and, in formal mode, exactly matches the number of published card YAML files.
 - A card ID is a stable UUID that is never reassigned. `revision` is a positive integer.
 - A published quote is NFC, one paragraph, and at most 90 Unicode code points.
-- Every published card contains `interpretation.coreMeaning`,
-  `interpretation.keyPoint`, and `interpretation.contemporaryRelevance`.
-  Each value is trimmed, non-empty NFC text; their combined hard limit is 600
-  Unicode code points, with 200 to 300 code points as the authoring target.
+- Every published card contains `interpretation.inspiration` and
+  `interpretation.explanation`. Both values are trimmed, non-empty NFC text;
+  `inspiration` has a 220-code-point hard limit, `explanation` has a
+  420-code-point hard limit, and their combined hard limit is 600 code points.
+- Every published card contains a one-paragraph `historicalEvent` of at most
+  100 code points plus non-empty NFC `background` and `story` values.
+- `contextExcerpt`, `interpretation.coreMeaning`, `interpretation.keyPoint`,
+  and `interpretation.contemporaryRelevance` are not part of schema 3 and are
+  rejected as unknown fields by both producer and consumer.
 - Each published card has at least two distinct HTTP(S) source URLs from two hosts and at least one `original` or `authoritative` source.
 - Images are content-hashed, 720 to 8192 pixels per edge, at most 40 million pixels, and explicitly permit share-image redistribution.
 - A published ID and a withdrawal ID cannot coexist in one package.
 - Removing a previously active card requires an explicit withdrawal. Snapshot omission alone is invalid.
 - Restoring a withdrawn ID requires a revision greater than the recorded withdrawal revision.
 - Image IDs are immutable: an existing ID cannot point to different bytes.
-- Content `1.1.0` requires Android `versionCode >= 2`. App `1.1.0` reads package
-  schema 2 only; package schema 1 is not silently accepted as partial data.
+- Content `1.3.0` requires Android `versionCode >= 4`. App `1.3.0` reads package
+  schema 3 only; older package schemas are not silently accepted as partial data.
 
 The builder sorts payloads, serializes compact sorted-key JSON with a trailing newline, fixes ZIP timestamps to `1980-01-01`, and writes regular-file permissions. The same sources must therefore produce byte-identical assets.
 
@@ -106,6 +110,9 @@ The builder sorts payloads, serializes compact sorted-key JSON with a trailing n
 | Quote over 90 code points | Validation error | `ContentPackageException` |
 | Missing interpretation object/child or blank child | Field-specific validation error | Strict serialization or `ContentPackageException` |
 | Interpretation is non-NFC or exceeds 600 code points | Validation error | `ContentPackageException` |
+| Inspiration exceeds 220 or explanation exceeds 420 code points | Validation error | `ContentPackageException` |
+| Missing/blank historical event, background, or story | Field-specific validation error | Strict serialization or `ContentPackageException` |
+| Removed `contextExcerpt` or old interpretation child appears | Unknown-field validation error | Strict serialization error |
 | Missing/damaged asset or wrong hash | Validation/build error | Reject before Room transaction |
 | ZIP traversal, duplicate, undeclared, or oversized entry | Not emitted | Reject during package read |
 | Manifest hash/version/date mismatch | N/A | Reject before import |
@@ -121,11 +128,12 @@ Assets are decoded and written to a content-addressed internal directory before 
 ## 5. Good / Base / Bad Cases
 
 - Good: publish a new UUID at revision 1 with two sources and a licensed image; it joins the current unread tail after import.
-- Base: rebuild unchanged `1.2.0`; ZIP SHA-256 and manifest bytes remain identical.
-- Good: revise a card from revision 1 to 2 and add all three interpretation
-  fields; App `1.1.0` imports it and preserves local user/round state.
-- Bad: add only `coreMeaning`, leave a child blank, or exceed 600 combined code
-  points; both producer and Android consumer reject the package.
+- Base: rebuild unchanged `1.3.0`; ZIP SHA-256 and manifest bytes remain identical.
+- Good: revise a card, provide both interpretation fields and all required
+  background fields; App `1.3.0` imports it.
+- Bad: omit `inspiration`, leave a required background field blank, retain
+  `contextExcerpt`, or exceed any field/combined limit; both producer and
+  Android consumer reject the package.
 - Good: withdraw revision 2 of a favorited card; it leaves reading/search but its last trusted snapshot remains in Favorites.
 - Good: restore the same UUID at revision 3; current content replaces the snapshot while like/favorite state remains.
 - Bad: remove an active card without `withdrawals.json`; Android rejects the full package.
@@ -135,14 +143,18 @@ Assets are decoded and written to a content-addressed internal directory before 
 ## 6. Tests Required
 
 - Python: schema, UUID/revision, source independence, quote and interpretation
-  length/NFC, required interpretation children, image bounds/license, and
-  exact declared formal-count validation, including both missing and surplus cards.
+  length/NFC, required interpretation/background children, removed-field
+  rejection, image bounds/license, and exact declared formal-count validation,
+  including both missing and surplus cards.
 - Python: build twice and assert identical package SHA-256 and identical manifest bytes.
-- JVM: valid schema-2 package parse plus blank/oversized interpretation,
+- JVM: valid schema-3 package parse plus blank/oversized interpretation and
+  historical event, missing background fields, removed-field rejection,
   traversal, duplicate entry, unknown schema, bad hash, invalid revision, and
   semantic-version cases.
-- Instrumentation: bootstrap upgrade, update/withdraw/restore transaction,
-  Room `2 -> 3`, and preservation of like/favorite/search/round state.
+- Instrumentation: fresh schema-5 bootstrap, update/withdraw/restore transaction,
+  and normal same-schema preservation of like/favorite/search/round state. The
+  one-user `4 -> 5` release intentionally rebuilds the database and does not
+  require a data-preserving migration regression.
 - Cross-layer: build a package with the Python tool and parse/import that exact artifact on Android.
 - Release workflow: `content-vX.Y.Z` must equal `project.yaml` version; publish only after all assets upload.
 
@@ -174,8 +186,7 @@ expose the immutable domain value to Compose.
 
 ```kotlin
 val interpretation = CardInterpretation(
-    coreMeaning = entity.interpretationCoreMeaning,
-    keyPoint = entity.interpretationKeyPoint,
-    contemporaryRelevance = entity.interpretationContemporaryRelevance,
+    inspiration = entity.interpretationInspiration,
+    explanation = entity.interpretationExplanation,
 )
 ```

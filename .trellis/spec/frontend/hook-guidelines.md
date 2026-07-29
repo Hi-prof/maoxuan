@@ -24,8 +24,8 @@ AND a normal card (not completion page) is current
 ```
 
 The effect is keyed by card ID and visibility conditions. Flipping the same card
-or opening its interpretation sheet does not reset time; interpretation-sheet
-state must not be an effect key. Paging, opening detail, leaving the tab, or
+or opening its background sheet does not reset time; background-sheet state
+must not be an effect key. Paging, opening detail, leaving the tab, or
 entering background cancels the current continuous interval. After three
 seconds, `markRead` is idempotent in Room.
 
@@ -40,5 +40,5 @@ seconds, `markRead` is idempotent in Room.
 - Using `GlobalScope` or an unowned coroutine.
 - Keying the read timer only by index when card identity can change after sync.
 - Restarting the timer on front/back flip.
-- Restarting or cancelling the timer when a modal interpretation sheet opens.
+- Restarting or cancelling the timer when a modal background sheet opens.
 - Triggering update checks in `init` or `LaunchedEffect(Unit)`.

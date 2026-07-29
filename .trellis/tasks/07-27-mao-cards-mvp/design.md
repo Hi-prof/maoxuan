@@ -116,32 +116,31 @@ ViewModel 暴露不可变 UI state 和明确事件。Composable 不直接访问 
 
 - 使用纵向 `VerticalPager`，完整落页后才更新当前位置。
 - 向上滑前进，向下滑可回看当前轮次的任意历史卡片。
-- 正面点击“读背景”或向任一水平方向拖动执行 Y 轴翻面；背面保留明确返回操作，并支持横滑翻回正面。
+- 正面只通过向任一水平方向拖动执行 Y 轴翻面；点击卡片不翻面，解读面不显示返回图标，并支持向任一水平方向横滑翻回正面。
 - 横滑由共享卡片组件按水平方向锁定处理，拖动进度直接驱动 Y 轴角度；短拖回弹，越过距离阈值或达到甩动速度阈值后使用带阻尼的 spring 收束到下一面。
 - 翻面在侧向角度附近轻微收窄并降低视觉重量，配合稳定透视距离形成实体纸卡的空间感；正背内容只在越过 90 度后切换并校正镜像。
-- 背面显示出处、可选原文上下文、可选时代背景、可选故事和默认收起的参考来源。
-- 背面处于打开状态时禁用外层 pager 手势，所有纵向拖动优先用于背面滚动。
-- 水平拖动只消费横向手势，背面 `verticalScroll` 与外层 `VerticalPager` 的既有纵向优先级保持不变；点击翻面与横滑翻面共用同一个 `flipped` 状态契约。
-- 点赞、收藏、笔记、分享、“解读”和“读背景”均位于卡片外，不遮挡正文；“解读”固定在“读背景”左侧。四个图标动作保持 `48.dp` 触控目标，并在 `360.dp` 最小宽度验证不挤压右侧文字动作。
+- 解读面显示“启示、解读”并独立滚动；解读面打开时禁用外层 pager 手势，所有纵向拖动优先用于解读滚动。
+- 水平拖动只消费横向手势，解读面 `verticalScroll` 与外层 `VerticalPager` 的既有纵向优先级保持不变；两个方向的横滑共用同一个 `flipped` 状态契约。
+- 点赞、收藏、笔记、分享和“读背景”均位于卡片外，不遮挡正文；不显示独立“解读”或“返回正面”按钮。四个图标动作保持 `48.dp` 触控目标，并在 `360.dp` 最小宽度验证不挤压右侧文字动作。
 - 切换到新卡片时默认显示正面；每张卡片的临时翻面和滚动位置不跨进程持久化。
 
-### Offline Card Interpretation
+### Offline Interpretation And Background
 
-- `CardActions` 增加明确的 `onInterpret` 回调；主阅读页和完整卡片详情页继续复用同一操作栏，避免两处交互漂移。
-- “解读”在卡片正面和背面均可用。打开解读不修改 `flipped`，关闭后恢复原卡片、原正反面和原阅读位置。
-- 新建共享 `InterpretationSheet`，使用 Material 3 modal bottom sheet 展示篇名，以及“核心意思、理解重点、现实启示”三个无嵌套卡片的内容区块。
+- `CardActions` 使用明确的 `onBackground` 回调；主阅读页和完整卡片详情页继续复用同一操作栏，避免两处交互漂移。
+- `FlippableQuoteCard` 的背面直接展示“启示、解读”；卡片只响应横向拖动，不添加整卡点击处理。
+- 共享 `BackgroundSheet` 使用 Material 3 modal bottom sheet 依次展示历史节点、时代背景、篇名、出处、相关故事和默认收起的参考来源。
 - 弹层正文独立滚动；弹层存在时由模态层接管点击和纵向拖动，外层 `VerticalPager` 不接收换卡手势。
-- 关闭按钮提供中文 `contentDescription`；遮罩、下滑和系统返回沿用 Material 3 标准 dismiss 行为。
-- 操作栏保留三个 `48.dp` 图标触控目标，并为右侧两个文字操作使用紧凑、稳定的内容间距；必须在 `360.dp` 宽度和目标字体设置下验证不溢出。
+- 弹层不显示关闭按钮；顶部拖动把手、遮罩和系统返回沿用 Material 3 标准 dismiss 行为，其中下滑是主要关闭方式。
+- 操作栏保留四个 `48.dp` 图标触控目标，并为右侧“读背景”文字操作使用紧凑、稳定的内容间距；必须在 `360.dp` 宽度和目标字体设置下验证不溢出。
 
 解读数据沿用现有内容单向流：
 
 ```text
 card YAML -> Python validator -> cards.json -> CardDto -> CardEntity
-          -> QuoteCard(CardInterpretation) -> InterpretationSheet
+          -> QuoteCard(CardInterpretation) -> InterpretationBack / BackgroundSheet
 ```
 
-`CardInterpretation` 是包含 `coreMeaning`、`keyPoint`、`contemporaryRelevance` 三个非空字符串的不可变领域值。Composable 只消费领域值，不解析 YAML、JSON 或数据库列。
+`CardInterpretation` 是包含 `inspiration` 与 `explanation` 两个非空字符串的不可变领域值。Composable 只消费领域值，不解析 YAML、JSON 或数据库列。
 
 ### Three-second Read Rule
 
@@ -167,7 +166,7 @@ card YAML -> Python validator -> cards.json -> CardDto -> CardEntity
 
 | Table | Key fields | Notes |
 | --- | --- | --- |
-| `cards` | `id`, `revision`, quote and source metadata, optional sections, three interpretation columns, `imageId`, `availability` | 保留活动内容和需要展示的下架快照 |
+| `cards` | `id`, `revision`, quote and source metadata, historical event, background, story, two interpretation columns, `imageId`, `availability` | 保留活动内容和需要展示的下架快照 |
 | `card_sources` | `cardId`, `position`, name, URL, accessed date, evidence type | 至少两条，顺序稳定 |
 | `image_assets` | `id`, content hash, local path, credit, source, license | 文件按 SHA-256 内容寻址 |
 | `user_card_state` | `cardId`, liked/favorited flags and timestamps | 不随内容更新覆盖，不级联删除 |
@@ -196,13 +195,13 @@ card YAML -> Python validator -> cards.json -> CardDto -> CardEntity
 | --- | --- |
 | Identity | UUID `id`, monotonically increasing `revision`, `status` |
 | Quote | quote, series, volume, work title, authored/spoken date, themes |
-| Interpretation | required `coreMeaning`, `keyPoint`, and `contemporaryRelevance` |
-| Optional reading | context excerpt, historical background, related story |
+| Interpretation | required `inspiration` and `explanation` |
+| Background reading | required historical event, historical background, related story |
 | Evidence | at least two sources, verification record, image ID |
 
 正文去除首尾空白并规范化为 Unicode NFC 后不得超过 90 个 code point，正文内部标点计入，不允许用换行绕过限制。脚本能检查长度和字段结构；是否连续引用、是否改写、来源是否真正独立仍由人工复核负责。
 
-三个解读子字段分别去除首尾空白并规范化为 Unicode NFC，任一为空即拒绝。三段合计以 200～300 个汉字为写作目标，规范化后不得超过 600 个 Unicode code point。内容复核须确认：核心意思立足原句语境，理解重点避免断章取义，现实启示不机械套用历史命题；不得把新的事实主张伪装成原文信息。
+两个解读子字段分别去除首尾空白并规范化为 Unicode NFC，任一为空即拒绝。启示以约 150 字为目标且不超过 220 个 code point，解读以约 300 字为目标且不超过 420 个 code point，两段合计不得超过 600。内容复核须确认解读立足原句语境、启示不机械套用历史命题，不得把新的事实主张伪装成原文信息。
 
 这是发布契约的破坏性扩展：包内 `package.json`、`cards.json`、`images.json`、`withdrawals.json` 的 schema version 统一提升为 2，远端 `manifest.json` 自身仍保持 schema version 1。App 提升为 `versionCode = 2`、`versionName = "1.1.0"`，manifest 使用 `minimumAppVersionCode = 2`；旧客户端在下载前收到升级 App 的明确状态，而不是尝试解析新卡片字段。
 
@@ -465,3 +464,31 @@ keystore 是后续覆盖升级的唯一证书来源。仓库、GitHub Release �
 远端发布完成后下载 Release APK，重新校验 SHA-256、证书摘要、package name、version code/name 和 ZIP 签名。最后访问稳定 manifest URL，并下载其指向的内容 ZIP 核对可用性。
 
 若标签工作流失败，修复代码后使用更高 App patch 版本重新发布，原则上不移动已公开的版本标签。若公开 Release 资产错误，在尚无安装用户时可删除错误 Release 并按用户明确授权重建；已有安装用户时必须保留签名密钥并提升 `versionCode` 发布修正版。
+
+## Increment Design: 卡片解读与背景内容重组
+
+### Chosen Content Contract
+
+采用干净的 schema 3，不兼容 schema 2 卡片载荷。`interpretation` 保持对象边界，但子字段改为 `inspiration` 与 `explanation`；卡片顶层新增必填 `historicalEvent`。`literature.authoredAt` 提供历史节点日期，`historicalEvent` 提供一句事件说明。`contextExcerpt` 以及旧 `coreMeaning`、`keyPoint`、`contemporaryRelevance` 从 YAML、发布 JSON、Android DTO、Room 实体和领域模型中彻底删除，严格解析继续拒绝未知字段。
+
+正式卡片的 `background` 与 `story` 改为必填。启示目标约 150 字、硬上限 220 code point；解读目标约 300 字、硬上限 420 code point；两段合计仍不超过 600 code point。历史事件说明必须为非空单段文本且不超过 100 code point。目标长度不设置机械下限，内容报告列出实际长度，避免为达最小值填充空话。
+
+### Content Rewrite
+
+31 张正式卡片全部提升 `revision`。新“启示”以旧现实启示为事实边界，扩写为平易、具体且不过度套用的约 150 字文案；新“解读”综合旧核心意思、理解重点和已核验原文语境，重写为约 300 字的连续通俗说明；历史事件说明从现有日期、时代背景、相关故事及已记录来源中提炼为一句话。原文上下文字段删除后不在其他隐藏字段中保留，但其中对理解必要且已核验的信息可以转述进新解读。
+
+### Android And Versioning
+
+内容 schema、内容版本和 App 版本同步升级：schema `2 -> 3`、内容版本 `1.2.0 -> 1.3.0`、`minimumAppVersionCode = 4`、Android `versionCode = 4`、`versionName = "1.3.0"`。manifest 自身继续使用 schema 1。全部新内容重新构建到 `app/src/main/assets/bootstrap.zip`。
+
+Room 数据库版本升级为 5，并直接采用新 `cards` 表结构。用户明确不要求保留本地数据，因此不实现 `MIGRATION_4_5`；数据库构建器允许缺失迁移时破坏性重建。升级后旧点赞、收藏、笔记、搜索历史、阅读轮次和位置可以丢失，应用随后从内置 1.3.0 内容包重新初始化。已有 `1 -> 2 -> 3 -> 4` 迁移代码可保留，不新增 4 到 5 迁移测试。
+
+### UI Composition
+
+卡片背面直接按“启示、解读”展示，不再保留会与栏目重名的总标题。两个正文区块共享现有滚动容器并以分隔线区分。背景弹层标题区只显示“背景”，正文严格按“历史节点、时代背景、篇名、出处、相关故事、参考来源”排列。历史节点同时显示 `authoredAt` 和 `historicalEvent`；篇名只显示 `workTitle`；出处只显示 `series · volume`；参考来源保持默认收起和外部浏览器打开行为。
+
+### Verification And Release Boundary
+
+验证聚焦新结构，不增加旧数据库迁移测试：运行 Python 内容工具测试、正式内容校验、内容报告、确定性 schema-3 构建、Android 内容包单元测试、Compose instrumentation 测试、lint 及 debug/personal 构建。检查 31 张卡片字段完整、长度合规、bootstrap 可离线解析，以及 360 x 640 dp 下背面和背景弹层全部内容可达。
+
+本增量可以准备 1.3.0 的提交、标签和 Release，但任何 Git 提交、推送、标签及公开发布仍在执行前按项目规则展示范围并取得一次明确确认。

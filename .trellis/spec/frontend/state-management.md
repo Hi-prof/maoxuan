@@ -22,8 +22,8 @@ val uiState = combine(contentUiState, initializing, initializationError) {
 - Durable: Room-backed content and personal state.
 - App-session: initialization and update phases in `MainViewModel`.
 - Route-local: search text and list/pager positions when the navigation owner can restore them.
-- Component-local: flip animation, expanded sources, and whether the detail
-  route's interpretation sheet is visible.
+- Component-local: flip animation, background-sheet source expansion, and whether
+  the detail route's background sheet is visible.
 - Derived: active, favorite, liked, and search lists. Derive them from repository flows instead of persisting copies.
 
 Notes are durable `PersonalNote` values in `MainUiState`. The editor's title,
@@ -39,10 +39,10 @@ and expose the repository error.
 
 Search text remains route-local, but submitted history is durable. Only an explicit IME Search action saves a trimmed non-empty query. History clicks only restore the query; delete-one and clear-all are explicit ViewModel events backed by Room.
 
-The reader keeps only the selected interpretation card ID as transient state,
-keyed by round and cleared when the settled page changes. The detail route keeps
-only a local visibility flag keyed by card ID. Neither belongs in Room or
-`MainViewModel`, and closing the sheet must not alter flip or pager state.
+The reader keeps only the selected background card ID as transient state, keyed
+by round and cleared when the settled page changes. The detail route keeps only
+a local background-sheet visibility flag keyed by card ID. Neither belongs in
+Room or `MainViewModel`, and closing the sheet must not alter flip or pager state.
 
 ## Update State Machine
 

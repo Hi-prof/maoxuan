@@ -392,9 +392,27 @@ git status --short
 
 - [x] Add UI regressions that assert “解读” is immediately left of “读背景” at the `360 x 640` target, opens the current card, exposes all three section headings, scrolls long content, and dismisses without changing card or flip state.
 - [x] Add the compact “解读” text action while retaining three accessible `48.dp` icon targets and the existing “读背景/返回正面” behavior.
-- [x] Implement the shared Material 3 bottom sheet with work title, close action, three unframed sections, theme tokens, and independent scrolling.
+- [x] Implement the shared Material 3 bottom sheet with work title, drag handle, unframed content sections, theme tokens, and independent scrolling.
 - [x] Hoist only the selected sheet card as transient screen state in reader/detail; do not persist it or add ViewModel/Room UI state.
 - [x] Verify modal gestures block pager movement and opening the sheet does not restart or cancel the current card's three-second read timer.
+
+### Increment: Swap interpretation and background containers
+
+**Files:**
+
+- Modify shared card, action, and bottom-sheet components.
+- Modify reader/detail transient sheet state and callbacks.
+- Modify Compose instrumentation regressions and frontend interaction specs.
+
+**Steps:**
+
+- [x] Remove the visible interpretation/return actions and expose only `读背景` in `CardActions`.
+- [x] Render the three interpretation sections on the horizontally flippable card face without a whole-card click handler or return icon.
+- [x] Move source, context, historical background, story, and expandable references into the shared background bottom sheet.
+- [x] Remove the background sheet close icon and keep drag-handle swipe-down as the primary dismiss interaction.
+- [x] Preserve reader/detail card, pager, and flip state while the background sheet opens and closes.
+- [x] Add regressions for tap-no-flip, bidirectional swipe, interpretation content, background scrolling, and action removal.
+- [x] Run Debug JVM tests, lint, assembly, and instrumentation tests on API 28 and API 35.
 
 ### Task 4: Full regression and visual gate
 
@@ -796,3 +814,49 @@ Use gh run list --workflow app-release.yml and gh run watch --exit-status. Do no
 - [ ] **Step 5: Verify the public Release**
 
 Download both assets to a temporary directory, verify SHA-256, signature, package and version; confirm App Release is non-latest; then confirm content-v1.2.0 remains latest and its manifest plus content ZIP are reachable.
+
+## Increment Plan: 卡片解读与背景内容重组
+
+### Task 1: Upgrade the authoring and package contract
+
+**Files:** `content/templates/card.yaml`, `content/project.yaml`, `content-tool/src/xinghuo_content/validator.py`, `content-tool/src/xinghuo_content/report.py`, `content-tool/tests/test_content_tool.py`
+
+- [x] Replace interpretation subfields with `inspiration` and `explanation`, add required `historicalEvent`, require published `background` and `story`, and reject `contextExcerpt` as unknown.
+- [x] Enforce maximum lengths of 220, 420, 600 combined, and 100 for the historical event; report per-section length statistics.
+- [x] Raise package schema to 3, content version to 1.3.0, minimum App version code to 4, and update fixtures and exact-schema tests.
+- [x] Run `python -m pytest content-tool/tests -q` and the repository Ruff command from `pyproject.toml`.
+
+### Task 2: Rewrite all 31 formal cards
+
+**Files:** `content/cards/*.yaml`
+
+- [x] Increment every published card revision and replace the three old interpretation fields with the two new fields.
+- [x] Add one verified historical event sentence per card, remove every `contextExcerpt`, and retain required background, story, literature and sources.
+- [x] Review wording for plain Chinese, factual restraint, section separation and target lengths; do not introduce historical claims beyond existing verified material.
+- [x] Run formal validation, build the content report, and perform deterministic schema-3 package construction.
+
+### Task 3: Replace the Android content and local models
+
+**Files:** `ContentDtos.kt`, `ContentPackageReader.kt`, `Entities.kt`, `Models.kt`, `AppRepository.kt`, `XinghuoDatabase.kt`, related unit and instrumentation fixtures, generated Room schema 5
+
+- [x] Update strict DTO/domain/entity fields and validation to match schema 3 and the same length limits.
+- [x] Raise Room to version 5 with the clean cards table and destructive fallback instead of `MIGRATION_4_5`; retain earlier migrations without adding a 4-to-5 migration test.
+- [x] Raise Android version code/name to 4/1.3.0 and update release workflow public version assertions without publishing.
+- [x] Rebuild `app/src/main/assets/bootstrap.zip` from the validated 1.3.0 content package.
+- [x] Run Android content-reader and repository unit tests.
+
+### Task 4: Recompose the card back and background sheet
+
+**Files:** `QuoteCard.kt`, `InterpretationSheet.kt`, reader/detail callers, `QuoteCardInstrumentedTest.kt`, `InterpretationInstrumentedTest.kt`, other QuoteCard fixtures
+
+- [x] Render only “启示” then “解读” on the scrollable back face, without a duplicate umbrella heading.
+- [x] Render the sheet in the exact required order and remove the title subtitle plus original-context section.
+- [x] Update accessibility labels and tests for all new headings, order, scrolling and compact viewport reachability.
+- [x] Run targeted instrumentation tests on the available emulator/device.
+
+### Task 5: Full quality gate and release preparation
+
+- [x] Run content-tool lint/tests, formal validation/report/deterministic build, Android unit tests, lint, debug build and personal build.
+- [x] Run `git diff --check`, scan for legacy field names outside preserved historical Room schema files, and verify bootstrap schema/content versions.
+- [x] Review the complete diff against this increment and record actual results in `delivery.md`.
+- [ ] Present a scoped commit/push/tag/Release plan and wait for explicit authorization before performing any Git or public release operation.

@@ -17,9 +17,9 @@ class ContentPackageReaderTest {
     fun readsAValidStrictPackage() {
         val parsed = ContentPackageReader().read(validPackage())
 
-        assertEquals("1.1.0", parsed.info.contentVersion)
+        assertEquals("1.3.0", parsed.info.contentVersion)
         assertEquals(1, parsed.cards.size)
-        assertEquals("认识必须回到实践中检验。", parsed.cards.single().interpretation.coreMeaning)
+        assertEquals("先依据事实行动，再根据结果调整判断。", parsed.cards.single().interpretation.inspiration)
         assertEquals(imageBytes.toList(), parsed.assets.values.single().toList())
     }
 
@@ -29,7 +29,7 @@ class ContentPackageReaderTest {
             File("src/main/assets/bootstrap.zip").readBytes(),
         )
 
-        assertEquals("1.2.0", parsed.info.contentVersion)
+        assertEquals("1.3.0", parsed.info.contentVersion)
         assertEquals(31, parsed.cards.size)
         assertEquals(
             "前途是光明的，道路是曲折的。",
@@ -64,7 +64,7 @@ class ContentPackageReaderTest {
     fun rejectsPublishedAndWithdrawnConflict() {
         val entries = validEntries().toMutableMap()
         entries["withdrawals.json"] = """
-            {"schemaVersion":2,"withdrawals":[{
+            {"schemaVersion":3,"withdrawals":[{
               "id":"b85d8407-3b74-4c5e-b516-b032a22d73aa",
               "revision":2,
               "withdrawnAt":"2026-07-28"
@@ -83,14 +83,14 @@ class ContentPackageReaderTest {
         val entries = validEntries().toMutableMap()
         entries["cards.json"] = entries.getValue("cards.json")
             .decodeToString()
-            .replace("认识必须回到实践中检验。", "   ")
+            .replace("先依据事实行动，再根据结果调整判断。", "   ")
             .encodeToByteArray()
 
         val error = assertThrows(ContentPackageException::class.java) {
             ContentPackageReader().read(zipOf(entries))
         }
 
-        assertTrueMessage(error.message, "核心意思")
+        assertTrueMessage(error.message, "启示")
     }
 
     @Test
@@ -98,7 +98,7 @@ class ContentPackageReaderTest {
         val entries = validEntries().toMutableMap()
         entries["cards.json"] = entries.getValue("cards.json")
             .decodeToString()
-            .replace("认识必须回到实践中检验。", "实".repeat(601))
+            .replace("认识必须回到实践中检验，并在行动中不断修正。", "实".repeat(601))
             .encodeToByteArray()
 
         val error = assertThrows(ContentPackageException::class.java) {
@@ -108,16 +108,110 @@ class ContentPackageReaderTest {
         assertTrueMessage(error.message, "超过 600")
     }
 
+    @Test
+    fun rejectsInspirationOverTwoHundredTwentyCodePoints() {
+        val entries = validEntries().withCardsJson {
+            replace("先依据事实行动，再根据结果调整判断。", "启".repeat(221))
+        }
+
+        val error = assertThrows(ContentPackageException::class.java) {
+            ContentPackageReader().read(zipOf(entries))
+        }
+
+        assertTrueMessage(error.message, "启示超过 220")
+    }
+
+    @Test
+    fun rejectsExplanationOverFourHundredTwentyCodePoints() {
+        val entries = validEntries().withCardsJson {
+            replace("认识必须回到实践中检验，并在行动中不断修正。", "解".repeat(421))
+        }
+
+        val error = assertThrows(ContentPackageException::class.java) {
+            ContentPackageReader().read(zipOf(entries))
+        }
+
+        assertTrueMessage(error.message, "解读超过 420")
+    }
+
+    @Test
+    fun rejectsHistoricalEventOverOneHundredCodePoints() {
+        val entries = validEntries().withCardsJson {
+            replace("1937年7月，毛泽东在延安讲授哲学问题。", "史".repeat(101))
+        }
+
+        val error = assertThrows(ContentPackageException::class.java) {
+            ContentPackageReader().read(zipOf(entries))
+        }
+
+        assertTrueMessage(error.message, "历史事件无效")
+    }
+
+    @Test
+    fun rejectsMissingBackground() {
+        val entries = validEntries().withCardsJson {
+            replace(
+                "\"background\":\"抗日战争全面爆发前后，认识与实践问题受到集中讨论。\",",
+                "",
+            )
+        }
+
+        val error = assertThrows(ContentPackageException::class.java) {
+            ContentPackageReader().read(zipOf(entries))
+        }
+
+        assertTrueMessage(error.message, "background")
+    }
+
+    @Test
+    fun rejectsMissingStory() {
+        val entries = validEntries().withCardsJson {
+            replace("\"story\":\"讲授内容后来整理为《实践论》。\",", "")
+        }
+
+        val error = assertThrows(ContentPackageException::class.java) {
+            ContentPackageReader().read(zipOf(entries))
+        }
+
+        assertTrueMessage(error.message, "story")
+    }
+
+    @Test
+    fun rejectsRemovedContextExcerptField() {
+        val entries = validEntries().withCardsJson {
+            replace(
+                "\"historicalEvent\":\"1937年7月，毛泽东在延安讲授哲学问题。\",",
+                "\"historicalEvent\":\"1937年7月，毛泽东在延安讲授哲学问题。\"," +
+                    "\"contextExcerpt\":\"已经从协议删除的旧字段\",",
+            )
+        }
+
+        val error = assertThrows(ContentPackageException::class.java) {
+            ContentPackageReader().read(zipOf(entries))
+        }
+
+        assertTrueMessage(error.message, "contextExcerpt")
+    }
+
     private fun validPackage() = zipOf(validEntries())
+
+    private fun Map<String, ByteArray>.withCardsJson(
+        transform: String.() -> String,
+    ): MutableMap<String, ByteArray> = toMutableMap().also { entries ->
+        entries["cards.json"] = entries.getValue("cards.json")
+            .decodeToString()
+            .transform()
+            .encodeToByteArray()
+    }
 
     private fun validEntries(): Map<String, ByteArray> {
         val assetName = "assets/$imageHash.jpg"
         return linkedMapOf(
             "package.json" to """
-                {"schemaVersion":2,"contentVersion":"1.1.0","publishedAt":"2026-07-28T00:00:00Z"}
+                {"schemaVersion":3,"contentVersion":"1.3.0","publishedAt":"2026-07-29T00:00:00Z"}
             """.trimIndent().encodeToByteArray(),
             "cards.json" to """
-                {"schemaVersion":2,"cards":[{
+                {"schemaVersion":3,"cards":[{
                   "id":"b85d8407-3b74-4c5e-b516-b032a22d73aa",
                   "revision":1,
                   "status":"published",
@@ -128,10 +222,12 @@ class ContentPackageReaderTest {
                   "authoredAt":"1937-07",
                   "themes":["实践"],
                   "interpretation":{
-                    "coreMeaning":"认识必须回到实践中检验。",
-                    "keyPoint":"实践和理论要在反复验证中相互修正。",
-                    "contemporaryRelevance":"先依据事实行动，再根据结果调整判断。"
+                    "inspiration":"先依据事实行动，再根据结果调整判断。",
+                    "explanation":"认识必须回到实践中检验，并在行动中不断修正。"
                   },
+                  "historicalEvent":"1937年7月，毛泽东在延安讲授哲学问题。",
+                  "background":"抗日战争全面爆发前后，认识与实践问题受到集中讨论。",
+                  "story":"讲授内容后来整理为《实践论》。",
                   "imageId":"paper",
                   "sources":[
                     {"name":"原文","url":"https://example.com/a","accessedAt":"2026-07-28","type":"original"},
@@ -141,7 +237,7 @@ class ContentPackageReaderTest {
                 }]}
             """.trimIndent().encodeToByteArray(),
             "images.json" to """
-                {"schemaVersion":2,"images":[{
+                {"schemaVersion":3,"images":[{
                   "id":"paper",
                   "localFile":"$assetName",
                   "sha256":"$imageHash",
@@ -156,7 +252,7 @@ class ContentPackageReaderTest {
                   "shareAllowed":true
                 }]}
             """.trimIndent().encodeToByteArray(),
-            "withdrawals.json" to """{"schemaVersion":2,"withdrawals":[]}"""
+            "withdrawals.json" to """{"schemaVersion":3,"withdrawals":[]}"""
                 .encodeToByteArray(),
             assetName to imageBytes,
         )

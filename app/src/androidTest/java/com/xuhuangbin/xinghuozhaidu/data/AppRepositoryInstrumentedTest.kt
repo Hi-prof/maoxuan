@@ -74,7 +74,7 @@ class AppRepositoryInstrumentedTest {
         repository.importPackage(buildPackage("1.1.0", 2, "修订后的连续原文引文。"))
         val revised = repository.allCards.first().single()
         assertEquals(2, revised.revision)
-        assertEquals("认识必须回到实践中检验。", revised.interpretation.coreMeaning)
+        assertEquals("认识必须回到实践中检验。", revised.interpretation.explanation)
         assertTrue(revised.isLiked)
         assertTrue(revised.isFavorited)
 
@@ -170,9 +170,9 @@ class AppRepositoryInstrumentedTest {
         repository.initialize()
 
         val installed = database.appDao().getContentState()
-        assertEquals("1.2.0", installed?.contentVersion)
+        assertEquals("1.3.0", installed?.contentVersion)
         val upgraded = repository.allCards.first().first { it.id == cardId }
-        assertEquals(2, upgraded.revision)
+        assertEquals(3, upgraded.revision)
         assertTrue(upgraded.isLiked)
         assertTrue(upgraded.isFavorited)
         val round = database.appDao().getActiveRound()
@@ -249,10 +249,10 @@ class AppRepositoryInstrumentedTest {
         val imageHash = imageBytes.sha256()
         val assetName = "assets/$imageHash.png"
         val cardsJson = if (revision == null) {
-            """{"schemaVersion":2,"cards":[]}"""
+            """{"schemaVersion":3,"cards":[]}"""
         } else {
             """
-                {"schemaVersion":2,"cards":[{
+                {"schemaVersion":3,"cards":[{
                   "id":"$cardId",
                   "revision":$revision,
                   "status":"published",
@@ -263,10 +263,12 @@ class AppRepositoryInstrumentedTest {
                   "authoredAt":"1937-07",
                   "themes":["实践"],
                   "interpretation":{
-                    "coreMeaning":"认识必须回到实践中检验。",
-                    "keyPoint":"实践和理论要在反复验证中相互修正。",
-                    "contemporaryRelevance":"先依据事实行动，再根据结果调整判断。"
+                    "inspiration":"先依据事实行动，再根据结果调整判断。",
+                    "explanation":"认识必须回到实践中检验。"
                   },
+                  "historicalEvent":"1937年7月，毛泽东在延安讲授哲学问题。",
+                  "background":"抗日战争全面爆发前后，认识与实践问题受到集中讨论。",
+                  "story":"讲授内容后来整理为《实践论》。",
                   "imageId":"$imageId",
                   "sources":[
                     {"name":"原文","url":"https://example.com/original","accessedAt":"2026-07-28","type":"original"},
@@ -277,16 +279,16 @@ class AppRepositoryInstrumentedTest {
             """.trimIndent()
         }
         val withdrawalsJson = if (withdrawalRevision == null) {
-            """{"schemaVersion":2,"withdrawals":[]}"""
+            """{"schemaVersion":3,"withdrawals":[]}"""
         } else {
-            """{"schemaVersion":2,"withdrawals":[{"id":"$cardId","revision":$withdrawalRevision,"withdrawnAt":"2026-07-28"}]}"""
+            """{"schemaVersion":3,"withdrawals":[{"id":"$cardId","revision":$withdrawalRevision,"withdrawnAt":"2026-07-28"}]}"""
         }
         return zipOf(
             linkedMapOf(
-                "package.json" to """{"schemaVersion":2,"contentVersion":"$contentVersion","publishedAt":"2026-07-28T00:00:00Z"}""".encodeToByteArray(),
+                "package.json" to """{"schemaVersion":3,"contentVersion":"$contentVersion","publishedAt":"2026-07-28T00:00:00Z"}""".encodeToByteArray(),
                 "cards.json" to cardsJson.encodeToByteArray(),
                 "images.json" to """
-                    {"schemaVersion":2,"images":[{
+                    {"schemaVersion":3,"images":[{
                       "id":"$imageId",
                       "localFile":"$assetName",
                       "sha256":"$imageHash",

@@ -8,9 +8,8 @@ data class CardSource(
 )
 
 data class CardInterpretation(
-    val coreMeaning: String,
-    val keyPoint: String,
-    val contemporaryRelevance: String,
+    val inspiration: String,
+    val explanation: String,
 )
 
 data class QuoteCard(
@@ -23,9 +22,9 @@ data class QuoteCard(
     val authoredAt: String,
     val themes: List<String>,
     val interpretation: CardInterpretation,
-    val contextExcerpt: String?,
-    val background: String?,
-    val story: String?,
+    val historicalEvent: String,
+    val background: String,
+    val story: String,
     val imagePath: String,
     val sources: List<CardSource>,
     val isWithdrawn: Boolean,

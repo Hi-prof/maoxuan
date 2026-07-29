@@ -6,8 +6,9 @@ Room is the device source of truth for installed content, user state, and readin
 
 ## Table Contracts
 
-- `cards`: stable UUID primary key, monotonic revision, content fields, three
-  non-null interpretation columns, image ID, `active|withdrawn` availability.
+- `cards`: stable UUID primary key, monotonic revision, content fields, two
+  non-null interpretation columns, required historical event/background/story,
+  image ID, and `active|withdrawn` availability.
 - `card_sources`: ordered by `(cardId, position)` and replaced as a unit with a card revision.
 - `image_assets`: stable logical image ID mapped to immutable SHA-256 content and an internal path.
 - `user_card_state`: independent like/favorite flags and timestamps; it must survive content revisions.
@@ -62,9 +63,12 @@ WHERE roundId = :roundId AND cardId = :cardId
 ## Migrations
 
 - Increment the Room schema version for every persisted schema change.
-- Add and test an explicit migration before shipping an update.
-- Never use destructive migration fallback because it would erase likes,
-  favorites, notes, and reading progress.
+- Add and test an explicit migration before shipping an update when user data
+  must be preserved.
+- Destructive fallback is allowed only for a documented release where the user
+  has explicitly accepted loss of all local data. Version 5 is such a one-user
+  exception; schema `4 -> 5` rebuilds from the bundled content package and has
+  no data-preserving migration test.
 - Export/update schemas when migration tests are introduced.
 - Database version 3 adds `interpretationCoreMeaning`,
   `interpretationKeyPoint`, and `interpretationContemporaryRelevance` through
@@ -75,6 +79,10 @@ WHERE roundId = :roundId AND cardId = :cardId
 - Database version 4 creates `notes` plus non-unique indexes on `cardId` and
   `(updatedAt, id)` through `MIGRATION_3_4`. The full registered chain is
   `1 -> 2 -> 3 -> 4`.
+- Database version 5 replaces the three old interpretation columns with
+  `interpretationInspiration` and `interpretationExplanation`, adds required
+  `historicalEvent`, and removes `contextExcerpt`. App `1.3.0` uses destructive
+  fallback from prior schemas and then imports the bundled schema-3 content.
 
 ## Scenario: Personal Notes And Withdrawal Retention
 

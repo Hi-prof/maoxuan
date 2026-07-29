@@ -35,13 +35,12 @@ class ShareCardRendererInstrumentedTest {
             authoredAt = "1937-07",
             themes = listOf("实践", "认识"),
             interpretation = CardInterpretation(
-                coreMeaning = "认识应在实践中形成并接受检验。",
-                keyPoint = "理论与实践需要具体地、历史地统一。",
-                contemporaryRelevance = "用行动结果持续校正判断。",
+                inspiration = "用行动结果持续校正判断。",
+                explanation = "认识应在实践中形成并接受检验，理论与实践需要具体地、历史地统一。",
             ),
-            contextExcerpt = null,
-            background = null,
-            story = null,
+            historicalEvent = "1937年7月，毛泽东在延安讲授哲学问题。",
+            background = "文章讨论认识与实践的关系。",
+            story = "讲授内容后来整理为《实践论》。",
             imagePath = background.absolutePath,
             sources = listOf(
                 CardSource("原文", "https://example.com/a", "2026-07-28", "original"),

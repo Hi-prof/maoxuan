@@ -53,7 +53,7 @@ CARD_FIELDS = {
     "literature",
     "themes",
     "interpretation",
-    "contextExcerpt",
+    "historicalEvent",
     "background",
     "story",
     "imageId",
@@ -61,7 +61,7 @@ CARD_FIELDS = {
     "review",
 }
 LITERATURE_FIELDS = {"series", "volume", "workTitle", "authoredAt"}
-INTERPRETATION_FIELDS = {"coreMeaning", "keyPoint", "contemporaryRelevance"}
+INTERPRETATION_FIELDS = {"inspiration", "explanation"}
 SOURCE_FIELDS = {"name", "url", "accessedAt", "type"}
 REVIEW_FIELDS = {"status", "checkedAt"}
 IMAGE_ID_RE = re.compile(r"^[a-z0-9](?:[a-z0-9-]{0,62}[a-z0-9])?$")
@@ -132,8 +132,8 @@ def _validate_project(root: Path, issues: list[str]) -> ContentProject | None:
         return None
     _reject_unknown_fields(data, PROJECT_FIELDS, path, issues)
     schema_version = data.get("schemaVersion")
-    if schema_version != 2:
-        issues.append(f"{path}: schemaVersion must be 2")
+    if schema_version != 3:
+        issues.append(f"{path}: schemaVersion must be 3")
     content_version = _require_text(data, "contentVersion", path, issues)
     if content_version and not SEMVER_RE.fullmatch(content_version):
         issues.append(f"{path}: contentVersion must use MAJOR.MINOR.PATCH")
@@ -160,7 +160,7 @@ def _validate_project(root: Path, issues: list[str]) -> ContentProject | None:
     repository_owner = _require_text(data, "repositoryOwner", path, issues)
     repository_name = _require_text(data, "repositoryName", path, issues)
     return ContentProject(
-        schema_version=2,
+        schema_version=3,
         content_version=content_version,
         published_at=published_at,
         minimum_app_version_code=minimum_app_version_code,
@@ -270,13 +270,23 @@ def _validate_interpretation(
     if not isinstance(raw, dict):
         if required:
             issues.append(f"{path}: interpretation must be a mapping")
-        return {"coreMeaning": "", "keyPoint": "", "contemporaryRelevance": ""}
+        return {"inspiration": "", "explanation": ""}
 
     _reject_unknown_fields(raw, INTERPRETATION_FIELDS, path, issues, "interpretation")
     interpretation = {
         field: unicodedata.normalize("NFC", _require_text(raw, field, path, issues))
-        for field in ("coreMeaning", "keyPoint", "contemporaryRelevance")
+        for field in ("inspiration", "explanation")
     }
+    if len(interpretation["inspiration"]) > 220:
+        issues.append(
+            f"{path}: interpretation.inspiration has "
+            f"{len(interpretation['inspiration'])} code points; maximum is 220"
+        )
+    if len(interpretation["explanation"]) > 420:
+        issues.append(
+            f"{path}: interpretation.explanation has "
+            f"{len(interpretation['explanation'])} code points; maximum is 420"
+        )
     code_points = sum(len(text) for text in interpretation.values())
     if code_points > 600:
         issues.append(
@@ -339,6 +349,25 @@ def _validate_card(path: Path, issues: list[str]) -> CardRecord | None:
         issues=issues,
     )
 
+    historical_event = unicodedata.normalize(
+        "NFC", _require_text(data, "historicalEvent", path, issues)
+    )
+    if "\n" in historical_event or "\r" in historical_event:
+        issues.append(f"{path}: historicalEvent must be a single paragraph")
+    if len(historical_event) > 100:
+        issues.append(
+            f"{path}: historicalEvent has {len(historical_event)} code points; maximum is 100"
+        )
+
+    if status == "published":
+        background = unicodedata.normalize(
+            "NFC", _require_text(data, "background", path, issues)
+        )
+        story = unicodedata.normalize("NFC", _require_text(data, "story", path, issues))
+    else:
+        background = _optional_text(data, "background", path, issues)
+        story = _optional_text(data, "story", path, issues)
+
     image_id = _require_text(data, "imageId", path, issues)
     raw_sources = data.get("sources")
     if not isinstance(raw_sources, list):
@@ -382,9 +411,9 @@ def _validate_card(path: Path, issues: list[str]) -> CardRecord | None:
         "authoredAt": authored_at,
         "themes": normalized_themes,
         "interpretation": interpretation,
-        "contextExcerpt": _optional_text(data, "contextExcerpt", path, issues),
-        "background": _optional_text(data, "background", path, issues),
-        "story": _optional_text(data, "story", path, issues),
+        "historicalEvent": historical_event,
+        "background": background,
+        "story": story,
         "imageId": image_id,
         "sources": sources,
         "reviewedAt": checked_at,

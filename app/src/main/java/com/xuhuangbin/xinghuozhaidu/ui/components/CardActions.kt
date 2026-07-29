@@ -34,9 +34,7 @@ import com.xuhuangbin.xinghuozhaidu.ui.theme.SpiritRed
 @Composable
 fun CardActions(
     card: QuoteCard,
-    isFlipped: Boolean,
-    onInterpret: () -> Unit,
-    onFlip: () -> Unit,
+    onBackground: () -> Unit,
     onLike: () -> Unit,
     onFavorite: () -> Unit,
     onNote: () -> Unit,
@@ -80,14 +78,7 @@ fun CardActions(
         val readingActions: @Composable () -> Unit = {
             Row(verticalAlignment = Alignment.CenterVertically) {
                 TextButton(
-                    onClick = onInterpret,
-                    modifier = Modifier.heightIn(min = 48.dp),
-                    contentPadding = PaddingValues(horizontal = 6.dp),
-                ) {
-                    Text("解读", color = SpiritRed, fontSize = 14.sp, letterSpacing = 0.sp)
-                }
-                TextButton(
-                    onClick = onFlip,
+                    onClick = onBackground,
                     modifier = Modifier.heightIn(min = 48.dp),
                     contentPadding = PaddingValues(horizontal = 6.dp),
                 ) {
@@ -99,7 +90,7 @@ fun CardActions(
                     )
                     Spacer(Modifier.width(4.dp))
                     Text(
-                        if (isFlipped) "返回正面" else "读背景",
+                        "读背景",
                         color = SpiritRed,
                         fontSize = 14.sp,
                         letterSpacing = 0.sp,

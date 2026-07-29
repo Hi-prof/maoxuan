@@ -41,7 +41,7 @@ import androidx.lifecycle.compose.LocalLifecycleOwner
 import com.xuhuangbin.xinghuozhaidu.domain.model.ReaderState
 import com.xuhuangbin.xinghuozhaidu.ui.components.CardActions
 import com.xuhuangbin.xinghuozhaidu.ui.components.FlippableQuoteCard
-import com.xuhuangbin.xinghuozhaidu.ui.components.InterpretationSheet
+import com.xuhuangbin.xinghuozhaidu.ui.components.BackgroundSheet
 import com.xuhuangbin.xinghuozhaidu.ui.share.ShareCardRenderer
 import com.xuhuangbin.xinghuozhaidu.ui.theme.MutedInk
 import com.xuhuangbin.xinghuozhaidu.ui.theme.SpiritRed
@@ -146,7 +146,7 @@ private fun ReaderPager(
     val lifecycleOwner = LocalLifecycleOwner.current
     val lifecycleState by lifecycleOwner.lifecycle.currentStateFlow.collectAsStateWithLifecycle()
     var flippedCardId by remember(state.roundId) { mutableStateOf<String?>(null) }
-    var interpretationCardId by remember(state.roundId) { mutableStateOf<String?>(null) }
+    var backgroundCardId by remember(state.roundId) { mutableStateOf<String?>(null) }
     val pageCount = state.cards.size + if (state.isComplete) 1 else 0
     val pagerState = rememberPagerState(pageCount = { pageCount })
 
@@ -156,7 +156,7 @@ private fun ReaderPager(
     LaunchedEffect(pagerState.settledPage, state.roundId) {
         val page = pagerState.settledPage
         flippedCardId = null
-        interpretationCardId = null
+        backgroundCardId = null
         if (page < state.cards.size) onPositionChanged(page)
     }
     LaunchedEffect(
@@ -184,7 +184,7 @@ private fun ReaderPager(
     VerticalPager(
         state = pagerState,
         modifier = Modifier.fillMaxSize(),
-        userScrollEnabled = flippedCardId == null && interpretationCardId == null,
+        userScrollEnabled = flippedCardId == null && backgroundCardId == null,
         beyondViewportPageCount = 1,
     ) { page ->
         if (page == state.cards.size) {
@@ -209,9 +209,7 @@ private fun ReaderPager(
                 )
                 CardActions(
                     card = card,
-                    isFlipped = flipped,
-                    onInterpret = { interpretationCardId = card.id },
-                    onFlip = { flippedCardId = if (flipped) null else card.id },
+                    onBackground = { backgroundCardId = card.id },
                     onLike = { onLike(card.id) },
                     onFavorite = { onFavorite(card.id) },
                     onNote = { onNote(card.id) },
@@ -227,10 +225,10 @@ private fun ReaderPager(
             }
         }
     }
-    state.cards.firstOrNull { it.id == interpretationCardId }?.let { card ->
-        InterpretationSheet(
+    state.cards.firstOrNull { it.id == backgroundCardId }?.let { card ->
+        BackgroundSheet(
             card = card,
-            onDismissRequest = { interpretationCardId = null },
+            onDismissRequest = { backgroundCardId = null },
         )
     }
 }

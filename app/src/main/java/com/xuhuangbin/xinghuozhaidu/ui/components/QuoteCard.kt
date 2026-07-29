@@ -1,13 +1,10 @@
 package com.xuhuangbin.xinghuozhaidu.ui.components
 
-import android.content.Intent
-import android.net.Uri
 import androidx.compose.animation.core.Animatable
 import androidx.compose.animation.core.Spring
 import androidx.compose.animation.core.spring
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.background
-import androidx.compose.foundation.clickable
 import androidx.compose.foundation.gestures.Orientation
 import androidx.compose.foundation.gestures.draggable
 import androidx.compose.foundation.gestures.rememberDraggableState
@@ -15,7 +12,6 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.BoxWithConstraints
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -25,14 +21,7 @@ import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.verticalScroll
-import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.automirrored.outlined.OpenInNew
-import androidx.compose.material.icons.outlined.ExpandLess
-import androidx.compose.material.icons.outlined.ExpandMore
-import androidx.compose.material.icons.outlined.FlipToFront
 import androidx.compose.material3.HorizontalDivider
-import androidx.compose.material3.Icon
-import androidx.compose.material3.IconButton
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -49,7 +38,6 @@ import androidx.compose.ui.draw.alpha
 import androidx.compose.ui.graphics.graphicsLayer
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.layout.onSizeChanged
-import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.semantics.CustomAccessibilityAction
 import androidx.compose.ui.semantics.customActions
@@ -124,9 +112,9 @@ fun FlippableQuoteCard(
         modifier = modifier
             .onSizeChanged { cardWidthPx = it.width.coerceAtLeast(1) }
             .semantics {
-                stateDescription = if (flipped) "卡片背面" else "卡片正面"
+                stateDescription = if (flipped) "卡片解读面" else "卡片正面"
                 customActions = listOf(
-                    CustomAccessibilityAction(if (flipped) "返回正面" else "读背景") {
+                    CustomAccessibilityAction(if (flipped) "返回正面" else "查看解读") {
                         onFlippedChange(!flipped)
                         true
                     },
@@ -189,7 +177,7 @@ fun FlippableQuoteCard(
             QuoteFront(card)
         } else {
             Box(Modifier.graphicsLayer { rotationY = 180f }) {
-                QuoteBack(card = card, onClose = { onFlippedChange(false) })
+                InterpretationBack(card)
             }
         }
     }
@@ -269,9 +257,7 @@ private fun QuoteFront(card: QuoteCard) {
 }
 
 @Composable
-private fun QuoteBack(card: QuoteCard, onClose: () -> Unit) {
-    val context = LocalContext.current
-    var sourcesExpanded by remember(card.id) { mutableStateOf(false) }
+private fun InterpretationBack(card: QuoteCard) {
     Column(
         modifier = Modifier
             .fillMaxSize()
@@ -279,95 +265,32 @@ private fun QuoteBack(card: QuoteCard, onClose: () -> Unit) {
             .padding(horizontal = 24.dp, vertical = 28.dp),
         verticalArrangement = Arrangement.spacedBy(22.dp),
     ) {
-        Row(
-            modifier = Modifier.fillMaxWidth(),
-            horizontalArrangement = Arrangement.SpaceBetween,
-            verticalAlignment = Alignment.CenterVertically,
-        ) {
-            Column(verticalArrangement = Arrangement.spacedBy(8.dp)) {
-                Text(
-                    "出处与背景",
-                    color = SpiritRed,
-                    fontSize = 20.sp,
-                    fontWeight = FontWeight.Bold,
-                    letterSpacing = 0.sp,
-                )
-                Box(
-                    Modifier
-                        .fillMaxWidth(0.42f)
-                        .height(2.dp)
-                        .background(SpiritRed),
-                )
-            }
-            IconButton(onClick = onClose) {
-                Icon(
-                    imageVector = Icons.Outlined.FlipToFront,
-                    contentDescription = "返回正面",
-                    tint = SpiritRed,
-                )
-            }
-        }
-        BackSection("出处") {
-            Text(
-                "《${card.workTitle}》\n${card.series} · ${card.volume}\n${card.authoredAt}",
-                color = Ink,
-                fontSize = 16.sp,
-                lineHeight = 25.sp,
-            )
-        }
-        card.contextExcerpt?.let { text -> BackSection("原文上下文") { BodyText(text) } }
-        card.background?.let { text -> BackSection("时代背景") { BodyText(text) } }
-        card.story?.let { text -> BackSection("相关故事") { BodyText(text) } }
+        InterpretationSection("启示", card.interpretation.inspiration, prominent = true)
         HorizontalDivider(color = DividerColor)
-        Column {
-            Row(
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .clickable { sourcesExpanded = !sourcesExpanded }
-                    .padding(vertical = 6.dp),
-                horizontalArrangement = Arrangement.SpaceBetween,
-                verticalAlignment = Alignment.CenterVertically,
-            ) {
-                Text("参考来源（${card.sources.size}）", color = Ink, fontWeight = FontWeight.SemiBold)
-                Icon(
-                    imageVector = if (sourcesExpanded) Icons.Outlined.ExpandLess else Icons.Outlined.ExpandMore,
-                    contentDescription = if (sourcesExpanded) "收起参考来源" else "展开参考来源",
-                )
-            }
-            if (sourcesExpanded) {
-                card.sources.forEach { source ->
-                    Row(
-                        modifier = Modifier
-                            .fillMaxWidth()
-                            .clickable {
-                                context.startActivity(Intent(Intent.ACTION_VIEW, Uri.parse(source.url)))
-                            }
-                            .padding(vertical = 10.dp),
-                        verticalAlignment = Alignment.Top,
-                    ) {
-                        Column(Modifier.weight(1f)) {
-                            Text(source.name, color = Ink, fontSize = 14.sp, lineHeight = 20.sp)
-                            Text("访问于 ${source.accessedAt}", color = MutedInk, fontSize = 12.sp)
-                        }
-                        Icon(
-                            Icons.AutoMirrored.Outlined.OpenInNew,
-                            contentDescription = "在浏览器打开",
-                            modifier = Modifier.size(18.dp),
-                            tint = SpiritRed,
-                        )
-                    }
-                }
-            }
-        }
+        InterpretationSection("解读", card.interpretation.explanation)
         Spacer(Modifier.height(8.dp))
     }
 }
 
 @Composable
-private fun BackSection(title: String, content: @Composable () -> Unit) {
+private fun InterpretationSection(title: String, body: String, prominent: Boolean = false) {
     Column(verticalArrangement = Arrangement.spacedBy(8.dp)) {
-        Text(title, color = SpiritRed, fontSize = 13.sp, fontWeight = FontWeight.Bold)
-        content()
+        Text(
+            title,
+            color = SpiritRed,
+            fontSize = if (prominent) 20.sp else 15.sp,
+            fontWeight = FontWeight.Bold,
+            letterSpacing = 0.sp,
+        )
+        if (prominent) {
+            Box(
+                Modifier
+                    .fillMaxWidth(0.42f)
+                    .height(2.dp)
+                    .background(SpiritRed),
+            )
+        }
+        BodyText(body)
     }
 }
 
