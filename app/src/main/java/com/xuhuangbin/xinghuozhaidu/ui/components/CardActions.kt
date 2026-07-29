@@ -31,6 +31,8 @@ import com.xuhuangbin.xinghuozhaidu.domain.model.QuoteCard
 import com.xuhuangbin.xinghuozhaidu.ui.theme.MutedInk
 import com.xuhuangbin.xinghuozhaidu.ui.theme.SpiritRed
 
+private val MinimumSingleRowContentWidth = (48.dp * 4) + 96.dp
+
 @Composable
 fun CardActions(
     card: QuoteCard,
@@ -42,7 +44,7 @@ fun CardActions(
     modifier: Modifier = Modifier,
 ) {
     BoxWithConstraints(modifier.fillMaxWidth()) {
-        val compact = maxWidth < 360.dp
+        val compact = maxWidth < MinimumSingleRowContentWidth
         val actions: @Composable () -> Unit = {
             Row {
                 IconButton(onClick = onLike, modifier = Modifier.size(48.dp)) {

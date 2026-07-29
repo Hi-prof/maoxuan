@@ -30,8 +30,10 @@ fun BackgroundSheet(
   visible interpretation or return-to-front action.
 - `CardActions` exposes an `onNote` callback in both reader and detail routes.
   Like, favorite, note, and share are four accessible `48.dp` icon targets.
-  When available width is below `360.dp`, icon and reading actions use two rows;
-  wider layouts keep one stable row.
+  At a `320.dp` compact viewport, icon and reading actions keep one stable row
+  inside the standard `16.dp` horizontal screen padding. The wrap threshold is
+  based on their intrinsic footprint, not an assumed device width; only narrower
+  window configurations may use two rows.
 
 ## Card Layout Contract
 
@@ -75,7 +77,7 @@ Required instrumentation assertions: swipe left to back, swipe right to front, a
 - Decorative background imagery has `contentDescription = null`.
 - Touch targets remain usable at the smallest viewport.
 - Preserve the four `48.dp` icon targets next to the background text action.
-  The compact action row must fit without clipping at `360.dp` width.
+  The compact action row must fit without clipping at `320.dp` width.
 - Text must be readable under large system font settings where practical; never resolve clipping by allowing overlap.
 
 ## Search Interaction

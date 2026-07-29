@@ -52,6 +52,10 @@ quote.bottom <= source.top
 source.bottom <= card.bottom
 ```
 
+The card-action regression uses a `320.dp` viewport with standard horizontal
+padding and asserts that like and background centers match and that share does
+not overlap the background action.
+
 Compose touch-injection coordinates are physical pixels. Bottom-sheet dismiss
 regressions must derive drag distance from semantics bounds rather than using a
 fixed pixel value. A modal sheet may create multiple semantics roots, so select
@@ -76,9 +80,9 @@ threshold on both API 28 and current high-density devices.
 - The background sheet has no close icon and keeps its title, drag handle,
   source/context/background/story sections, and expandable references reachable
   without moving the underlying page.
-- The four card icon actions keep `48.dp` targets. At minimum width the icon
-  actions and the background action may form two stable rows, but
-  must not overlap the card, navigation, or one another.
+- The four card icon actions keep `48.dp` targets. At a `320.dp` compact
+  viewport, the icon actions and background action remain in one centered row;
+  narrower window configurations may form two stable rows without overlap.
 - Note title/body/error content stays reachable above the IME; save/delete in
   progress blocks duplicate actions and system-back navigation.
 - Pager state survives switching bottom tabs and detail/list return preserves position.

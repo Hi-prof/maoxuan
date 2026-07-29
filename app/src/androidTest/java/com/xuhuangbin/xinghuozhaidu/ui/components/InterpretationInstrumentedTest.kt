@@ -31,10 +31,10 @@ class InterpretationInstrumentedTest {
     val composeRule = createComposeRule()
 
     @Test
-    fun actionsExposeOnlyBackgroundReadingEntryAtMinimumWidth() {
+    fun actionsStayOnOneRowAtCompactViewportWidth() {
         composeRule.setContent {
             XinghuoTheme {
-                Box(Modifier.size(width = 360.dp, height = 96.dp).padding(horizontal = 16.dp)) {
+                Box(Modifier.size(width = 320.dp, height = 96.dp).padding(horizontal = 16.dp)) {
                     CardActions(
                         card = testCard(),
                         onBackground = {},
@@ -51,6 +51,20 @@ class InterpretationInstrumentedTest {
         composeRule.onNodeWithContentDescription("写笔记").assertIsDisplayed()
         composeRule.onNodeWithText("读背景").assertIsDisplayed()
         composeRule.onNodeWithContentDescription("返回正面").assertDoesNotExist()
+        val likeCenterY = composeRule.onNodeWithContentDescription("点赞")
+            .fetchSemanticsNode().boundsInRoot.center.y
+        val backgroundCenterY = composeRule.onNodeWithText("读背景")
+            .fetchSemanticsNode().boundsInRoot.center.y
+        check(kotlin.math.abs(likeCenterY - backgroundCenterY) <= 1f) {
+            "点赞与读背景未在同一行：likeCenterY=$likeCenterY, backgroundCenterY=$backgroundCenterY"
+        }
+        val shareRight = composeRule.onNodeWithContentDescription("生成图片并分享")
+            .fetchSemanticsNode().boundsInRoot.right
+        val backgroundLeft = composeRule.onNodeWithText("读背景")
+            .fetchSemanticsNode().boundsInRoot.left
+        check(shareRight <= backgroundLeft) {
+            "分享与读背景发生重叠：shareRight=$shareRight, backgroundLeft=$backgroundLeft"
+        }
     }
 
     @Test
