@@ -1,0 +1,30 @@
+id: 7b7f501f-de72-5079-8cb8-2becaeb08dce
+revision: 1
+status: published
+quote: 一代天骄，成吉思汗，只识弯弓射大雕。
+literature:
+  series: 毛泽东诗词
+  volume: 诗词
+  workTitle: 沁园春·雪
+  authoredAt: 1936-02
+themes:
+- 历史评价
+interpretation:
+  inspiration: 评价强者不能只看显赫功业，也要看知识、文化和治理维度是否完整。
+  explanation: 这句话来自《沁园春·雪》，原文关注山河气象、历史评价和当代担当，核心是以高度凝练的评价指出历史人物能力的侧重和局限。名句流传很广，准确理解仍要回到上下文：既看到它提供的精神力量，也看到成立所需的事实、组织和历史条件。
+historicalEvent: 1936年2月，毛泽东在陕北写作《沁园春·雪》。
+background: 毛泽东在陕北写北国雪景，由山河景象转入历史人物评论，落脚于当代创造者。 此卡所选名句着重表现以高度凝练的评价指出历史人物能力的侧重和局限。
+story: 《沁园春·雪》以景物、行动和历史联想组织诗意。这一句集中呈现以高度凝练的评价指出历史人物能力的侧重和局限，既有鲜明画面，也保留了作品写作时的现实背景。
+imageId: original-workshop
+sources:
+- name: 中央党史和文献研究院毛泽东诗词引用文章
+  url: https://www.dswxyjy.org.cn/n1/2019/0507/c244523-31071329.html
+  accessedAt: '2026-07-29'
+  type: authoritative
+- name: 共产党员网毛泽东诗词专题
+  url: https://www.12371.cn/2023/08/11/ARTI1691756661352792.shtml
+  accessedAt: '2026-07-29'
+  type: contextual
+review:
+  status: verified
+  checkedAt: '2026-07-29'

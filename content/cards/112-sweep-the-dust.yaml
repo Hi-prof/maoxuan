@@ -1,0 +1,30 @@
+id: 6c3c15b0-7903-5598-bb1b-a411d79f2ad2
+revision: 1
+status: published
+quote: 凡是反动的东西，你不打，他就不倒。这也和扫地一样，扫帚不到，灰尘照例不会自己跑掉。
+literature:
+  series: 毛泽东选集
+  volume: 第四卷
+  workTitle: 抗日战争胜利后的时局和我们的方针
+  authoredAt: '1945-08-13'
+themes:
+- 行动
+interpretation:
+  inspiration: 确认问题和代价后安排负责人、步骤和反馈，不把“等待它自己好转”当作策略。
+  explanation: 原文出自《抗日战争胜利后的时局和我们的方针》，围绕胜利后的形势判断与人民权利展开。这句话强调有些阻碍不会自行消失，需要有组织的行动才能改变。它有明确的历史对象和论述边界，今天可以借鉴其中的判断方法，但不应脱离全文把它变成适用于任何场景的口号。
+historicalEvent: 1945年8月13日，毛泽东在延安干部会议上作报告。
+background: 抗日战争胜利前夕，毛泽东分析国内和平与内战危险，强调人民权利要靠斗争保卫。 此卡所选名句着重表现有些阻碍不会自行消失，需要有组织的行动才能改变。
+story: 《抗日战争胜利后的时局和我们的方针》围绕胜利后的形势判断与人民权利逐层展开。这句话把有些阻碍不会自行消失，需要有组织的行动才能改变凝练成便于记忆的表达，适合联系全文前后的论证一起阅读。
+imageId: original-dawn-city
+sources:
+- name: 中文马克思主义文库《抗日战争胜利后的时局和我们的方针》全文
+  url: https://www.marxists.org/chinese/maozedong/marxist.org-chinese-mao-19450813.htm
+  accessedAt: '2026-07-29'
+  type: original
+- name: 共产党员网《毛泽东选集（第四卷）》
+  url: https://www.12371.cn/special/mzdxj/d4j/
+  accessedAt: '2026-07-29'
+  type: authoritative
+review:
+  status: verified
+  checkedAt: '2026-07-29'

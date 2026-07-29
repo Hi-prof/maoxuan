@@ -1,0 +1,30 @@
+id: 25e9fd23-d07e-5a81-a24b-0144772e2c1c
+revision: 1
+status: published
+quote: 革命的或不革命的或反革命的知识分子的最后的分界，看其是否愿意并且实行和工农民众相结合。
+literature:
+  series: 毛泽东选集
+  volume: 第二卷
+  workTitle: 青年运动的方向
+  authoredAt: '1939-05-04'
+themes:
+- 实践方向
+interpretation:
+  inspiration: 专业工作不能只在同温层内循环，要进入真实场景，理解劳动者和使用者的处境。
+  explanation: 这句话来自《青年运动的方向》，原文关注青年力量和实践方向，核心是知识分子的立场要通过同工农群众结合的实际行动检验。名句流传很广，准确理解仍要回到上下文：既看到它提供的精神力量，也看到成立所需的事实、组织和历史条件。
+historicalEvent: 1939年5月4日，毛泽东在延安青年群众纪念五四运动大会上讲演。
+background: 五四运动二十周年纪念会上，毛泽东讨论青年运动的方向以及知识分子同工农群众结合的标准。 此卡所选名句着重表现知识分子的立场要通过同工农群众结合的实际行动检验。
+story: 《青年运动的方向》围绕青年力量和实践方向逐层展开。这句话把知识分子的立场要通过同工农群众结合的实际行动检验凝练成便于记忆的表达，适合联系全文前后的论证一起阅读。
+imageId: original-memorial-pine
+sources:
+- name: 中文马克思主义文库《青年运动的方向》全文
+  url: https://www.marxists.org/chinese/maozedong/marxist.org-chinese-mao-19390504.htm
+  accessedAt: '2026-07-29'
+  type: original
+- name: 共产党员网《毛泽东选集（第二卷）》
+  url: https://www.12371.cn/special/mzdxj/dej/
+  accessedAt: '2026-07-29'
+  type: authoritative
+review:
+  status: verified
+  checkedAt: '2026-07-29'

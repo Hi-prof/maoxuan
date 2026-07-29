@@ -1,0 +1,30 @@
+id: eb5feb98-39aa-5fa5-8c56-b3bc31fc4ce2
+revision: 1
+status: published
+quote: 主观主义、宗派主义、党八股，这三种东西，都是反马克思列宁主义的。
+literature:
+  series: 毛泽东选集
+  volume: 第三卷
+  workTitle: 整顿党的作风
+  authoredAt: '1942-02-01'
+themes:
+- 整风
+interpretation:
+  inspiration: 发现问题时同时检查事实依据、协作边界和表达方式，不把三类风险割裂处理。
+  explanation: 《整顿党的作风》写到整风、学风和组织作风时，用这句话说明主观判断、封闭派别和空洞表达会相互强化并损害工作。它的价值在于把立场转成可分析的关系和行动要求。现代阅读可以获得启发，但不能抹去作品所处的革命和建设语境。
+historicalEvent: 1942年2月1日，毛泽东在中央党校开学典礼上演说。
+background: 延安整风运动中，毛泽东分析主观主义、宗派主义和党八股的危害，提出整顿学风、党风和文风。 此卡所选名句着重表现主观判断、封闭派别和空洞表达会相互强化并损害工作。
+story: 《整顿党的作风》围绕整风、学风和组织作风逐层展开。这句话把主观判断、封闭派别和空洞表达会相互强化并损害工作凝练成便于记忆的表达，适合联系全文前后的论证一起阅读。
+imageId: original-field-paths
+sources:
+- name: 中文马克思主义文库《整顿党的作风》全文
+  url: https://www.marxists.org/chinese/maozedong/marxist.org-chinese-mao-19420201.htm
+  accessedAt: '2026-07-29'
+  type: original
+- name: 共产党员网《毛泽东选集（第三卷）》
+  url: https://www.12371.cn/special/mzdxj/d3j/
+  accessedAt: '2026-07-29'
+  type: authoritative
+review:
+  status: verified
+  checkedAt: '2026-07-29'

@@ -1,0 +1,30 @@
+id: 8f997ac0-b5b5-52fe-927e-26dc290b34b9
+revision: 1
+status: published
+quote: 为有牺牲多壮志，敢教日月换新天。
+literature:
+  series: 毛泽东诗词
+  volume: 诗词
+  workTitle: 七律·到韶山
+  authoredAt: 1959-06
+themes:
+- 奋斗
+interpretation:
+  inspiration: 纪念牺牲不能停在情绪，要把它转化为珍惜成果、承担责任和改善现实。
+  explanation: 原文出自《七律·到韶山》，围绕牺牲、建设和改变现实的意志展开。这句话强调回望牺牲，以改变天地的强烈句式写建设新生活的意志。它有明确的历史对象和论述边界，今天可以借鉴其中的判断方法，但不应脱离全文把它变成适用于任何场景的口号。
+historicalEvent: 1959年6月，毛泽东回到韶山并写下《七律·到韶山》。
+background: 毛泽东回到阔别多年的韶山，回望革命牺牲和家乡变化，以强烈句式写历史创造。 此卡所选名句着重表现回望牺牲，以改变天地的强烈句式写建设新生活的意志。
+story: 《七律·到韶山》以景物、行动和历史联想组织诗意。这一句集中呈现回望牺牲，以改变天地的强烈句式写建设新生活的意志，既有鲜明画面，也保留了作品写作时的现实背景。
+imageId: original-dawn-city
+sources:
+- name: 中央党史和文献研究院毛泽东诗词引用文章
+  url: https://www.dswxyjy.org.cn/n1/2019/0507/c244523-31071329.html
+  accessedAt: '2026-07-29'
+  type: authoritative
+- name: 共产党员网毛泽东诗词专题
+  url: https://www.12371.cn/2023/08/11/ARTI1691756661352792.shtml
+  accessedAt: '2026-07-29'
+  type: contextual
+review:
+  status: verified
+  checkedAt: '2026-07-29'

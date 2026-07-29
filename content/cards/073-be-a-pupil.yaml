@@ -1,0 +1,30 @@
+id: 7898cdc4-d653-5e36-8530-a3b0bf7519b7
+revision: 1
+status: published
+quote: 没有满腔的热忱，没有眼睛向下的决心，没有求知的渴望，没有放下臭架子甘当小学生的精神，是一定不能做，也一定做不好的。
+literature:
+  series: 毛泽东选集
+  volume: 第三卷
+  workTitle: 《农村调查》的序言和跋
+  authoredAt: '1941'
+themes:
+- 调查研究
+interpretation:
+  inspiration: 访谈和调研时少急着证明自己，先让事实和一线经验改变原有问题框架。
+  explanation: 在《《农村调查》的序言和跋》讨论调查研究和向群众学习的语境中，这句话把重点放在调查者必须放下架子、保持求知欲并真正向群众学习。理解它需要同时看到当时的任务和条件；用于今天时，应保留这种具体分析意识，而不是只取一句表面的豪迈表达。
+historicalEvent: 1941年，毛泽东为《农村调查》写序言和跋。
+background: 延安整风前后，毛泽东重印农村调查材料，强调从实际出发、向群众学习和掌握第一手知识。 此卡所选名句着重表现调查者必须放下架子、保持求知欲并真正向群众学习。
+story: 《《农村调查》的序言和跋》围绕调查研究和向群众学习逐层展开。这句话把调查者必须放下架子、保持求知欲并真正向群众学习凝练成便于记忆的表达，适合联系全文前后的论证一起阅读。
+imageId: original-distant-mountains
+sources:
+- name: 中文马克思主义文库《《农村调查》的序言和跋》全文
+  url: https://www.marxists.org/chinese/maozedong/marxist.org-chinese-mao-194134.htm
+  accessedAt: '2026-07-29'
+  type: original
+- name: 共产党员网《毛泽东选集（第三卷）》
+  url: https://www.12371.cn/special/mzdxj/d3j/
+  accessedAt: '2026-07-29'
+  type: authoritative
+review:
+  status: verified
+  checkedAt: '2026-07-29'

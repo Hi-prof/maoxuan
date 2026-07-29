@@ -1,0 +1,30 @@
+id: e7c027d4-8e92-5e3d-b9ac-0fedda8f5c21
+revision: 1
+status: published
+quote: 没有一个人民的军队，便没有人民的一切。
+literature:
+  series: 毛泽东选集
+  volume: 第三卷
+  workTitle: 论联合政府
+  authoredAt: '1945-04-24'
+themes:
+- 人民军队
+interpretation:
+  inspiration: 这句话具有明确军事政治语境，不能脱离历史泛化为对强力手段的普遍赞美。
+  explanation: 这句话来自《论联合政府》，原文关注人民力量、政治纲领和国家建设，核心是在革命战争语境中，人民军队被视为保卫人民利益的必要力量。名句流传很广，准确理解仍要回到上下文：既看到它提供的精神力量，也看到成立所需的事实、组织和历史条件。
+historicalEvent: 1945年4月24日，毛泽东在中国共产党第七次全国代表大会上作报告。
+background: 抗战胜利前夕，毛泽东在中共七大作政治报告，系统说明党的纲领、人民力量和国家建设任务。 此卡所选名句着重表现在革命战争语境中，人民军队被视为保卫人民利益的必要力量。
+story: 《论联合政府》围绕人民力量、政治纲领和国家建设逐层展开。这句话把在革命战争语境中，人民军队被视为保卫人民利益的必要力量凝练成便于记忆的表达，适合联系全文前后的论证一起阅读。
+imageId: original-workshop
+sources:
+- name: 中文马克思主义文库《论联合政府》全文
+  url: https://www.marxists.org/chinese/maozedong/marxist.org-chinese-mao-19450424.htm
+  accessedAt: '2026-07-29'
+  type: original
+- name: 共产党员网《毛泽东选集（第三卷）》
+  url: https://www.12371.cn/special/mzdxj/d3j/
+  accessedAt: '2026-07-29'
+  type: authoritative
+review:
+  status: verified
+  checkedAt: '2026-07-29'

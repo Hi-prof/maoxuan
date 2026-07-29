@@ -293,6 +293,27 @@ def test_formal_content_rejects_more_cards_than_declared(tmp_path: Path) -> None
         validate_content(root, formal=True)
 
 
+def test_duplicate_published_quote_is_rejected(tmp_path: Path) -> None:
+    root = tmp_path / "content"
+    _write_fixture(root)
+    first_path = root / "cards" / "card.yaml"
+    second = yaml.safe_load(first_path.read_text(encoding="utf-8"))
+    second["id"] = "5b6cb1c2-01ad-4aee-933b-25bb21c40777"
+    second_path = root / "cards" / "second.yaml"
+    second_path.write_text(
+        yaml.safe_dump(second, allow_unicode=True),
+        encoding="utf-8",
+    )
+
+    with pytest.raises(ValidationError) as caught:
+        validate_content(root)
+
+    message = str(caught.value)
+    assert "duplicate published quote" in message
+    assert str(first_path.resolve()) in message
+    assert str(second_path.resolve()) in message
+
+
 def test_unknown_card_field_is_rejected(tmp_path: Path) -> None:
     root = tmp_path / "content"
     _write_fixture(root)
@@ -361,6 +382,7 @@ def test_content_report_summarizes_review_dimensions(tmp_path: Path) -> None:
     assert report["publishedCards"] == 1
     assert report["themes"] == {"实践": 1}
     assert report["seriesAndVolumes"] == {"毛泽东选集 / 第一卷": 1}
+    assert report["workTitles"] == {"实践论": 1}
     assert report["quoteLengths"]["maximum"] == len("实践是检验真理的标准。")
     assert report["interpretations"]["complete"] == 1
     assert report["interpretations"]["maximumCodePoints"] > 0

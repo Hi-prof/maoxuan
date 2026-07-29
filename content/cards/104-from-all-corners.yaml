@@ -1,0 +1,30 @@
+id: 2ca08d9b-9281-5b23-ad6a-a6e9859d1615
+revision: 1
+status: published
+quote: 我们都是来自五湖四海，为了一个共同的革命目标，走到一起来了。
+literature:
+  series: 毛泽东选集
+  volume: 第三卷
+  workTitle: 为人民服务
+  authoredAt: '1944-09-08'
+themes:
+- 共同目标
+interpretation:
+  inspiration: 协作开始时讲清共同目标和彼此角色，让背景差异成为互补而不是隔阂。
+  explanation: 原文出自《为人民服务》，围绕人民立场、改错和共同奋斗展开。这句话强调不同来历的人可以因共同目标形成队伍。它有明确的历史对象和论述边界，今天可以借鉴其中的判断方法，但不应脱离全文把它变成适用于任何场景的口号。
+historicalEvent: 1944年9月8日，毛泽东在张思德追悼会上讲演。
+background: 毛泽东在张思德追悼会上，从生死意义谈到人民立场、接受批评、团结和克服困难。 此卡所选名句着重表现不同来历的人可以因共同目标形成队伍。
+story: 《为人民服务》围绕人民立场、改错和共同奋斗逐层展开。这句话把不同来历的人可以因共同目标形成队伍凝练成便于记忆的表达，适合联系全文前后的论证一起阅读。
+imageId: original-dawn-city
+sources:
+- name: 中文马克思主义文库《为人民服务》全文
+  url: https://www.marxists.org/chinese/maozedong/marxist.org-chinese-mao-19440908.htm
+  accessedAt: '2026-07-29'
+  type: original
+- name: 共产党员网《毛泽东选集（第三卷）》
+  url: https://www.12371.cn/special/mzdxj/d3j/
+  accessedAt: '2026-07-29'
+  type: authoritative
+review:
+  status: verified
+  checkedAt: '2026-07-29'

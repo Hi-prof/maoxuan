@@ -1,0 +1,30 @@
+id: c1d16f59-e03a-5946-9f89-b0c8b93e8efd
+revision: 1
+status: published
+quote: 人民得到的权利，绝不允许轻易丧失，必须用战斗来保卫。
+literature:
+  series: 毛泽东选集
+  volume: 第四卷
+  workTitle: 抗日战争胜利后的时局和我们的方针
+  authoredAt: '1945-08-13'
+themes:
+- 人民权利
+interpretation:
+  inspiration: 理解权利不仅看文本承诺，也要看制度、组织和持续参与如何使它得到保障。
+  explanation: 在《抗日战争胜利后的时局和我们的方针》讨论胜利后的形势判断与人民权利的语境中，这句话把重点放在抗战胜利后，原文强调已经取得的人民权利需要保卫。理解它需要同时看到当时的任务和条件；用于今天时，应保留这种具体分析意识，而不是只取一句表面的豪迈表达。
+historicalEvent: 1945年8月13日，毛泽东在延安干部会议上作报告。
+background: 抗日战争胜利前夕，毛泽东分析国内和平与内战危险，强调人民权利要靠斗争保卫。 此卡所选名句着重表现抗战胜利后，原文强调已经取得的人民权利需要保卫。
+story: 《抗日战争胜利后的时局和我们的方针》围绕胜利后的形势判断与人民权利逐层展开。这句话把抗战胜利后，原文强调已经取得的人民权利需要保卫凝练成便于记忆的表达，适合联系全文前后的论证一起阅读。
+imageId: original-distant-mountains
+sources:
+- name: 中文马克思主义文库《抗日战争胜利后的时局和我们的方针》全文
+  url: https://www.marxists.org/chinese/maozedong/marxist.org-chinese-mao-19450813.htm
+  accessedAt: '2026-07-29'
+  type: original
+- name: 共产党员网《毛泽东选集（第四卷）》
+  url: https://www.12371.cn/special/mzdxj/d4j/
+  accessedAt: '2026-07-29'
+  type: authoritative
+review:
+  status: verified
+  checkedAt: '2026-07-29'

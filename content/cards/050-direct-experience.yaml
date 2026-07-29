@@ -1,0 +1,30 @@
+id: 55533fce-996f-5ab0-9918-971323ccb78e
+revision: 1
+status: published
+quote: 一切真知都是从直接经验发源的。
+literature:
+  series: 毛泽东选集
+  volume: 第一卷
+  workTitle: 实践论
+  authoredAt: 1937-07
+themes:
+- 经验
+interpretation:
+  inspiration: 尊重资料和前人成果，也要追问它们来自什么实践，并用自己的事实继续验证。
+  explanation: 《实践论》写到认识怎样从实践产生并接受检验时，用这句话说明知识的源头是人们在实践中获得并积累的经验。它的价值在于把立场转成可分析的关系和行动要求。现代阅读可以获得启发，但不能抹去作品所处的革命和建设语境。
+historicalEvent: 1937年7月，毛泽东在延安讲授认识与实践问题。
+background: 为克服党内教条主义，毛泽东在延安从认识论角度说明实践、认识、真理标准和反复检验的关系。 此卡所选名句着重表现知识的源头是人们在实践中获得并积累的经验。
+story: 《实践论》围绕认识怎样从实践产生并接受检验逐层展开。这句话把知识的源头是人们在实践中获得并积累的经验凝练成便于记忆的表达，适合联系全文前后的论证一起阅读。
+imageId: original-field-paths
+sources:
+- name: 中文马克思主义文库《实践论》全文
+  url: https://www.marxists.org/chinese/maozedong/marxist.org-chinese-mao-193707.htm
+  accessedAt: '2026-07-29'
+  type: original
+- name: 共产党员网《毛泽东选集（第一卷）》
+  url: https://www.12371.cn/special/mzdxj/dyj/
+  accessedAt: '2026-07-29'
+  type: authoritative
+review:
+  status: verified
+  checkedAt: '2026-07-29'

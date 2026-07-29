@@ -170,7 +170,7 @@ class AppRepositoryInstrumentedTest {
         repository.initialize()
 
         val installed = database.appDao().getContentState()
-        assertEquals("1.3.0", installed?.contentVersion)
+        assertEquals("1.4.0", installed?.contentVersion)
         val upgraded = repository.allCards.first().first { it.id == cardId }
         assertEquals(3, upgraded.revision)
         assertTrue(upgraded.isLiked)

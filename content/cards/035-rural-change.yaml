@@ -1,0 +1,30 @@
+id: f73c7ef9-9f82-5224-b470-e41fb73399e8
+revision: 1
+status: published
+quote: 一切革命同志须知：国民革命需要一个大的农村变动。
+literature:
+  series: 毛泽东选集
+  volume: 第一卷
+  workTitle: 湖南农民运动考察报告
+  authoredAt: 1927-03
+themes:
+- 社会调查
+interpretation:
+  inspiration: 判断一项改革是否扎实，要看它是否回应了最广泛参与者的真实问题。
+  explanation: 这句话来自《湖南农民运动考察报告》，原文关注农民运动的力量、性质和领导问题，核心是重大变革必须触及占人口多数者的实际处境。名句流传很广，准确理解仍要回到上下文：既看到它提供的精神力量，也看到成立所需的事实、组织和历史条件。
+historicalEvent: 1927年春，毛泽东完成湖南农民运动实地考察报告。
+background: 大革命时期，毛泽东考察湖南多县农民运动，以调查事实回应对农民运动的怀疑和指责。 此卡所选名句着重表现重大变革必须触及占人口多数者的实际处境。
+story: 《湖南农民运动考察报告》围绕农民运动的力量、性质和领导问题逐层展开。这句话把重大变革必须触及占人口多数者的实际处境凝练成便于记忆的表达，适合联系全文前后的论证一起阅读。
+imageId: original-memorial-pine
+sources:
+- name: 中文马克思主义文库《湖南农民运动考察报告》全文
+  url: https://www.marxists.org/chinese/maozedong/marxist.org-chinese-mao-192703.htm
+  accessedAt: '2026-07-29'
+  type: original
+- name: 共产党员网《毛泽东选集（第一卷）》
+  url: https://www.12371.cn/special/mzdxj/dyj/
+  accessedAt: '2026-07-29'
+  type: authoritative
+review:
+  status: verified
+  checkedAt: '2026-07-29'

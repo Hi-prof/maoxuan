@@ -1,0 +1,30 @@
+id: 4eddf542-b8a1-5e7c-bdea-c88d9df0be0a
+revision: 1
+status: published
+quote: 我们的同志在困难的时候，要看到成绩，要看到光明，要提高我们的勇气。
+literature:
+  series: 毛泽东选集
+  volume: 第三卷
+  workTitle: 为人民服务
+  authoredAt: '1944-09-08'
+themes:
+- 勇气
+interpretation:
+  inspiration: 复盘低谷时同时列出问题、已有进展和下一步，把希望建立在事实和行动上。
+  explanation: 这句话来自《为人民服务》，原文关注人民立场、改错和共同奋斗，核心是正视困难的同时看见已有成绩和前景，才能维持行动勇气。名句流传很广，准确理解仍要回到上下文：既看到它提供的精神力量，也看到成立所需的事实、组织和历史条件。
+historicalEvent: 1944年9月8日，毛泽东在张思德追悼会上讲演。
+background: 毛泽东在张思德追悼会上，从生死意义谈到人民立场、接受批评、团结和克服困难。 此卡所选名句着重表现正视困难的同时看见已有成绩和前景，才能维持行动勇气。
+story: 《为人民服务》围绕人民立场、改错和共同奋斗逐层展开。这句话把正视困难的同时看见已有成绩和前景，才能维持行动勇气凝练成便于记忆的表达，适合联系全文前后的论证一起阅读。
+imageId: original-workshop
+sources:
+- name: 中文马克思主义文库《为人民服务》全文
+  url: https://www.marxists.org/chinese/maozedong/marxist.org-chinese-mao-19440908.htm
+  accessedAt: '2026-07-29'
+  type: original
+- name: 共产党员网《毛泽东选集（第三卷）》
+  url: https://www.12371.cn/special/mzdxj/d3j/
+  accessedAt: '2026-07-29'
+  type: authoritative
+review:
+  status: verified
+  checkedAt: '2026-07-29'

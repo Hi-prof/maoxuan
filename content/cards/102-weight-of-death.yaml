@@ -1,0 +1,30 @@
+id: eede42e5-cd96-5507-8ef2-3dfcb0d5a793
+revision: 1
+status: published
+quote: 为人民利益而死，就比泰山还重；替法西斯卖力，替剥削人民和压迫人民的人去死，就比鸿毛还轻。
+literature:
+  series: 毛泽东选集
+  volume: 第三卷
+  workTitle: 为人民服务
+  authoredAt: '1944-09-08'
+themes:
+- 价值
+interpretation:
+  inspiration: 面对重大选择时检查它服务谁、造成什么实际影响，不用声势或个人荣誉代替价值判断。
+  explanation: 《为人民服务》写到人民立场、改错和共同奋斗时，用这句话说明原文用鲜明对比说明生命意义取决于所服务的事业。它的价值在于把立场转成可分析的关系和行动要求。现代阅读可以获得启发，但不能抹去作品所处的革命和建设语境。
+historicalEvent: 1944年9月8日，毛泽东在张思德追悼会上讲演。
+background: 毛泽东在张思德追悼会上，从生死意义谈到人民立场、接受批评、团结和克服困难。 此卡所选名句着重表现原文用鲜明对比说明生命意义取决于所服务的事业。
+story: 《为人民服务》围绕人民立场、改错和共同奋斗逐层展开。这句话把原文用鲜明对比说明生命意义取决于所服务的事业凝练成便于记忆的表达，适合联系全文前后的论证一起阅读。
+imageId: original-river-bridge
+sources:
+- name: 中文马克思主义文库《为人民服务》全文
+  url: https://www.marxists.org/chinese/maozedong/marxist.org-chinese-mao-19440908.htm
+  accessedAt: '2026-07-29'
+  type: original
+- name: 共产党员网《毛泽东选集（第三卷）》
+  url: https://www.12371.cn/special/mzdxj/d3j/
+  accessedAt: '2026-07-29'
+  type: authoritative
+review:
+  status: verified
+  checkedAt: '2026-07-29'

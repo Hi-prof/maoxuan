@@ -1,0 +1,30 @@
+id: e77b3ada-cf17-5689-b890-5802f1b06f2a
+revision: 1
+status: published
+quote: 一切反动派都是纸老虎。
+literature:
+  series: 毛泽东选集
+  volume: 第四卷
+  workTitle: 和美国记者安娜·路易斯·斯特朗的谈话
+  authoredAt: '1946-08-06'
+themes:
+- 战略信心
+interpretation:
+  inspiration: 战略上保持信心，具体行动中仍要严肃评估风险、资源和对手能力。
+  explanation: 《和美国记者安娜·路易斯·斯特朗的谈话》写到战略信心与力量的实质时，用这句话说明从战略上看，脱离人民的强大力量有其脆弱根基。它的价值在于把立场转成可分析的关系和行动要求。现代阅读可以获得启发，但不能抹去作品所处的革命和建设语境。
+historicalEvent: 1946年8月6日，毛泽东同美国记者安娜·路易斯·斯特朗谈话。
+background: 全面内战爆发后，毛泽东同美国记者谈国际形势，分析强大外表与人民力量之间的关系。 此卡所选名句着重表现从战略上看，脱离人民的强大力量有其脆弱根基。
+story: 《和美国记者安娜·路易斯·斯特朗的谈话》围绕战略信心与力量的实质逐层展开。这句话把从战略上看，脱离人民的强大力量有其脆弱根基凝练成便于记忆的表达，适合联系全文前后的论证一起阅读。
+imageId: original-field-paths
+sources:
+- name: 中文马克思主义文库《和美国记者安娜·路易斯·斯特朗的谈话》全文
+  url: https://www.marxists.org/chinese/maozedong/marxist.org-chinese-mao-19460806.htm
+  accessedAt: '2026-07-29'
+  type: original
+- name: 共产党员网《毛泽东选集（第四卷）》
+  url: https://www.12371.cn/special/mzdxj/d4j/
+  accessedAt: '2026-07-29'
+  type: authoritative
+review:
+  status: verified
+  checkedAt: '2026-07-29'

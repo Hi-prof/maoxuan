@@ -1,0 +1,30 @@
+id: 49f38cf4-4f50-5243-a45f-912cc4610f81
+revision: 1
+status: published
+quote: 把群众力量组织起来，这是一种方针。
+literature:
+  series: 毛泽东选集
+  volume: 第三卷
+  workTitle: 组织起来
+  authoredAt: '1943-11-29'
+themes:
+- 组织
+interpretation:
+  inspiration: 共同目标之后还要建立角色、协作规则和资源支持，让个人努力能够相互衔接。
+  explanation: 这句话来自《组织起来》，原文关注组织群众和发挥集体创造力，核心是分散的积极性需要通过适当组织转化为持续力量。名句流传很广，准确理解仍要回到上下文：既看到它提供的精神力量，也看到成立所需的事实、组织和历史条件。
+historicalEvent: 1943年11月29日，毛泽东在陕甘宁边区劳动英雄大会上讲话。
+background: 抗日根据地开展大生产运动，毛泽东强调通过合作组织把分散的群众力量和生产积极性结合起来。 此卡所选名句着重表现分散的积极性需要通过适当组织转化为持续力量。
+story: 《组织起来》围绕组织群众和发挥集体创造力逐层展开。这句话把分散的积极性需要通过适当组织转化为持续力量凝练成便于记忆的表达，适合联系全文前后的论证一起阅读。
+imageId: original-memorial-pine
+sources:
+- name: 中文马克思主义文库《组织起来》全文
+  url: https://www.marxists.org/chinese/maozedong/marxist.org-chinese-mao-19431129.htm
+  accessedAt: '2026-07-29'
+  type: original
+- name: 共产党员网《毛泽东选集（第三卷）》
+  url: https://www.12371.cn/special/mzdxj/d3j/
+  accessedAt: '2026-07-29'
+  type: authoritative
+review:
+  status: verified
+  checkedAt: '2026-07-29'

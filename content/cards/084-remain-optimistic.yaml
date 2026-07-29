@@ -1,0 +1,30 @@
+id: 1b8a655e-ec07-52db-b9b6-ce6dcb9501db
+revision: 1
+status: published
+quote: 我们决不悲观失望，我们是乐观的。
+literature:
+  series: 毛泽东选集
+  volume: 第二卷
+  workTitle: 团结一切抗日力量，反对反共顽固派
+  authoredAt: '1940-02-01'
+themes:
+- 信心
+interpretation:
+  inspiration: 乐观不能省略形势分析；列清风险和可用力量，再把信心落实为具体行动。
+  explanation: 原文出自《团结一切抗日力量，反对反共顽固派》，围绕抗日力量的团结与反分裂展开。这句话强调严峻形势中仍要基于有利条件保持行动信心。它有明确的历史对象和论述边界，今天可以借鉴其中的判断方法，但不应脱离全文把它变成适用于任何场景的口号。
+historicalEvent: 1940年2月1日，毛泽东在延安民众大会上演说。
+background: 抗日统一战线面临反共摩擦，毛泽东在延安会议上强调团结抗日力量并反对分裂倒退。 此卡所选名句着重表现严峻形势中仍要基于有利条件保持行动信心。
+story: 《团结一切抗日力量，反对反共顽固派》围绕抗日力量的团结与反分裂逐层展开。这句话把严峻形势中仍要基于有利条件保持行动信心凝练成便于记忆的表达，适合联系全文前后的论证一起阅读。
+imageId: original-printing-press
+sources:
+- name: 中文马克思主义文库《团结一切抗日力量，反对反共顽固派》全文
+  url: https://www.marxists.org/chinese/maozedong/marxist.org-chinese-mao-19400201.htm
+  accessedAt: '2026-07-29'
+  type: original
+- name: 共产党员网《毛泽东选集（第二卷）》
+  url: https://www.12371.cn/special/mzdxj/dej/
+  accessedAt: '2026-07-29'
+  type: authoritative
+review:
+  status: verified
+  checkedAt: '2026-07-29'

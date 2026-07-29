@@ -1,0 +1,30 @@
+id: d60c3c45-f91b-50b7-84a2-fa8a092f1003
+revision: 1
+status: published
+quote: 战争的目的不是别的，就是“保存自己，消灭敌人”。
+literature:
+  series: 毛泽东选集
+  volume: 第一卷
+  workTitle: 中国革命战争的战略问题
+  authoredAt: 1936-12
+themes:
+- 战略
+interpretation:
+  inspiration: 处理竞争或危机时，既看短期成果，也要保护关键能力、信誉和持续行动空间。
+  explanation: 原文出自《中国革命战争的战略问题》，围绕战略判断、主动权和力量配置展开。这句话强调行动设计要同时考虑保存有效力量和达成核心目的。它有明确的历史对象和论述边界，今天可以借鉴其中的判断方法，但不应脱离全文把它变成适用于任何场景的口号。
+historicalEvent: 1936年12月，毛泽东在陕北红军大学讲授革命战争战略问题。
+background: 毛泽东总结土地革命战争经验，系统讨论战争规律、主动权、集中兵力和战略防御。 此卡所选名句着重表现行动设计要同时考虑保存有效力量和达成核心目的。
+story: 《中国革命战争的战略问题》围绕战略判断、主动权和力量配置逐层展开。这句话把行动设计要同时考虑保存有效力量和达成核心目的凝练成便于记忆的表达，适合联系全文前后的论证一起阅读。
+imageId: original-printing-press
+sources:
+- name: 中文马克思主义文库《中国革命战争的战略问题》全文
+  url: https://www.marxists.org/chinese/maozedong/marxist.org-chinese-mao-193612.htm
+  accessedAt: '2026-07-29'
+  type: original
+- name: 共产党员网《毛泽东选集（第一卷）》
+  url: https://www.12371.cn/special/mzdxj/dyj/
+  accessedAt: '2026-07-29'
+  type: authoritative
+review:
+  status: verified
+  checkedAt: '2026-07-29'

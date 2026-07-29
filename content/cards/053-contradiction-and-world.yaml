@@ -1,0 +1,30 @@
+id: 32861110-2a86-587d-809d-61ca5bcaa58c
+revision: 1
+status: published
+quote: 没有什么事物是不包含矛盾的，没有矛盾就没有世界。
+literature:
+  series: 毛泽东选集
+  volume: 第一卷
+  workTitle: 矛盾论
+  authoredAt: 1937-08
+themes:
+- 辩证思维
+interpretation:
+  inspiration: 分析问题时允许两面事实并存，找出它们怎样相互制约，再决定当前优先级。
+  explanation: 在《矛盾论》讨论用矛盾分析理解事物发展的语境中，这句话把重点放在真实事物往往同时包含相反要求和不一致因素。理解它需要同时看到当时的任务和条件；用于今天时，应保留这种具体分析意识，而不是只取一句表面的豪迈表达。
+historicalEvent: 1937年8月，毛泽东在延安讲授矛盾法则。
+background: 毛泽东在延安讲授辩证法，讨论矛盾的普遍性、特殊性、主要方面以及内外因关系。 此卡所选名句着重表现真实事物往往同时包含相反要求和不一致因素。
+story: 《矛盾论》围绕用矛盾分析理解事物发展逐层展开。这句话把真实事物往往同时包含相反要求和不一致因素凝练成便于记忆的表达，适合联系全文前后的论证一起阅读。
+imageId: original-reading-lamp
+sources:
+- name: 中文马克思主义文库《矛盾论》全文
+  url: https://www.marxists.org/chinese/maozedong/marxist.org-chinese-mao-193708.htm
+  accessedAt: '2026-07-29'
+  type: original
+- name: 共产党员网《毛泽东选集（第一卷）》
+  url: https://www.12371.cn/special/mzdxj/dyj/
+  accessedAt: '2026-07-29'
+  type: authoritative
+review:
+  status: verified
+  checkedAt: '2026-07-29'

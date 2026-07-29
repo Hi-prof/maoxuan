@@ -1,0 +1,30 @@
+id: 564222b5-5407-55ac-818a-a22f31b83da4
+revision: 1
+status: published
+quote: 孙中山先生致力国民革命凡四十年，所要做而没有做到的事，农民在几个月内做到了。
+literature:
+  series: 毛泽东选集
+  volume: 第一卷
+  workTitle: 湖南农民运动考察报告
+  authoredAt: 1927-03
+themes:
+- 群众力量
+interpretation:
+  inspiration: 不要低估一线参与者；给他们真实任务、组织条件和表达渠道，再看结果。
+  explanation: 《湖南农民运动考察报告》写到农民运动的力量、性质和领导问题时，用这句话说明群众一旦组织起来能够产生超出惯常估计的行动力。它的价值在于把立场转成可分析的关系和行动要求。现代阅读可以获得启发，但不能抹去作品所处的革命和建设语境。
+historicalEvent: 1927年春，毛泽东完成湖南农民运动实地考察报告。
+background: 大革命时期，毛泽东考察湖南多县农民运动，以调查事实回应对农民运动的怀疑和指责。 此卡所选名句着重表现群众一旦组织起来能够产生超出惯常估计的行动力。
+story: 《湖南农民运动考察报告》围绕农民运动的力量、性质和领导问题逐层展开。这句话把群众一旦组织起来能够产生超出惯常估计的行动力凝练成便于记忆的表达，适合联系全文前后的论证一起阅读。
+imageId: original-field-paths
+sources:
+- name: 中文马克思主义文库《湖南农民运动考察报告》全文
+  url: https://www.marxists.org/chinese/maozedong/marxist.org-chinese-mao-192703.htm
+  accessedAt: '2026-07-29'
+  type: original
+- name: 共产党员网《毛泽东选集（第一卷）》
+  url: https://www.12371.cn/special/mzdxj/dyj/
+  accessedAt: '2026-07-29'
+  type: authoritative
+review:
+  status: verified
+  checkedAt: '2026-07-29'

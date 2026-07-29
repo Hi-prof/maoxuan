@@ -1,0 +1,30 @@
+id: aae74231-ac11-5c98-a696-5765bef29b0f
+revision: 1
+status: published
+quote: 俱往矣，数风流人物，还看今朝。
+literature:
+  series: 毛泽东诗词
+  volume: 诗词
+  workTitle: 沁园春·雪
+  authoredAt: 1936-02
+themes:
+- 时代担当
+interpretation:
+  inspiration: 尊重前人成就，但不要让仰望历史替代今天的学习、建设和实际责任。
+  explanation: 《沁园春·雪》写到山河气象、历史评价和当代担当时，用这句话说明在评论历史人物后，把创造历史的责任落到当代。它的价值在于把立场转成可分析的关系和行动要求。现代阅读可以获得启发，但不能抹去作品所处的革命和建设语境。
+historicalEvent: 1936年2月，毛泽东在陕北写作《沁园春·雪》。
+background: 毛泽东在陕北写北国雪景，由山河景象转入历史人物评论，落脚于当代创造者。 此卡所选名句着重表现在评论历史人物后，把创造历史的责任落到当代。
+story: 《沁园春·雪》以景物、行动和历史联想组织诗意。这一句集中呈现在评论历史人物后，把创造历史的责任落到当代，既有鲜明画面，也保留了作品写作时的现实背景。
+imageId: original-river-bridge
+sources:
+- name: 中央党史和文献研究院毛泽东诗词引用文章
+  url: https://www.dswxyjy.org.cn/n1/2019/0507/c244523-31071329.html
+  accessedAt: '2026-07-29'
+  type: authoritative
+- name: 共产党员网毛泽东诗词专题
+  url: https://www.12371.cn/2023/08/11/ARTI1691756661352792.shtml
+  accessedAt: '2026-07-29'
+  type: contextual
+review:
+  status: verified
+  checkedAt: '2026-07-29'

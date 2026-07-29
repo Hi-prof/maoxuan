@@ -1,0 +1,30 @@
+id: 7bd87a05-4e14-56ad-8b7c-eee65029edcf
+revision: 1
+status: published
+quote: 一切经过统一战线是不对的，应该是独立自主地去解决问题。
+literature:
+  series: 毛泽东选集
+  volume: 第二卷
+  workTitle: 统一战线中的独立自主问题
+  authoredAt: '1938-11-05'
+themes:
+- 独立自主
+interpretation:
+  inspiration: 区分必须共同决定的事项和自己应承担的事项，减少等待、推诿和边界混乱。
+  explanation: 这句话来自《统一战线中的独立自主问题》，原文关注合作中的原则和独立判断，核心是统一战线有共同范围，但并不取消各方独立负责的工作。名句流传很广，准确理解仍要回到上下文：既看到它提供的精神力量，也看到成立所需的事实、组织和历史条件。
+historicalEvent: 1938年11月5日，毛泽东在中共六届六中全会上作结论。
+background: 抗日民族统一战线发展中，毛泽东说明合作与独立自主必须同时坚持，反对取消自身原则。 此卡所选名句着重表现统一战线有共同范围，但并不取消各方独立负责的工作。
+story: 《统一战线中的独立自主问题》围绕合作中的原则和独立判断逐层展开。这句话把统一战线有共同范围，但并不取消各方独立负责的工作凝练成便于记忆的表达，适合联系全文前后的论证一起阅读。
+imageId: original-workshop
+sources:
+- name: 中文马克思主义文库《统一战线中的独立自主问题》全文
+  url: https://www.marxists.org/chinese/maozedong/marxist.org-chinese-mao-19381105.htm
+  accessedAt: '2026-07-29'
+  type: original
+- name: 共产党员网《毛泽东选集（第二卷）》
+  url: https://www.12371.cn/special/mzdxj/dej/
+  accessedAt: '2026-07-29'
+  type: authoritative
+review:
+  status: verified
+  checkedAt: '2026-07-29'

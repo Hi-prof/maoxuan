@@ -1,0 +1,30 @@
+id: b1828efa-be6e-504d-88a1-45a08ad1876d
+revision: 1
+status: published
+quote: 斗争是团结的手段，团结是斗争的目的。
+literature:
+  series: 毛泽东选集
+  volume: 第二卷
+  workTitle: 目前抗日统一战线中的策略问题
+  authoredAt: '1940-03-11'
+themes:
+- 团结
+interpretation:
+  inspiration: 指出问题时把目的放在改进关系和完成共同任务上，避免为争胜而争论。
+  explanation: 这句话来自《目前抗日统一战线中的策略问题》，原文关注统一战线中的自卫、斗争和团结，核心是必要的原则斗争服务于形成真实而有基础的团结。名句流传很广，准确理解仍要回到上下文：既看到它提供的精神力量，也看到成立所需的事实、组织和历史条件。
+historicalEvent: 1940年3月11日，毛泽东在延安党的高级干部会议上作报告。
+background: 抗日统一战线中的关系复杂，毛泽东总结发展进步势力、争取中间势力和反对顽固势力的策略。 此卡所选名句着重表现必要的原则斗争服务于形成真实而有基础的团结。
+story: 《目前抗日统一战线中的策略问题》围绕统一战线中的自卫、斗争和团结逐层展开。这句话把必要的原则斗争服务于形成真实而有基础的团结凝练成便于记忆的表达，适合联系全文前后的论证一起阅读。
+imageId: original-workshop
+sources:
+- name: 中文马克思主义文库《目前抗日统一战线中的策略问题》全文
+  url: https://www.marxists.org/chinese/maozedong/marxist.org-chinese-mao-19400311.htm
+  accessedAt: '2026-07-29'
+  type: original
+- name: 共产党员网《毛泽东选集（第二卷）》
+  url: https://www.12371.cn/special/mzdxj/dej/
+  accessedAt: '2026-07-29'
+  type: authoritative
+review:
+  status: verified
+  checkedAt: '2026-07-29'

@@ -1,0 +1,30 @@
+id: 2be2b3b2-65d5-5b07-8178-c70d45d588bc
+revision: 1
+status: published
+quote: 俗话说：“到什么山上唱什么歌。”又说：“看菜吃饭，量体裁衣。”
+literature:
+  series: 毛泽东选集
+  volume: 第三卷
+  workTitle: 反对党八股
+  authoredAt: '1942-02-08'
+themes:
+- 表达
+interpretation:
+  inspiration: 写作或沟通前明确对象需要什么、已有何种背景，再决定结构、例子和语言。
+  explanation: 这句话来自《反对党八股》，原文关注写作、表达和实事求是，核心是表达和工作方法要根据对象、条件和任务作具体调整。名句流传很广，准确理解仍要回到上下文：既看到它提供的精神力量，也看到成立所需的事实、组织和历史条件。
+historicalEvent: 1942年2月8日，毛泽东在延安干部会上讲演。
+background: 延安整风期间，毛泽东逐条分析党八股的表现，要求文章和讲话有内容、看对象、讲准确。 此卡所选名句着重表现表达和工作方法要根据对象、条件和任务作具体调整。
+story: 《反对党八股》围绕写作、表达和实事求是逐层展开。这句话把表达和工作方法要根据对象、条件和任务作具体调整凝练成便于记忆的表达，适合联系全文前后的论证一起阅读。
+imageId: original-memorial-pine
+sources:
+- name: 中文马克思主义文库《反对党八股》全文
+  url: https://www.marxists.org/chinese/maozedong/marxist.org-chinese-mao-19420208.htm
+  accessedAt: '2026-07-29'
+  type: original
+- name: 共产党员网《毛泽东选集（第三卷）》
+  url: https://www.12371.cn/special/mzdxj/d3j/
+  accessedAt: '2026-07-29'
+  type: authoritative
+review:
+  status: verified
+  checkedAt: '2026-07-29'

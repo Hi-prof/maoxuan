@@ -1,0 +1,30 @@
+id: aa91c2d6-e7f3-54a7-88ec-85e870cc894a
+revision: 1
+status: published
+quote: 外因是变化的条件，内因是变化的根据，外因通过内因而起作用。
+literature:
+  series: 毛泽东选集
+  volume: 第一卷
+  workTitle: 矛盾论
+  authoredAt: 1937-08
+themes:
+- 内外因
+interpretation:
+  inspiration: 利用机会前先补内部能力；遇到压力也要检查自身机制，而不是把结果全归因于环境。
+  explanation: 原文出自《矛盾论》，围绕用矛盾分析理解事物发展展开。这句话强调外部条件只有通过内部结构和能力才能形成实际变化。它有明确的历史对象和论述边界，今天可以借鉴其中的判断方法，但不应脱离全文把它变成适用于任何场景的口号。
+historicalEvent: 1937年8月，毛泽东在延安讲授矛盾法则。
+background: 毛泽东在延安讲授辩证法，讨论矛盾的普遍性、特殊性、主要方面以及内外因关系。 此卡所选名句着重表现外部条件只有通过内部结构和能力才能形成实际变化。
+story: 《矛盾论》围绕用矛盾分析理解事物发展逐层展开。这句话把外部条件只有通过内部结构和能力才能形成实际变化凝练成便于记忆的表达，适合联系全文前后的论证一起阅读。
+imageId: original-printing-press
+sources:
+- name: 中文马克思主义文库《矛盾论》全文
+  url: https://www.marxists.org/chinese/maozedong/marxist.org-chinese-mao-193708.htm
+  accessedAt: '2026-07-29'
+  type: original
+- name: 共产党员网《毛泽东选集（第一卷）》
+  url: https://www.12371.cn/special/mzdxj/dyj/
+  accessedAt: '2026-07-29'
+  type: authoritative
+review:
+  status: verified
+  checkedAt: '2026-07-29'

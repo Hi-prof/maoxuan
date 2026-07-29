@@ -1,0 +1,30 @@
+id: b4745d30-2796-5c78-b15b-455d1427195b
+revision: 1
+status: published
+quote: 我们的提高，是在普及基础上的提高；我们的普及，是在提高指导下的普及。
+literature:
+  series: 毛泽东选集
+  volume: 第三卷
+  workTitle: 在延安文艺座谈会上的讲话
+  authoredAt: 1942-05
+themes:
+- 普及提高
+interpretation:
+  inspiration: 先让内容可理解可使用，再通过更高标准带动成长；提高也要持续回应真实基础。
+  explanation: 原文出自《在延安文艺座谈会上的讲话》，围绕文艺的人民立场、普及和提高展开。这句话强调普及与提高相互依存，不能把覆盖面和质量割裂开。它有明确的历史对象和论述边界，今天可以借鉴其中的判断方法，但不应脱离全文把它变成适用于任何场景的口号。
+historicalEvent: 1942年5月，延安文艺座谈会召开，毛泽东作结论讲话。
+background: 延安文艺座谈会上，毛泽东讨论文艺为谁服务、怎样服务，以及文艺工作者同群众生活的关系。 此卡所选名句着重表现普及与提高相互依存，不能把覆盖面和质量割裂开。
+story: 《在延安文艺座谈会上的讲话》围绕文艺的人民立场、普及和提高逐层展开。这句话把普及与提高相互依存，不能把覆盖面和质量割裂开凝练成便于记忆的表达，适合联系全文前后的论证一起阅读。
+imageId: original-dawn-city
+sources:
+- name: 中文马克思主义文库《在延安文艺座谈会上的讲话》全文
+  url: https://www.marxists.org/chinese/maozedong/marxist.org-chinese-mao-194205.htm
+  accessedAt: '2026-07-29'
+  type: original
+- name: 共产党员网《毛泽东选集（第三卷）》
+  url: https://www.12371.cn/special/mzdxj/d3j/
+  accessedAt: '2026-07-29'
+  type: authoritative
+review:
+  status: verified
+  checkedAt: '2026-07-29'

@@ -1,0 +1,30 @@
+id: df2a1bff-05d5-5369-8e3e-65dcac06d4e6
+revision: 1
+status: published
+quote: 什么叫工作，工作就是斗争。
+literature:
+  series: 毛泽东选集
+  volume: 第四卷
+  workTitle: 关于重庆谈判
+  authoredAt: '1945-10-17'
+themes:
+- 工作
+interpretation:
+  inspiration: 不要把没有问题当作工作顺利；真正的工作常常是识别矛盾并推动解决。
+  explanation: 这句话来自《关于重庆谈判》，原文关注困难、曲折和主动工作，核心是原文把工作理解为主动面对并解决现实困难。名句流传很广，准确理解仍要回到上下文：既看到它提供的精神力量，也看到成立所需的事实、组织和历史条件。
+historicalEvent: 1945年10月17日，毛泽东在延安干部会上报告重庆谈判情况。
+background: 重庆谈判结束后，毛泽东分析和平协议、国内形势和工作中的困难，提醒全党准备走曲折道路。 此卡所选名句着重表现原文把工作理解为主动面对并解决现实困难。
+story: 《关于重庆谈判》围绕困难、曲折和主动工作逐层展开。这句话把原文把工作理解为主动面对并解决现实困难凝练成便于记忆的表达，适合联系全文前后的论证一起阅读。
+imageId: original-memorial-pine
+sources:
+- name: 中文马克思主义文库《关于重庆谈判》全文
+  url: https://www.marxists.org/chinese/maozedong/marxist.org-chinese-mao-19451017.htm
+  accessedAt: '2026-07-29'
+  type: original
+- name: 共产党员网《毛泽东选集（第四卷）》
+  url: https://www.12371.cn/special/mzdxj/d4j/
+  accessedAt: '2026-07-29'
+  type: authoritative
+review:
+  status: verified
+  checkedAt: '2026-07-29'

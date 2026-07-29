@@ -1,0 +1,30 @@
+id: 777bd48c-70b0-5f80-ad77-ef9c343b3c0a
+revision: 1
+status: published
+quote: 人不犯我，我不犯人；人若犯我，我必犯人。
+literature:
+  series: 毛泽东选集
+  volume: 第二卷
+  workTitle: 目前抗日统一战线中的策略问题
+  authoredAt: '1940-03-11'
+themes:
+- 原则
+interpretation:
+  inspiration: 使用这句话要保留其抗日统一战线语境，不把它当作日常冲突中升级对抗的借口。
+  explanation: 《目前抗日统一战线中的策略问题》写到统一战线中的自卫、斗争和团结时，用这句话说明原文把同顽固派斗争的第一项原则概括为自卫。它的价值在于把立场转成可分析的关系和行动要求。现代阅读可以获得启发，但不能抹去作品所处的革命和建设语境。
+historicalEvent: 1940年3月11日，毛泽东在延安党的高级干部会议上作报告。
+background: 抗日统一战线中的关系复杂，毛泽东总结发展进步势力、争取中间势力和反对顽固势力的策略。 此卡所选名句着重表现原文把同顽固派斗争的第一项原则概括为自卫。
+story: 《目前抗日统一战线中的策略问题》围绕统一战线中的自卫、斗争和团结逐层展开。这句话把原文把同顽固派斗争的第一项原则概括为自卫凝练成便于记忆的表达，适合联系全文前后的论证一起阅读。
+imageId: original-river-bridge
+sources:
+- name: 中文马克思主义文库《目前抗日统一战线中的策略问题》全文
+  url: https://www.marxists.org/chinese/maozedong/marxist.org-chinese-mao-19400311.htm
+  accessedAt: '2026-07-29'
+  type: original
+- name: 共产党员网《毛泽东选集（第二卷）》
+  url: https://www.12371.cn/special/mzdxj/dej/
+  accessedAt: '2026-07-29'
+  type: authoritative
+review:
+  status: verified
+  checkedAt: '2026-07-29'

@@ -1,0 +1,30 @@
+id: b3c4b47c-4f6d-522b-85e5-fb52aca50739
+revision: 1
+status: published
+quote: 我们要用百分之九十的精力帮助农民增加生产，然后用百分之十的精力从农民取得税收。
+literature:
+  series: 毛泽东选集
+  volume: 第一卷
+  workTitle: 必须注意经济工作
+  authoredAt: '1933-08-12'
+themes:
+- 经济建设
+interpretation:
+  inspiration: 设计制度时先问它怎样创造增量、支持参与者，而不是只关注如何分配和索取。
+  explanation: 这句话来自《必须注意经济工作》，原文关注经济建设与群众负担，核心是公共工作应先帮助生产和生活改善，再谈合理负担。名句流传很广，准确理解仍要回到上下文：既看到它提供的精神力量，也看到成立所需的事实、组织和历史条件。
+historicalEvent: 1933年8月12日，毛泽东在南部十七县经济建设大会上作报告。
+background: 中央革命根据地面临战争和物资困难，毛泽东要求把经济建设作为支持战争、改善群众生活的重要工作。 此卡所选名句着重表现公共工作应先帮助生产和生活改善，再谈合理负担。
+story: 《必须注意经济工作》围绕经济建设与群众负担逐层展开。这句话把公共工作应先帮助生产和生活改善，再谈合理负担凝练成便于记忆的表达，适合联系全文前后的论证一起阅读。
+imageId: original-workshop
+sources:
+- name: 中文马克思主义文库《必须注意经济工作》全文
+  url: https://www.marxists.org/chinese/maozedong/marxist.org-chinese-mao-19330812.htm
+  accessedAt: '2026-07-29'
+  type: original
+- name: 共产党员网《毛泽东选集（第一卷）》
+  url: https://www.12371.cn/special/mzdxj/dyj/
+  accessedAt: '2026-07-29'
+  type: authoritative
+review:
+  status: verified
+  checkedAt: '2026-07-29'

@@ -1,0 +1,30 @@
+id: c6c235b7-15b5-5393-b5c0-29e0e91b0845
+revision: 1
+status: published
+quote: 你要知道梨子的滋味，你就得变革梨子，亲口吃一吃。
+literature:
+  series: 毛泽东选集
+  volume: 第一卷
+  workTitle: 实践论
+  authoredAt: 1937-07
+themes:
+- 实践
+interpretation:
+  inspiration: 学习新工具或工作时尽早做一个真实小任务，让操作中的反馈补足书面知识。
+  explanation: 在《实践论》讨论认识怎样从实践产生并接受检验的语境中，这句话把重点放在理解事物不能只靠旁观，必须进入实际过程取得经验。理解它需要同时看到当时的任务和条件；用于今天时，应保留这种具体分析意识，而不是只取一句表面的豪迈表达。
+historicalEvent: 1937年7月，毛泽东在延安讲授认识与实践问题。
+background: 为克服党内教条主义，毛泽东在延安从认识论角度说明实践、认识、真理标准和反复检验的关系。 此卡所选名句着重表现理解事物不能只靠旁观，必须进入实际过程取得经验。
+story: 《实践论》围绕认识怎样从实践产生并接受检验逐层展开。这句话把理解事物不能只靠旁观，必须进入实际过程取得经验凝练成便于记忆的表达，适合联系全文前后的论证一起阅读。
+imageId: original-distant-mountains
+sources:
+- name: 中文马克思主义文库《实践论》全文
+  url: https://www.marxists.org/chinese/maozedong/marxist.org-chinese-mao-193707.htm
+  accessedAt: '2026-07-29'
+  type: original
+- name: 共产党员网《毛泽东选集（第一卷）》
+  url: https://www.12371.cn/special/mzdxj/dyj/
+  accessedAt: '2026-07-29'
+  type: authoritative
+review:
+  status: verified
+  checkedAt: '2026-07-29'

@@ -1,0 +1,30 @@
+id: 956fc367-5308-5efd-9d59-5d6009e59f4e
+revision: 1
+status: published
+quote: 星星之火，可以燎原。
+literature:
+  series: 毛泽东选集
+  volume: 第一卷
+  workTitle: 星星之火，可以燎原
+  authoredAt: '1930-01-05'
+themes:
+- 信心
+interpretation:
+  inspiration: 面对刚起步的事情，既别夸大眼前规模，也别忽视方向、条件和积累速度。
+  explanation: 原文出自《星星之火，可以燎原》，围绕困难形势中的战略判断展开。这句话强调微小力量在合适条件下可以成长为改变全局的力量。它有明确的历史对象和论述边界，今天可以借鉴其中的判断方法，但不应脱离全文把它变成适用于任何场景的口号。
+historicalEvent: 1930年1月5日，毛泽东写信分析红色政权和革命高潮的前途。
+background: 红军处在困难环境中，毛泽东在给林彪的信中分析革命形势，反对把暂时困难等同于没有前途。 此卡所选名句着重表现微小力量在合适条件下可以成长为改变全局的力量。
+story: 《星星之火，可以燎原》围绕困难形势中的战略判断逐层展开。这句话把微小力量在合适条件下可以成长为改变全局的力量凝练成便于记忆的表达，适合联系全文前后的论证一起阅读。
+imageId: original-printing-press
+sources:
+- name: 中文马克思主义文库《星星之火，可以燎原》全文
+  url: https://www.marxists.org/chinese/maozedong/marxist.org-chinese-mao-19300105.htm
+  accessedAt: '2026-07-29'
+  type: original
+- name: 共产党员网《毛泽东选集（第一卷）》
+  url: https://www.12371.cn/special/mzdxj/dyj/
+  accessedAt: '2026-07-29'
+  type: authoritative
+review:
+  status: verified
+  checkedAt: '2026-07-29'

@@ -1,0 +1,30 @@
+id: 7dabd90a-2b8e-5c44-9cd1-6b341b9392fc
+revision: 1
+status: published
+quote: 我们的原则是党指挥枪，而决不容许枪指挥党。
+literature:
+  series: 毛泽东选集
+  volume: 第二卷
+  workTitle: 战争和战略问题
+  authoredAt: '1938-11-06'
+themes:
+- 组织领导
+interpretation:
+  inspiration: 能力越强的工具越需要清楚的责任、边界和监督，不能让手段反过来决定目标。
+  explanation: 这句话来自《战争和战略问题》，原文关注战争、政权和组织领导，核心是强力工具必须服从明确的政治目的和组织领导。名句流传很广，准确理解仍要回到上下文：既看到它提供的精神力量，也看到成立所需的事实、组织和历史条件。
+historicalEvent: 1938年11月6日，毛泽东在中共六届六中全会上作结论。
+background: 毛泽东总结中国革命的武装斗争经验，讨论战争、军队、政权以及党对军队领导的关系。 此卡所选名句着重表现强力工具必须服从明确的政治目的和组织领导。
+story: 《战争和战略问题》围绕战争、政权和组织领导逐层展开。这句话把强力工具必须服从明确的政治目的和组织领导凝练成便于记忆的表达，适合联系全文前后的论证一起阅读。
+imageId: original-workshop
+sources:
+- name: 中文马克思主义文库《战争和战略问题》全文
+  url: https://www.marxists.org/chinese/maozedong/marxist.org-chinese-mao-19381106.htm
+  accessedAt: '2026-07-29'
+  type: original
+- name: 共产党员网《毛泽东选集（第二卷）》
+  url: https://www.12371.cn/special/mzdxj/dej/
+  accessedAt: '2026-07-29'
+  type: authoritative
+review:
+  status: verified
+  checkedAt: '2026-07-29'

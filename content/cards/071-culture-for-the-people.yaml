@@ -1,0 +1,30 @@
+id: 5d4a04d2-2084-5ff5-9f37-a013732e4155
+revision: 1
+status: published
+quote: 所谓新民主主义的文化，就是人民大众反帝反封建的文化。
+literature:
+  series: 毛泽东选集
+  volume: 第二卷
+  workTitle: 新民主主义论
+  authoredAt: 1940-01
+themes:
+- 人民文化
+interpretation:
+  inspiration: 今天引用时应保留其时代定义，再讨论文化怎样回应普通人的现实生活。
+  explanation: 这句话来自《新民主主义论》，原文关注新民主主义革命及其政治文化纲领，核心是新民主主义文化在特定革命阶段有明确的人民立场和历史任务。名句流传很广，准确理解仍要回到上下文：既看到它提供的精神力量，也看到成立所需的事实、组织和历史条件。
+historicalEvent: 1940年1月，毛泽东发表《新民主主义论》。
+background: 抗战进入相持阶段，毛泽东系统论述中国革命的历史进程以及新民主主义政治、经济和文化。 此卡所选名句着重表现新民主主义文化在特定革命阶段有明确的人民立场和历史任务。
+story: 《新民主主义论》围绕新民主主义革命及其政治文化纲领逐层展开。这句话把新民主主义文化在特定革命阶段有明确的人民立场和历史任务凝练成便于记忆的表达，适合联系全文前后的论证一起阅读。
+imageId: original-workshop
+sources:
+- name: 中文马克思主义文库《新民主主义论》全文
+  url: https://www.marxists.org/chinese/maozedong/marxist.org-chinese-mao-194001.htm
+  accessedAt: '2026-07-29'
+  type: original
+- name: 共产党员网《毛泽东选集（第二卷）》
+  url: https://www.12371.cn/special/mzdxj/dej/
+  accessedAt: '2026-07-29'
+  type: authoritative
+review:
+  status: verified
+  checkedAt: '2026-07-29'

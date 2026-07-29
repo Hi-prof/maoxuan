@@ -1,0 +1,30 @@
+id: 9c70e0ee-afe5-5884-a002-b439ba9759d1
+revision: 1
+status: published
+quote: 我们不但善于破坏一个旧世界，我们还将善于建设一个新世界。
+literature:
+  series: 毛泽东选集
+  volume: 第四卷
+  workTitle: 在中国共产党第七届中央委员会第二次全体会议上的报告
+  authoredAt: '1949-03-05'
+themes:
+- 建设
+interpretation:
+  inspiration: 批评旧问题之后继续回答如何建设、谁来负责和怎样长期维护。
+  explanation: 这句话来自《在中国共产党第七届中央委员会第二次全体会议上的报告》，原文关注从革命胜利转向国家建设，核心是全国胜利前夕，工作重心开始从破坏旧秩序转向建设新国家。名句流传很广，准确理解仍要回到上下文：既看到它提供的精神力量，也看到成立所需的事实、组织和历史条件。
+historicalEvent: 1949年3月5日，中共七届二中全会在西柏坡召开。
+background: 全国胜利前夕，毛泽东在西柏坡讨论工作重心转移、城市建设以及胜利后的风险和任务。 此卡所选名句着重表现全国胜利前夕，工作重心开始从破坏旧秩序转向建设新国家。
+story: 《在中国共产党第七届中央委员会第二次全体会议上的报告》围绕从革命胜利转向国家建设逐层展开。这句话把全国胜利前夕，工作重心开始从破坏旧秩序转向建设新国家凝练成便于记忆的表达，适合联系全文前后的论证一起阅读。
+imageId: original-workshop
+sources:
+- name: 中文马克思主义文库《在中国共产党第七届中央委员会第二次全体会议上的报告》全文
+  url: https://www.marxists.org/chinese/maozedong/marxist.org-chinese-mao-19490305.htm
+  accessedAt: '2026-07-29'
+  type: original
+- name: 共产党员网《毛泽东选集（第四卷）》
+  url: https://www.12371.cn/special/mzdxj/d4j/
+  accessedAt: '2026-07-29'
+  type: authoritative
+review:
+  status: verified
+  checkedAt: '2026-07-29'

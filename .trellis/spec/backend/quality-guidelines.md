@@ -40,7 +40,9 @@ Run instrumentation on API 28 and the latest configured API before release.
 - User state survives content revision, withdrawal snapshot retention, and restoration.
 - File writes precede the Room reference switch; cleanup follows commit/failure.
 - Formal content has exactly the positive `expectedPublishedCards` count declared
-  in `content/project.yaml`; current content `1.3.0` declares 31 published cards.
+  in `content/project.yaml`; current content `1.4.0` declares 150 published cards.
+- Published quotes are unique after NFC normalization, and the content report
+  includes sorted `workTitles` counts for editorial limit review.
 - Every active card has both interpretation fields plus historical event,
   background, and story; removed schema-2 fields are rejected.
 

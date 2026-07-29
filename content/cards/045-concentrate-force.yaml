@@ -1,0 +1,30 @@
+id: 64ec189b-d6b0-53f5-91b8-da0238cb7753
+revision: 1
+status: published
+quote: 对于人，伤其十指不如断其一指；对于敌，击溃其十个师不如歼灭其一个师。
+literature:
+  series: 毛泽东选集
+  volume: 第一卷
+  workTitle: 中国革命战争的战略问题
+  authoredAt: 1936-12
+themes:
+- 集中力量
+interpretation:
+  inspiration: 任务过多时先完成一个关键闭环，再扩展战线，避免每件事都投入一点却没有结果。
+  explanation: 在《中国革命战争的战略问题》讨论战略判断、主动权和力量配置的语境中，这句话把重点放在把有限力量集中到能够形成确定结果的目标上更有效。理解它需要同时看到当时的任务和条件；用于今天时，应保留这种具体分析意识，而不是只取一句表面的豪迈表达。
+historicalEvent: 1936年12月，毛泽东在陕北红军大学讲授革命战争战略问题。
+background: 毛泽东总结土地革命战争经验，系统讨论战争规律、主动权、集中兵力和战略防御。 此卡所选名句着重表现把有限力量集中到能够形成确定结果的目标上更有效。
+story: 《中国革命战争的战略问题》围绕战略判断、主动权和力量配置逐层展开。这句话把把有限力量集中到能够形成确定结果的目标上更有效凝练成便于记忆的表达，适合联系全文前后的论证一起阅读。
+imageId: original-reading-lamp
+sources:
+- name: 中文马克思主义文库《中国革命战争的战略问题》全文
+  url: https://www.marxists.org/chinese/maozedong/marxist.org-chinese-mao-193612.htm
+  accessedAt: '2026-07-29'
+  type: original
+- name: 共产党员网《毛泽东选集（第一卷）》
+  url: https://www.12371.cn/special/mzdxj/dyj/
+  accessedAt: '2026-07-29'
+  type: authoritative
+review:
+  status: verified
+  checkedAt: '2026-07-29'

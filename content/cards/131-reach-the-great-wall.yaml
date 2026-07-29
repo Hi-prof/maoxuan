@@ -1,0 +1,30 @@
+id: c28d8e79-07fc-5f10-bfa2-016de25160c9
+revision: 1
+status: published
+quote: 不到长城非好汉，屈指行程二万。
+literature:
+  series: 毛泽东诗词
+  volume: 诗词
+  workTitle: 清平乐·六盘山
+  authoredAt: 1935-10
+themes:
+- 目标
+interpretation:
+  inspiration: 目标既要能牵引下一步，也要让人看见已完成的积累，增强继续行动的依据。
+  explanation: 这句话来自《清平乐·六盘山》，原文关注目标、行程和继续奋斗，核心是以长城作为继续前进的目标，并回望已经走过的漫长行程。名句流传很广，准确理解仍要回到上下文：既看到它提供的精神力量，也看到成立所需的事实、组织和历史条件。
+historicalEvent: 1935年10月，中央红军翻越六盘山向陕北前进。
+background: 中央红军翻越六盘山时，毛泽东把长征行程、远望和继续战斗的志向写入词中。 此卡所选名句着重表现以长城作为继续前进的目标，并回望已经走过的漫长行程。
+story: 《清平乐·六盘山》以景物、行动和历史联想组织诗意。这一句集中呈现以长城作为继续前进的目标，并回望已经走过的漫长行程，既有鲜明画面，也保留了作品写作时的现实背景。
+imageId: original-memorial-pine
+sources:
+- name: 中央党史和文献研究院毛泽东诗词引用文章
+  url: https://www.dswxyjy.org.cn/n1/2019/0507/c244523-31071329.html
+  accessedAt: '2026-07-29'
+  type: authoritative
+- name: 共产党员网毛泽东诗词专题
+  url: https://www.12371.cn/2023/08/11/ARTI1691756661352792.shtml
+  accessedAt: '2026-07-29'
+  type: contextual
+review:
+  status: verified
+  checkedAt: '2026-07-29'

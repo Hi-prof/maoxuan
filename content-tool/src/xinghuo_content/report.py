@@ -46,6 +46,7 @@ def build_content_report(content: ValidatedContent) -> dict[str, Any]:
         "seriesAndVolumes": _counts(
             f"{card.payload['series']} / {card.payload['volume']}" for card in cards
         ),
+        "workTitles": _counts(str(card.payload["workTitle"]) for card in cards),
         "readingSections": {
             "withHistoricalEvent": sum(
                 bool(card.payload["historicalEvent"]) for card in cards

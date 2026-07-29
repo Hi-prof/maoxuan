@@ -1,0 +1,30 @@
+id: 319784eb-de65-50db-bb3b-e3cfb311f04f
+revision: 1
+status: published
+quote: 萧瑟秋风今又是，换了人间。
+literature:
+  series: 毛泽东诗词
+  volume: 诗词
+  workTitle: 浪淘沙·北戴河
+  authoredAt: '1954'
+themes:
+- 时代变化
+interpretation:
+  inspiration: 比较古今时要找出结构性变化，同时避免只凭新旧对照忽略仍待解决的问题。
+  explanation: 在《浪淘沙·北戴河》讨论历史对照和时代变化的语境中，这句话把重点放在同曹操东临碣石的历史记忆对照，写相似秋风中的时代巨变。理解它需要同时看到当时的任务和条件；用于今天时，应保留这种具体分析意识，而不是只取一句表面的豪迈表达。
+historicalEvent: 1954年夏，毛泽东在北戴河写作《浪淘沙·北戴河》。
+background: 毛泽东在北戴河观海听雨，联想到曹操东临碣石，把古今对照写成时代变化。 此卡所选名句着重表现同曹操东临碣石的历史记忆对照，写相似秋风中的时代巨变。
+story: 《浪淘沙·北戴河》以景物、行动和历史联想组织诗意。这一句集中呈现同曹操东临碣石的历史记忆对照，写相似秋风中的时代巨变，既有鲜明画面，也保留了作品写作时的现实背景。
+imageId: original-reading-lamp
+sources:
+- name: 中央党史和文献研究院毛泽东诗词引用文章
+  url: https://www.dswxyjy.org.cn/n1/2019/0507/c244523-31071329.html
+  accessedAt: '2026-07-29'
+  type: authoritative
+- name: 共产党员网毛泽东诗词专题
+  url: https://www.12371.cn/2023/08/11/ARTI1691756661352792.shtml
+  accessedAt: '2026-07-29'
+  type: contextual
+review:
+  status: verified
+  checkedAt: '2026-07-29'

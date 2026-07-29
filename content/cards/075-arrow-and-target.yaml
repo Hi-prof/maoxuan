@@ -1,0 +1,30 @@
+id: dcb42c9a-62c6-5666-b42c-382e22ca2c6c
+revision: 1
+status: published
+quote: 这种态度，就是有的放矢的态度。“的”就是中国革命，“矢”就是马克思列宁主义。
+literature:
+  series: 毛泽东选集
+  volume: 第三卷
+  workTitle: 改造我们的学习
+  authoredAt: '1941-05-19'
+themes:
+- 理论联系实际
+interpretation:
+  inspiration: 先把问题定义清楚，再选择方法；不要因为熟悉某个框架就到处寻找同一种问题。
+  explanation: 这句话来自《改造我们的学习》，原文关注学风、调查和理论联系实际，核心是理论是解决实际问题的工具，使用前必须看清具体目标。名句流传很广，准确理解仍要回到上下文：既看到它提供的精神力量，也看到成立所需的事实、组织和历史条件。
+historicalEvent: 1941年5月19日，毛泽东在延安干部会上作《改造我们的学习》报告。
+background: 延安整风准备阶段，毛泽东批评主观主义学风，要求研究历史、现状并把理论用于中国实际。 此卡所选名句着重表现理论是解决实际问题的工具，使用前必须看清具体目标。
+story: 《改造我们的学习》围绕学风、调查和理论联系实际逐层展开。这句话把理论是解决实际问题的工具，使用前必须看清具体目标凝练成便于记忆的表达，适合联系全文前后的论证一起阅读。
+imageId: original-memorial-pine
+sources:
+- name: 中文马克思主义文库《改造我们的学习》全文
+  url: https://www.marxists.org/chinese/maozedong/marxist.org-chinese-mao-19410519.htm
+  accessedAt: '2026-07-29'
+  type: original
+- name: 共产党员网《毛泽东选集（第三卷）》
+  url: https://www.12371.cn/special/mzdxj/d3j/
+  accessedAt: '2026-07-29'
+  type: authoritative
+review:
+  status: verified
+  checkedAt: '2026-07-29'

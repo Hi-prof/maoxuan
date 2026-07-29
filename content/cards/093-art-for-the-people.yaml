@@ -1,0 +1,30 @@
+id: 54acc238-3d09-540d-a04f-465b94d18217
+revision: 1
+status: published
+quote: 我们的文学艺术都是为人民大众的，首先是为工农兵的，为工农兵而创作，为工农兵所利用的。
+literature:
+  series: 毛泽东选集
+  volume: 第三卷
+  workTitle: 在延安文艺座谈会上的讲话
+  authoredAt: 1942-05
+themes:
+- 文艺
+interpretation:
+  inspiration: 做公共表达时先确认服务谁、他们怎样使用，再决定内容形式，而不是只追求自我展示。
+  explanation: 在《在延安文艺座谈会上的讲话》讨论文艺的人民立场、普及和提高的语境中，这句话把重点放在文艺的服务对象决定创作立场、生活来源和传播方式。理解它需要同时看到当时的任务和条件；用于今天时，应保留这种具体分析意识，而不是只取一句表面的豪迈表达。
+historicalEvent: 1942年5月，延安文艺座谈会召开，毛泽东作结论讲话。
+background: 延安文艺座谈会上，毛泽东讨论文艺为谁服务、怎样服务，以及文艺工作者同群众生活的关系。 此卡所选名句着重表现文艺的服务对象决定创作立场、生活来源和传播方式。
+story: 《在延安文艺座谈会上的讲话》围绕文艺的人民立场、普及和提高逐层展开。这句话把文艺的服务对象决定创作立场、生活来源和传播方式凝练成便于记忆的表达，适合联系全文前后的论证一起阅读。
+imageId: original-reading-lamp
+sources:
+- name: 中文马克思主义文库《在延安文艺座谈会上的讲话》全文
+  url: https://www.marxists.org/chinese/maozedong/marxist.org-chinese-mao-194205.htm
+  accessedAt: '2026-07-29'
+  type: original
+- name: 共产党员网《毛泽东选集（第三卷）》
+  url: https://www.12371.cn/special/mzdxj/d3j/
+  accessedAt: '2026-07-29'
+  type: authoritative
+review:
+  status: verified
+  checkedAt: '2026-07-29'

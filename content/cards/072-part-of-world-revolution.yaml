@@ -1,0 +1,30 @@
+id: 7b3b8041-e96b-50ca-bc24-6664491a641f
+revision: 1
+status: published
+quote: 中国革命是世界革命的一部分。
+literature:
+  series: 毛泽东选集
+  volume: 第二卷
+  workTitle: 新民主主义论
+  authoredAt: 1940-01
+themes:
+- 世界视野
+interpretation:
+  inspiration: 分析本地变化时同时观察国际条件和相互影响，但不能忽视本地具体矛盾。
+  explanation: 原文出自《新民主主义论》，围绕新民主主义革命及其政治文化纲领展开。这句话强调中国革命被放在世界历史联系中理解，而不是孤立事件。它有明确的历史对象和论述边界，今天可以借鉴其中的判断方法，但不应脱离全文把它变成适用于任何场景的口号。
+historicalEvent: 1940年1月，毛泽东发表《新民主主义论》。
+background: 抗战进入相持阶段，毛泽东系统论述中国革命的历史进程以及新民主主义政治、经济和文化。 此卡所选名句着重表现中国革命被放在世界历史联系中理解，而不是孤立事件。
+story: 《新民主主义论》围绕新民主主义革命及其政治文化纲领逐层展开。这句话把中国革命被放在世界历史联系中理解，而不是孤立事件凝练成便于记忆的表达，适合联系全文前后的论证一起阅读。
+imageId: original-dawn-city
+sources:
+- name: 中文马克思主义文库《新民主主义论》全文
+  url: https://www.marxists.org/chinese/maozedong/marxist.org-chinese-mao-194001.htm
+  accessedAt: '2026-07-29'
+  type: original
+- name: 共产党员网《毛泽东选集（第二卷）》
+  url: https://www.12371.cn/special/mzdxj/dej/
+  accessedAt: '2026-07-29'
+  type: authoritative
+review:
+  status: verified
+  checkedAt: '2026-07-29'

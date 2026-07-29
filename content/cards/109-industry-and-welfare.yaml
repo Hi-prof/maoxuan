@@ -1,0 +1,30 @@
+id: 49c02574-cc14-5c45-be5c-b18a78a28f7b
+revision: 1
+status: published
+quote: 没有工业，便没有巩固的国防，便没有人民的福利，便没有国家的富强。
+literature:
+  series: 毛泽东选集
+  volume: 第三卷
+  workTitle: 论联合政府
+  authoredAt: '1945-04-24'
+themes:
+- 工业建设
+interpretation:
+  inspiration: 看待产业建设既要看产量，也要看技术能力、公共福利和长期韧性。
+  explanation: 在《论联合政府》讨论人民力量、政治纲领和国家建设的语境中，这句话把重点放在工业能力同国防、人民生活和国家发展相互关联。理解它需要同时看到当时的任务和条件；用于今天时，应保留这种具体分析意识，而不是只取一句表面的豪迈表达。
+historicalEvent: 1945年4月24日，毛泽东在中国共产党第七次全国代表大会上作报告。
+background: 抗战胜利前夕，毛泽东在中共七大作政治报告，系统说明党的纲领、人民力量和国家建设任务。 此卡所选名句着重表现工业能力同国防、人民生活和国家发展相互关联。
+story: 《论联合政府》围绕人民力量、政治纲领和国家建设逐层展开。这句话把工业能力同国防、人民生活和国家发展相互关联凝练成便于记忆的表达，适合联系全文前后的论证一起阅读。
+imageId: original-reading-lamp
+sources:
+- name: 中文马克思主义文库《论联合政府》全文
+  url: https://www.marxists.org/chinese/maozedong/marxist.org-chinese-mao-19450424.htm
+  accessedAt: '2026-07-29'
+  type: original
+- name: 共产党员网《毛泽东选集（第三卷）》
+  url: https://www.12371.cn/special/mzdxj/d3j/
+  accessedAt: '2026-07-29'
+  type: authoritative
+review:
+  status: verified
+  checkedAt: '2026-07-29'

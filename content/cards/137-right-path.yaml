@@ -1,0 +1,30 @@
+id: 10791cc0-b939-57f2-8665-ad32dcc75a7f
+revision: 1
+status: published
+quote: 天若有情天亦老，人间正道是沧桑。
+literature:
+  series: 毛泽东诗词
+  volume: 诗词
+  workTitle: 七律·人民解放军占领南京
+  authoredAt: 1949-04
+themes:
+- 历史进程
+interpretation:
+  inspiration: 真正变化往往经历长期冲突和代价，不能把“正道”理解为自动发生的顺境。
+  explanation: 在《七律·人民解放军占领南京》讨论把握胜势和历史进程的语境中，这句话把重点放在借古典诗意写人间正道伴随巨大历史变化。理解它需要同时看到当时的任务和条件；用于今天时，应保留这种具体分析意识，而不是只取一句表面的豪迈表达。
+historicalEvent: 1949年4月23日，人民解放军占领南京。
+background: 南京解放后，毛泽东以历史典故和时代巨变写胜利，也强调把握时机完成任务。 此卡所选名句着重表现借古典诗意写人间正道伴随巨大历史变化。
+story: 《七律·人民解放军占领南京》以景物、行动和历史联想组织诗意。这一句集中呈现借古典诗意写人间正道伴随巨大历史变化，既有鲜明画面，也保留了作品写作时的现实背景。
+imageId: original-distant-mountains
+sources:
+- name: 中央党史和文献研究院毛泽东诗词引用文章
+  url: https://www.dswxyjy.org.cn/n1/2019/0507/c244523-31071329.html
+  accessedAt: '2026-07-29'
+  type: authoritative
+- name: 共产党员网毛泽东诗词专题
+  url: https://www.12371.cn/2023/08/11/ARTI1691756661352792.shtml
+  accessedAt: '2026-07-29'
+  type: contextual
+review:
+  status: verified
+  checkedAt: '2026-07-29'

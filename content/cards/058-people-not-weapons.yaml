@@ -1,0 +1,30 @@
+id: 3b9bfc2d-0a89-5663-a4fb-b50f291b0aae
+revision: 1
+status: published
+quote: 武器是战争的重要的因素，但不是决定的因素，决定的因素是人不是物。
+literature:
+  series: 毛泽东选集
+  volume: 第二卷
+  workTitle: 论持久战
+  authoredAt: 1938-05
+themes:
+- 人的作用
+interpretation:
+  inspiration: 引入工具时同步建设能力、流程和协作，不把设备或软件当作自动成功的保证。
+  explanation: 《论持久战》写到持久抗战的阶段、力量与胜利条件时，用这句话说明物质条件重要，但人的组织、判断和行动会改变条件的实际效果。它的价值在于把立场转成可分析的关系和行动要求。现代阅读可以获得启发，但不能抹去作品所处的革命和建设语境。
+historicalEvent: 1938年5月至6月，毛泽东在延安抗日战争研究会上讲演。
+background: 抗战初期亡国论和速胜论并存，毛泽东分析中日双方条件、战争阶段和人民战争的力量。 此卡所选名句着重表现物质条件重要，但人的组织、判断和行动会改变条件的实际效果。
+story: 《论持久战》围绕持久抗战的阶段、力量与胜利条件逐层展开。这句话把物质条件重要，但人的组织、判断和行动会改变条件的实际效果凝练成便于记忆的表达，适合联系全文前后的论证一起阅读。
+imageId: original-field-paths
+sources:
+- name: 中文马克思主义文库《论持久战》全文
+  url: https://www.marxists.org/chinese/maozedong/marxist.org-chinese-mao-193805b.htm
+  accessedAt: '2026-07-29'
+  type: original
+- name: 共产党员网《毛泽东选集（第二卷）》
+  url: https://www.12371.cn/special/mzdxj/dej/
+  accessedAt: '2026-07-29'
+  type: authoritative
+review:
+  status: verified
+  checkedAt: '2026-07-29'

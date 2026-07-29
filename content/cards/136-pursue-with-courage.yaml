@@ -1,0 +1,30 @@
+id: 43a07a74-d8ca-5041-a626-83eba16cecbd
+revision: 1
+status: published
+quote: 宜将剩勇追穷寇，不可沽名学霸王。
+literature:
+  series: 毛泽东诗词
+  volume: 诗词
+  workTitle: 七律·人民解放军占领南京
+  authoredAt: 1949-04
+themes:
+- 把握时机
+interpretation:
+  inspiration: 接近完成时最容易松懈；检查剩余风险，把关键闭环做完，再宣布结束。
+  explanation: 原文出自《七律·人民解放军占领南京》，围绕把握胜势和历史进程展开。这句话强调胜势形成后仍要完成任务，不为虚名留下后患。它有明确的历史对象和论述边界，今天可以借鉴其中的判断方法，但不应脱离全文把它变成适用于任何场景的口号。
+historicalEvent: 1949年4月23日，人民解放军占领南京。
+background: 南京解放后，毛泽东以历史典故和时代巨变写胜利，也强调把握时机完成任务。 此卡所选名句着重表现胜势形成后仍要完成任务，不为虚名留下后患。
+story: 《七律·人民解放军占领南京》以景物、行动和历史联想组织诗意。这一句集中呈现胜势形成后仍要完成任务，不为虚名留下后患，既有鲜明画面，也保留了作品写作时的现实背景。
+imageId: original-dawn-city
+sources:
+- name: 中央党史和文献研究院毛泽东诗词引用文章
+  url: https://www.dswxyjy.org.cn/n1/2019/0507/c244523-31071329.html
+  accessedAt: '2026-07-29'
+  type: authoritative
+- name: 共产党员网毛泽东诗词专题
+  url: https://www.12371.cn/2023/08/11/ARTI1691756661352792.shtml
+  accessedAt: '2026-07-29'
+  type: contextual
+review:
+  status: verified
+  checkedAt: '2026-07-29'

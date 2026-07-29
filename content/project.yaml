@@ -1,8 +1,8 @@
 schemaVersion: 3
-contentVersion: 1.3.0
+contentVersion: 1.4.0
 publishedAt: '2026-07-29T00:00:00Z'
 minimumAppVersionCode: 4
-expectedPublishedCards: 31
-releaseNotes: 重组卡片启示、解读与历史背景内容
+expectedPublishedCards: 150
+releaseNotes: 新增119条经典著作、讲话与诗词名句
 repositoryOwner: Hi-prof
 repositoryName: maoxuan

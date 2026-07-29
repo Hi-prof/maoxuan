@@ -1,0 +1,30 @@
+id: 7e8d8bc5-6505-596d-ab23-e9bb809ab17b
+revision: 1
+status: published
+quote: 马克思主义的“本本”是要学习的，但是必须同我国的实际情况相结合。
+literature:
+  series: 毛泽东选集
+  volume: 第一卷
+  workTitle: 反对本本主义
+  authoredAt: 1930-05
+themes:
+- 理论联系实际
+interpretation:
+  inspiration: 学习方法时要理解原理，再用本地事实检验，不能把别人的答案原样搬来。
+  explanation: 《反对本本主义》写到调查研究与理论联系实际时，用这句话说明理论只有同具体条件结合才具有解释和行动价值。它的价值在于把立场转成可分析的关系和行动要求。现代阅读可以获得启发，但不能抹去作品所处的革命和建设语境。
+historicalEvent: 1930年5月，毛泽东写成《反对本本主义》。
+background: 毛泽东总结红军工作经验，批评离开实际调查、照搬书本和上级指示的作风。 此卡所选名句着重表现理论只有同具体条件结合才具有解释和行动价值。
+story: 《反对本本主义》围绕调查研究与理论联系实际逐层展开。这句话把理论只有同具体条件结合才具有解释和行动价值凝练成便于记忆的表达，适合联系全文前后的论证一起阅读。
+imageId: original-river-bridge
+sources:
+- name: 中文马克思主义文库《反对本本主义》全文
+  url: https://www.marxists.org/chinese/maozedong/marxist.org-chinese-mao-193005.htm
+  accessedAt: '2026-07-29'
+  type: original
+- name: 共产党员网《毛泽东选集（第一卷）》
+  url: https://www.12371.cn/special/mzdxj/dyj/
+  accessedAt: '2026-07-29'
+  type: authoritative
+review:
+  status: verified
+  checkedAt: '2026-07-29'

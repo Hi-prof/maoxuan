@@ -1,0 +1,30 @@
+id: 42874fa3-ea2d-5792-a7c1-3cb569459d35
+revision: 1
+status: published
+quote: 善于把党的政策变为群众的行动，善于使我们的每一个运动和每一个斗争不但领导干部懂得，而且广大群众都能懂得，都能掌握。
+literature:
+  series: 毛泽东选集
+  volume: 第四卷
+  workTitle: 对晋绥日报编辑人员的谈话
+  authoredAt: '1948-04-02'
+themes:
+- 政策传播
+interpretation:
+  inspiration: 把专业表述翻译成对象能理解、能执行、能反馈的步骤，并检查信息是否真正到达。
+  explanation: 《对晋绥日报编辑人员的谈话》写到群众办报、政策传播和共同认识时，用这句话说明政策只有被群众理解和掌握，才能转化为实际行动。它的价值在于把立场转成可分析的关系和行动要求。现代阅读可以获得启发，但不能抹去作品所处的革命和建设语境。
+historicalEvent: 1948年4月2日，毛泽东在兴县同晋绥日报编辑人员谈话。
+background: 解放战争时期，毛泽东同晋绥日报编辑人员讨论报纸怎样反映群众、解释政策并推动实际工作。 此卡所选名句着重表现政策只有被群众理解和掌握，才能转化为实际行动。
+story: 《对晋绥日报编辑人员的谈话》围绕群众办报、政策传播和共同认识逐层展开。这句话把政策只有被群众理解和掌握，才能转化为实际行动凝练成便于记忆的表达，适合联系全文前后的论证一起阅读。
+imageId: original-river-bridge
+sources:
+- name: 中文马克思主义文库《对晋绥日报编辑人员的谈话》全文
+  url: https://www.marxists.org/chinese/maozedong/marxist.org-chinese-mao-19480402.htm
+  accessedAt: '2026-07-29'
+  type: original
+- name: 共产党员网《毛泽东选集（第四卷）》
+  url: https://www.12371.cn/special/mzdxj/d4j/
+  accessedAt: '2026-07-29'
+  type: authoritative
+review:
+  status: verified
+  checkedAt: '2026-07-29'

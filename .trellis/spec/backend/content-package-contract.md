@@ -80,6 +80,8 @@ Required invariants:
 - `expectedPublishedCards` is a positive integer and, in formal mode, exactly matches the number of published card YAML files.
 - A card ID is a stable UUID that is never reassigned. `revision` is a positive integer.
 - A published quote is NFC, one paragraph, and at most 90 Unicode code points.
+- Published quotes are unique after NFC normalization; an exact duplicate reports
+  every source YAML file and blocks validation.
 - Every published card contains `interpretation.inspiration` and
   `interpretation.explanation`. Both values are trimmed, non-empty NFC text;
   `inspiration` has a 220-code-point hard limit, `explanation` has a
@@ -95,7 +97,7 @@ Required invariants:
 - Removing a previously active card requires an explicit withdrawal. Snapshot omission alone is invalid.
 - Restoring a withdrawn ID requires a revision greater than the recorded withdrawal revision.
 - Image IDs are immutable: an existing ID cannot point to different bytes.
-- Content `1.3.0` requires Android `versionCode >= 4`. App `1.3.0` reads package
+- Content `1.4.0` requires Android `versionCode >= 4`. App `1.3.0` reads package
   schema 3 only; older package schemas are not silently accepted as partial data.
 
 The builder sorts payloads, serializes compact sorted-key JSON with a trailing
@@ -134,7 +136,7 @@ Assets are decoded and written to a content-addressed internal directory before 
 ## 5. Good / Base / Bad Cases
 
 - Good: publish a new UUID at revision 1 with two sources and a licensed image; it joins the current unread tail after import.
-- Base: rebuild unchanged `1.3.0`; ZIP SHA-256 and manifest bytes remain identical.
+- Base: rebuild unchanged `1.4.0`; ZIP SHA-256 and manifest bytes remain identical.
 - Good: revise a card, provide both interpretation fields and all required
   background fields; App `1.3.0` imports it.
 - Bad: omit `inspiration`, leave a required background field blank, retain
@@ -151,7 +153,10 @@ Assets are decoded and written to a content-addressed internal directory before 
 - Python: schema, UUID/revision, source independence, quote and interpretation
   length/NFC, required interpretation/background children, removed-field
   rejection, image bounds/license, and exact declared formal-count validation,
-  including both missing and surplus cards.
+  including both missing and surplus cards. Exact duplicate published quotes are
+  rejected with both source filenames.
+- Python report: summarize published cards by `workTitle` so editorial checks can
+  enforce per-work limits before building a release.
 - Python: build twice and assert identical package SHA-256 and identical manifest bytes.
 - JVM: valid schema-3 package parse plus blank/oversized interpretation and
   historical event, missing background fields, removed-field rejection,

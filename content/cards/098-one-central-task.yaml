@@ -1,0 +1,30 @@
+id: 8cfd1158-f370-5d0d-912f-0960c7629015
+revision: 1
+status: published
+quote: 在任何一个地区内，不能同时有许多中心工作，在一定时间内只能有一个中心工作，辅以别的第二位、第三位的工作。
+literature:
+  series: 毛泽东选集
+  volume: 第三卷
+  workTitle: 关于领导方法的若干问题
+  authoredAt: '1943-06-01'
+themes:
+- 工作重点
+interpretation:
+  inspiration: 列出所有事项后明确唯一首要目标，并说明次要任务如何支持它，减少资源互相争夺。
+  explanation: 《关于领导方法的若干问题》写到群众路线与领导方法时，用这句话说明一定时期要明确一个中心任务，其他工作围绕它安排轻重。它的价值在于把立场转成可分析的关系和行动要求。现代阅读可以获得启发，但不能抹去作品所处的革命和建设语境。
+historicalEvent: 1943年6月1日，中共中央作出关于领导方法的决定。
+background: 抗日根据地工作中，毛泽东总结一般号召与个别指导、领导骨干与广大群众相结合的方法。 此卡所选名句着重表现一定时期要明确一个中心任务，其他工作围绕它安排轻重。
+story: 《关于领导方法的若干问题》围绕群众路线与领导方法逐层展开。这句话把一定时期要明确一个中心任务，其他工作围绕它安排轻重凝练成便于记忆的表达，适合联系全文前后的论证一起阅读。
+imageId: original-field-paths
+sources:
+- name: 中文马克思主义文库《关于领导方法的若干问题》全文
+  url: https://www.marxists.org/chinese/maozedong/marxist.org-chinese-mao-19430601.htm
+  accessedAt: '2026-07-29'
+  type: original
+- name: 共产党员网《毛泽东选集（第三卷）》
+  url: https://www.12371.cn/special/mzdxj/d3j/
+  accessedAt: '2026-07-29'
+  type: authoritative
+review:
+  status: verified
+  checkedAt: '2026-07-29'

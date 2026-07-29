@@ -1,0 +1,30 @@
+id: 85085056-1f15-5d25-8f6c-ff10f2fd6a5b
+revision: 1
+status: published
+quote: 今日长缨在手，何时缚住苍龙？
+literature:
+  series: 毛泽东诗词
+  volume: 诗词
+  workTitle: 清平乐·六盘山
+  authoredAt: 1935-10
+themes:
+- 主动
+interpretation:
+  inspiration: 拥有工具只是起点，还要明确对象、时机和组织方式，才能把能力转成结果。
+  explanation: 原文出自《清平乐·六盘山》，围绕目标、行程和继续奋斗展开。这句话强调手握长缨的设问写继续战斗、争取胜利的主动姿态。它有明确的历史对象和论述边界，今天可以借鉴其中的判断方法，但不应脱离全文把它变成适用于任何场景的口号。
+historicalEvent: 1935年10月，中央红军翻越六盘山向陕北前进。
+background: 中央红军翻越六盘山时，毛泽东把长征行程、远望和继续战斗的志向写入词中。 此卡所选名句着重表现手握长缨的设问写继续战斗、争取胜利的主动姿态。
+story: 《清平乐·六盘山》以景物、行动和历史联想组织诗意。这一句集中呈现手握长缨的设问写继续战斗、争取胜利的主动姿态，既有鲜明画面，也保留了作品写作时的现实背景。
+imageId: original-printing-press
+sources:
+- name: 中央党史和文献研究院毛泽东诗词引用文章
+  url: https://www.dswxyjy.org.cn/n1/2019/0507/c244523-31071329.html
+  accessedAt: '2026-07-29'
+  type: authoritative
+- name: 共产党员网毛泽东诗词专题
+  url: https://www.12371.cn/2023/08/11/ARTI1691756661352792.shtml
+  accessedAt: '2026-07-29'
+  type: contextual
+review:
+  status: verified
+  checkedAt: '2026-07-29'

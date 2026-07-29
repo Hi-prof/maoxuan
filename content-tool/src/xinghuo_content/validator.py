@@ -444,6 +444,15 @@ def validate_content(root: Path, *, formal: bool = False) -> ValidatedContent:
     duplicate_cards = sorted({item for item in card_ids if card_ids.count(item) > 1})
     if duplicate_cards:
         issues.append(f"duplicate card IDs: {duplicate_cards}")
+    quote_sources: dict[str, list[Path]] = {}
+    for card in card_records:
+        if card.status == "published":
+            quote = unicodedata.normalize("NFC", str(card.payload["quote"]))
+            quote_sources.setdefault(quote, []).append(card.source_file)
+    for quote, source_files in sorted(quote_sources.items()):
+        if len(source_files) > 1:
+            files = ", ".join(str(path) for path in sorted(source_files))
+            issues.append(f"duplicate published quote {quote!r}: {files}")
     known_images = set(image_ids)
     for card in card_records:
         if card.status == "published" and card.payload["imageId"] not in known_images:

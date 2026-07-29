@@ -1,0 +1,30 @@
+id: ba1c5630-4a3b-5c41-bd7d-0819349fb775
+revision: 1
+status: published
+quote: 游击战争基本的方针必须是进攻的；游击战争是防御战的一部分，然而它本身必须是进攻的。
+literature:
+  series: 毛泽东选集
+  volume: 第二卷
+  workTitle: 抗日游击战争的战略问题
+  authoredAt: 1938-05
+themes:
+- 战略主动
+interpretation:
+  inspiration: 即使资源有限，也应寻找能改变局面的主动动作，而不是把谨慎等同于完全被动。
+  explanation: 在《抗日游击战争的战略问题》讨论游击战争的战略地位与主动性的语境中，这句话把重点放在总体防御中的具体行动仍要争取主动和有效进攻。理解它需要同时看到当时的任务和条件；用于今天时，应保留这种具体分析意识，而不是只取一句表面的豪迈表达。
+historicalEvent: 1938年5月，毛泽东系统论述抗日游击战争的战略作用。
+background: 全面抗战初期，毛泽东论证游击战争不是零散战术，而是在持久抗战中具有战略地位。 此卡所选名句着重表现总体防御中的具体行动仍要争取主动和有效进攻。
+story: 《抗日游击战争的战略问题》围绕游击战争的战略地位与主动性逐层展开。这句话把总体防御中的具体行动仍要争取主动和有效进攻凝练成便于记忆的表达，适合联系全文前后的论证一起阅读。
+imageId: original-reading-lamp
+sources:
+- name: 中文马克思主义文库《抗日游击战争的战略问题》全文
+  url: https://www.marxists.org/chinese/maozedong/marxist.org-chinese-mao-193805.htm
+  accessedAt: '2026-07-29'
+  type: original
+- name: 共产党员网《毛泽东选集（第二卷）》
+  url: https://www.12371.cn/special/mzdxj/dej/
+  accessedAt: '2026-07-29'
+  type: authoritative
+review:
+  status: verified
+  checkedAt: '2026-07-29'

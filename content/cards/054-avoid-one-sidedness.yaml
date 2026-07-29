@@ -1,0 +1,30 @@
+id: dd7a0598-5f76-550a-890a-d44dff2d3c66
+revision: 1
+status: published
+quote: 研究问题，忌带主观性、片面性和表面性。
+literature:
+  series: 毛泽东选集
+  volume: 第一卷
+  workTitle: 矛盾论
+  authoredAt: 1937-08
+themes:
+- 研究方法
+interpretation:
+  inspiration: 下判断前主动寻找反例、缺失视角和深层原因，尤其检查最符合自己预期的证据。
+  explanation: 《矛盾论》写到用矛盾分析理解事物发展时，用这句话说明研究要防止以个人愿望代替事实、只看一面或停在表象。它的价值在于把立场转成可分析的关系和行动要求。现代阅读可以获得启发，但不能抹去作品所处的革命和建设语境。
+historicalEvent: 1937年8月，毛泽东在延安讲授矛盾法则。
+background: 毛泽东在延安讲授辩证法，讨论矛盾的普遍性、特殊性、主要方面以及内外因关系。 此卡所选名句着重表现研究要防止以个人愿望代替事实、只看一面或停在表象。
+story: 《矛盾论》围绕用矛盾分析理解事物发展逐层展开。这句话把研究要防止以个人愿望代替事实、只看一面或停在表象凝练成便于记忆的表达，适合联系全文前后的论证一起阅读。
+imageId: original-river-bridge
+sources:
+- name: 中文马克思主义文库《矛盾论》全文
+  url: https://www.marxists.org/chinese/maozedong/marxist.org-chinese-mao-193708.htm
+  accessedAt: '2026-07-29'
+  type: original
+- name: 共产党员网《毛泽东选集（第一卷）》
+  url: https://www.12371.cn/special/mzdxj/dyj/
+  accessedAt: '2026-07-29'
+  type: authoritative
+review:
+  status: verified
+  checkedAt: '2026-07-29'

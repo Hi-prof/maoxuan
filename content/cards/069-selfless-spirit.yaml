@@ -1,0 +1,30 @@
+id: 88e0ce9a-b56c-536c-98dc-2e85fda941d2
+revision: 1
+status: published
+quote: 我们大家要学习他毫无自私自利之心的精神。
+literature:
+  series: 毛泽东选集
+  volume: 第二卷
+  workTitle: 纪念白求恩
+  authoredAt: '1939-12-21'
+themes:
+- 无私
+interpretation:
+  inspiration: 面对职责先把事情做好、把影响说明白，再考虑个人得失和表面评价。
+  explanation: 在《纪念白求恩》讨论国际主义、责任心和无私精神的语境中，这句话把重点放在无私不是抽象姿态，而是把公共任务、专业责任和他人需要置于私利之前。理解它需要同时看到当时的任务和条件；用于今天时，应保留这种具体分析意识，而不是只取一句表面的豪迈表达。
+historicalEvent: 1939年12月21日，毛泽东写作《纪念白求恩》。
+background: 加拿大医生白求恩在抗日前线牺牲后，毛泽东撰文纪念其国际主义、责任心和无私精神。 此卡所选名句着重表现无私不是抽象姿态，而是把公共任务、专业责任和他人需要置于私利之前。
+story: 《纪念白求恩》围绕国际主义、责任心和无私精神逐层展开。这句话把无私不是抽象姿态，而是把公共任务、专业责任和他人需要置于私利之前凝练成便于记忆的表达，适合联系全文前后的论证一起阅读。
+imageId: original-reading-lamp
+sources:
+- name: 中文马克思主义文库《纪念白求恩》全文
+  url: https://www.marxists.org/chinese/maozedong/marxist.org-chinese-mao-19391221.htm
+  accessedAt: '2026-07-29'
+  type: original
+- name: 共产党员网《毛泽东选集（第二卷）》
+  url: https://www.12371.cn/special/mzdxj/dej/
+  accessedAt: '2026-07-29'
+  type: authoritative
+review:
+  status: verified
+  checkedAt: '2026-07-29'

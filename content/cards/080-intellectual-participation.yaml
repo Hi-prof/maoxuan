@@ -1,0 +1,30 @@
+id: dea1cc43-f2c4-5708-b3a1-3e5721e60177
+revision: 1
+status: published
+quote: 革命的力量的组织和革命工作的建设，离开革命的知识分子的参加，是不能成功的。
+literature:
+  series: 毛泽东选集
+  volume: 第二卷
+  workTitle: 五四运动
+  authoredAt: '1939-05-01'
+themes:
+- 人才
+interpretation:
+  inspiration: 让专业知识进入真实任务，同时用群众实践校准专业判断，形成相互学习。
+  explanation: 原文出自《五四运动》，围绕青年、知识分子与群众结合展开。这句话强调知识分子参与是组织力量和建设工作的重要条件。它有明确的历史对象和论述边界，今天可以借鉴其中的判断方法，但不应脱离全文把它变成适用于任何场景的口号。
+historicalEvent: 1939年5月1日，毛泽东为五四运动二十周年写作此文。
+background: 五四运动二十周年之际，毛泽东分析知识分子、青年学生与工农群众在民主革命中的结合。 此卡所选名句着重表现知识分子参与是组织力量和建设工作的重要条件。
+story: 《五四运动》围绕青年、知识分子与群众结合逐层展开。这句话把知识分子参与是组织力量和建设工作的重要条件凝练成便于记忆的表达，适合联系全文前后的论证一起阅读。
+imageId: original-dawn-city
+sources:
+- name: 中文马克思主义文库《五四运动》全文
+  url: https://www.marxists.org/chinese/maozedong/marxist.org-chinese-mao-19390501.htm
+  accessedAt: '2026-07-29'
+  type: original
+- name: 共产党员网《毛泽东选集（第二卷）》
+  url: https://www.12371.cn/special/mzdxj/dej/
+  accessedAt: '2026-07-29'
+  type: authoritative
+review:
+  status: verified
+  checkedAt: '2026-07-29'

@@ -1,0 +1,30 @@
+id: 2f0cd7cc-549a-546e-a47e-3fb92510472f
+revision: 1
+status: published
+quote: 青年是整个社会力量中的一部分最积极最有生气的力量。
+literature:
+  series: 毛泽东选集
+  volume: 第二卷
+  workTitle: 青年运动的方向
+  authoredAt: '1939-05-04'
+themes:
+- 青年
+interpretation:
+  inspiration: 给年轻人真实责任、反馈和成长空间，让活力进入实际工作，而不是只作象征。
+  explanation: 《青年运动的方向》写到青年力量和实践方向时，用这句话说明青年往往具有学习快、行动强和愿意改变现状的特点。它的价值在于把立场转成可分析的关系和行动要求。现代阅读可以获得启发，但不能抹去作品所处的革命和建设语境。
+historicalEvent: 1939年5月4日，毛泽东在延安青年群众纪念五四运动大会上讲演。
+background: 五四运动二十周年纪念会上，毛泽东讨论青年运动的方向以及知识分子同工农群众结合的标准。 此卡所选名句着重表现青年往往具有学习快、行动强和愿意改变现状的特点。
+story: 《青年运动的方向》围绕青年力量和实践方向逐层展开。这句话把青年往往具有学习快、行动强和愿意改变现状的特点凝练成便于记忆的表达，适合联系全文前后的论证一起阅读。
+imageId: original-field-paths
+sources:
+- name: 中文马克思主义文库《青年运动的方向》全文
+  url: https://www.marxists.org/chinese/maozedong/marxist.org-chinese-mao-19390504.htm
+  accessedAt: '2026-07-29'
+  type: original
+- name: 共产党员网《毛泽东选集（第二卷）》
+  url: https://www.12371.cn/special/mzdxj/dej/
+  accessedAt: '2026-07-29'
+  type: authoritative
+review:
+  status: verified
+  checkedAt: '2026-07-29'

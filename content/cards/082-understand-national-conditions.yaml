@@ -1,0 +1,30 @@
+id: 8c571349-9d32-599c-82a4-9212215aa779
+revision: 1
+status: published
+quote: 认清中国的国情，乃是认清一切革命问题的基本的根据。
+literature:
+  series: 毛泽东选集
+  volume: 第二卷
+  workTitle: 中国革命和中国共产党
+  authoredAt: 1939-12
+themes:
+- 国情
+interpretation:
+  inspiration: 套用外部经验前先研究本地历史、结构和约束，让方案从真实条件出发。
+  explanation: 《中国革命和中国共产党》写到从国情出发认识革命问题时，用这句话说明对具体国情的认识是制定革命判断和路线的基础。它的价值在于把立场转成可分析的关系和行动要求。现代阅读可以获得启发，但不能抹去作品所处的革命和建设语境。
+historicalEvent: 1939年冬，毛泽东参与编写《中国革命和中国共产党》。
+background: 为干部教育需要，毛泽东等系统说明中国社会性质、革命对象、动力、性质和前途。 此卡所选名句着重表现对具体国情的认识是制定革命判断和路线的基础。
+story: 《中国革命和中国共产党》围绕从国情出发认识革命问题逐层展开。这句话把对具体国情的认识是制定革命判断和路线的基础凝练成便于记忆的表达，适合联系全文前后的论证一起阅读。
+imageId: original-field-paths
+sources:
+- name: 中文马克思主义文库《中国革命和中国共产党》全文
+  url: https://www.marxists.org/chinese/maozedong/marxist.org-chinese-mao-193912.htm
+  accessedAt: '2026-07-29'
+  type: original
+- name: 共产党员网《毛泽东选集（第二卷）》
+  url: https://www.12371.cn/special/mzdxj/dej/
+  accessedAt: '2026-07-29'
+  type: authoritative
+review:
+  status: verified
+  checkedAt: '2026-07-29'

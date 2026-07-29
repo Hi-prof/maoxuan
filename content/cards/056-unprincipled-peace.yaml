@@ -1,0 +1,30 @@
+id: 05dc6f7b-fff7-5e17-8674-bb57968bb3bd
+revision: 1
+status: published
+quote: 自由主义取消思想斗争，主张无原则的和平，结果是腐朽庸俗的作风发生。
+literature:
+  series: 毛泽东选集
+  volume: 第二卷
+  workTitle: 反对自由主义
+  authoredAt: '1937-09-07'
+themes:
+- 原则
+interpretation:
+  inspiration: 讨论分歧时对事不对人，把原则、事实和可执行改进讲清楚，不用沉默维持假和平。
+  explanation: 原文出自《反对自由主义》，围绕原则、责任和组织团结展开。这句话强调回避必要分歧只能换来表面和气，并不能形成真正团结。它有明确的历史对象和论述边界，今天可以借鉴其中的判断方法，但不应脱离全文把它变成适用于任何场景的口号。
+historicalEvent: 1937年9月7日，毛泽东写成《反对自由主义》。
+background: 全面抗战开始后，毛泽东列举组织生活中的自由主义表现，强调原则、团结和思想斗争。 此卡所选名句着重表现回避必要分歧只能换来表面和气，并不能形成真正团结。
+story: 《反对自由主义》围绕原则、责任和组织团结逐层展开。这句话把回避必要分歧只能换来表面和气，并不能形成真正团结凝练成便于记忆的表达，适合联系全文前后的论证一起阅读。
+imageId: original-dawn-city
+sources:
+- name: 中文马克思主义文库《反对自由主义》全文
+  url: https://www.marxists.org/chinese/maozedong/marxist.org-chinese-mao-19370907.htm
+  accessedAt: '2026-07-29'
+  type: original
+- name: 共产党员网《毛泽东选集（第二卷）》
+  url: https://www.12371.cn/special/mzdxj/dej/
+  accessedAt: '2026-07-29'
+  type: authoritative
+review:
+  status: verified
+  checkedAt: '2026-07-29'

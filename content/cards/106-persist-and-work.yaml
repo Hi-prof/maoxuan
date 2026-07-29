@@ -1,0 +1,30 @@
+id: 20b80136-6d3b-5a40-a0a0-47529c30e921
+revision: 1
+status: published
+quote: 我们一定要坚持下去，一定要不断地工作，我们也会感动上帝的。
+literature:
+  series: 毛泽东选集
+  volume: 第三卷
+  workTitle: 愚公移山
+  authoredAt: '1945-06-11'
+themes:
+- 坚持
+interpretation:
+  inspiration: 坚持不是重复耗费，要在长期方向下持续行动、积累支持并根据反馈调整办法。
+  explanation: 《愚公移山》写到长期奋斗、人民支持和胜利信心时，用这句话说明长期目标需要持续工作，并依靠人民大众形成最终力量。它的价值在于把立场转成可分析的关系和行动要求。现代阅读可以获得启发，但不能抹去作品所处的革命和建设语境。
+historicalEvent: 1945年6月11日，毛泽东在中国共产党第七次全国代表大会上致闭幕词。
+background: 中共七大闭幕时，毛泽东借愚公移山寓言说明长期奋斗、人民支持和推翻压迫力量的信心。 此卡所选名句着重表现长期目标需要持续工作，并依靠人民大众形成最终力量。
+story: 《愚公移山》围绕长期奋斗、人民支持和胜利信心逐层展开。这句话把长期目标需要持续工作，并依靠人民大众形成最终力量凝练成便于记忆的表达，适合联系全文前后的论证一起阅读。
+imageId: original-field-paths
+sources:
+- name: 中文马克思主义文库《愚公移山》全文
+  url: https://www.marxists.org/chinese/maozedong/marxist.org-chinese-mao-19450611.htm
+  accessedAt: '2026-07-29'
+  type: original
+- name: 共产党员网《毛泽东选集（第三卷）》
+  url: https://www.12371.cn/special/mzdxj/d3j/
+  accessedAt: '2026-07-29'
+  type: authoritative
+review:
+  status: verified
+  checkedAt: '2026-07-29'

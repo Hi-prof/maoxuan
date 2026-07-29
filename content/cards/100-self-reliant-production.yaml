@@ -1,0 +1,30 @@
+id: 95caad8b-c8d4-56af-b4de-ee2f93444c27
+revision: 1
+status: published
+quote: 我们用自己动手的方法，达到了丰衣足食的目的。
+literature:
+  series: 毛泽东选集
+  volume: 第三卷
+  workTitle: 组织起来
+  authoredAt: '1943-11-29'
+themes:
+- 自力更生
+interpretation:
+  inspiration: 资源受限时先盘点能够自主创造的条件，用组织生产和实际协作减少被动等待。
+  explanation: 原文出自《组织起来》，围绕组织群众和发挥集体创造力展开。这句话强调根据地军民通过自己动手开展生产来克服物资困难。它有明确的历史对象和论述边界，今天可以借鉴其中的判断方法，但不应脱离全文把它变成适用于任何场景的口号。
+historicalEvent: 1943年11月29日，毛泽东在陕甘宁边区劳动英雄大会上讲话。
+background: 抗日根据地开展大生产运动，毛泽东强调通过合作组织把分散的群众力量和生产积极性结合起来。 此卡所选名句着重表现根据地军民通过自己动手开展生产来克服物资困难。
+story: 《组织起来》围绕组织群众和发挥集体创造力逐层展开。这句话把根据地军民通过自己动手开展生产来克服物资困难凝练成便于记忆的表达，适合联系全文前后的论证一起阅读。
+imageId: original-printing-press
+sources:
+- name: 中文马克思主义文库《组织起来》全文
+  url: https://www.marxists.org/chinese/maozedong/marxist.org-chinese-mao-19431129.htm
+  accessedAt: '2026-07-29'
+  type: original
+- name: 共产党员网《毛泽东选集（第三卷）》
+  url: https://www.12371.cn/special/mzdxj/d3j/
+  accessedAt: '2026-07-29'
+  type: authoritative
+review:
+  status: verified
+  checkedAt: '2026-07-29'

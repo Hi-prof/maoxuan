@@ -1,0 +1,30 @@
+id: 2446dffa-969b-597e-abd0-e893bbf54966
+revision: 1
+status: published
+quote: 我们要的是马克思列宁主义的学风。
+literature:
+  series: 毛泽东选集
+  volume: 第三卷
+  workTitle: 整顿党的作风
+  authoredAt: '1942-02-01'
+themes:
+- 学风
+interpretation:
+  inspiration: 评价学习不要只看记住多少术语，要看能否解释问题、指导实践并根据结果修正。
+  explanation: 在《整顿党的作风》讨论整风、学风和组织作风的语境中，这句话把重点放在整风首先要求形成理论联系实际、实事求是的学风。理解它需要同时看到当时的任务和条件；用于今天时，应保留这种具体分析意识，而不是只取一句表面的豪迈表达。
+historicalEvent: 1942年2月1日，毛泽东在中央党校开学典礼上演说。
+background: 延安整风运动中，毛泽东分析主观主义、宗派主义和党八股的危害，提出整顿学风、党风和文风。 此卡所选名句着重表现整风首先要求形成理论联系实际、实事求是的学风。
+story: 《整顿党的作风》围绕整风、学风和组织作风逐层展开。这句话把整风首先要求形成理论联系实际、实事求是的学风凝练成便于记忆的表达，适合联系全文前后的论证一起阅读。
+imageId: original-distant-mountains
+sources:
+- name: 中文马克思主义文库《整顿党的作风》全文
+  url: https://www.marxists.org/chinese/maozedong/marxist.org-chinese-mao-19420201.htm
+  accessedAt: '2026-07-29'
+  type: original
+- name: 共产党员网《毛泽东选集（第三卷）》
+  url: https://www.12371.cn/special/mzdxj/d3j/
+  accessedAt: '2026-07-29'
+  type: authoritative
+review:
+  status: verified
+  checkedAt: '2026-07-29'

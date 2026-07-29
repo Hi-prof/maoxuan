@@ -1,0 +1,30 @@
+id: a06af26f-ee78-5bf8-b603-c372f6e19646
+revision: 1
+status: published
+quote: 革命党是群众的向导，在革命中未有革命党领错了路而革命不失败的。
+literature:
+  series: 毛泽东选集
+  volume: 第一卷
+  workTitle: 中国社会各阶级的分析
+  authoredAt: '1925-12-01'
+themes:
+- 群众路线
+interpretation:
+  inspiration: 带领团队前先校准目标、对象和事实依据，不能只凭热情催促行动。
+  explanation: 原文出自《中国社会各阶级的分析》，围绕辨明社会力量与革命同盟展开。这句话强调方向错误会使群众力量付出代价，领导首先要辨清道路。它有明确的历史对象和论述边界，今天可以借鉴其中的判断方法，但不应脱离全文把它变成适用于任何场景的口号。
+historicalEvent: 1925年12月1日，毛泽东写成《中国社会各阶级的分析》。
+background: 第一次国共合作时期，毛泽东分析中国各阶级的经济地位和政治态度，回答革命应依靠谁、团结谁和反对谁。 此卡所选名句着重表现方向错误会使群众力量付出代价，领导首先要辨清道路。
+story: 《中国社会各阶级的分析》围绕辨明社会力量与革命同盟逐层展开。这句话把方向错误会使群众力量付出代价，领导首先要辨清道路凝练成便于记忆的表达，适合联系全文前后的论证一起阅读。
+imageId: original-dawn-city
+sources:
+- name: 中文马克思主义文库《中国社会各阶级的分析》全文
+  url: https://www.marxists.org/chinese/maozedong/marxist.org-chinese-mao-19251201.htm
+  accessedAt: '2026-07-29'
+  type: original
+- name: 共产党员网《毛泽东选集（第一卷）》
+  url: https://www.12371.cn/special/mzdxj/dyj/
+  accessedAt: '2026-07-29'
+  type: authoritative
+review:
+  status: verified
+  checkedAt: '2026-07-29'

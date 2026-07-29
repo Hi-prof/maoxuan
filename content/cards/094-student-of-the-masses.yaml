@@ -1,0 +1,30 @@
+id: 71281df7-a0f3-5701-b224-161b47acbd02
+revision: 1
+status: published
+quote: 只有代表群众才能教育群众，只有做群众的学生才能做群众的先生。
+literature:
+  series: 毛泽东选集
+  volume: 第三卷
+  workTitle: 在延安文艺座谈会上的讲话
+  authoredAt: 1942-05
+themes:
+- 向群众学习
+interpretation:
+  inspiration: 提供建议前进入对方处境，听懂经验和困难；真正的指导来自双向学习。
+  explanation: 《在延安文艺座谈会上的讲话》写到文艺的人民立场、普及和提高时，用这句话说明教育群众的前提是先理解、代表并向群众学习。它的价值在于把立场转成可分析的关系和行动要求。现代阅读可以获得启发，但不能抹去作品所处的革命和建设语境。
+historicalEvent: 1942年5月，延安文艺座谈会召开，毛泽东作结论讲话。
+background: 延安文艺座谈会上，毛泽东讨论文艺为谁服务、怎样服务，以及文艺工作者同群众生活的关系。 此卡所选名句着重表现教育群众的前提是先理解、代表并向群众学习。
+story: 《在延安文艺座谈会上的讲话》围绕文艺的人民立场、普及和提高逐层展开。这句话把教育群众的前提是先理解、代表并向群众学习凝练成便于记忆的表达，适合联系全文前后的论证一起阅读。
+imageId: original-river-bridge
+sources:
+- name: 中文马克思主义文库《在延安文艺座谈会上的讲话》全文
+  url: https://www.marxists.org/chinese/maozedong/marxist.org-chinese-mao-194205.htm
+  accessedAt: '2026-07-29'
+  type: original
+- name: 共产党员网《毛泽东选集（第三卷）》
+  url: https://www.12371.cn/special/mzdxj/d3j/
+  accessedAt: '2026-07-29'
+  type: authoritative
+review:
+  status: verified
+  checkedAt: '2026-07-29'

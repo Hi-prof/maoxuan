@@ -1,0 +1,30 @@
+id: bdb77d70-53cd-5860-8243-3773e671789b
+revision: 1
+status: published
+quote: 只有进步才能团结，只有团结才能抗日，只有进步、团结、抗日才能统一。
+literature:
+  series: 毛泽东选集
+  volume: 第二卷
+  workTitle: 团结一切抗日力量，反对反共顽固派
+  authoredAt: '1940-02-01'
+themes:
+- 团结
+interpretation:
+  inspiration: 共同目标要有实际进步作基础，团结也要通过行动成果而不是形式口号来巩固。
+  explanation: 在《团结一切抗日力量，反对反共顽固派》讨论抗日力量的团结与反分裂的语境中，这句话把重点放在进步、团结和抗日被说明为相互支撑的关系。理解它需要同时看到当时的任务和条件；用于今天时，应保留这种具体分析意识，而不是只取一句表面的豪迈表达。
+historicalEvent: 1940年2月1日，毛泽东在延安民众大会上演说。
+background: 抗日统一战线面临反共摩擦，毛泽东在延安会议上强调团结抗日力量并反对分裂倒退。 此卡所选名句着重表现进步、团结和抗日被说明为相互支撑的关系。
+story: 《团结一切抗日力量，反对反共顽固派》围绕抗日力量的团结与反分裂逐层展开。这句话把进步、团结和抗日被说明为相互支撑的关系凝练成便于记忆的表达，适合联系全文前后的论证一起阅读。
+imageId: original-reading-lamp
+sources:
+- name: 中文马克思主义文库《团结一切抗日力量，反对反共顽固派》全文
+  url: https://www.marxists.org/chinese/maozedong/marxist.org-chinese-mao-19400201.htm
+  accessedAt: '2026-07-29'
+  type: original
+- name: 共产党员网《毛泽东选集（第二卷）》
+  url: https://www.12371.cn/special/mzdxj/dej/
+  accessedAt: '2026-07-29'
+  type: authoritative
+review:
+  status: verified
+  checkedAt: '2026-07-29'

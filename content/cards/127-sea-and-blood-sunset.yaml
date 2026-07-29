@@ -1,0 +1,30 @@
+id: 7ad5b068-3100-5fa2-824c-f1728b6c458a
+revision: 1
+status: published
+quote: 苍山如海，残阳如血。
+literature:
+  series: 毛泽东诗词
+  volume: 诗词
+  workTitle: 忆秦娥·娄山关
+  authoredAt: 1935-02
+themes:
+- 历史画面
+interpretation:
+  inspiration: 宏阔景象并不抹去牺牲；回望重要阶段时，要同时记住成果和代价。
+  explanation: 这句话来自《忆秦娥·娄山关》，原文关注挫折后的重启和艰难行进，核心是用苍山和残阳收束战后行军的壮阔与凝重。名句流传很广，准确理解仍要回到上下文：既看到它提供的精神力量，也看到成立所需的事实、组织和历史条件。
+historicalEvent: 1935年2月，中央红军在娄山关战斗中取得胜利。
+background: 遵义会议后红军再战娄山关，作品既写战斗的紧张，也写越过雄关、重新出发。 此卡所选名句着重表现用苍山和残阳收束战后行军的壮阔与凝重。
+story: 《忆秦娥·娄山关》以景物、行动和历史联想组织诗意。这一句集中呈现用苍山和残阳收束战后行军的壮阔与凝重，既有鲜明画面，也保留了作品写作时的现实背景。
+imageId: original-workshop
+sources:
+- name: 中央党史和文献研究院毛泽东诗词引用文章
+  url: https://www.dswxyjy.org.cn/n1/2019/0507/c244523-31071329.html
+  accessedAt: '2026-07-29'
+  type: authoritative
+- name: 共产党员网毛泽东诗词专题
+  url: https://www.12371.cn/2023/08/11/ARTI1691756661352792.shtml
+  accessedAt: '2026-07-29'
+  type: contextual
+review:
+  status: verified
+  checkedAt: '2026-07-29'

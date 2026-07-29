@@ -1,0 +1,30 @@
+id: 68dd4f1c-1aeb-580e-b72f-3ecb9eb93d3d
+revision: 1
+status: published
+quote: 雄关漫道真如铁，而今迈步从头越。
+literature:
+  series: 毛泽东诗词
+  volume: 诗词
+  workTitle: 忆秦娥·娄山关
+  authoredAt: 1935-02
+themes:
+- 重新出发
+interpretation:
+  inspiration: 受挫后先接受重启的成本，把下一步走稳，比反复沉溺于过去更重要。
+  explanation: 《忆秦娥·娄山关》写到挫折后的重启和艰难行进时，用这句话说明承认雄关艰险，同时把重心放在从头迈步。它的价值在于把立场转成可分析的关系和行动要求。现代阅读可以获得启发，但不能抹去作品所处的革命和建设语境。
+historicalEvent: 1935年2月，中央红军在娄山关战斗中取得胜利。
+background: 遵义会议后红军再战娄山关，作品既写战斗的紧张，也写越过雄关、重新出发。 此卡所选名句着重表现承认雄关艰险，同时把重心放在从头迈步。
+story: 《忆秦娥·娄山关》以景物、行动和历史联想组织诗意。这一句集中呈现承认雄关艰险，同时把重心放在从头迈步，既有鲜明画面，也保留了作品写作时的现实背景。
+imageId: original-river-bridge
+sources:
+- name: 中央党史和文献研究院毛泽东诗词引用文章
+  url: https://www.dswxyjy.org.cn/n1/2019/0507/c244523-31071329.html
+  accessedAt: '2026-07-29'
+  type: authoritative
+- name: 共产党员网毛泽东诗词专题
+  url: https://www.12371.cn/2023/08/11/ARTI1691756661352792.shtml
+  accessedAt: '2026-07-29'
+  type: contextual
+review:
+  status: verified
+  checkedAt: '2026-07-29'

@@ -1,0 +1,30 @@
+id: e9bac50b-4e80-5880-bf9e-41f8f6370f96
+revision: 1
+status: published
+quote: 我们的方针是统一战线中的独立自主，既统一，又独立。
+literature:
+  series: 毛泽东选集
+  volume: 第二卷
+  workTitle: 统一战线中的独立自主问题
+  authoredAt: '1938-11-05'
+themes:
+- 统一战线
+interpretation:
+  inspiration: 参与合作时明确共同目标、自己的原则和决策边界，避免把配合变成失去判断。
+  explanation: 《统一战线中的独立自主问题》写到合作中的原则和独立判断时，用这句话说明合作与独立判断不是二选一，二者需要同时保持。它的价值在于把立场转成可分析的关系和行动要求。现代阅读可以获得启发，但不能抹去作品所处的革命和建设语境。
+historicalEvent: 1938年11月5日，毛泽东在中共六届六中全会上作结论。
+background: 抗日民族统一战线发展中，毛泽东说明合作与独立自主必须同时坚持，反对取消自身原则。 此卡所选名句着重表现合作与独立判断不是二选一，二者需要同时保持。
+story: 《统一战线中的独立自主问题》围绕合作中的原则和独立判断逐层展开。这句话把合作与独立判断不是二选一，二者需要同时保持凝练成便于记忆的表达，适合联系全文前后的论证一起阅读。
+imageId: original-river-bridge
+sources:
+- name: 中文马克思主义文库《统一战线中的独立自主问题》全文
+  url: https://www.marxists.org/chinese/maozedong/marxist.org-chinese-mao-19381105.htm
+  accessedAt: '2026-07-29'
+  type: original
+- name: 共产党员网《毛泽东选集（第二卷）》
+  url: https://www.12371.cn/special/mzdxj/dej/
+  accessedAt: '2026-07-29'
+  type: authoritative
+review:
+  status: verified
+  checkedAt: '2026-07-29'

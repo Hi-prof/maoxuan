@@ -1,0 +1,30 @@
+id: 47b8ef98-d874-5896-9b81-2457a9cf2af8
+revision: 1
+status: published
+quote: 没有全局在胸，是不会真的投下一着好棋子的。
+literature:
+  series: 毛泽东选集
+  volume: 第一卷
+  workTitle: 中国革命战争的战略问题
+  authoredAt: 1936-12
+themes:
+- 全局思维
+interpretation:
+  inspiration: 做关键选择前画出目标、资源、依赖和连锁反应，再判断这一着是否值得。
+  explanation: 这句话来自《中国革命战争的战略问题》，原文关注战略判断、主动权和力量配置，核心是局部动作的价值取决于它在全局中的位置和后续影响。名句流传很广，准确理解仍要回到上下文：既看到它提供的精神力量，也看到成立所需的事实、组织和历史条件。
+historicalEvent: 1936年12月，毛泽东在陕北红军大学讲授革命战争战略问题。
+background: 毛泽东总结土地革命战争经验，系统讨论战争规律、主动权、集中兵力和战略防御。 此卡所选名句着重表现局部动作的价值取决于它在全局中的位置和后续影响。
+story: 《中国革命战争的战略问题》围绕战略判断、主动权和力量配置逐层展开。这句话把局部动作的价值取决于它在全局中的位置和后续影响凝练成便于记忆的表达，适合联系全文前后的论证一起阅读。
+imageId: original-memorial-pine
+sources:
+- name: 中文马克思主义文库《中国革命战争的战略问题》全文
+  url: https://www.marxists.org/chinese/maozedong/marxist.org-chinese-mao-193612.htm
+  accessedAt: '2026-07-29'
+  type: original
+- name: 共产党员网《毛泽东选集（第一卷）》
+  url: https://www.12371.cn/special/mzdxj/dyj/
+  accessedAt: '2026-07-29'
+  type: authoritative
+review:
+  status: verified
+  checkedAt: '2026-07-29'
