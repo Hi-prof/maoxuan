@@ -69,7 +69,7 @@ ANDROID_RELEASE_KEY_PASSWORD
 https://github.com/Hi-prof/maoxuan/releases/latest/download/manifest.json
 ```
 
-当前内容 Release 为 [`content-v1.3.0`](https://github.com/Hi-prof/maoxuan/releases/tag/content-v1.3.0)，App 通过上述稳定清单地址手动检查更新；GitHub 暂时不可访问时仍不影响内置内容和本地阅读。
+当前内容 Release 为 [`content-v1.4.0`](https://github.com/Hi-prof/maoxuan/releases/tag/content-v1.4.0)，App 通过上述稳定清单地址手动检查更新；GitHub 暂时不可访问时仍不影响内置内容和本地阅读。
 
 ## 编辑内容
 

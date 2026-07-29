@@ -156,7 +156,7 @@
 **Produces:** GitHub 上可下载、可校验且可覆盖升级的 1.4.0 正式 APK；latest 仍指向内容 Release。
 
 - [x] 将 Android 版本升级到 `versionCode=5`、`versionName=1.4.0`，同步 App Release 工作流版本断言。
-- [ ] 重跑内容、Android 和 Trellis 完整质量门禁，仅提交本任务文件并推送 `main`。
-- [ ] 推送 `content-v1.4.0` 标签，等待工作流成功并校验公开内容包与 manifest。
-- [ ] 推送 `app-v1.4.0` 标签，等待工作流成功并校验 APK 签名、包名、版本、SHA-256 及 non-latest 状态。
+- [x] 重跑内容、Android 和 Trellis 完整质量门禁，仅提交本任务文件并推送 `main`。
+- [x] 推送 `content-v1.4.0` 标签，等待工作流成功并校验公开内容包与 manifest。
+- [x] 推送 `app-v1.4.0` 标签，等待工作流成功并校验 APK 签名、包名、版本、SHA-256 及 non-latest 状态。
 - [ ] 更新发布记录并完成 Trellis 归档，不提交用户的 `CardActions` 相关改动。

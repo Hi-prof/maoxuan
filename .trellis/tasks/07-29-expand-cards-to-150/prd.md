@@ -36,7 +36,7 @@
 - [x] 内容报告可生成，内容包连续构建两次结果确定一致。
 - [x] `app/src/main/assets/bootstrap.zip` 与新内容快照同步，Android 内容解析相关单元测试通过。
 - [x] README 中内置卡片数量与当前内容版本说明同步更新。
-- [ ] `content-v1.4.0` 成为 latest 内容 Release，`app-v1.4.0` 作为 non-latest Release 发布已签名 APK 与 SHA-256 文件。
+- [x] `content-v1.4.0` 成为 latest 内容 Release，`app-v1.4.0` 作为 non-latest Release 发布已签名 APK 与 SHA-256 文件。
 
 ## Out Of Scope
 
