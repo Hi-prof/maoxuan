@@ -1,8 +1,8 @@
 schemaVersion: 3
-contentVersion: 1.4.0
-publishedAt: '2026-07-29T00:00:00Z'
+contentVersion: 1.4.1
+publishedAt: '2026-08-01T00:00:00Z'
 minimumAppVersionCode: 4
 expectedPublishedCards: 150
-releaseNotes: 新增119条经典著作、讲话与诗词名句
+releaseNotes: 版型更新，用于验证客户端手动检查更新和内容拉取
 repositoryOwner: Hi-prof
 repositoryName: maoxuan

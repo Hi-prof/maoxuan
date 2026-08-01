@@ -61,7 +61,7 @@ ANDROID_RELEASE_KEY_ALIAS
 ANDROID_RELEASE_KEY_PASSWORD
 ```
 
-四项配置缺一时，Gradle 会在正式打包任务执行前失败；debug、personal 和 lint 不依赖正式密钥。keystore 与密码不得写入仓库、Gradle 属性或构建日志。当前 App 版本为 `1.5.0`（version code 6），源码内容版本为 `1.4.0`；`dist/` 仍是忽略的本地构建目录，不提交 APK 到源码仓库。
+四项配置缺一时，Gradle 会在正式打包任务执行前失败；debug、personal 和 lint 不依赖正式密钥。keystore 与密码不得写入仓库、Gradle 属性或构建日志。当前 App 版本为 `1.5.0`（version code 6），APK 内置内容版本为 `1.4.0`，源码内容版本为 `1.4.1`；`dist/` 仍是忽略的本地构建目录，不提交 APK 到源码仓库。
 
 客户端当前配置的内容地址为：
 
@@ -69,7 +69,7 @@ ANDROID_RELEASE_KEY_PASSWORD
 https://github.com/Hi-prof/maoxuan/releases/latest/download/manifest.json
 ```
 
-当前内容 Release 为 [`content-v1.4.0`](https://github.com/Hi-prof/maoxuan/releases/tag/content-v1.4.0)，App 通过上述稳定清单地址手动检查更新；GitHub 暂时不可访问时仍不影响内置内容和本地阅读。
+当前内容 Release 为 [`content-v1.4.1`](https://github.com/Hi-prof/maoxuan/releases/tag/content-v1.4.1)，App 通过上述稳定清单地址手动检查更新；GitHub 暂时不可访问时仍不影响内置内容和本地阅读。
 
 ## 编辑内容
 
@@ -102,7 +102,7 @@ python -m xinghuo_content build content `
 
 普通 push 和 pull request 只运行 Python、正式内容、Android 单元测试、lint 与构建检查，不会发布内容或 APK。
 
-内容发布由与源版本完全一致的标签触发，例如 `content/project.yaml` 中为 `1.4.0` 时，标签必须是 `content-v1.4.0`。工作流先完成正式校验和确定性构建，再创建草稿 Release、上传 `content-v1.4.0.zip` 与 `manifest.json`，最后才公开 Release。创建标签和推送属于人工发布操作。
+内容发布由与源版本完全一致的标签触发，例如 `content/project.yaml` 中为 `1.4.1` 时，标签必须是 `content-v1.4.1`。工作流先完成正式校验和确定性构建，再创建草稿 Release、上传 `content-v1.4.1.zip` 与 `manifest.json`，最后才公开 Release。创建标签和推送属于人工发布操作。
 
 正式 APK 由与 Android `versionName` 完全一致的 `app-vX.Y.Z` 标签触发。工作流从 GitHub Secrets 临时恢复 keystore，运行单元测试、release lint、R8 构建、`apksigner` 和包版本校验，再上传 `xinghuo-zhaidu-vX.Y.Z.apk` 及 SHA-256。APK Release 明确设为非 latest，确保客户端的 `releases/latest/download/manifest.json` 始终继续指向内容 Release。
 
