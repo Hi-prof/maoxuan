@@ -33,14 +33,17 @@ Keep `isMinifyEnabled = true` and `isShrinkResources = true` explicit on `person
 - Viewports: `360 x 640`, `360 x 800`, and `412 x 915` dp.
 - Content: short, medium, 90-character quote, longest work title/source, long interpretation face, long background sheet, missing optional sections, withdrawn state.
 - Themes: system light and dark settings must both render the same fixed light app palette.
-- Interactions: vertical forward/back paging, flip, back scrolling without paging, like, favorite, search, navigation restoration, update confirmation/cancel/error.
+- Interactions: vertical forward/back paging, flip, interpretation scrolling
+  with edge paging, like, favorite, search, navigation restoration, update
+  confirmation/cancel/error.
 - Saved/notes: independent favorite/liked segment switching, four-item bottom
   navigation, note empty/list/editor states, standalone and linked note entry,
   delete/discard confirmation, persistence after restart, and withdrawn card
   summaries.
 - Reading modes: the action row exposes only `读背景`; taps do not flip the card;
-  left/right swipes reach all three interpretation headings without a visible
-  return icon; the long background sheet scrolls and preserves flip state when closed.
+  left/right swipes reach all interpretation headings without a visible return
+  icon; the interpretation face can scroll and still page at its vertical edge;
+  the long background sheet scrolls and preserves flip state when closed.
 - Share output: exactly `1080 x 1440`, nonblank, background pixels present, quote/title/source in bounds, no UI controls.
 
 ## Regression Requirement

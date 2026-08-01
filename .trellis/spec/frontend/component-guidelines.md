@@ -43,7 +43,9 @@ fun BackgroundSheet(
 - When `maxHeight < 480.dp`, compact tiers are 25/22/20 sp for `33-60`, `61-75`, and `76-90`.
 - The quote area uses `weight(1f)` so the title/source block always retains space.
 - Background images fill the card at approximately 17% alpha and remain visual context, not a separate illustration panel.
-- The interpretation face owns vertical scrolling. While flipped, the parent pager must not consume that gesture.
+- The interpretation face owns vertical scrolling. When that content reaches a
+  vertical edge, the parent pager may consume the remaining drag so readers can
+  continue to adjacent cards without returning to the front face.
 
 The compact threshold and font tiers are a tested system. Any change must update the 90-character bounds test and screenshots for all target viewports.
 
@@ -53,11 +55,18 @@ The compact threshold and font tiers are a tested system. Any change must update
 - Do not attach a whole-card click handler. The quote/interpretation faces toggle only through horizontal dragging, and the interpretation face has no visible return icon.
 - Drag distance directly drives `rotationY`. One 180-degree flip spans 72% of card width, and release settles with a non-bouncy medium-low-stiffness spring.
 - Switch front/back content only after the rotation crosses 90 degrees, and rotate back content by 180 degrees so text is never mirrored.
-- Horizontal dragging must not consume vertical motion. Interpretation content keeps its own `verticalScroll`, and the reader disables `VerticalPager` user scrolling while the interpretation face is open.
+- Horizontal dragging must not consume vertical motion. Interpretation content
+  keeps its own `verticalScroll`, and the reader keeps `VerticalPager` user
+  scrolling enabled while the interpretation face is open so nested scrolling
+  can pass edge drags to the pager.
 - Keep the perspective layer's shadow elevation at zero and use the `Surface`'s stable `2.dp` shadow. A transformed dynamic shadow produces an oversized rectangular projection on API 28.
 - Release settling must clear transient state in `finally`, so an interrupted animation cannot block later gestures.
 
-Required instrumentation assertions: swipe left to back, swipe right to front, a slow short drag returns to its starting face, and the compact quote/source bounds remain valid. Device review must include an in-motion frame on API 28 plus settled front/back states on API 28 and the latest API.
+Required instrumentation assertions: swipe left to back, swipe right to front,
+a slow short drag returns to its starting face, an upward edge drag from the
+interpretation face can page forward, and the compact quote/source bounds remain
+valid. Device review must include an in-motion frame on API 28 plus settled
+front/back states on API 28 and the latest API.
 
 ## Styling
 
@@ -106,7 +115,9 @@ Required instrumentation assertions: swipe left to back, swipe right to front, a
 ## Common Mistakes
 
 - Using a fixed quote box height that clips the source on 360 x 640.
-- Letting both the back scroll and `VerticalPager` handle the same drag.
+- Letting the back scroll and `VerticalPager` fight before the back content has
+  first chance to scroll, or disabling pager scrolling so the back face traps
+  the reader.
 - Adding animated `shadowElevation` to the rotating perspective layer instead of keeping shadow on the stable card `Surface`.
 - Shrinking all normal cards because only the compact viewport needs a smaller tier.
 - Putting like/favorite/share controls over quote text.

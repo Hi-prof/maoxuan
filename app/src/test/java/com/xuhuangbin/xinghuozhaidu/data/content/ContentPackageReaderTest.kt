@@ -29,7 +29,7 @@ class ContentPackageReaderTest {
             File("src/main/assets/bootstrap.zip").readBytes(),
         )
 
-        assertEquals("1.4.0", parsed.info.contentVersion)
+        assertEquals("1.4.1", parsed.info.contentVersion)
         assertEquals(150, parsed.cards.size)
         assertEquals(
             "前途是光明的，道路是曲折的。",

@@ -66,9 +66,6 @@ fun ReaderScreen(
 ) {
     Column(modifier.fillMaxSize()) {
         ReaderHeader(
-            current = (state.currentIndex + 1).coerceAtMost(state.cards.size),
-            total = state.cards.size,
-            isComplete = state.isComplete,
             onSearch = onSearch,
         )
         when {
@@ -94,36 +91,15 @@ fun ReaderScreen(
 
 @Composable
 private fun ReaderHeader(
-    current: Int,
-    total: Int,
-    isComplete: Boolean,
     onSearch: () -> Unit,
 ) {
     Row(
         modifier = Modifier
             .fillMaxWidth()
             .padding(horizontal = 18.dp, vertical = 8.dp),
-        horizontalArrangement = Arrangement.SpaceBetween,
+        horizontalArrangement = Arrangement.End,
         verticalAlignment = Alignment.CenterVertically,
     ) {
-        Column {
-            Text(
-                "星火摘读",
-                color = MaterialTheme.colorScheme.onBackground,
-                fontSize = 20.sp,
-                fontWeight = FontWeight.Bold,
-                letterSpacing = 0.sp,
-            )
-            Text(
-                when {
-                    total == 0 -> "本地摘读"
-                    isComplete -> "本轮已完成"
-                    else -> "本轮 $current / $total"
-                },
-                color = MutedInk,
-                fontSize = 11.sp,
-            )
-        }
         IconButton(onClick = onSearch) {
             Icon(Icons.Outlined.Search, contentDescription = "搜索名言")
         }
@@ -184,7 +160,7 @@ private fun ReaderPager(
     VerticalPager(
         state = pagerState,
         modifier = Modifier.fillMaxSize(),
-        userScrollEnabled = flippedCardId == null && backgroundCardId == null,
+        userScrollEnabled = backgroundCardId == null,
         beyondViewportPageCount = 1,
     ) { page ->
         if (page == state.cards.size) {

@@ -61,7 +61,7 @@ ANDROID_RELEASE_KEY_ALIAS
 ANDROID_RELEASE_KEY_PASSWORD
 ```
 
-四项配置缺一时，Gradle 会在正式打包任务执行前失败；debug、personal 和 lint 不依赖正式密钥。keystore 与密码不得写入仓库、Gradle 属性或构建日志。当前 App 版本为 `1.5.0`（version code 6），APK 内置内容版本为 `1.4.0`，源码内容版本为 `1.4.1`；`dist/` 仍是忽略的本地构建目录，不提交 APK 到源码仓库。
+四项配置缺一时，Gradle 会在正式打包任务执行前失败；debug、personal 和 lint 不依赖正式密钥。keystore 与密码不得写入仓库、Gradle 属性或构建日志。当前 App 版本为 `1.6.0`（version code 7），APK 内置内容版本为 `1.4.1`，源码内容版本为 `1.4.1`；`dist/` 仍是忽略的本地构建目录，不提交 APK 到源码仓库。
 
 客户端当前配置的内容地址为：
 

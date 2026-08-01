@@ -206,13 +206,6 @@ private fun QuoteFront(card: QuoteCard) {
                     vertical = if (compactHeight) 24.dp else 34.dp,
                 ),
         ) {
-            Text(
-                text = "星火摘读",
-                color = SpiritRed,
-                fontSize = 13.sp,
-                fontWeight = FontWeight.SemiBold,
-                letterSpacing = 0.sp,
-            )
             Box(
                 modifier = Modifier
                     .fillMaxWidth()

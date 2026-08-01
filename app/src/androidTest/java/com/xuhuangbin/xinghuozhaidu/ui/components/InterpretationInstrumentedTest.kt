@@ -3,6 +3,9 @@ package com.xuhuangbin.xinghuozhaidu.ui.components
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableIntStateOf
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.test.assertIsDisplayed
@@ -21,7 +24,9 @@ import androidx.compose.ui.unit.dp
 import com.xuhuangbin.xinghuozhaidu.domain.model.CardInterpretation
 import com.xuhuangbin.xinghuozhaidu.domain.model.CardSource
 import com.xuhuangbin.xinghuozhaidu.domain.model.QuoteCard
+import com.xuhuangbin.xinghuozhaidu.domain.model.ReaderState
 import com.xuhuangbin.xinghuozhaidu.ui.detail.CardDetailScreen
+import com.xuhuangbin.xinghuozhaidu.ui.reader.ReaderScreen
 import com.xuhuangbin.xinghuozhaidu.ui.theme.XinghuoTheme
 import org.junit.Rule
 import org.junit.Test
@@ -140,10 +145,62 @@ class InterpretationInstrumentedTest {
         composeRule.onNodeWithText("参考来源（1）").performScrollTo().assertIsDisplayed()
     }
 
-    private fun testCard(longBackground: Boolean = false) = QuoteCard(
-        id = "8a3e739a-9b89-5840-a47a-6bb2c6435c1c",
+    @Test
+    fun readerCanPageForwardFromInterpretationBack() {
+        val firstCard = testCard(id = "first-card", quote = "第一张名言。")
+        val secondCard = testCard(id = "second-card", quote = "第二张名言。")
+        var position by mutableIntStateOf(0)
+
+        composeRule.setContent {
+            XinghuoTheme {
+                Box(Modifier.size(width = 360.dp, height = 640.dp)) {
+                    ReaderScreen(
+                        state = ReaderState(
+                            roundId = 1L,
+                            cards = listOf(firstCard, secondCard),
+                            currentIndex = position,
+                        ),
+                        isLoading = false,
+                        errorMessage = null,
+                        onRetry = {},
+                        onSearch = {},
+                        onPositionChanged = { position = it },
+                        onRead = {},
+                        onLike = {},
+                        onFavorite = {},
+                        onNote = {},
+                        onNewRound = {},
+                    )
+                }
+            }
+        }
+
+        composeRule.onNodeWithText("星火摘读").assertDoesNotExist()
+        composeRule.onNodeWithText("本轮 1 / 2").assertDoesNotExist()
+        composeRule.onNodeWithText(firstCard.quote).performTouchInput { swipeLeft() }
+        composeRule.waitUntil(timeoutMillis = 3_000) {
+            composeRule.onAllNodesWithText("启示").fetchSemanticsNodes().isNotEmpty()
+        }
+
+        composeRule.onNodeWithText("启示").performTouchInput {
+            down(center)
+            advanceEventTime(100)
+            moveBy(Offset(0f, -520f))
+            advanceEventTime(400)
+            up()
+        }
+        composeRule.waitUntil(timeoutMillis = 3_000) { position == 1 }
+        composeRule.onNodeWithText(secondCard.quote).assertIsDisplayed()
+    }
+
+    private fun testCard(
+        id: String = "8a3e739a-9b89-5840-a47a-6bb2c6435c1c",
+        quote: String = "没有调查，没有发言权。",
+        longBackground: Boolean = false,
+    ) = QuoteCard(
+        id = id,
         revision = 2,
-        quote = "没有调查，没有发言权。",
+        quote = quote,
         series = "毛泽东选集",
         volume = "第一卷",
         workTitle = "反对本本主义",
