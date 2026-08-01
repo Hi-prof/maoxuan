@@ -37,8 +37,8 @@ through the existing manual update flow.
 - [x] Formal content validation passes for 150 published cards.
 - [x] The content package build emits `dist/content-v1.4.1.zip` and
   `dist/manifest.json`.
-- [ ] The public latest manifest reports `contentVersion=1.4.1` after release.
-- [ ] The public latest manifest's `packageUrl`, `packageBytes`, and
+- [x] The public latest manifest reports `contentVersion=1.4.1` after release.
+- [x] The public latest manifest's `packageUrl`, `packageBytes`, and
   `packageSha256` match a reachable ZIP asset.
 - [ ] A current app installed with content `1.4.0` can manually check for the
   `1.4.1` update and download/install it.

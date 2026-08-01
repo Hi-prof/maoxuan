@@ -14,10 +14,10 @@ app can exercise the existing manual update flow.
 - [x] Run Android debug unit tests for package parsing and content bootstrap
   coverage.
 - [x] Ask before committing, tagging, or pushing.
-- [ ] Commit only this task's content/Trellis changes.
-- [ ] Create and push `content-v1.4.1` after approval.
-- [ ] Verify GitHub Actions publishes the content release as latest.
-- [ ] Verify public latest manifest and ZIP contract.
+- [x] Commit only this task's content/Trellis changes.
+- [x] Create and push `content-v1.4.1` after approval.
+- [x] Verify GitHub Actions publishes the content release as latest.
+- [x] Verify public latest manifest and ZIP contract.
 - [ ] Ask the user to test the Mine-tab update pull on device, or provide
   local adb instructions if a device is connected.
 
