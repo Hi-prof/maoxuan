@@ -142,3 +142,36 @@ Expanded the formal card library to 600 curated popular, motivational, and Marxi
 ### Next Steps
 
 - None - task complete
+
+
+## Session 5: 发布 Android 1.8.1
+
+**Date**: 2026-08-02
+**Task**: 发布 Android 1.8.1
+**Branch**: `main`
+
+### Summary
+
+修复卡片翻转拖动后的纵向滚动，递增 Android 版本至 1.8.1/11，完成本地双 API 验证并发布正式签名 APK。
+
+### Main Changes
+
+(Add details)
+
+### Git Commits
+
+| Hash | Message |
+|------|---------|
+| `b55cb7a` | (see git log) |
+
+### Testing
+
+- [OK] (Add test results)
+
+### Status
+
+[OK] **Completed**
+
+### Next Steps
+
+- None - task complete
