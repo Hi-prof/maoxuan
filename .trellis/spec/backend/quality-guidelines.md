@@ -30,6 +30,7 @@ Run instrumentation on API 28 and the latest configured API before release.
 - Non-monotonic revisions or mutable image IDs.
 - UI/DAO code that reimplements package validation.
 - Automatic launch/background update checks.
+- Using the shared repository `latest` endpoint to discover App Releases; `latest` belongs to content updates.
 - Committing `dist/`, APKs, local databases, SDK paths, virtual environments, or signing material.
 - Printing signing passwords, keystore bytes, or Base64 keystore content in CI logs.
 
@@ -55,6 +56,9 @@ Run instrumentation on API 28 and the latest configured API before release.
 - App release workflow validates `app-vX.Y.Z` against Android `versionName`,
   verifies the signed APK and publishes it as non-latest so the content manifest
   remains available through the stable latest-release URL.
+- App update tests validate stable-release filtering, semantic ordering, host and
+  size boundaries, paired checksum parsing, streaming hash verification, and
+  cleanup after cancellation or failure.
 
 ## Windows Gradle Gotcha
 

@@ -6,6 +6,8 @@ import androidx.lifecycle.viewModelScope
 import com.xuhuangbin.xinghuozhaidu.data.AppRepository
 import com.xuhuangbin.xinghuozhaidu.BuildConfig
 import com.xuhuangbin.xinghuozhaidu.data.content.RemoteManifestDto
+import com.xuhuangbin.xinghuozhaidu.data.update.AppUpdateManager
+import com.xuhuangbin.xinghuozhaidu.domain.model.AppRelease
 import com.xuhuangbin.xinghuozhaidu.domain.model.InstalledContentState
 import com.xuhuangbin.xinghuozhaidu.domain.model.PersonalNote
 import com.xuhuangbin.xinghuozhaidu.domain.model.QuoteCard
@@ -19,6 +21,7 @@ import kotlinx.coroutines.flow.combine
 import kotlinx.coroutines.flow.flatMapLatest
 import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.launch
+import java.io.File
 
 data class MainUiState(
     val isLoading: Boolean = true,
@@ -46,6 +49,25 @@ data class UpdateUiState(
     val manifest: RemoteManifestDto? = null,
     val progress: Float = 0f,
     val message: String? = null,
+    val requiresAppUpdate: Boolean = false,
+)
+
+enum class AppUpdatePhase {
+    Idle,
+    Checking,
+    Available,
+    Downloading,
+    PermissionRequired,
+    ReadyToInstall,
+    UpToDate,
+    Error,
+}
+
+data class AppUpdateUiState(
+    val phase: AppUpdatePhase = AppUpdatePhase.Idle,
+    val release: AppRelease? = null,
+    val progress: Float = 0f,
+    val message: String? = null,
 )
 
 data class NoteOperationUiState(
@@ -55,13 +77,17 @@ data class NoteOperationUiState(
 
 class MainViewModel(
     private val repository: AppRepository,
+    private val appUpdateManager: AppUpdateManager,
 ) : ViewModel() {
     private val initializing = MutableStateFlow(true)
     private val initializationError = MutableStateFlow<String?>(null)
     val searchQuery = MutableStateFlow("")
     val updateState = MutableStateFlow(UpdateUiState())
+    val appUpdateState = MutableStateFlow(AppUpdateUiState())
     val noteOperationState = MutableStateFlow(NoteOperationUiState())
     private var updateJob: Job? = null
+    private var appUpdateJob: Job? = null
+    private var downloadedAppUpdate: File? = null
 
     private val cardUiState = combine(
         repository.readerState,
@@ -206,7 +232,11 @@ class MainViewModel(
                     updateState.value = if (manifest == null) {
                         UpdateUiState(UpdatePhase.UpToDate, message = "当前已经是最新内容")
                     } else if (manifest.minimumAppVersionCode > BuildConfig.VERSION_CODE) {
-                        UpdateUiState(UpdatePhase.Error, message = "此内容版本需要更新 APK 后才能安装")
+                        UpdateUiState(
+                            phase = UpdatePhase.Error,
+                            message = "此内容版本需要更新应用后才能安装",
+                            requiresAppUpdate = true,
+                        )
                     } else {
                         UpdateUiState(UpdatePhase.Available, manifest = manifest)
                     }
@@ -250,13 +280,136 @@ class MainViewModel(
         updateState.value = UpdateUiState()
     }
 
+    fun checkForAppUpdate() {
+        if (appUpdateState.value.phase in setOf(AppUpdatePhase.Checking, AppUpdatePhase.Downloading)) return
+        appUpdateJob?.cancel()
+        downloadedAppUpdate = null
+        appUpdateJob = viewModelScope.launch {
+            appUpdateState.value = AppUpdateUiState(AppUpdatePhase.Checking)
+            try {
+                val release = appUpdateManager.findUpdate(
+                    releasesUrl = BuildConfig.APP_RELEASES_API_URL,
+                    currentVersion = BuildConfig.VERSION_NAME,
+                )
+                appUpdateState.value = if (release == null) {
+                    AppUpdateUiState(
+                        phase = AppUpdatePhase.UpToDate,
+                        message = "当前已经是最新应用",
+                    )
+                } else {
+                    AppUpdateUiState(AppUpdatePhase.Available, release = release)
+                }
+            } catch (error: CancellationException) {
+                appUpdateState.value = AppUpdateUiState()
+                throw error
+            } catch (error: Exception) {
+                appUpdateState.value = AppUpdateUiState(
+                    phase = AppUpdatePhase.Error,
+                    message = error.message ?: "检查应用更新失败",
+                )
+            } finally {
+                appUpdateJob = null
+            }
+        }
+    }
+
+    fun confirmAppUpdate() {
+        val release = appUpdateState.value.release ?: return
+        if (appUpdateState.value.phase == AppUpdatePhase.Downloading) return
+        appUpdateJob?.cancel()
+        appUpdateJob = viewModelScope.launch {
+            appUpdateState.value = AppUpdateUiState(
+                phase = AppUpdatePhase.Downloading,
+                release = release,
+            )
+            try {
+                downloadedAppUpdate = appUpdateManager.download(release) { progress ->
+                    appUpdateState.value = appUpdateState.value.copy(progress = progress)
+                }
+                requestAppInstall()
+            } catch (error: CancellationException) {
+                downloadedAppUpdate = null
+                appUpdateState.value = AppUpdateUiState()
+                throw error
+            } catch (error: Exception) {
+                downloadedAppUpdate = null
+                appUpdateState.value = AppUpdateUiState(
+                    phase = AppUpdatePhase.Error,
+                    release = release,
+                    message = error.message ?: "应用更新下载失败",
+                )
+            } finally {
+                appUpdateJob = null
+            }
+        }
+    }
+
+    fun requestAppInstall() {
+        val apk = downloadedAppUpdate
+        val release = appUpdateState.value.release
+        if (apk == null || release == null) {
+            appUpdateState.value = AppUpdateUiState(
+                phase = AppUpdatePhase.Error,
+                message = "安装包已失效，请重新检查更新",
+            )
+            return
+        }
+        try {
+            if (!appUpdateManager.canRequestPackageInstalls()) {
+                appUpdateState.value = AppUpdateUiState(
+                    phase = AppUpdatePhase.PermissionRequired,
+                    release = release,
+                    progress = 1f,
+                    message = "请允许星火摘读安装未知应用，返回后将继续安装",
+                )
+                appUpdateManager.openInstallPermissionSettings()
+                return
+            }
+            appUpdateManager.launchInstaller(apk)
+            appUpdateState.value = AppUpdateUiState(
+                phase = AppUpdatePhase.ReadyToInstall,
+                release = release,
+                progress = 1f,
+                message = "系统安装程序已打开；若已取消，可再次安装",
+            )
+        } catch (error: Exception) {
+            appUpdateState.value = AppUpdateUiState(
+                phase = AppUpdatePhase.Error,
+                release = release,
+                message = error.message ?: "无法打开应用安装程序",
+            )
+        }
+    }
+
+    fun resumePendingAppInstall() {
+        if (appUpdateState.value.phase != AppUpdatePhase.PermissionRequired) return
+        if (appUpdateManager.canRequestPackageInstalls()) requestAppInstall()
+    }
+
+    fun startAppUpdateFromContent() {
+        dismissUpdate()
+        checkForAppUpdate()
+    }
+
+    fun dismissAppUpdate() {
+        if (appUpdateState.value.phase == AppUpdatePhase.Downloading) {
+            appUpdateJob?.cancel()
+            appUpdateJob = null
+            downloadedAppUpdate = null
+        }
+        appUpdateState.value = AppUpdateUiState()
+    }
+
     companion object {
-        fun factory(repository: AppRepository): ViewModelProvider.Factory =
+        fun factory(
+            repository: AppRepository,
+            appUpdateManager: AppUpdateManager,
+        ): ViewModelProvider.Factory =
             object : ViewModelProvider.Factory {
                 @Suppress("UNCHECKED_CAST")
                 override fun <T : ViewModel> create(modelClass: Class<T>): T {
                     require(modelClass.isAssignableFrom(MainViewModel::class.java))
-                    return MainViewModel(repository) as T
+                    return MainViewModel(repository, appUpdateManager) as T
                 }
             }
     }

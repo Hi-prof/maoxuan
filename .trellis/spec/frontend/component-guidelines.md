@@ -112,6 +112,17 @@ front/back states on API 28 and the latest API.
 - Keep note/card association read-only after creation. A note opened from a card
   shows that card context; the standalone add action creates no association.
 
+## Mine And Update Interaction
+
+- `MineScreen` displays the App version and content version as separate sections
+  with explicit `检查应用更新` and `检查内容更新` actions; do not restore the
+  ambiguous single `检查更新` label.
+- App update dialogs expose version/date/size/release notes before download,
+  progress plus cancellation during download, install-permission recovery, and
+  an installer retry action after verification.
+- At `360 x 640 dp`, both update sections remain reachable without text or
+  button overlap; use one bounded scrolling content surface for large fonts.
+
 ## Common Mistakes
 
 - Using a fixed quote box height that clips the source on 360 x 640.

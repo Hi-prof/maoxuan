@@ -7,7 +7,7 @@
   search history.
 - `AppRepository` combines DAO `Flow`s and maps entities to immutable domain models.
 - `MainViewModel` exposes `StateFlow` for `MainUiState`, search,
-  `UpdateUiState`, and `NoteOperationUiState`, and receives explicit user intents.
+  `UpdateUiState`, `AppUpdateUiState`, and `NoteOperationUiState`, and receives explicit user intents.
 - Navigation owns destinations/back stacks; screens own only transient presentation details.
 
 ```kotlin
@@ -53,6 +53,20 @@ Room or `MainViewModel`, and closing the sheet must not alter flip or pager stat
 - `Downloading` owns a cancellable `Job` and progress from `0f..1f`.
 - Cancel returns to `Idle`; validation/network failure becomes `Error`; installed data remains unchanged.
 - Do not add scattered Boolean flags for the same workflow.
+
+App updates use an independent exhaustive workflow: `Idle`, `Checking`,
+`Available`, `Downloading`, `PermissionRequired`, `ReadyToInstall`, `UpToDate`,
+and `Error`.
+
+- `PermissionRequired` retains the verified APK privately and opens the per-app
+  system setting only from an explicit action. An app-resume callback continues
+  installation only when this phase is active and permission is now granted.
+- `ReadyToInstall` keeps an explicit retry action because the system installer
+  can be cancelled without returning an installation result to Compose.
+- Content incompatibility sets `requiresAppUpdate`; selecting `更新应用` clears
+  the content dialog before starting the independent App check.
+- App and content download jobs are separately owned and cancellable; never
+  encode both workflows into one phase enum.
 
 ## Reading Round State
 

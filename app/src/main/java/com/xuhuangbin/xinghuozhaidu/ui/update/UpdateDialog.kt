@@ -22,6 +22,7 @@ fun UpdateDialog(
     state: UpdateUiState,
     onConfirm: () -> Unit,
     onDismiss: () -> Unit,
+    onAppUpdate: () -> Unit,
 ) {
     if (state.phase == UpdatePhase.Idle) return
     when (state.phase) {
@@ -38,7 +39,7 @@ fun UpdateDialog(
                 text = {
                     Column(verticalArrangement = Arrangement.spacedBy(10.dp)) {
                         Text("发布日期：${manifest.publishedAt.take(10)}")
-                        Text("大小：${formatBytes(manifest.packageBytes)}")
+                        Text("大小：${formatUpdateBytes(manifest.packageBytes)}")
                         Text(
                             "新增 ${manifest.changes.added} · 修改 ${manifest.changes.updated} · 下架 ${manifest.changes.withdrawn}",
                         )
@@ -74,18 +75,30 @@ fun UpdateDialog(
         UpdatePhase.UpToDate -> StatusDialog("无需更新", true, onDismiss) {
             Text(state.message.orEmpty())
         }
-        UpdatePhase.Error -> StatusDialog("更新失败", true, onDismiss) {
-            Text(state.message.orEmpty())
+        UpdatePhase.Error -> if (state.requiresAppUpdate) {
+            StatusDialog(
+                title = "需要更新应用",
+                dismissible = true,
+                onDismiss = onDismiss,
+                confirmText = "更新应用",
+                onConfirm = onAppUpdate,
+                dismissText = "关闭",
+            ) { Text(state.message.orEmpty()) }
+        } else {
+            StatusDialog("更新失败", true, onDismiss) { Text(state.message.orEmpty()) }
         }
         UpdatePhase.Idle -> Unit
     }
 }
 
 @Composable
-private fun StatusDialog(
+internal fun StatusDialog(
     title: String,
     dismissible: Boolean,
     onDismiss: () -> Unit,
+    confirmText: String = "关闭",
+    onConfirm: () -> Unit = onDismiss,
+    dismissText: String? = null,
     content: @Composable () -> Unit,
 ) {
     AlertDialog(
@@ -100,12 +113,15 @@ private fun StatusDialog(
             ) { content() }
         },
         confirmButton = {
-            if (dismissible) TextButton(onClick = onDismiss) { Text("关闭") }
+            if (dismissible) TextButton(onClick = onConfirm) { Text(confirmText) }
+        },
+        dismissButton = {
+            if (dismissText != null) TextButton(onClick = onDismiss) { Text(dismissText) }
         },
     )
 }
 
-private fun formatBytes(value: Long): String = when {
+internal fun formatUpdateBytes(value: Long): String = when {
     value >= 1024L * 1024L -> "%.1f MB".format(value / (1024f * 1024f))
     value >= 1024L -> "%.1f KB".format(value / 1024f)
     else -> "$value B"

@@ -17,12 +17,16 @@ import androidx.compose.material3.NavigationBarItemDefaults
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.DisposableEffect
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
+import androidx.lifecycle.Lifecycle
+import androidx.lifecycle.LifecycleEventObserver
+import androidx.lifecycle.compose.LocalLifecycleOwner
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavGraph.Companion.findStartDestination
 import androidx.navigation.NavHostController
@@ -44,6 +48,7 @@ import com.xuhuangbin.xinghuozhaidu.ui.saved.MineScreen
 import com.xuhuangbin.xinghuozhaidu.ui.saved.SavedScreen
 import com.xuhuangbin.xinghuozhaidu.ui.search.SearchScreen
 import com.xuhuangbin.xinghuozhaidu.ui.update.UpdateDialog
+import com.xuhuangbin.xinghuozhaidu.ui.update.AppUpdateDialog
 import com.xuhuangbin.xinghuozhaidu.ui.theme.Canvas
 import com.xuhuangbin.xinghuozhaidu.ui.theme.Ink
 import com.xuhuangbin.xinghuozhaidu.ui.theme.MutedInk
@@ -67,17 +72,32 @@ private val topDestinations = listOf(
 @Composable
 fun XinghuoApp() {
     val application = LocalContext.current.applicationContext as XinghuoApplication
-    val viewModel: MainViewModel = viewModel(factory = MainViewModel.factory(application.container.repository))
+    val viewModel: MainViewModel = viewModel(
+        factory = MainViewModel.factory(
+            repository = application.container.repository,
+            appUpdateManager = application.container.appUpdateManager,
+        ),
+    )
     val uiState by viewModel.uiState.collectAsStateWithLifecycle()
     val query by viewModel.searchQuery.collectAsStateWithLifecycle()
     val results by viewModel.searchResults.collectAsStateWithLifecycle()
     val searchHistory by viewModel.searchHistory.collectAsStateWithLifecycle()
     val updateState by viewModel.updateState.collectAsStateWithLifecycle()
+    val appUpdateState by viewModel.appUpdateState.collectAsStateWithLifecycle()
     val noteOperationState by viewModel.noteOperationState.collectAsStateWithLifecycle()
     val navController = rememberNavController()
     val backStack by navController.currentBackStackEntryAsState()
     val currentRoute = backStack?.destination?.route.orEmpty()
     val showBottomBar = topDestinations.any { it.route == currentRoute }
+    val lifecycleOwner = LocalLifecycleOwner.current
+
+    DisposableEffect(lifecycleOwner, viewModel) {
+        val observer = LifecycleEventObserver { _, event ->
+            if (event == Lifecycle.Event.ON_RESUME) viewModel.resumePendingAppInstall()
+        }
+        lifecycleOwner.lifecycle.addObserver(observer)
+        onDispose { lifecycleOwner.lifecycle.removeObserver(observer) }
+    }
 
     Scaffold(
         bottomBar = {
@@ -122,9 +142,12 @@ fun XinghuoApp() {
             }
             composable("mine") {
                 MineScreen(
+                    appVersion = BuildConfig.VERSION_NAME,
                     contentState = uiState.contentState,
-                    onCheckUpdate = viewModel::checkForUpdate,
-                    updateEnabled = BuildConfig.CONTENT_MANIFEST_URL.isNotBlank(),
+                    onCheckAppUpdate = viewModel::checkForAppUpdate,
+                    onCheckContentUpdate = viewModel::checkForUpdate,
+                    appUpdateEnabled = BuildConfig.APP_RELEASES_API_URL.isNotBlank(),
+                    contentUpdateEnabled = BuildConfig.CONTENT_MANIFEST_URL.isNotBlank(),
                 )
             }
             composable("search") {
@@ -208,6 +231,13 @@ fun XinghuoApp() {
         state = updateState,
         onConfirm = viewModel::confirmUpdate,
         onDismiss = viewModel::dismissUpdate,
+        onAppUpdate = viewModel::startAppUpdateFromContent,
+    )
+    AppUpdateDialog(
+        state = appUpdateState,
+        onConfirmDownload = viewModel::confirmAppUpdate,
+        onInstall = viewModel::requestAppInstall,
+        onDismiss = viewModel::dismissAppUpdate,
     )
 }
 

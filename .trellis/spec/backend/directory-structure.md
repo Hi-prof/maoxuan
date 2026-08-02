@@ -18,6 +18,7 @@ content-tool/
 app/src/main/java/.../
   data/content/            release DTOs, versioning, strict ZIP reader
   data/network/            explicit user-triggered manifest/package download
+  data/update/             Android APK cache, permission, and installer boundary
   data/local/              Room entities, relations, DAO, database
   data/AppRepository.kt    import transaction and domain projection
   data/ReadingRoundPlanner.kt
@@ -29,6 +30,7 @@ app/src/main/java/.../
 - `builder.py` owns release JSON/ZIP bytes. No other code should hand-build release assets.
 - `ContentPackageReader` owns decoding untrusted package bytes into validated DTOs.
 - `AppRepository` owns file-to-database import ordering, withdrawal semantics, and domain projections.
+- `AppUpdateClient` owns GitHub App Release parsing and verified streaming downloads; `AppUpdateManager` owns only Android cache and installer integration.
 - DAO methods remain small persistence operations; cross-table behavior belongs in a Room transaction in the repository.
 - UI code must not access DTOs, DAOs, or content files directly.
 

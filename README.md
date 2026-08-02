@@ -1,6 +1,6 @@
 # 星火摘读
 
-星火摘读是一款本地优先的 Android 名言卡片应用。它以纵向逐卡阅读为主，支持查看原文上下文、时代背景和相关故事，也支持点赞、收藏、个人笔记、本地搜索与生成分享图。个人阅读状态和笔记只保存在手机中，内容更新由用户在“我的”页面手动触发。
+星火摘读是一款本地优先的 Android 名言卡片应用。它以纵向逐卡阅读为主，支持查看原文上下文、时代背景和相关故事，也支持点赞、收藏、个人笔记、本地搜索与生成分享图。个人阅读状态和笔记只保存在手机中，内容更新与应用更新均由用户在“我的”页面手动触发。
 
 ## MVP 能力
 
@@ -61,7 +61,7 @@ ANDROID_RELEASE_KEY_ALIAS
 ANDROID_RELEASE_KEY_PASSWORD
 ```
 
-四项配置缺一时，Gradle 会在正式打包任务执行前失败；debug、personal 和 lint 不依赖正式密钥。keystore 与密码不得写入仓库、Gradle 属性或构建日志。当前 App 版本为 `1.6.0`（version code 7），APK 内置内容版本为 `1.5.0`，源码内容版本为 `1.5.0`；`dist/` 仍是忽略的本地构建目录，不提交 APK 到源码仓库。
+四项配置缺一时，Gradle 会在正式打包任务执行前失败；debug、personal 和 lint 不依赖正式密钥。keystore 与密码不得写入仓库、Gradle 属性或构建日志。当前 App 版本为 `1.7.0`（version code 9），APK 内置内容版本为 `1.5.0`，源码内容版本为 `1.5.0`；`dist/` 仍是忽略的本地构建目录，不提交 APK 到源码仓库。
 
 客户端当前配置的内容地址为：
 
@@ -105,6 +105,8 @@ python -m xinghuo_content build content `
 内容发布由与源版本完全一致的标签触发，例如 `content/project.yaml` 中为 `1.5.0` 时，标签必须是 `content-v1.5.0`。工作流先完成正式校验和确定性构建，再创建草稿 Release、上传 `content-v1.5.0.zip` 与 `manifest.json`，最后才公开 Release。创建标签和推送属于人工发布操作。
 
 正式 APK 由与 Android `versionName` 完全一致的 `app-vX.Y.Z` 标签触发。工作流从 GitHub Secrets 临时恢复 keystore，运行单元测试、release lint、R8 构建、`apksigner` 和包版本校验，再上传 `xinghuo-zhaidu-vX.Y.Z.apk` 及 SHA-256。APK Release 明确设为非 latest，确保客户端的 `releases/latest/download/manifest.json` 始终继续指向内容 Release。
+
+应用内更新通过 GitHub Releases 列表筛选最高的正式 `app-vX.Y.Z` 版本，不使用仓库 latest；用户确认后 APK 会流式下载到应用缓存，并在大小和发布附带的 SHA-256 均匹配后交给 Android 系统安装器。Android 8 及以上首次使用需要在系统设置中允许星火摘读“安装未知应用”。
 
 已经发布的错误内容不覆盖历史 Release，也不降低版本号。回滚时恢复上一份可信内容源，提升 patch 版本并发布新的完整快照；客户端仍按正常升级路径处理。
 

@@ -36,8 +36,8 @@ android {
         applicationId = "com.xuhuangbin.xinghuozhaidu"
         minSdk = 28
         targetSdk = 35
-        versionCode = 8
-        versionName = "1.6.1"
+        versionCode = 9
+        versionName = "1.7.0"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         vectorDrawables.useSupportLibrary = true
@@ -45,6 +45,11 @@ android {
             "String",
             "CONTENT_MANIFEST_URL",
             "\"https://github.com/Hi-prof/maoxuan/releases/latest/download/manifest.json\"",
+        )
+        buildConfigField(
+            "String",
+            "APP_RELEASES_API_URL",
+            "\"https://api.github.com/repos/Hi-prof/maoxuan/releases?per_page=30\"",
         )
     }
 

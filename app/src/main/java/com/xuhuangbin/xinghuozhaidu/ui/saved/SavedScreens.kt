@@ -1,12 +1,18 @@
 package com.xuhuangbin.xinghuozhaidu.ui.saved
 
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.foundation.lazy.rememberLazyListState
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.outlined.CloudDownload
+import androidx.compose.material.icons.outlined.SystemUpdateAlt
+import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.Icon
 import androidx.compose.material3.OutlinedButton
 import androidx.compose.material3.SegmentedButton
@@ -70,19 +76,47 @@ fun SavedScreen(
 
 @Composable
 fun MineScreen(
+    appVersion: String,
     contentState: InstalledContentState?,
-    onCheckUpdate: () -> Unit,
-    updateEnabled: Boolean,
+    onCheckAppUpdate: () -> Unit,
+    onCheckContentUpdate: () -> Unit,
+    appUpdateEnabled: Boolean,
+    contentUpdateEnabled: Boolean,
 ) {
     Column(Modifier.fillMaxSize()) {
         ScreenTitle("我的")
         Surface(
             modifier = Modifier
                 .fillMaxWidth()
+                .weight(1f)
                 .padding(horizontal = 16.dp, vertical = 6.dp),
             color = Paper,
         ) {
-            Column(Modifier.padding(16.dp)) {
+            Column(
+                Modifier
+                    .padding(16.dp)
+                    .verticalScroll(rememberScrollState()),
+            ) {
+                Text(
+                    "应用版本 $appVersion",
+                    fontWeight = FontWeight.SemiBold,
+                    fontSize = 15.sp,
+                )
+                Text(
+                    "Android 正式版",
+                    color = MutedInk,
+                    fontSize = 12.sp,
+                    modifier = Modifier.padding(top = 4.dp, bottom = 12.dp),
+                )
+                OutlinedButton(
+                    onClick = onCheckAppUpdate,
+                    enabled = appUpdateEnabled,
+                ) {
+                    Icon(Icons.Outlined.SystemUpdateAlt, contentDescription = null)
+                    Spacer(Modifier.width(8.dp))
+                    Text("检查应用更新")
+                }
+                HorizontalDivider(Modifier.padding(vertical = 16.dp))
                 Text(
                     "内容版本 ${contentState?.contentVersion ?: "初始化中"}",
                     fontWeight = FontWeight.SemiBold,
@@ -90,7 +124,7 @@ fun MineScreen(
                 )
                 Text(
                     contentState?.publishedAt?.take(10)?.let { "内容发布于 $it" }
-                        ?: if (updateEnabled) "正在读取内容信息" else "尚未配置内容源",
+                        ?: if (contentUpdateEnabled) "正在读取内容信息" else "尚未配置内容源",
                     color = MutedInk,
                     fontSize = 12.sp,
                     modifier = Modifier.padding(top = 4.dp),
@@ -110,9 +144,13 @@ fun MineScreen(
                         modifier = Modifier.padding(top = 3.dp, bottom = 12.dp),
                     )
                 }
-                OutlinedButton(onClick = onCheckUpdate, enabled = updateEnabled) {
+                OutlinedButton(
+                    onClick = onCheckContentUpdate,
+                    enabled = contentUpdateEnabled,
+                ) {
                     Icon(Icons.Outlined.CloudDownload, contentDescription = null)
-                    Text("检查更新")
+                    Spacer(Modifier.width(8.dp))
+                    Text("检查内容更新")
                 }
             }
         }

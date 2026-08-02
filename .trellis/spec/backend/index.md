@@ -18,6 +18,7 @@ Personal reading state never leaves the device.
 | --- | --- | --- |
 | [Directory Structure](./directory-structure.md) | Ownership of authoring, packaging, network, and persistence code | Active |
 | [Content Package Contract](./content-package-contract.md) | Executable YAML, ZIP, manifest, revision, and import contract | Active |
+| [App Update Contract](./app-update-contract.md) | GitHub App Release discovery, verified APK download, and installer contract | Active |
 | [Database Guidelines](./database-guidelines.md) | Room tables, transactions, withdrawals, and asset lifecycle | Active |
 | [Error Handling](./error-handling.md) | CLI exit codes and Android update failure behavior | Active |
 | [Quality Guidelines](./quality-guidelines.md) | Required content and Android checks | Active |
@@ -28,6 +29,7 @@ Personal reading state never leaves the device.
 - Read `content-package-contract.md` before changing YAML fields, JSON DTOs, ZIP contents, or update behavior.
 - Read `database-guidelines.md` before changing Room entities, DAO queries, import ordering, or reading-round state.
 - Read `error-handling.md` before adding an update phase or a content-tool command.
+- Read `app-update-contract.md` before changing Android versions, App Release assets, APK download, install permissions, or App update UI state.
 - Keep the Python producer and Android consumer strict and compatible in the same change.
 - Preserve stable card UUIDs, monotonic revisions, explicit withdrawals, and local user state.
 

@@ -73,6 +73,7 @@ threshold on both API 28 and current high-density devices.
 - Common action icons drawn by hand when Material provides them.
 - Nested decorative cards, gradients, full-screen red, oversized empty hero layouts, or background photos that overpower text.
 - Network calls from composition or automatic lifecycle callbacks.
+- App update discovery through the shared repository latest Release instead of the filtered Releases collection.
 
 ## Review Checklist
 
@@ -89,10 +90,14 @@ threshold on both API 28 and current high-density devices.
 - Note title/body/error content stays reachable above the IME; save/delete in
   progress blocks duplicate actions and system-back navigation.
 - Pager state survives switching bottom tabs and detail/list return preserves position.
-- APK permissions remain limited to network plus AndroidX's generated internal receiver permission.
+- APK permissions remain limited to network, explicit package installation, and
+  AndroidX's generated internal receiver permission. `REQUEST_INSTALL_PACKAGES`
+  is allowed only for the user-confirmed, checksum-verified App update flow.
 - A production APK passes `apksigner verify --verbose --print-certs`; `aapt dump badging`
   reports the expected application ID, version code, and version name.
 - An `app-vX.Y.Z` Release is explicitly non-latest, and the repository latest
   Release still serves the public content `manifest.json` after APK publication.
+- The Mine screen shows both update buttons at `360 x 640 dp`; content version
+  incompatibility opens the App updater, and permission denial remains retryable.
 - Room `3 -> 4` migration and note CRUD/withdrawal lifecycle tests run on API 28
   and the latest configured API.
