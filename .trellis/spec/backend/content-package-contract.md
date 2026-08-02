@@ -77,6 +77,9 @@ changes.added, changes.updated, changes.withdrawn, releaseNotes
 Required invariants:
 
 - `contentVersion` is `MAJOR.MINOR.PATCH`; `publishedAt` is UTC ISO-8601.
+- `literature.authoredAt` accepts `YYYY`, `YYYY-MM`, `YYYY-MM-DD`, `前N`,
+  and `前N世纪` so modern works and ancient thinkers can share the same string
+  field without inventing inaccurate positive years.
 - `expectedPublishedCards` is a positive integer and, in formal mode, exactly matches the number of published card YAML files.
 - A card ID is a stable UUID that is never reassigned. `revision` is a positive integer.
 - A published quote is NFC, one paragraph, and at most 90 Unicode code points.
@@ -97,8 +100,9 @@ Required invariants:
 - Removing a previously active card requires an explicit withdrawal. Snapshot omission alone is invalid.
 - Restoring a withdrawn ID requires a revision greater than the recorded withdrawal revision.
 - Image IDs are immutable: an existing ID cannot point to different bytes.
-- Content `1.4.0` requires Android `versionCode >= 4`. App `1.3.0` reads package
-  schema 3 only; older package schemas are not silently accepted as partial data.
+- Content `1.5.0` requires Android `versionCode >= 7` because ancient-thinker
+  cards use `authoredAt` values such as `前4世纪`. App `1.6.0` reads package schema 3 only;
+  older package schemas are not silently accepted as partial data.
 
 The builder sorts payloads, serializes compact sorted-key JSON with a trailing
 newline, fixes ZIP timestamps to `1980-01-01`, and writes regular-file

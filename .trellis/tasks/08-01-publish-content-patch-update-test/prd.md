@@ -47,3 +47,44 @@ through the existing manual update flow.
 
 - This is a content release only. APK self-update or app-version update checks
   are out of scope.
+
+## Scope Update: 2026-08-02 Content Expansion
+
+The user requested that the content library be expanded to 600 cards and no
+longer be limited to Marxist / Mao text cards. This supersedes the earlier
+`1.4.1` source-content target for local development, while the already-published
+`content-v1.4.1` release remains the current public latest release until a new
+tag is created.
+
+Additional requirements:
+
+- Keep the existing 150 Mao-related published cards active.
+- Replace the previously generated pre-Qin raw-text excerpts with 450 curated
+  cards. The new cards must be selected for recognizability, encouragement,
+  and discussion value rather than being mechanically extracted passages.
+- Add 300 published popular / encouraging famous-quote cards and 150 published
+  Marxism-principles thinking cards. Every card must retain an attributable,
+  publicly reachable source, its author or speaker, and a concrete reading
+  guide; do not rely on common but unverifiable online attributions.
+- Keep the existing Mao-related cards as the library's third strand. Their
+  existing contextual interpretations are retained because they already focus
+  on investigation, practice, strategy, and historical context rather than
+  presenting bare quotations.
+- Raise source content to `1.5.0`, with `expectedPublishedCards: 600`.
+- Raise `minimumAppVersionCode` to `7` because the new cards include ancient
+  thinkers with `authoredAt` values such as `前4世纪`, which require the updated
+  app parser.
+- Rebuild `app/src/main/assets/bootstrap.zip` so fresh installs contain all 600
+  cards offline.
+
+Additional acceptance criteria:
+
+- [x] Formal content validation passes for 600 published cards.
+- [x] The Android bundled bootstrap parses as content `1.5.0` with 600 cards.
+- [x] The content build emits deterministic local `dist/content-v1.5.0.zip` and
+  `dist/manifest.json`.
+- [x] README and backend content-contract specs describe the new count and
+  ancient-date format.
+- [x] The 450 new cards are a curated 300/150 mix of popular encouraging and
+  Marxism-principles quotes, with no remaining batch of mechanically selected
+  pre-Qin excerpts.

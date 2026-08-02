@@ -4,7 +4,7 @@
 
 ## MVP 能力
 
-- APK 当前内置 150 张正式卡片和 8 张原创背景图，其中包括 120 条著作或讲话名句、30 条诗词名句，首次安装即可离线阅读。
+- APK 当前内置 600 张正式卡片和 8 张原创背景图，其中包括 150 条毛泽东著作、讲话和诗词名句、300 条热门励志名人名言，以及 150 条马原思考卡，首次安装即可离线阅读。
 - 同一轮次使用持久化随机顺序，未读优先、不重复，支持连续回看。
 - 卡片停留满 3 秒后记为已读；翻面可以滚动查看出处、背景、故事和来源。
 - 点赞与收藏保持独立，在同一个“收藏与点赞”页面中切换查看。
@@ -61,7 +61,7 @@ ANDROID_RELEASE_KEY_ALIAS
 ANDROID_RELEASE_KEY_PASSWORD
 ```
 
-四项配置缺一时，Gradle 会在正式打包任务执行前失败；debug、personal 和 lint 不依赖正式密钥。keystore 与密码不得写入仓库、Gradle 属性或构建日志。当前 App 版本为 `1.6.0`（version code 7），APK 内置内容版本为 `1.4.1`，源码内容版本为 `1.4.1`；`dist/` 仍是忽略的本地构建目录，不提交 APK 到源码仓库。
+四项配置缺一时，Gradle 会在正式打包任务执行前失败；debug、personal 和 lint 不依赖正式密钥。keystore 与密码不得写入仓库、Gradle 属性或构建日志。当前 App 版本为 `1.6.0`（version code 7），APK 内置内容版本为 `1.5.0`，源码内容版本为 `1.5.0`；`dist/` 仍是忽略的本地构建目录，不提交 APK 到源码仓库。
 
 客户端当前配置的内容地址为：
 
@@ -69,12 +69,12 @@ ANDROID_RELEASE_KEY_PASSWORD
 https://github.com/Hi-prof/maoxuan/releases/latest/download/manifest.json
 ```
 
-当前内容 Release 为 [`content-v1.4.1`](https://github.com/Hi-prof/maoxuan/releases/tag/content-v1.4.1)，App 通过上述稳定清单地址手动检查更新；GitHub 暂时不可访问时仍不影响内置内容和本地阅读。
+最近已发布的内容 Release 为 [`content-v1.4.1`](https://github.com/Hi-prof/maoxuan/releases/tag/content-v1.4.1)。源码当前准备 `content-v1.5.0`；发布对应标签前，稳定清单地址仍指向线上最新 Release。GitHub 暂时不可访问时仍不影响内置内容和本地阅读。
 
 ## 编辑内容
 
 1. 参考 `content/templates/card.yaml` 新建卡片 YAML，使用不可复用的 UUID，并在修改既有卡片时递增 `revision`。
-2. 为正式卡片记录准确系列、卷次、篇名、日期和至少两个独立来源；名言必须是连续原文且不超过 90 个 Unicode code point。
+2. 为正式卡片记录准确系列、作者或卷次、篇名、日期和至少两个独立来源；引文须可追溯、可独立阅读且不超过 90 个 Unicode code point。现代作品日期使用 `YYYY`、`YYYY-MM` 或 `YYYY-MM-DD`，古代人物可使用 `前N` 或 `前N世纪`。
 3. 新图片放入 `content/images/`，同时创建同名 YAML，记录来源、作者、许可和 `shareAllowed: true`。
 4. 修改 `content/project.yaml` 中的 `contentVersion`、发布时间、发布说明和 `expectedPublishedCards`；正式校验要求声明数量与实际发布卡片数完全一致。
 
@@ -102,7 +102,7 @@ python -m xinghuo_content build content `
 
 普通 push 和 pull request 只运行 Python、正式内容、Android 单元测试、lint 与构建检查，不会发布内容或 APK。
 
-内容发布由与源版本完全一致的标签触发，例如 `content/project.yaml` 中为 `1.4.1` 时，标签必须是 `content-v1.4.1`。工作流先完成正式校验和确定性构建，再创建草稿 Release、上传 `content-v1.4.1.zip` 与 `manifest.json`，最后才公开 Release。创建标签和推送属于人工发布操作。
+内容发布由与源版本完全一致的标签触发，例如 `content/project.yaml` 中为 `1.5.0` 时，标签必须是 `content-v1.5.0`。工作流先完成正式校验和确定性构建，再创建草稿 Release、上传 `content-v1.5.0.zip` 与 `manifest.json`，最后才公开 Release。创建标签和推送属于人工发布操作。
 
 正式 APK 由与 Android `versionName` 完全一致的 `app-vX.Y.Z` 标签触发。工作流从 GitHub Secrets 临时恢复 keystore，运行单元测试、release lint、R8 构建、`apksigner` 和包版本校验，再上传 `xinghuo-zhaidu-vX.Y.Z.apk` 及 SHA-256。APK Release 明确设为非 latest，确保客户端的 `releases/latest/download/manifest.json` 始终继续指向内容 Release。
 

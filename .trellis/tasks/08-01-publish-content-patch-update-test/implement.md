@@ -38,3 +38,21 @@ python -m xinghuo_content build content --output dist --formal --verify-determin
   commit and tag.
 - Publishing uses GitHub latest release routing; after the tag workflow, latest
   must point to `content-v1.4.1`, not an app release.
+
+## 2026-08-02 Content Expansion Plan
+
+- [x] Extend content authoring / Android parser date validation to accept
+  ancient-thinker `authoredAt` labels such as `前4世纪`.
+- [x] Replace the generated pre-Qin raw-text cards with 300 curated popular /
+  encouraging famous-quote cards and 150 Marxism-principles thinking cards.
+  Select quotes from publicly reachable, attributable pages and attach a
+  specific reading guide instead of mechanically extracted prose.
+- [x] Keep the existing 150 Mao-related cards and their evidence-based reading
+  guides; do not replace them with generic quote text.
+- [x] Raise `content/project.yaml` to `1.5.0`, `minimumAppVersionCode: 7`, and
+  `expectedPublishedCards: 600`.
+- [x] Run content-tool lint/tests, formal validation, report, and deterministic
+  build with bootstrap output after the card replacement.
+- [x] Run Android debug unit tests for content package parsing after the card
+  replacement.
+- [ ] Do not commit, tag, or push without explicit user approval.
