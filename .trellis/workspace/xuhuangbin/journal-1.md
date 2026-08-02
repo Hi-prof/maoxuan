@@ -73,3 +73,38 @@
 ### Next Steps
 
 - None - task complete
+
+
+## Session 3: Publish 600-card content and Android 1.6.1
+
+**Date**: 2026-08-02
+**Task**: Publish 600-card content and Android 1.6.1
+**Branch**: `main`
+
+### Summary
+
+Expanded the formal card library to 600 curated popular, motivational, and Marxism-principles cards; rebuilt bootstrap content; released content-v1.5.0 and signed app-v1.6.1 APK.
+
+### Main Changes
+
+(Add details)
+
+### Git Commits
+
+| Hash | Message |
+|------|---------|
+| `c2de72c` | (see git log) |
+| `de854ec` | (see git log) |
+| `7c569fd` | (see git log) |
+
+### Testing
+
+- [OK] (Add test results)
+
+### Status
+
+[OK] **Completed**
+
+### Next Steps
+
+- None - task complete
