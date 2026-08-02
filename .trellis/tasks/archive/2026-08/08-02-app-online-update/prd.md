@@ -29,15 +29,15 @@
 
 ## Acceptance Criteria
 
-- [ ] 当前没有更高 App Release 时显示“当前已经是最新应用”。
-- [ ] 存在更高正式 App Release 时展示准确版本、日期、大小和说明，草稿、预发布、内容标签及资产不完整的 Release 被忽略。
-- [ ] 用户确认后可看到下载进度并可取消；取消、网络失败、体积超限和哈希错误均不会留下可安装的 APK。
-- [ ] SHA-256 正确时可通过 `FileProvider` 拉起系统 APK 安装器；权限不足时先进入系统授权页，返回后可继续安装。
-- [ ] “我的”页面两个更新入口语义清晰，在最小 `360 x 640 dp` 视口无文字或按钮重叠。
-- [ ] 内容版本不兼容提示可直接进入 App 更新检查。
-- [ ] Android manifest、FileProvider 路径和发布工作流与 `1.7.0 / 9` 保持一致。
-- [ ] App 更新解析、筛选、下载、大小限制和 SHA-256 校验有 JVM 回归测试。
-- [ ] Debug JVM tests、Android Lint 和 Debug APK 构建通过；可用设备存在时运行 instrumentation。
+- [x] 当前没有更高 App Release 时显示“当前已经是最新应用”。
+- [x] 存在更高正式 App Release 时展示准确版本、日期、大小和说明，草稿、预发布、内容标签及资产不完整的 Release 被忽略。
+- [x] 用户确认后可看到下载进度并可取消；取消、网络失败、体积超限和哈希错误均不会留下可安装的 APK。
+- [x] SHA-256 正确时可通过 `FileProvider` 拉起系统 APK 安装器；权限不足时先进入系统授权页，返回后可继续安装。
+- [x] “我的”页面两个更新入口语义清晰，在最小 `360 x 640 dp` 视口无文字或按钮重叠。
+- [x] 内容版本不兼容提示可直接进入 App 更新检查。
+- [x] Android manifest、FileProvider 路径和发布工作流与 `1.7.0 / 9` 保持一致。
+- [x] App 更新解析、筛选、下载、大小限制和 SHA-256 校验有 JVM 回归测试。
+- [x] Debug JVM tests、Android Lint 和 Debug APK 构建通过；可用设备存在时运行 instrumentation。
 
 ## Out Of Scope
 
