@@ -16,8 +16,11 @@ import androidx.compose.foundation.pager.rememberPagerState
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.outlined.Refresh
 import androidx.compose.material.icons.outlined.Search
+import androidx.compose.material.icons.outlined.MoreVert
 import androidx.compose.material3.Button
 import androidx.compose.material3.CircularProgressIndicator
+import androidx.compose.material3.DropdownMenu
+import androidx.compose.material3.DropdownMenuItem
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
@@ -25,6 +28,7 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableIntStateOf
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
@@ -32,6 +36,7 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -62,11 +67,30 @@ fun ReaderScreen(
     onFavorite: (String) -> Unit,
     onNote: (String) -> Unit,
     onNewRound: () -> Unit,
+    onReduceSimilar: (String, () -> Unit) -> Unit = { _, _ -> },
+    recommendationErrorMessage: String? = null,
+    onRecommendationErrorShown: () -> Unit = {},
     modifier: Modifier = Modifier,
 ) {
+    var advanceRequest by remember { mutableIntStateOf(0) }
+    var settledPage by remember(state.roundId) { mutableIntStateOf(state.currentIndex) }
+    val settledCard = state.cards.getOrNull(settledPage)
+        .takeUnless { isLoading || errorMessage != null }
+    val context = LocalContext.current
+    LaunchedEffect(recommendationErrorMessage) {
+        recommendationErrorMessage?.let { message ->
+            Toast.makeText(context, message, Toast.LENGTH_SHORT).show()
+            onRecommendationErrorShown()
+        }
+    }
     Column(modifier.fillMaxSize()) {
         ReaderHeader(
             onSearch = onSearch,
+            onReduceSimilar = settledCard?.let { card ->
+                {
+                    onReduceSimilar(card.id) { advanceRequest += 1 }
+                }
+            },
         )
         when {
             isLoading -> Box(Modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
@@ -84,6 +108,8 @@ fun ReaderScreen(
                 onFavorite = onFavorite,
                 onNote = onNote,
                 onNewRound = onNewRound,
+                advanceRequest = advanceRequest,
+                onSettledPageChanged = { settledPage = it },
             )
         }
     }
@@ -92,7 +118,9 @@ fun ReaderScreen(
 @Composable
 private fun ReaderHeader(
     onSearch: () -> Unit,
+    onReduceSimilar: (() -> Unit)?,
 ) {
+    var menuExpanded by remember { mutableStateOf(false) }
     Row(
         modifier = Modifier
             .fillMaxWidth()
@@ -100,6 +128,25 @@ private fun ReaderHeader(
         horizontalArrangement = Arrangement.End,
         verticalAlignment = Alignment.CenterVertically,
     ) {
+        IconButton(
+            onClick = { menuExpanded = true },
+            enabled = onReduceSimilar != null,
+        ) {
+            Icon(Icons.Outlined.MoreVert, contentDescription = "更多阅读操作")
+        }
+        DropdownMenu(
+            expanded = menuExpanded,
+            onDismissRequest = { menuExpanded = false },
+        ) {
+            DropdownMenuItem(
+                text = { Text("减少此类") },
+                onClick = {
+                    menuExpanded = false
+                    onReduceSimilar?.invoke()
+                },
+                enabled = onReduceSimilar != null,
+            )
+        }
         IconButton(onClick = onSearch) {
             Icon(Icons.Outlined.Search, contentDescription = "搜索名言")
         }
@@ -116,6 +163,8 @@ private fun ReaderPager(
     onFavorite: (String) -> Unit,
     onNote: (String) -> Unit,
     onNewRound: () -> Unit,
+    advanceRequest: Int,
+    onSettledPageChanged: (Int) -> Unit,
 ) {
     val context = LocalContext.current
     val coroutineScope = rememberCoroutineScope()
@@ -129,24 +178,33 @@ private fun ReaderPager(
     LaunchedEffect(state.roundId, state.cards.size) {
         if (state.cards.isNotEmpty()) pagerState.scrollToPage(state.currentIndex)
     }
+    LaunchedEffect(advanceRequest, state.cards.size, state.isComplete) {
+        if (advanceRequest > 0) {
+            val target = pagerState.settledPage + 1
+            if (target < pageCount) pagerState.animateScrollToPage(target)
+        }
+    }
     LaunchedEffect(pagerState.settledPage, state.roundId) {
         val page = pagerState.settledPage
+        onSettledPageChanged(page)
         flippedCardId = null
         backgroundCardId = null
         if (page < state.cards.size) onPositionChanged(page)
     }
+    val settledCardId = state.cards.getOrNull(pagerState.settledPage)?.id
     LaunchedEffect(
         pagerState.settledPage,
         pagerState.isScrollInProgress,
         lifecycleState,
         state.roundId,
+        settledCardId,
     ) {
         val page = pagerState.settledPage
         if (!pagerState.isScrollInProgress &&
             page < state.cards.size &&
             lifecycleState.isAtLeast(Lifecycle.State.STARTED)
         ) {
-            val cardId = state.cards[page].id
+            val cardId = settledCardId ?: return@LaunchedEffect
             delay(3_000)
             if (!pagerState.isScrollInProgress &&
                 pagerState.settledPage == page &&
@@ -159,7 +217,9 @@ private fun ReaderPager(
 
     VerticalPager(
         state = pagerState,
-        modifier = Modifier.fillMaxSize(),
+        modifier = Modifier
+            .fillMaxSize()
+            .testTag("readerPager"),
         userScrollEnabled = backgroundCardId == null,
         beyondViewportPageCount = 1,
     ) { page ->

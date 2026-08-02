@@ -18,6 +18,7 @@ import androidx.compose.ui.test.onNodeWithText
 import androidx.compose.ui.test.performClick
 import androidx.compose.ui.test.performScrollTo
 import androidx.compose.ui.test.performTouchInput
+import androidx.compose.ui.test.swipe
 import androidx.compose.ui.test.swipeLeft
 import androidx.compose.ui.test.swipeUp
 import androidx.compose.ui.unit.dp
@@ -182,12 +183,12 @@ class InterpretationInstrumentedTest {
             composeRule.onAllNodesWithText("启示").fetchSemanticsNodes().isNotEmpty()
         }
 
-        composeRule.onNodeWithText("启示").performTouchInput {
-            down(center)
-            advanceEventTime(100)
-            moveBy(Offset(0f, -520f))
-            advanceEventTime(400)
-            up()
+        composeRule.onNodeWithTag("readerPager").performTouchInput {
+            swipe(
+                start = Offset(center.x, height * 0.82f),
+                end = Offset(center.x, height * 0.18f),
+                durationMillis = 400,
+            )
         }
         composeRule.waitUntil(timeoutMillis = 3_000) { position == 1 }
         composeRule.onNodeWithText(secondCard.quote).assertIsDisplayed()

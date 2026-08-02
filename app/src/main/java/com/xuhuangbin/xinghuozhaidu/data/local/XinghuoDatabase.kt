@@ -19,8 +19,11 @@ import androidx.sqlite.db.SupportSQLiteDatabase
         ContentStateEntity::class,
         SearchHistoryEntity::class,
         NoteEntity::class,
+        RecommendationStateEntity::class,
+        InterestPreferenceEntity::class,
+        ReducedCardEntity::class,
     ],
-    version = 5,
+    version = 6,
     exportSchema = true,
 )
 abstract class XinghuoDatabase : RoomDatabase() {
@@ -31,7 +34,7 @@ abstract class XinghuoDatabase : RoomDatabase() {
             context,
             XinghuoDatabase::class.java,
             "xinghuo.db",
-        ).addMigrations(MIGRATION_1_2, MIGRATION_2_3, MIGRATION_3_4)
+        ).addMigrations(MIGRATION_1_2, MIGRATION_2_3, MIGRATION_3_4, MIGRATION_5_6)
             .fallbackToDestructiveMigration()
             .build()
 
@@ -90,6 +93,64 @@ abstract class XinghuoDatabase : RoomDatabase() {
                 db.execSQL(
                     "CREATE INDEX IF NOT EXISTS `index_notes_updatedAt_id` " +
                         "ON `notes` (`updatedAt`, `id`)",
+                )
+            }
+        }
+
+        val MIGRATION_5_6 = object : Migration(5, 6) {
+            override fun migrate(db: SupportSQLiteDatabase) {
+                db.execSQL(
+                    "ALTER TABLE `reading_rounds` ADD COLUMN `furthestPosition` " +
+                        "INTEGER NOT NULL DEFAULT 0",
+                )
+                db.execSQL(
+                    """
+                    UPDATE `reading_rounds`
+                    SET `furthestPosition` = MAX(
+                        `currentPosition`,
+                        COALESCE(
+                            (
+                                SELECT MAX(`position`)
+                                FROM `reading_round_items`
+                                WHERE `roundId` = `reading_rounds`.`id`
+                                  AND `readAt` IS NOT NULL
+                            ),
+                            `currentPosition`
+                        )
+                    )
+                    """.trimIndent(),
+                )
+                db.execSQL(
+                    """
+                    CREATE TABLE IF NOT EXISTS `recommendation_state` (
+                        `id` INTEGER NOT NULL,
+                        `onboardingCompleted` INTEGER NOT NULL,
+                        PRIMARY KEY(`id`)
+                    )
+                    """.trimIndent(),
+                )
+                db.execSQL(
+                    """
+                    CREATE TABLE IF NOT EXISTS `interest_preferences` (
+                        `categoryId` TEXT NOT NULL,
+                        PRIMARY KEY(`categoryId`)
+                    )
+                    """.trimIndent(),
+                )
+                db.execSQL(
+                    """
+                    CREATE TABLE IF NOT EXISTS `reduced_cards` (
+                        `cardId` TEXT NOT NULL,
+                        `createdAt` INTEGER NOT NULL,
+                        PRIMARY KEY(`cardId`)
+                    )
+                    """.trimIndent(),
+                )
+                db.execSQL(
+                    """
+                    INSERT OR REPLACE INTO `recommendation_state` (`id`, `onboardingCompleted`)
+                    VALUES (0, 1)
+                    """.trimIndent(),
                 )
             }
         }

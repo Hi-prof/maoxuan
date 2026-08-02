@@ -12,6 +12,8 @@ import com.xuhuangbin.xinghuozhaidu.domain.model.InstalledContentState
 import com.xuhuangbin.xinghuozhaidu.domain.model.PersonalNote
 import com.xuhuangbin.xinghuozhaidu.domain.model.QuoteCard
 import com.xuhuangbin.xinghuozhaidu.domain.model.ReaderState
+import com.xuhuangbin.xinghuozhaidu.domain.model.RecommendationSettings
+import com.xuhuangbin.xinghuozhaidu.domain.recommendation.InterestCategory
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.CancellationException
 import kotlinx.coroutines.Job
@@ -32,6 +34,7 @@ data class MainUiState(
     val liked: List<QuoteCard> = emptyList(),
     val notes: List<PersonalNote> = emptyList(),
     val contentState: InstalledContentState? = null,
+    val recommendationSettings: RecommendationSettings = RecommendationSettings(),
 )
 
 enum class UpdatePhase {
@@ -75,6 +78,11 @@ data class NoteOperationUiState(
     val errorMessage: String? = null,
 )
 
+data class RecommendationOperationUiState(
+    val inProgress: Boolean = false,
+    val errorMessage: String? = null,
+)
+
 class MainViewModel(
     private val repository: AppRepository,
     private val appUpdateManager: AppUpdateManager,
@@ -85,6 +93,7 @@ class MainViewModel(
     val updateState = MutableStateFlow(UpdateUiState())
     val appUpdateState = MutableStateFlow(AppUpdateUiState())
     val noteOperationState = MutableStateFlow(NoteOperationUiState())
+    val recommendationOperationState = MutableStateFlow(RecommendationOperationUiState())
     private var updateJob: Job? = null
     private var appUpdateJob: Job? = null
     private var downloadedAppUpdate: File? = null
@@ -105,8 +114,12 @@ class MainViewModel(
         )
     }
 
-    private val contentUiState = combine(cardUiState, repository.notes) { state, notes ->
-        state.copy(notes = notes)
+    private val contentUiState = combine(
+        cardUiState,
+        repository.notes,
+        repository.recommendationSettings,
+    ) { state, notes, recommendationSettings ->
+        state.copy(notes = notes, recommendationSettings = recommendationSettings)
     }
 
     val uiState = combine(
@@ -221,6 +234,54 @@ class MainViewModel(
 
     fun clearNoteOperationState() {
         noteOperationState.value = NoteOperationUiState()
+    }
+
+    fun completeInterestOnboarding(selected: Set<InterestCategory>) {
+        runRecommendationAction {
+            repository.completeInterestOnboarding(selected.mapTo(mutableSetOf(), InterestCategory::id))
+        }
+    }
+
+    fun saveInterestPreferences(selected: Set<InterestCategory>, onSaved: () -> Unit) {
+        runRecommendationAction(onSuccess = onSaved) {
+            repository.saveInterestPreferences(selected.mapTo(mutableSetOf(), InterestCategory::id))
+        }
+    }
+
+    fun reduceSimilarContent(cardId: String, onReduced: () -> Unit) {
+        runRecommendationAction(onSuccess = onReduced) {
+            repository.reduceSimilarContent(cardId)
+        }
+    }
+
+    fun clearReducedContentFeedback() {
+        runRecommendationAction { repository.clearReducedContentFeedback() }
+    }
+
+    fun clearRecommendationOperationState() {
+        recommendationOperationState.value = recommendationOperationState.value.copy(errorMessage = null)
+    }
+
+    private fun runRecommendationAction(
+        onSuccess: () -> Unit = {},
+        action: suspend () -> Unit,
+    ) {
+        if (recommendationOperationState.value.inProgress) return
+        recommendationOperationState.value = RecommendationOperationUiState(inProgress = true)
+        viewModelScope.launch {
+            try {
+                action()
+                recommendationOperationState.value = RecommendationOperationUiState()
+                onSuccess()
+            } catch (error: CancellationException) {
+                recommendationOperationState.value = RecommendationOperationUiState()
+                throw error
+            } catch (error: Exception) {
+                recommendationOperationState.value = RecommendationOperationUiState(
+                    errorMessage = error.message ?: "推荐设置操作失败",
+                )
+            }
+        }
     }
 
     fun checkForUpdate() {

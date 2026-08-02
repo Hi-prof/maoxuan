@@ -12,6 +12,7 @@ import androidx.compose.foundation.lazy.rememberLazyListState
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.outlined.CloudDownload
 import androidx.compose.material.icons.outlined.SystemUpdateAlt
+import androidx.compose.material.icons.outlined.Tune
 import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.Icon
 import androidx.compose.material3.OutlinedButton
@@ -78,6 +79,8 @@ fun SavedScreen(
 fun MineScreen(
     appVersion: String,
     contentState: InstalledContentState?,
+    selectedInterestCount: Int = 0,
+    onInterestPreferences: () -> Unit = {},
     onCheckAppUpdate: () -> Unit,
     onCheckContentUpdate: () -> Unit,
     appUpdateEnabled: Boolean,
@@ -97,6 +100,23 @@ fun MineScreen(
                     .padding(16.dp)
                     .verticalScroll(rememberScrollState()),
             ) {
+                Text(
+                    "兴趣偏好",
+                    fontWeight = FontWeight.SemiBold,
+                    fontSize = 15.sp,
+                )
+                Text(
+                    if (selectedInterestCount == 0) "尚未选择兴趣标签" else "已选择 $selectedInterestCount 个兴趣标签",
+                    color = MutedInk,
+                    fontSize = 12.sp,
+                    modifier = Modifier.padding(top = 4.dp, bottom = 12.dp),
+                )
+                OutlinedButton(onClick = onInterestPreferences) {
+                    Icon(Icons.Outlined.Tune, contentDescription = null)
+                    Spacer(Modifier.width(8.dp))
+                    Text("调整兴趣标签")
+                }
+                HorizontalDivider(Modifier.padding(vertical = 16.dp))
                 Text(
                     "应用版本 $appVersion",
                     fontWeight = FontWeight.SemiBold,

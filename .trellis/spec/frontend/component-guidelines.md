@@ -123,6 +123,25 @@ front/back states on API 28 and the latest API.
 - At `360 x 640 dp`, both update sections remain reachable without text or
   button overlap; use one bounded scrolling content surface for large fonts.
 
+## Interest And Recommendation Interaction
+
+- Show `InterestSelectionScreen` only when Room reports fresh-install
+  onboarding is required. It exposes all 12 curated interests as `FilterChip`
+  controls, accepts zero to five selections, and provides `开始阅读` plus
+  `暂时跳过`.
+- Apply `WindowInsets.safeDrawing` and keep the content vertically scrollable so
+  both commands remain visible at `360 x 640 dp`, including three-button system
+  navigation. Disable unselected chips after five choices while keeping selected
+  chips available for deselection.
+- `MineScreen` exposes one `兴趣偏好` row for both new and upgraded users. The
+  destination edits the same zero-to-five set and conditionally offers
+  `清除“减少此类”记录` behind a confirmation dialog.
+- The reader header places `MoreVert` beside search and puts `减少此类` in its
+  menu. Bind the command to the pager's actual settled card, disable it for
+  loading/error/completion states, and advance only after persistence succeeds.
+- Keep the card action row unchanged; recommendation feedback belongs in the
+  header overflow rather than a fifth compact card action.
+
 ## Common Mistakes
 
 - Using a fixed quote box height that clips the source on 360 x 640.
@@ -136,3 +155,5 @@ front/back states on API 28 and the latest API.
 - Reusing one list state for both saved segments, which makes switching one
   segment move the other.
 - Letting system back leave a note editor while save/delete is in progress.
+- Binding `减少此类` to a stale repository index while the pager is still
+  settling, or leaving the action enabled on the completion page.

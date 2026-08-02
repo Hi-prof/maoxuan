@@ -2,12 +2,14 @@
 
 ## State Owners
 
-- Room owns installed content, likes, favorites, personal notes, reading-round
-  order, read timestamps, current position, content version, and submitted
-  search history.
+- Room owns installed content, likes, favorites, personal notes, interest
+  preferences, reduced-content feedback, onboarding completion, reading-round
+  order, read timestamps, current/furthest positions, content version, and
+  submitted search history.
 - `AppRepository` combines DAO `Flow`s and maps entities to immutable domain models.
 - `MainViewModel` exposes `StateFlow` for `MainUiState`, search,
-  `UpdateUiState`, `AppUpdateUiState`, and `NoteOperationUiState`, and receives explicit user intents.
+  `UpdateUiState`, `AppUpdateUiState`, `NoteOperationUiState`, and
+  `RecommendationOperationUiState`, and receives explicit user intents.
 - Navigation owns destinations/back stacks; screens own only transient presentation details.
 
 ```kotlin
@@ -70,7 +72,30 @@ and `Error`.
 
 ## Reading Round State
 
-The repository persists the exact randomized order and position. UI paging updates position only after a settled page. Backtracking changes position but never clears `readAt`. A completed round remains visible until the user explicitly starts a new one.
+The repository persists the exact recommended order and position. UI paging
+updates position and `furthestPosition = max(furthestPosition, position)` only
+after a settled page. Backtracking changes `currentPosition` but never decreases
+`furthestPosition` or clears `readAt`. A completed round remains visible until
+the user explicitly starts a new one.
+
+## Recommendation State
+
+`RecommendationSettings(requiresOnboarding, selected, reducedCount)` is derived
+from Room flows and included in `MainUiState`. Screens never retain their own
+durable copy. Unknown persisted category IDs are omitted when mapping to the
+domain model and rejected on the next explicit save.
+
+`RecommendationOperationUiState(inProgress, errorMessage)` owns onboarding,
+preference save, reduce, and clear operations. While `inProgress` is true,
+ignore repeat submissions. On success, clear the operation state before route
+navigation or pager advance. On failure, retain the current card/selections and
+show a short error; propagate coroutine cancellation instead of converting it
+to an error message.
+
+The reader stores only its settled page index and a monotonic advance request as
+presentation state. `减少此类` captures the settled card ID; its success callback
+requests the next page. Key the three-second read timer by both settled page and
+card ID so a tail replan cannot mark a replacement card accidentally.
 
 ## Common Mistakes
 
@@ -81,3 +106,5 @@ The repository persists the exact randomized order and position. UI paging updat
 - Keeping note text only in a composable after save or encoding several notes
   into a card/user-state field.
 - Allowing an edit route to replace the note's original card ID.
+- Keeping selected interests only in `remember`, or advancing from `减少此类`
+  before the Room transaction and tail replan succeed.

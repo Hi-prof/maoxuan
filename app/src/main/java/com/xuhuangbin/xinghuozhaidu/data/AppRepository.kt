@@ -14,8 +14,11 @@ import com.xuhuangbin.xinghuozhaidu.data.local.CardWithSources
 import com.xuhuangbin.xinghuozhaidu.data.local.ContentStateEntity
 import com.xuhuangbin.xinghuozhaidu.data.local.ImageAssetEntity
 import com.xuhuangbin.xinghuozhaidu.data.local.NoteEntity
+import com.xuhuangbin.xinghuozhaidu.data.local.InterestPreferenceEntity
 import com.xuhuangbin.xinghuozhaidu.data.local.ReadingRoundEntity
 import com.xuhuangbin.xinghuozhaidu.data.local.ReadingRoundItemEntity
+import com.xuhuangbin.xinghuozhaidu.data.local.RecommendationStateEntity
+import com.xuhuangbin.xinghuozhaidu.data.local.ReducedCardEntity
 import com.xuhuangbin.xinghuozhaidu.data.local.SearchHistoryEntity
 import com.xuhuangbin.xinghuozhaidu.data.local.UserCardStateEntity
 import com.xuhuangbin.xinghuozhaidu.data.local.WithdrawalEntity
@@ -27,6 +30,11 @@ import com.xuhuangbin.xinghuozhaidu.domain.model.InstalledContentState
 import com.xuhuangbin.xinghuozhaidu.domain.model.PersonalNote
 import com.xuhuangbin.xinghuozhaidu.domain.model.QuoteCard
 import com.xuhuangbin.xinghuozhaidu.domain.model.ReaderState
+import com.xuhuangbin.xinghuozhaidu.domain.model.RecommendationSettings
+import com.xuhuangbin.xinghuozhaidu.domain.recommendation.InterestCategory
+import com.xuhuangbin.xinghuozhaidu.domain.recommendation.RecommendationProfileBuilder
+import com.xuhuangbin.xinghuozhaidu.domain.recommendation.RecommendationRanker
+import com.xuhuangbin.xinghuozhaidu.domain.recommendation.RecommendationSignals
 import java.io.File
 import java.security.MessageDigest
 import kotlin.random.Random
@@ -82,6 +90,20 @@ class AppRepository(
         entries.map { entry -> entry.toDomain() }
     }
 
+    val recommendationSettings: Flow<RecommendationSettings> = combine(
+        dao.observeRecommendationState(),
+        dao.observeInterestPreferences(),
+        dao.observeReducedCards(),
+    ) { state, preferences, reducedCards ->
+        RecommendationSettings(
+            requiresOnboarding = state?.onboardingCompleted != true,
+            selected = preferences.mapNotNullTo(mutableSetOf()) { preference ->
+                InterestCategory.fromId(preference.categoryId)
+            },
+            reducedCount = reducedCards.size,
+        )
+    }
+
     val contentState: Flow<InstalledContentState?> = dao.observeContentState().map { state ->
         state?.let {
             InstalledContentState(
@@ -115,15 +137,16 @@ class AppRepository(
 
     suspend fun initialize() = initializationMutex.withLock {
         withContext(Dispatchers.IO) {
+            val recommendationState = dao.getRecommendationState()
             val bytes = context.assets.open("bootstrap.zip").use { it.readBytes() }
             val bundledVersion = packageReader.read(bytes).info.contentVersion
             val installedVersion = dao.getContentState()?.contentVersion
             if (installedVersion == null ||
                 ContentVersion.compare(bundledVersion, installedVersion) > 0
             ) {
-                importPackage(bytes)
+                importPackage(bytes, createRoundIfMissing = recommendationState != null)
             }
-            ensureActiveRound()
+            if (recommendationState != null) ensureActiveRound()
             cleanupOrphanedAssets()
         }
     }
@@ -134,6 +157,7 @@ class AppRepository(
         expectedContentVersion: String? = null,
         expectedPublishedAt: String? = null,
         requireNewerVersion: Boolean = false,
+        createRoundIfMissing: Boolean = true,
     ) {
         withContext(Dispatchers.IO) {
             if (expectedSha256 != null && !bytes.sha256().equals(expectedSha256, ignoreCase = true)) {
@@ -159,7 +183,7 @@ class AppRepository(
                 val imagePaths = writeAssets(parsed)
                 val unusedAssetPaths = database.withTransaction {
                     applyPackage(parsed, imagePaths)
-                    reconcileActiveRound()
+                    reconcileActiveRound(createRoundIfMissing)
                     pruneUnreferencedImages()
                 }
                 unusedAssetPaths.forEach(::deleteManagedAsset)
@@ -199,6 +223,10 @@ class AppRepository(
     suspend fun markRead(cardId: String) {
         val round = dao.getActiveRound() ?: return
         dao.markRead(round.id, cardId, now())
+        completeRoundIfFullyRead(round)
+    }
+
+    private suspend fun completeRoundIfFullyRead(round: ReadingRoundEntity) {
         val items = dao.getRoundItems(round.id)
         val activeIds = dao.getActiveCardIds().toSet()
         val activeItems = items.filter { it.cardId in activeIds }
@@ -209,7 +237,7 @@ class AppRepository(
 
     suspend fun startNewRound() = database.withTransaction {
         dao.archiveRounds()
-        createRound(dao.getActiveCardIds())
+        createRecommendedRound()
     }
 
     suspend fun toggleLike(cardId: String) {
@@ -262,7 +290,7 @@ class AppRepository(
         val normalizedBody = body.trim()
         require(normalizedBody.isNotEmpty()) { "笔记正文不能为空" }
         database.withTransaction {
-            if (noteId == null) {
+            val savedId = if (noteId == null) {
                 if (cardId != null) requireNotNull(dao.getCard(cardId)) { "关联卡片不存在" }
                 val timestamp = now()
                 dao.insertNote(
@@ -280,6 +308,8 @@ class AppRepository(
                 check(dao.updateNote(noteId, normalizedTitle, normalizedBody, now()) == 1)
                 noteId
             }
+            if (cardId != null) replanUnseenTail()
+            savedId
         }
     }
 
@@ -288,9 +318,47 @@ class AppRepository(
             val note = dao.getNote(noteId) ?: return@withTransaction emptyList()
             dao.deleteNote(noteId)
             note.cardId?.let { removeWithdrawnSnapshotIfUnreferenced(it) }
+            if (note.cardId != null) replanUnseenTail()
             pruneUnreferencedImages()
         }
         unusedAssetPaths.forEach(::deleteManagedAsset)
+    }
+
+    suspend fun completeInterestOnboarding(selectedIds: Set<String>) = withContext(Dispatchers.IO) {
+        val normalized = validateInterestIds(selectedIds)
+        database.withTransaction {
+            replaceInterestPreferences(normalized)
+            dao.upsertRecommendationState(RecommendationStateEntity(onboardingCompleted = true))
+            if (dao.getActiveRound() == null) createRecommendedRound() else replanUnseenTail()
+        }
+    }
+
+    suspend fun saveInterestPreferences(selectedIds: Set<String>) = withContext(Dispatchers.IO) {
+        val normalized = validateInterestIds(selectedIds)
+        database.withTransaction {
+            replaceInterestPreferences(normalized)
+            dao.upsertRecommendationState(RecommendationStateEntity(onboardingCompleted = true))
+            if (dao.getActiveRound() == null) createRecommendedRound() else replanUnseenTail()
+        }
+    }
+
+    suspend fun reduceSimilarContent(cardId: String) = withContext(Dispatchers.IO) {
+        database.withTransaction {
+            val card = requireNotNull(dao.getCard(cardId)) { "卡片不存在" }
+            require(card.availability == "active") { "卡片已下架" }
+            dao.upsertReducedCard(ReducedCardEntity(cardId = cardId, createdAt = now()))
+            val round = dao.getActiveRound()
+            if (round != null) dao.markRead(round.id, cardId, now())
+            replanUnseenTail()
+            if (round != null) completeRoundIfFullyRead(round)
+        }
+    }
+
+    suspend fun clearReducedContentFeedback() = withContext(Dispatchers.IO) {
+        database.withTransaction {
+            dao.clearReducedCards()
+            replanUnseenTail()
+        }
     }
 
     private fun writeAssets(parsed: ParsedContentPackage): Map<String, String> {
@@ -418,13 +486,15 @@ class AppRepository(
 
     private suspend fun ensureActiveRound() {
         if (dao.getActiveRound() == null) {
-            database.withTransaction { createRound(dao.getActiveCardIds()) }
+            database.withTransaction {
+                if (dao.getActiveRound() == null) createRecommendedRound()
+            }
         }
     }
 
-    private suspend fun createRound(cardIds: List<String>) {
-        if (cardIds.isEmpty()) return
-        val shuffled = cardIds.shuffled(random)
+    private suspend fun createRecommendedRound() {
+        val rankedCardIds = rankedActiveCardIds()
+        if (rankedCardIds.isEmpty()) return
         val roundId = dao.insertRound(
             ReadingRoundEntity(
                 state = "active",
@@ -432,30 +502,78 @@ class AppRepository(
                 createdAt = now(),
             ),
         )
-        dao.insertRoundItems(shuffled.mapIndexed { index, cardId ->
+        dao.insertRoundItems(rankedCardIds.mapIndexed { index, cardId ->
             ReadingRoundItemEntity(roundId = roundId, position = index, cardId = cardId)
         })
     }
 
-    private suspend fun reconcileActiveRound() {
+    private suspend fun reconcileActiveRound(createRoundIfMissing: Boolean = true) {
         val round = dao.getActiveRound() ?: run {
-            createRound(dao.getActiveCardIds())
+            if (createRoundIfMissing) createRecommendedRound()
             return
         }
-        val activeIds = dao.getActiveCardIds().toSet()
-        val existingItems = dao.getRoundItems(round.id)
+        replanUnseenTail(round)
+    }
+
+    private suspend fun replanUnseenTail(round: ReadingRoundEntity? = null) {
+        val activeRound = round ?: dao.getActiveRound() ?: return
+        val existingItems = dao.getRoundItems(activeRound.id)
         val plan = ReadingRoundPlanner.reconcile(
-            roundId = round.id,
+            roundId = activeRound.id,
             existingItems = existingItems,
-            currentPosition = round.currentPosition,
-            activeCardIds = activeIds,
-            random = random,
+            currentPosition = activeRound.currentPosition,
+            furthestPosition = activeRound.furthestPosition,
+            rankedActiveCardIds = rankedActiveCardIds(),
         )
-        if (plan.items == existingItems && plan.currentPosition == round.currentPosition) return
-        dao.deleteRoundItems(round.id)
+        if (plan.items == existingItems &&
+            plan.currentPosition == activeRound.currentPosition &&
+            plan.furthestPosition == activeRound.furthestPosition
+        ) {
+            return
+        }
+        dao.deleteRoundItems(activeRound.id)
         dao.insertRoundItems(plan.items)
-        dao.updateRoundPosition(round.id, plan.currentPosition)
-        if (plan.addedCardIds.isNotEmpty() && round.state == "completed") dao.reactivateRound(round.id)
+        dao.updateRoundPlanState(activeRound.id, plan.currentPosition, plan.furthestPosition)
+        if (plan.addedCardIds.isNotEmpty() && activeRound.state == "completed") {
+            dao.reactivateRound(activeRound.id)
+        }
+    }
+
+    private suspend fun rankedActiveCardIds(): List<String> {
+        val cards = loadCards().filterNot(QuoteCard::isWithdrawn)
+        val cardById = cards.associateBy(QuoteCard::id)
+        val selected = dao.getInterestPreferences().mapNotNullTo(mutableSetOf()) { preference ->
+            InterestCategory.fromId(preference.categoryId)
+        }
+        val noteCards = dao.getNotes().mapNotNull { note -> note.cardId?.let(cardById::get) }
+        val reducedCards = dao.getReducedCards().mapNotNull { reduced -> cardById[reduced.cardId] }
+        val profile = RecommendationProfileBuilder.build(
+            RecommendationSignals(
+                selected = selected,
+                likedCards = cards.filter(QuoteCard::isLiked),
+                favoriteCards = cards.filter(QuoteCard::isFavorited),
+                linkedNoteCards = noteCards,
+                reducedCards = reducedCards,
+            ),
+        )
+        return RecommendationRanker.rank(cards, profile, random)
+    }
+
+    private suspend fun loadCards(): List<QuoteCard> {
+        val imagePaths = dao.getImages().associate { image -> image.id to image.localPath }
+        val stateByCard = dao.getUserStates().associateBy(UserCardStateEntity::cardId)
+        return dao.getCards().map { value -> value.toDomain(imagePaths, stateByCard[value.card.id]) }
+    }
+
+    private suspend fun replaceInterestPreferences(categoryIds: Set<String>) {
+        dao.clearInterestPreferences()
+        dao.insertInterestPreferences(categoryIds.sorted().map(::InterestPreferenceEntity))
+    }
+
+    private fun validateInterestIds(categoryIds: Set<String>): Set<String> {
+        require(categoryIds.size <= MAX_SELECTED_INTERESTS) { "最多选择 5 个兴趣标签" }
+        require(categoryIds.all { InterestCategory.fromId(it) != null }) { "兴趣标签无效" }
+        return categoryIds
     }
 
     private suspend fun updateUserState(
@@ -467,6 +585,7 @@ class AppRepository(
             val updated = transform(current)
             dao.upsertUserState(updated)
             removeWithdrawnSnapshotIfUnreferenced(cardId)
+            replanUnseenTail()
             pruneUnreferencedImages()
         }
         unusedAssetPaths.forEach(::deleteManagedAsset)
@@ -582,6 +701,7 @@ class AppRepository(
 
     private companion object {
         const val MAX_SEARCH_HISTORY = 10
+        const val MAX_SELECTED_INTERESTS = 5
     }
 
 }

@@ -14,11 +14,18 @@ interface AppDao {
     @Query("SELECT * FROM cards ORDER BY workTitle, id")
     fun observeCards(): Flow<List<CardWithSources>>
 
+    @Transaction
+    @Query("SELECT * FROM cards ORDER BY workTitle, id")
+    suspend fun getCards(): List<CardWithSources>
+
     @Query("SELECT * FROM image_assets")
     fun observeImages(): Flow<List<ImageAssetEntity>>
 
     @Query("SELECT * FROM user_card_state")
     fun observeUserStates(): Flow<List<UserCardStateEntity>>
+
+    @Query("SELECT * FROM user_card_state")
+    suspend fun getUserStates(): List<UserCardStateEntity>
 
     @Query("SELECT * FROM content_state WHERE id = 0")
     fun observeContentState(): Flow<ContentStateEntity?>
@@ -102,8 +109,29 @@ interface AppDao {
     @Query("UPDATE reading_rounds SET state = 'archived' WHERE state IN ('active', 'completed')")
     suspend fun archiveRounds()
 
-    @Query("UPDATE reading_rounds SET currentPosition = :position WHERE id = :roundId")
+    @Query(
+        """
+        UPDATE reading_rounds
+        SET currentPosition = :position,
+            furthestPosition = MAX(furthestPosition, :position)
+        WHERE id = :roundId
+        """,
+    )
     suspend fun updateRoundPosition(roundId: Long, position: Int)
+
+    @Query(
+        """
+        UPDATE reading_rounds
+        SET currentPosition = :currentPosition,
+            furthestPosition = :furthestPosition
+        WHERE id = :roundId
+        """,
+    )
+    suspend fun updateRoundPlanState(
+        roundId: Long,
+        currentPosition: Int,
+        furthestPosition: Int,
+    )
 
     @Query("SELECT * FROM reading_round_items WHERE roundId = :roundId ORDER BY position")
     fun observeRoundItems(roundId: Long): Flow<List<ReadingRoundItemEntity>>
@@ -145,6 +173,9 @@ interface AppDao {
     @Query("SELECT * FROM notes ORDER BY updatedAt DESC, id DESC")
     fun observeNotes(): Flow<List<NoteEntity>>
 
+    @Query("SELECT * FROM notes ORDER BY updatedAt DESC, id DESC")
+    suspend fun getNotes(): List<NoteEntity>
+
     @Query("SELECT * FROM notes WHERE id = :noteId")
     suspend fun getNote(noteId: Long): NoteEntity?
 
@@ -159,4 +190,37 @@ interface AppDao {
 
     @Query("DELETE FROM notes WHERE id = :noteId")
     suspend fun deleteNote(noteId: Long): Int
+
+    @Query("SELECT * FROM recommendation_state WHERE id = 0")
+    fun observeRecommendationState(): Flow<RecommendationStateEntity?>
+
+    @Query("SELECT * FROM recommendation_state WHERE id = 0")
+    suspend fun getRecommendationState(): RecommendationStateEntity?
+
+    @Upsert
+    suspend fun upsertRecommendationState(value: RecommendationStateEntity)
+
+    @Query("SELECT * FROM interest_preferences ORDER BY categoryId")
+    fun observeInterestPreferences(): Flow<List<InterestPreferenceEntity>>
+
+    @Query("SELECT * FROM interest_preferences ORDER BY categoryId")
+    suspend fun getInterestPreferences(): List<InterestPreferenceEntity>
+
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    suspend fun insertInterestPreferences(values: List<InterestPreferenceEntity>)
+
+    @Query("DELETE FROM interest_preferences")
+    suspend fun clearInterestPreferences()
+
+    @Query("SELECT * FROM reduced_cards ORDER BY createdAt, cardId")
+    fun observeReducedCards(): Flow<List<ReducedCardEntity>>
+
+    @Query("SELECT * FROM reduced_cards ORDER BY createdAt, cardId")
+    suspend fun getReducedCards(): List<ReducedCardEntity>
+
+    @Upsert
+    suspend fun upsertReducedCard(value: ReducedCardEntity)
+
+    @Query("DELETE FROM reduced_cards")
+    suspend fun clearReducedCards()
 }

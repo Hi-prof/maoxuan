@@ -1,5 +1,7 @@
 package com.xuhuangbin.xinghuozhaidu.domain.model
 
+import com.xuhuangbin.xinghuozhaidu.domain.recommendation.InterestCategory
+
 data class CardSource(
     val name: String,
     val url: String,
@@ -56,4 +58,10 @@ data class PersonalNote(
     val body: String,
     val createdAt: Long,
     val updatedAt: Long,
+)
+
+data class RecommendationSettings(
+    val requiresOnboarding: Boolean = true,
+    val selected: Set<InterestCategory> = emptySet(),
+    val reducedCount: Int = 0,
 )

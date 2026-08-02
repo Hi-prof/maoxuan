@@ -35,7 +35,11 @@ Keep `isMinifyEnabled = true` and `isShrinkResources = true` explicit on `person
 - Themes: system light and dark settings must both render the same fixed light app palette.
 - Interactions: vertical forward/back paging, flip, interpretation scrolling
   with edge paging, like, favorite, search, navigation restoration, update
-  confirmation/cancel/error.
+  confirmation/cancel/error, reader overflow feedback, and interest editing.
+- Recommendations: fresh-install 12-chip onboarding, zero-selection skip,
+  five-selection limit, migrated-user bypass, Mine preference entry,
+  reduce-feedback confirmation/clear, operation error, and completion-page
+  disabled state.
 - Saved/notes: independent favorite/liked segment switching, four-item bottom
   navigation, note empty/list/editor states, standalone and linked note entry,
   delete/discard confirmation, persistence after restart, and withdrawn card
@@ -99,5 +103,13 @@ threshold on both API 28 and current high-density devices.
   Release still serves the public content `manifest.json` after APK publication.
 - The Mine screen shows both update buttons at `360 x 640 dp`; content version
   incompatibility opens the App updater, and permission denial remains retryable.
+- At `360 x 640 dp`, the onboarding title, selected count, all 12 chips,
+  `开始阅读`, and `暂时跳过` are reachable without system-bar clipping. Verify
+  this on API 28 and the latest configured API with real screenshots.
+- Reader recommendation tests target the settled pager card, assert successful
+  feedback advances exactly once, keep the card on persistence failure, and
+  prove the overflow action is disabled on the completion page.
 - Room `3 -> 4` migration and note CRUD/withdrawal lifecycle tests run on API 28
   and the latest configured API.
+- Room `5 -> 6`, recommendation repository, and interest/reader Compose tests
+  run on API 28 and the latest configured API.

@@ -8,6 +8,7 @@ import androidx.room.Room
 import androidx.test.core.app.ApplicationProvider
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import com.xuhuangbin.xinghuozhaidu.data.local.XinghuoDatabase
+import com.xuhuangbin.xinghuozhaidu.domain.recommendation.InterestCategory
 import java.io.ByteArrayOutputStream
 import java.io.File
 import java.security.MessageDigest
@@ -32,6 +33,7 @@ class AppRepositoryInstrumentedTest {
     private lateinit var database: XinghuoDatabase
     private lateinit var repository: AppRepository
     private lateinit var testRoot: File
+    private lateinit var isolatedContext: Context
 
     private val cardId = "d99d5cbc-1193-5d91-8896-7969c9393c53"
     private val imageId = "integration-paper"
@@ -44,7 +46,7 @@ class AppRepositoryInstrumentedTest {
         testRoot = File(baseContext.cacheDir, "repository-tests/${UUID.randomUUID()}").apply {
             check(mkdirs())
         }
-        val isolatedContext = object : ContextWrapper(baseContext) {
+        isolatedContext = object : ContextWrapper(baseContext) {
             override fun getFilesDir(): File = testRoot
         }
         database = Room.inMemoryDatabaseBuilder(
@@ -170,7 +172,7 @@ class AppRepositoryInstrumentedTest {
         repository.initialize()
 
         val installed = database.appDao().getContentState()
-        assertEquals("1.4.0", installed?.contentVersion)
+        assertEquals("1.5.0", installed?.contentVersion)
         val upgraded = repository.allCards.first().first { it.id == cardId }
         assertEquals(3, upgraded.revision)
         assertTrue(upgraded.isLiked)
@@ -179,6 +181,81 @@ class AppRepositoryInstrumentedTest {
         val upgradedItem = database.appDao().getRoundItems(requireNotNull(round).id)
             .first { it.cardId == cardId }
         assertTrue(upgradedItem.readAt != null)
+    }
+
+    @Test
+    fun freshInitializationWaitsForInterestsAndPersistsRecommendationSettings() = runBlocking {
+        repository.initialize()
+
+        assertTrue(repository.recommendationSettings.first().requiresOnboarding)
+        assertNull(repository.readerState.first().roundId)
+
+        repository.completeInterestOnboarding(
+            setOf(InterestCategory.SelfGrowth.id, InterestCategory.Practice.id),
+        )
+
+        val settings = repository.recommendationSettings.first()
+        assertFalse(settings.requiresOnboarding)
+        assertEquals(
+            setOf(InterestCategory.SelfGrowth, InterestCategory.Practice),
+            settings.selected,
+        )
+        val reader = repository.readerState.first()
+        assertTrue(reader.cards.isNotEmpty())
+
+        val reducedCardId = reader.cards.first().id
+        repository.reduceSimilarContent(reducedCardId)
+        assertEquals(1, repository.recommendationSettings.first().reducedCount)
+        val round = requireNotNull(database.appDao().getActiveRound())
+        assertTrue(
+            database.appDao().getRoundItems(round.id)
+                .first { it.cardId == reducedCardId }
+                .readAt != null,
+        )
+
+        repository.clearReducedContentFeedback()
+        assertEquals(0, repository.recommendationSettings.first().reducedCount)
+    }
+
+    @Test
+    fun interestPreferencesValidateReplaceAndPersistAcrossRepositoryInstances() = runBlocking {
+        repository.initialize()
+
+        try {
+            repository.completeInterestOnboarding(
+                InterestCategory.entries.take(6).mapTo(mutableSetOf(), InterestCategory::id),
+            )
+            fail("应拒绝超过 5 个兴趣标签")
+        } catch (error: IllegalArgumentException) {
+            assertEquals("最多选择 5 个兴趣标签", error.message)
+        }
+        try {
+            repository.completeInterestOnboarding(setOf("unknown"))
+            fail("应拒绝未知兴趣标签")
+        } catch (error: IllegalArgumentException) {
+            assertEquals("兴趣标签无效", error.message)
+        }
+
+        repository.completeInterestOnboarding(
+            setOf(InterestCategory.SelfGrowth.id, InterestCategory.Practice.id),
+        )
+        repository.saveInterestPreferences(setOf(InterestCategory.Learning.id))
+
+        assertEquals(
+            setOf(InterestCategory.Learning),
+            repository.recommendationSettings.first().selected,
+        )
+        val restarted = AppRepository(
+            context = isolatedContext,
+            database = database,
+            random = Random(9),
+            now = { currentTime },
+        )
+        assertEquals(
+            setOf(InterestCategory.Learning),
+            restarted.recommendationSettings.first().selected,
+        )
+        assertFalse(restarted.recommendationSettings.first().requiresOnboarding)
     }
 
     @Test

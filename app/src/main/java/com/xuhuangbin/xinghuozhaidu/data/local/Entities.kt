@@ -76,6 +76,7 @@ data class ReadingRoundEntity(
     @androidx.room.PrimaryKey(autoGenerate = true) val id: Long = 0,
     val state: String,
     val currentPosition: Int,
+    val furthestPosition: Int = currentPosition,
     val createdAt: Long,
     val completedAt: Long? = null,
 )
@@ -129,4 +130,21 @@ data class NoteEntity(
     val body: String,
     val createdAt: Long,
     val updatedAt: Long,
+)
+
+@Entity(tableName = "recommendation_state")
+data class RecommendationStateEntity(
+    @PrimaryKey val id: Int = 0,
+    val onboardingCompleted: Boolean,
+)
+
+@Entity(tableName = "interest_preferences")
+data class InterestPreferenceEntity(
+    @PrimaryKey val categoryId: String,
+)
+
+@Entity(tableName = "reduced_cards")
+data class ReducedCardEntity(
+    @PrimaryKey val cardId: String,
+    val createdAt: Long,
 )

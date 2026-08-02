@@ -41,6 +41,8 @@ import com.xuhuangbin.xinghuozhaidu.domain.model.QuoteCard
 import com.xuhuangbin.xinghuozhaidu.ui.MainViewModel
 import com.xuhuangbin.xinghuozhaidu.ui.NoteOperationUiState
 import com.xuhuangbin.xinghuozhaidu.ui.detail.CardDetailScreen
+import com.xuhuangbin.xinghuozhaidu.ui.interests.InterestPreferencesScreen
+import com.xuhuangbin.xinghuozhaidu.ui.interests.InterestSelectionScreen
 import com.xuhuangbin.xinghuozhaidu.ui.notes.NoteEditorScreen
 import com.xuhuangbin.xinghuozhaidu.ui.notes.NotesScreen
 import com.xuhuangbin.xinghuozhaidu.ui.reader.ReaderScreen
@@ -85,6 +87,21 @@ fun XinghuoApp() {
     val updateState by viewModel.updateState.collectAsStateWithLifecycle()
     val appUpdateState by viewModel.appUpdateState.collectAsStateWithLifecycle()
     val noteOperationState by viewModel.noteOperationState.collectAsStateWithLifecycle()
+    val recommendationOperationState by viewModel.recommendationOperationState.collectAsStateWithLifecycle()
+
+    if (!uiState.isLoading &&
+        uiState.errorMessage == null &&
+        uiState.recommendationSettings.requiresOnboarding
+    ) {
+        InterestSelectionScreen(
+            initialSelected = uiState.recommendationSettings.selected,
+            isSaving = recommendationOperationState.inProgress,
+            errorMessage = recommendationOperationState.errorMessage,
+            onContinue = viewModel::completeInterestOnboarding,
+            onSkip = { viewModel.completeInterestOnboarding(emptySet()) },
+        )
+        return
+    }
     val navController = rememberNavController()
     val backStack by navController.currentBackStackEntryAsState()
     val currentRoute = backStack?.destination?.route.orEmpty()
@@ -122,6 +139,9 @@ fun XinghuoApp() {
                     onFavorite = viewModel::toggleFavorite,
                     onNote = { cardId -> navController.navigate("note/new/card/$cardId") },
                     onNewRound = viewModel::startNewRound,
+                    onReduceSimilar = viewModel::reduceSimilarContent,
+                    recommendationErrorMessage = recommendationOperationState.errorMessage,
+                    onRecommendationErrorShown = viewModel::clearRecommendationOperationState,
                 )
             }
             composable("saved") {
@@ -144,10 +164,26 @@ fun XinghuoApp() {
                 MineScreen(
                     appVersion = BuildConfig.VERSION_NAME,
                     contentState = uiState.contentState,
+                    selectedInterestCount = uiState.recommendationSettings.selected.size,
+                    onInterestPreferences = { navController.navigate("interests") },
                     onCheckAppUpdate = viewModel::checkForAppUpdate,
                     onCheckContentUpdate = viewModel::checkForUpdate,
                     appUpdateEnabled = BuildConfig.APP_RELEASES_API_URL.isNotBlank(),
                     contentUpdateEnabled = BuildConfig.CONTENT_MANIFEST_URL.isNotBlank(),
+                )
+            }
+            composable("interests") {
+                LaunchedEffect(Unit) { viewModel.clearRecommendationOperationState() }
+                InterestPreferencesScreen(
+                    initialSelected = uiState.recommendationSettings.selected,
+                    reducedCount = uiState.recommendationSettings.reducedCount,
+                    isSaving = recommendationOperationState.inProgress,
+                    errorMessage = recommendationOperationState.errorMessage,
+                    onBack = navController::popBackStack,
+                    onSave = { selected ->
+                        viewModel.saveInterestPreferences(selected, navController::popBackStack)
+                    },
+                    onClearReduced = viewModel::clearReducedContentFeedback,
                 )
             }
             composable("search") {

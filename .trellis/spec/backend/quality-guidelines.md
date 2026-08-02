@@ -52,6 +52,13 @@ Run instrumentation on API 28 and the latest configured API before release.
 - Parser tests include valid, malformed, oversized, duplicate, traversal, bad-hash, and unknown-schema cases.
 - Repository tests cover first import, revision, withdrawal, restoration, and local state preservation.
 - Reading-round tests cover stable order, backtracking, additions, withdrawals, completion, and restart semantics.
+- Recommendation JVM tests cover all 12 taxonomy pools against the bundled 600
+  cards, bounded explicit-signal weights, 4:1 exploration mixing, diversity,
+  deterministic randomness, and duplicate-free output.
+- Room and repository instrumentation covers schema `5 -> 6`, fresh versus
+  migrated onboarding, locked-prefix tail replanning, preference replacement,
+  negative-feedback clearing, restart persistence, and content add/withdraw on
+  API 28 and the latest configured API.
 - Release workflow validates `content-vX.Y.Z` against `project.yaml` before publishing assets.
 - App release workflow validates `app-vX.Y.Z` against Android `versionName`,
   verifies the signed APK and publishes it as non-latest so the content manifest

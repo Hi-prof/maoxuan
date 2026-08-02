@@ -12,13 +12,21 @@ Room is the device source of truth for installed content, user state, and readin
 - `card_sources`: ordered by `(cardId, position)` and replaced as a unit with a card revision.
 - `image_assets`: stable logical image ID mapped to immutable SHA-256 content and an internal path.
 - `user_card_state`: independent like/favorite flags and timestamps; it must survive content revisions.
-- `reading_rounds`: one latest `active|completed` round; prior rounds become `archived` only when the user starts a new round.
+- `reading_rounds`: one latest `active|completed` round; `currentPosition` is the
+  settled page and `furthestPosition` is the greatest page the user has reached.
+  Prior rounds become `archived` only when the user starts a new round.
 - `reading_round_items`: persisted stable order with a unique `(roundId, cardId)` index and idempotent `readAt`.
 - `withdrawals`: highest trusted tombstone revision for each withdrawn card ID.
 - `content_state`: singleton row with primary key `0`.
 - `search_history`: auto-generated ID, `NOCASE` unique keyword, and submitted time; ordered by submitted time then ID descending and capped at 10 rows.
 - `notes`: auto-generated ID, nullable card ID, nullable title, non-empty body,
   and created/updated times; ordered by updated time then ID descending.
+- `recommendation_state`: singleton row `id = 0`; row absence means a new
+  installation still requires interest onboarding.
+- `interest_preferences`: zero to five stable recommendation category IDs,
+  replaced as a set when the user saves preferences.
+- `reduced_cards`: one local negative-feedback row per stable card ID with a
+  creation timestamp; it intentionally has no card foreign key.
 
 ## Transaction Pattern
 
@@ -83,6 +91,99 @@ WHERE roundId = :roundId AND cardId = :cardId
   `interpretationInspiration` and `interpretationExplanation`, adds required
   `historicalEvent`, and removes `contextExcerpt`. App `1.3.0` uses destructive
   fallback from prior schemas and then imports the bundled schema-3 content.
+- Database version 6 adds the recommendation tables and
+  `reading_rounds.furthestPosition` through `MIGRATION_5_6`. The migration
+  preserves every existing table, reconstructs the furthest position from
+  `currentPosition` and non-null `readAt` rows, and writes
+  `onboardingCompleted = true` so upgrades never show fresh-install onboarding.
+
+## Scenario: Local Recommendation State And Unseen-Tail Replanning
+
+### 1. Scope / Trigger
+
+- Trigger: schema 6 persists local interest preferences and negative feedback,
+  while explicit recommendation signals can reorder an active reading round.
+
+### 2. Signatures
+
+```kotlin
+data class RecommendationStateEntity(
+    @PrimaryKey val id: Int = 0,
+    val onboardingCompleted: Boolean,
+)
+
+data class InterestPreferenceEntity(@PrimaryKey val categoryId: String)
+data class ReducedCardEntity(@PrimaryKey val cardId: String, val createdAt: Long)
+
+suspend fun completeInterestOnboarding(selectedIds: Set<String>)
+suspend fun saveInterestPreferences(selectedIds: Set<String>)
+suspend fun reduceSimilarContent(cardId: String)
+suspend fun clearReducedContentFeedback()
+```
+
+### 3. Contracts
+
+- A current-schema database with no `recommendation_state` row is a fresh
+  install. Saving or skipping onboarding writes the singleton and creates the
+  first reading round in the same transaction.
+- A migrated schema-5 database receives `recommendation_state(0, true)` and
+  keeps its existing round, cards, sources, content state, likes, favorites,
+  notes, search history, positions, and `readAt` values.
+- Preference and feedback writes replan only positions strictly greater than
+  `furthestPosition`. Positions `0..furthestPosition`, `currentPosition`, and
+  every existing `readAt` remain unchanged.
+- The replanned tail contains each active candidate once. Newly published cards
+  may enter that tail; withdrawn cards leave it. All recommendation data stays
+  on device and must not be logged or sent over the network.
+
+### 4. Validation & Error Matrix
+
+| Condition | Required result |
+| --- | --- |
+| More than five category IDs | Reject before writing with `最多选择 5 个兴趣标签` |
+| Any unknown category ID | Reject before writing with `兴趣标签无效` |
+| Reduced card ID does not exist | Reject with `卡片不存在`; write no feedback |
+| Reduced card ID is withdrawn | Reject with `卡片已下架`; write no feedback |
+| Empty preference set | Persist it as a valid balanced-feed preference |
+| Replanning has no candidates | Keep a valid empty tail and unchanged prefix |
+| Coroutine is cancelled | Propagate cancellation; do not report a user error |
+
+### 5. Good/Base/Bad Cases
+
+- Good: changing interests midway through a round leaves visited positions and
+  timestamps byte-for-byte stable while the unseen tail receives a new order.
+- Base: skipping onboarding saves zero selected categories and creates a
+  balanced, duplicate-free first round.
+- Bad: rewriting the complete round after a like moves a previously seen card,
+  breaks backtracking, and can assign a `readAt` value to the wrong position.
+
+### 6. Tests Required
+
+- Pure JVM: taxonomy coverage for all bundled cards, bounded signal weights,
+  4:1 personalized/exploration mixing, diversity fallback, determinism, and no
+  duplicate or missing card IDs.
+- Migration: seed a complete schema-5 database, migrate to 6, validate the
+  schema and singleton, and assert all prior values plus reconstructed
+  `furthestPosition` on API 28 and the latest configured API.
+- Repository: assert onboarding save/skip, invalid IDs, preference replacement,
+  reduce/clear, restart persistence, explicit positive signals, updates,
+  withdrawals, completion, and locked-prefix preservation.
+
+### 7. Wrong vs Correct
+
+#### Wrong
+
+```kotlin
+dao.replaceRoundItems(round.id, rank(allActiveCards))
+```
+
+#### Correct
+
+```kotlin
+val locked = existingItems.filter { it.position <= round.furthestPosition }
+val rankedTail = rank(activeCandidatesAfter(round.furthestPosition))
+dao.replaceRoundItems(round.id, locked + rankedTail)
+```
 
 ## Scenario: Personal Notes And Withdrawal Retention
 
@@ -189,6 +290,8 @@ if (!state.liked && !state.favorited && dao.countNotesForCard(cardId) == 0) {
 - Reusing an image ID for different bytes.
 - Moving the database transaction before asset validation/writes, which can create references to missing files.
 - Rebuilding a reading round from a random seed instead of persisting its exact order.
+- Replanning positions at or before `furthestPosition`, which changes history
+  and can attach settled-page effects to the wrong card.
 - Raising the schema version without testing search history, round position,
   read timestamps, likes, favorites, and notes across the migration.
 - Adding a foreign-key cascade from notes to cards, which would erase personal
