@@ -108,3 +108,37 @@ Expanded the formal card library to 600 curated popular, motivational, and Marxi
 ### Next Steps
 
 - None - task complete
+
+
+## Session 4: 个性化推荐与应用更新发布
+
+**Date**: 2026-08-02
+**Task**: 个性化推荐与应用更新发布
+**Branch**: `main`
+
+### Summary
+
+完成本地个性化阅读流、新用户兴趣选择、减少此类反馈、Room 5 到 6 保数据迁移与应用内更新；通过 API 28/35、Gradle 和 GitHub JDK 17 发布门禁，发布 app-v1.8.0 正式签名 APK。
+
+### Main Changes
+
+(Add details)
+
+### Git Commits
+
+| Hash | Message |
+|------|---------|
+| `b02c317` | (see git log) |
+| `a928f86` | (see git log) |
+
+### Testing
+
+- [OK] (Add test results)
+
+### Status
+
+[OK] **Completed**
+
+### Next Steps
+
+- None - task complete

@@ -8,7 +8,7 @@
 
 <!-- @@@auto:current-status -->
 - **Active File**: `journal-1.md`
-- **Total Sessions**: 3
+- **Total Sessions**: 4
 - **Last Active**: 2026-08-02
 <!-- @@@/auto:current-status -->
 
@@ -19,7 +19,7 @@
 <!-- @@@auto:active-documents -->
 | File | Lines | Status |
 |------|-------|--------|
-| `journal-1.md` | ~110 | Active |
+| `journal-1.md` | ~144 | Active |
 <!-- @@@/auto:active-documents -->
 
 ---
@@ -29,6 +29,7 @@
 <!-- @@@auto:session-history -->
 | # | Date | Title | Commits | Branch |
 |---|------|-------|---------|--------|
+| 4 | 2026-08-02 | 个性化推荐与应用更新发布 | `b02c317`, `a928f86` | `main` |
 | 3 | 2026-08-02 | Publish 600-card content and Android 1.6.1 | `c2de72c`, `de854ec`, `7c569fd` | `main` |
 | 2 | 2026-07-29 | 发布星火摘读 1.4.0 | `4fdff28`, `3eb5f33`, `824dd16` | `main` |
 | 1 | 2026-07-29 | 发布星火摘读 1.3.0 | `e2c46fc`, `02881b4` | `main` |
