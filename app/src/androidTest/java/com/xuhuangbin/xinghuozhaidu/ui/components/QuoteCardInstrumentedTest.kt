@@ -142,7 +142,57 @@ class QuoteCardInstrumentedTest {
         composeRule.onNodeWithText(card.quote).assertIsDisplayed()
     }
 
-    private fun testCard() = QuoteCard(
+    @Test
+    fun verticalScrollContinuesAfterHorizontalFlipDragStarts() {
+        val card = testCard(longInterpretation = true)
+        var flipped by mutableStateOf(true)
+
+        composeRule.setContent {
+            XinghuoTheme {
+                FlippableQuoteCard(
+                    card = card,
+                    flipped = flipped,
+                    onFlippedChange = { flipped = it },
+                    modifier = Modifier
+                        .size(width = 360.dp, height = 320.dp)
+                        .testTag("scrollDuringFlipCard"),
+                )
+            }
+        }
+
+        val beforeTop = composeRule.onNodeWithText("解读")
+            .assertIsDisplayed()
+            .fetchSemanticsNode()
+            .boundsInRoot
+            .top
+
+        val cardBounds = composeRule.onNodeWithTag("scrollDuringFlipCard")
+            .fetchSemanticsNode()
+            .boundsInRoot
+        composeRule.onNodeWithTag("scrollDuringFlipCard").performTouchInput {
+            down(center)
+            advanceEventTime(80)
+            moveBy(Offset(-cardBounds.width * 0.16f, 0f))
+            advanceEventTime(80)
+            moveBy(Offset(0f, -cardBounds.height * 0.45f))
+            advanceEventTime(240)
+            up()
+        }
+        composeRule.waitForIdle()
+
+        val afterTop = composeRule.onNodeWithText("解读")
+            .fetchSemanticsNode()
+            .boundsInRoot
+            .top
+
+        assertTrue(
+            "the back face must keep scrolling after a horizontal flip drag starts",
+            afterTop < beforeTop - 20f,
+        )
+        assertTrue("a short horizontal drag should settle back on the interpretation face", flipped)
+    }
+
+    private fun testCard(longInterpretation: Boolean = false) = QuoteCard(
         id = "8a3e739a-9b89-5840-a47a-6bb2c6435c1c",
         revision = 1,
         quote = "没有调查，没有发言权。",
@@ -151,7 +201,7 @@ class QuoteCardInstrumentedTest {
         workTitle = "反对本本主义",
         authoredAt = "1930-05",
         themes = listOf("调查研究"),
-        interpretation = testInterpretation(),
+        interpretation = testInterpretation(longInterpretation),
         historicalEvent = "1930年5月，毛泽东针对脱离实际的倾向写下这篇文章。",
         background = "这篇文章围绕调查研究与实际工作的关系展开。",
         story = "正文进一步讨论怎样开调查会和记录问题。",
@@ -164,8 +214,12 @@ class QuoteCardInstrumentedTest {
         favoritedAt = null,
     )
 
-    private fun testInterpretation() = CardInterpretation(
+    private fun testInterpretation(longExplanation: Boolean = false) = CardInterpretation(
         inspiration = "先了解事实，再作决定。",
-        explanation = "从实际情况出发认识问题，调查是形成判断的前提。",
+        explanation = if (longExplanation) {
+            "从实际情况出发认识问题，调查是形成判断的前提。".repeat(18)
+        } else {
+            "从实际情况出发认识问题，调查是形成判断的前提。"
+        },
     )
 }

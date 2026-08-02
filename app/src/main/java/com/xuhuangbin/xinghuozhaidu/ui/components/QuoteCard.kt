@@ -5,9 +5,8 @@ import androidx.compose.animation.core.Spring
 import androidx.compose.animation.core.spring
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.background
-import androidx.compose.foundation.gestures.Orientation
-import androidx.compose.foundation.gestures.draggable
-import androidx.compose.foundation.gestures.rememberDraggableState
+import androidx.compose.foundation.gestures.awaitEachGesture
+import androidx.compose.foundation.gestures.awaitFirstDown
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.BoxWithConstraints
@@ -35,7 +34,12 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.alpha
+import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.graphics.graphicsLayer
+import androidx.compose.ui.input.pointer.PointerEventPass
+import androidx.compose.ui.input.pointer.pointerInput
+import androidx.compose.ui.input.pointer.positionChangeIgnoreConsumed
+import androidx.compose.ui.input.pointer.util.VelocityTracker
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.layout.onSizeChanged
 import androidx.compose.ui.platform.LocalDensity
@@ -87,12 +91,58 @@ fun FlippableQuoteCard(
     var isDragging by remember(card.id) { mutableStateOf(false) }
     var isSettling by remember(card.id) { mutableStateOf(false) }
     val flingThresholdPx = with(localDensity) { 900.dp.toPx() }
-    val draggableState = rememberDraggableState { deltaPx ->
+
+    fun applyHorizontalDrag(deltaPx: Float) {
         dragDistancePx += deltaPx
         val degreesPerPixel = DegreesPerFlip / (cardWidthPx * DragWidthPerFlip)
         val targetRotation = dragStartRotation +
             (dragDistancePx * degreesPerPixel).coerceIn(-DegreesPerFlip, DegreesPerFlip)
         coroutineScope.launch { rotation.snapTo(targetRotation) }
+    }
+
+    fun beginHorizontalDrag(initialDeltaPx: Float) {
+        coroutineScope.launch { rotation.stop() }
+        dragStartRotation = rotation.value
+        dragDistancePx = 0f
+        isDragging = true
+        if (initialDeltaPx != 0f) {
+            applyHorizontalDrag(initialDeltaPx)
+        }
+    }
+
+    fun settleHorizontalDrag(velocityPx: Float) {
+        val startFlipped = isBackFace(dragStartRotation)
+        val baseRotation = nearestStableRotation(dragStartRotation, startFlipped)
+        val distanceReached = abs(dragDistancePx) >= cardWidthPx * FlipDistanceThreshold
+        val flingReached = abs(velocityPx) >= flingThresholdPx
+        val direction = when {
+            flingReached -> velocityPx.sign
+            dragDistancePx != 0f -> dragDistancePx.sign
+            else -> 1f
+        }
+        val targetRotation = if (distanceReached || flingReached) {
+            baseRotation + direction * DegreesPerFlip
+        } else {
+            baseRotation
+        }
+        val targetFlipped = stableRotationIsBack(targetRotation)
+
+        isDragging = false
+        isSettling = true
+        coroutineScope.launch {
+            try {
+                onFlippedChange(targetFlipped)
+                rotation.animateTo(
+                    targetValue = targetRotation,
+                    animationSpec = FlipSpring,
+                    initialVelocity = velocityPx * DegreesPerFlip /
+                        (cardWidthPx * DragWidthPerFlip),
+                )
+                rotation.snapTo(normalizedStableRotation(targetRotation, targetFlipped))
+            } finally {
+                isSettling = false
+            }
+        }
     }
 
     androidx.compose.runtime.LaunchedEffect(card.id, flipped) {
@@ -120,48 +170,57 @@ fun FlippableQuoteCard(
                     },
                 )
             }
-            .draggable(
-                state = draggableState,
-                orientation = Orientation.Horizontal,
-                onDragStarted = {
-                    rotation.stop()
-                    dragStartRotation = rotation.value
-                    dragDistancePx = 0f
-                    isDragging = true
-                },
-                onDragStopped = { velocityPx ->
-                    val startFlipped = isBackFace(dragStartRotation)
-                    val baseRotation = nearestStableRotation(dragStartRotation, startFlipped)
-                    val distanceReached = abs(dragDistancePx) >= cardWidthPx * FlipDistanceThreshold
-                    val flingReached = abs(velocityPx) >= flingThresholdPx
-                    val direction = when {
-                        flingReached -> velocityPx.sign
-                        dragDistancePx != 0f -> dragDistancePx.sign
-                        else -> 1f
-                    }
-                    val targetRotation = if (distanceReached || flingReached) {
-                        baseRotation + direction * DegreesPerFlip
-                    } else {
-                        baseRotation
-                    }
-                    val targetFlipped = stableRotationIsBack(targetRotation)
+            .pointerInput(card.id, flipped, cardWidthPx) {
+                awaitEachGesture {
+                    val down = awaitFirstDown(requireUnconsumed = false)
+                    val velocityTracker = VelocityTracker()
+                    velocityTracker.addPosition(down.uptimeMillis, down.position)
+                    var pointerId = down.id
+                    var totalDrag = Offset.Zero
+                    var horizontalDragActive = false
+                    var shouldSettle = false
 
-                    isDragging = false
-                    isSettling = true
                     try {
-                        onFlippedChange(targetFlipped)
-                        rotation.animateTo(
-                            targetValue = targetRotation,
-                            animationSpec = FlipSpring,
-                            initialVelocity = velocityPx * DegreesPerFlip /
-                                (cardWidthPx * DragWidthPerFlip),
-                        )
-                        rotation.snapTo(normalizedStableRotation(targetRotation, targetFlipped))
+                        while (true) {
+                            val event = awaitPointerEvent(PointerEventPass.Main)
+                            val trackedChange = event.changes.firstOrNull { it.id == pointerId }
+                            val change = if (trackedChange?.pressed == true) {
+                                trackedChange
+                            } else {
+                                event.changes.firstOrNull { it.pressed }?.also {
+                                    pointerId = it.id
+                                    velocityTracker.addPosition(it.uptimeMillis, it.position)
+                                } ?: break
+                            }
+                            val delta = change.positionChangeIgnoreConsumed()
+                            if (delta == Offset.Zero) continue
+
+                            velocityTracker.addPosition(change.uptimeMillis, change.position)
+                            if (!horizontalDragActive) {
+                                totalDrag += delta
+                                val absX = abs(totalDrag.x)
+                                val absY = abs(totalDrag.y)
+                                if (absY > viewConfiguration.touchSlop && absY > absX) {
+                                    return@awaitEachGesture
+                                }
+                                if (absX > viewConfiguration.touchSlop && absX > absY) {
+                                    horizontalDragActive = true
+                                    shouldSettle = true
+                                    val overSlop = totalDrag.x - totalDrag.x.sign *
+                                        viewConfiguration.touchSlop
+                                    beginHorizontalDrag(overSlop)
+                                }
+                            } else {
+                                applyHorizontalDrag(delta.x)
+                            }
+                        }
                     } finally {
-                        isSettling = false
+                        if (shouldSettle) {
+                            settleHorizontalDrag(velocityTracker.calculateVelocity().x)
+                        }
                     }
-                },
-            )
+                }
+            }
             .graphicsLayer {
                 rotationY = rotationValue
                 cameraDistance = 24f * density
