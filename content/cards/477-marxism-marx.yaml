@@ -1,0 +1,30 @@
+id: 8e637b27-ecef-598d-8aa9-0bb68f712dfd
+revision: 1
+status: published
+quote: 封建贵族并不是被资产阶级所推翻的、其生活条件在现代资产阶级社会里日益恶化和消失的唯一阶级。
+literature:
+  series: 马原思考
+  volume: 卡尔·马克思
+  workTitle: 《共产党宣言》
+  authoredAt: '1848'
+themes:
+- 社会关系
+interpretation:
+  inspiration: 把认识放回行动中验证：先做可观察的一步，再根据结果修正原先的判断。
+  explanation: 这句出自《共产党宣言》，可从“社会关系”角度理解。个人并不生活在真空里，理解问题要把关系、制度和资源条件一并纳入。 阅读时应回到原文的论证对象，避免把一句话当成脱离历史和条件的万能答案。
+historicalEvent: 19世纪工业化加速发展，劳动、资本和社会结构的变化成为思想界的重要问题。
+background: 马克思的文本围绕实践、劳动、社会关系、历史发展和人的解放展开分析。
+story: 此卡从《共产党宣言》的原文中筛选，不以随机段落凑数；可从来源页回看上下文和论证对象。
+imageId: original-river-bridge
+sources:
+- name: 中文马克思主义文库《共产党宣言》
+  url: https://www.marxists.org/chinese/marx/01.htm
+  accessedAt: '2026-08-02'
+  type: original
+- name: 维基百科《卡尔·马克思》
+  url: https://zh.wikipedia.org/wiki/%E5%8D%A1%E5%B0%94%C2%B7%E9%A9%AC%E5%85%8B%E6%80%9D
+  accessedAt: '2026-08-02'
+  type: contextual
+review:
+  status: verified
+  checkedAt: '2026-08-02'

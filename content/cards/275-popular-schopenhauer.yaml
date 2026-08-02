@@ -1,0 +1,30 @@
+id: ee5da963-b492-54ca-a9d0-9efa6c72f34b
+revision: 1
+status: published
+quote: 时间是无限的，人的生命是有限的，人为了用有限的时间去抗衡无限的时间而采取了繁殖这一手段，让自己的生命时间得以延续。这是人类繁殖的本能。
+literature:
+  series: 名人名言
+  volume: 叔本华
+  workTitle: 热门名人语录（出处见来源页）
+  authoredAt: '1840'
+themes:
+- 行动
+interpretation:
+  inspiration: 把感受转成一个可完成的动作：今天先推进最小的一步，再用结果校正方向。
+  explanation: 这句在网络上长期被转引，来源页可回看其作者、作品或演讲出处。它之所以容易被记住，是因为把“行动”压缩成简洁表达。行动的意义在于形成反馈：做过、看见结果、再决定下一步。
+historicalEvent: 19世纪欧洲哲学在理性主义之外重新讨论欲望、痛苦、艺术与人生体验。
+background: 叔本华的观点常带有锋芒，适合用来反省欲望、判断和独处，而不宜被断章当成消极结论。
+story: 此卡按可追溯出处筛选自叔本华语录条目，不以随机段落凑数；可从来源页回看上下文和引用作品。
+imageId: original-printing-press
+sources:
+- name: 维基语录《叔本华》
+  url: https://zh.wikiquote.org/wiki/%E5%8F%94%E6%9C%AC%E5%8D%8E
+  accessedAt: '2026-08-02'
+  type: authoritative
+- name: 维基百科《叔本华》
+  url: https://zh.wikipedia.org/wiki/%E5%8F%94%E6%9C%AC%E5%8D%8E
+  accessedAt: '2026-08-02'
+  type: contextual
+review:
+  status: verified
+  checkedAt: '2026-08-02'

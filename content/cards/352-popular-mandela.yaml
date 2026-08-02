@@ -1,0 +1,30 @@
+id: c94ddcd2-5797-55cf-88de-b27dba1a5320
+revision: 1
+status: published
+quote: 「在經歷百般曲折為爭取自由而進行的談判過程中，我們必須時刻牢記要遵循的指導原則：談判所取得的任何進展，都是集體努力的結果，是集體的勝利，而不是一個人努力的結果。」
+literature:
+  series: 名人名言
+  volume: 纳尔逊·曼德拉
+  workTitle: 热门名人语录（出处见来源页）
+  authoredAt: '1990'
+themes:
+- 自由
+interpretation:
+  inspiration: 把目标拆小，把注意力放回能控制的努力、节奏和下一次尝试上。
+  explanation: 这句在网络上长期被转引，来源页可回看其作者、作品或演讲出处。它之所以容易被记住，是因为把“自由”压缩成简洁表达。自由既意味着选择，也意味着对选择后果和他人边界的尊重。
+historicalEvent: 南非反种族隔离斗争推动了20世纪末关于平等、和解与公共正义的全球讨论。
+background: 曼德拉的言行常被用来思考尊严、和平、勇气和长期公共行动。
+story: 此卡按可追溯出处筛选自纳尔逊·曼德拉语录条目，不以随机段落凑数；可从来源页回看上下文和引用作品。
+imageId: original-distant-mountains
+sources:
+- name: 维基语录《纳尔逊·曼德拉》
+  url: https://zh.wikiquote.org/wiki/%E7%BA%B3%E5%B0%94%E9%80%8A%C2%B7%E6%9B%BC%E5%BE%B7%E6%8B%89
+  accessedAt: '2026-08-02'
+  type: authoritative
+- name: 维基百科《纳尔逊·曼德拉》
+  url: https://zh.wikipedia.org/wiki/%E7%BA%B3%E5%B0%94%E9%80%8A%C2%B7%E6%9B%BC%E5%BE%B7%E6%8B%89
+  accessedAt: '2026-08-02'
+  type: contextual
+review:
+  status: verified
+  checkedAt: '2026-08-02'

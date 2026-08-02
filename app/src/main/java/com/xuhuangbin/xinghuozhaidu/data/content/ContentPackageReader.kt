@@ -170,7 +170,7 @@ class ContentPackageReader(
         requireText(card.series, "卡片 ${card.id} 的文献系列")
         requireText(card.volume, "卡片 ${card.id} 的卷次")
         requireText(card.workTitle, "卡片 ${card.id} 的篇名")
-        if (!PARTIAL_DATE.matches(card.authoredAt)) {
+        if (!AUTHORING_DATE.matches(card.authoredAt)) {
             throw ContentPackageException("卡片 ${card.id} 的写作时间无效")
         }
         if (card.themes.isEmpty() || card.themes.any(String::isBlank)) {
@@ -331,7 +331,7 @@ class ContentPackageReader(
         const val MAX_IMAGE_EDGE = 8_192
         const val MAX_IMAGE_PIXELS = 40_000_000L
         val SHA_256 = Regex("^[0-9a-fA-F]{64}$")
-        val PARTIAL_DATE = Regex("^\\d{4}(?:-\\d{2}(?:-\\d{2})?)?$")
+        val AUTHORING_DATE = Regex("^(?:\\d{4}(?:-\\d{2}(?:-\\d{2})?)?|前[1-9]\\d{0,3}(?:世纪)?)$")
         val EVIDENCE_TYPES = setOf("original", "authoritative", "contextual")
         val MIME_TYPES = mapOf(
             "jpg" to "image/jpeg",

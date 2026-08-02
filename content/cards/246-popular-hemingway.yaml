@@ -1,0 +1,30 @@
+id: adab17e5-9d7d-532c-8371-23c562874898
+revision: 1
+status: published
+quote: 对一个作家，最好的训练是：不快乐的童年。
+literature:
+  series: 名人名言
+  volume: 海明威
+  workTitle: 热门名人语录（出处见来源页）
+  authoredAt: '1950'
+themes:
+- 成长
+interpretation:
+  inspiration: 遇到停滞时，别急着给自己下结论；先保留行动、学习和重新选择的空间。
+  explanation: 这句在网络上长期被转引，来源页可回看其作者、作品或演讲出处。它之所以容易被记住，是因为把“成长”压缩成简洁表达。成长常常表现为看法和做法的改进，不必把它包装成永远向上的情绪。
+historicalEvent: 两次世界大战改变了20世纪文学的主题，战争经历深刻影响了海明威的写作。
+background: 海明威的小说以克制语言写压力、失败、尊严和人在困境中的选择。
+story: 此卡按可追溯出处筛选自海明威语录条目，不以随机段落凑数；可从来源页回看上下文和引用作品。
+imageId: original-workshop
+sources:
+- name: 维基语录《海明威》
+  url: https://zh.wikiquote.org/wiki/%E6%AC%A7%E5%86%85%E6%96%AF%E7%89%B9%C2%B7%E6%B5%B7%E6%98%8E%E5%A8%81
+  accessedAt: '2026-08-02'
+  type: authoritative
+- name: 维基百科《海明威》
+  url: https://zh.wikipedia.org/wiki/%E6%B5%B7%E6%98%8E%E5%A8%81
+  accessedAt: '2026-08-02'
+  type: contextual
+review:
+  status: verified
+  checkedAt: '2026-08-02'

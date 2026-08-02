@@ -16,7 +16,7 @@ from .models import CardRecord, ContentProject, ImageRecord, ValidatedContent
 
 SEMVER_RE = re.compile(r"^(0|[1-9]\d*)\.(0|[1-9]\d*)\.(0|[1-9]\d*)$")
 DATE_RE = re.compile(r"^\d{4}-\d{2}-\d{2}$")
-PARTIAL_DATE_RE = re.compile(r"^\d{4}(?:-\d{2}(?:-\d{2})?)?$")
+AUTHORING_DATE_RE = re.compile(r"^(?:\d{4}(?:-\d{2}(?:-\d{2})?)?|前[1-9]\d{0,3}(?:世纪)?)$")
 ALLOWED_CARD_STATUSES = {"draft", "published", "withdrawn"}
 ALLOWED_EVIDENCE_TYPES = {"original", "authoritative", "contextual"}
 ALLOWED_IMAGE_SUFFIXES = {
@@ -329,8 +329,10 @@ def _validate_card(path: Path, issues: list[str]) -> CardRecord | None:
     volume = _require_text(literature, "volume", path, issues)
     work_title = _require_text(literature, "workTitle", path, issues)
     authored_at = _require_text(literature, "authoredAt", path, issues)
-    if authored_at and not PARTIAL_DATE_RE.fullmatch(authored_at):
-        issues.append(f"{path}: literature.authoredAt must use YYYY, YYYY-MM, or YYYY-MM-DD")
+    if authored_at and not AUTHORING_DATE_RE.fullmatch(authored_at):
+        issues.append(
+            f"{path}: literature.authoredAt must use YYYY, YYYY-MM, YYYY-MM-DD, 前N, or 前N世纪"
+        )
 
     themes = data.get("themes")
     if not isinstance(themes, list) or not themes or not all(

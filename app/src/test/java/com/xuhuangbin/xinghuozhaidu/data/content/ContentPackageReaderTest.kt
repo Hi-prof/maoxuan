@@ -24,17 +24,28 @@ class ContentPackageReaderTest {
     }
 
     @Test
+    fun acceptsBceCenturyAuthoredAt() {
+        val entries = validEntries().withCardsJson {
+            replace("\"authoredAt\":\"1937-07\"", "\"authoredAt\":\"前5世纪\"")
+        }
+
+        val parsed = ContentPackageReader().read(zipOf(entries))
+
+        assertEquals("前5世纪", parsed.cards.single().authoredAt)
+    }
+
+    @Test
     fun readsCurrentBundledContentPackage() {
         val parsed = ContentPackageReader().read(
             File("src/main/assets/bootstrap.zip").readBytes(),
         )
 
-        assertEquals("1.4.1", parsed.info.contentVersion)
-        assertEquals(150, parsed.cards.size)
+        assertEquals("1.5.0", parsed.info.contentVersion)
+        assertEquals(600, parsed.cards.size)
         assertEquals(
-            "前途是光明的，道路是曲折的。",
+            "人的思维是否具有客观的真理性，这不是一个理论的问题，而是一个实践的问题。",
             parsed.cards.single {
-                it.id == "29a34b55-c4dd-5f05-9cc4-83fd1a9ea778"
+                it.id == "a2291db4-b367-5a6d-a1ef-95a3a7ab90f9"
             }.quote,
         )
     }

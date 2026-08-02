@@ -1,0 +1,30 @@
+id: 9874cc12-341f-5375-a85e-9f92572c585c
+revision: 1
+status: published
+quote: 「當我們的宇宙與人類和諧共處時，我們瞭解永恆是真理，我們感受到永恆之美。」
+literature:
+  series: 名人名言
+  volume: 泰戈尔
+  workTitle: 热门名人语录（出处见来源页）
+  authoredAt: '1913'
+themes:
+- 成长
+interpretation:
+  inspiration: 遇到停滞时，别急着给自己下结论；先保留行动、学习和重新选择的空间。
+  explanation: 这句在网络上长期被转引，来源页可回看其作者、作品或演讲出处。它之所以容易被记住，是因为把“成长”压缩成简洁表达。成长常常表现为看法和做法的改进，不必把它包装成永远向上的情绪。
+historicalEvent: 1913年，泰戈尔获得诺贝尔文学奖，亚洲文学获得更广泛的世界性关注。
+background: 泰戈尔的诗歌与散文常围绕自由、爱、生命、教育和人与世界的关系展开。
+story: 此卡按可追溯出处筛选自泰戈尔语录条目，不以随机段落凑数；可从来源页回看上下文和引用作品。
+imageId: original-river-bridge
+sources:
+- name: 维基语录《泰戈尔》
+  url: https://zh.wikiquote.org/wiki/%E6%B3%B0%E6%88%88%E5%B0%94
+  accessedAt: '2026-08-02'
+  type: authoritative
+- name: 维基百科《泰戈尔》
+  url: https://zh.wikipedia.org/wiki/%E6%B3%B0%E6%88%88%E5%B0%94
+  accessedAt: '2026-08-02'
+  type: contextual
+review:
+  status: verified
+  checkedAt: '2026-08-02'

@@ -1,0 +1,30 @@
+id: c67d1abe-57c9-5544-ab47-144bccb5709a
+revision: 1
+status: published
+quote: 社会分裂为剥削阶级和被剥削阶级、统治阶级和被压迫阶级，是以前生产不大发展的必然结果。
+literature:
+  series: 马原思考
+  volume: 弗里德里希·恩格斯
+  workTitle: 《社会主义从空想到科学的发展》
+  authoredAt: '1878'
+themes:
+- 社会关系
+interpretation:
+  inspiration: 面对复杂局面，先找主要矛盾和关键条件，避免把所有问题混成一团。
+  explanation: 这句出自《社会主义从空想到科学的发展》，可从“社会关系”角度理解。个人并不生活在真空里，理解问题要把关系、制度和资源条件一并纳入。 阅读时应回到原文的论证对象，避免把一句话当成脱离历史和条件的万能答案。
+historicalEvent: 19世纪的工人运动和自然科学进展推动了对社会历史与辩证思维的新讨论。
+background: 恩格斯与马克思共同发展历史唯物主义，也持续讨论自然、科学、劳动与社会变迁。
+story: 此卡从《社会主义从空想到科学的发展》的原文中筛选，不以随机段落凑数；可从来源页回看上下文和论证对象。
+imageId: original-memorial-pine
+sources:
+- name: 中文马克思主义文库《社会主义从空想到科学的发展》
+  url: https://www.marxists.org/chinese/engels/marxist.org-chinese-engels-1880a.htm
+  accessedAt: '2026-08-02'
+  type: original
+- name: 维基百科《弗里德里希·恩格斯》
+  url: https://zh.wikipedia.org/wiki/%E5%BC%97%E9%87%8C%E5%BE%B7%E9%87%8C%E5%B8%8C%C2%B7%E6%81%A9%E6%A0%BC%E6%96%AF
+  accessedAt: '2026-08-02'
+  type: contextual
+review:
+  status: verified
+  checkedAt: '2026-08-02'

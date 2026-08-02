@@ -1,0 +1,30 @@
+id: 4c6417ed-460a-558b-a65b-139bf5fcf523
+revision: 1
+status: published
+quote: 把名誉从我身上拿走，我的生命也就完了。
+literature:
+  series: 名人名言
+  volume: 莎士比亚
+  workTitle: 热门名人语录（出处见来源页）
+  authoredAt: '1600'
+themes:
+- 人生
+interpretation:
+  inspiration: 允许过程不完美，但别把一次受挫误认成全部可能性的终点。
+  explanation: 这句在网络上长期被转引，来源页可回看其作者、作品或演讲出处。它之所以容易被记住，是因为把“人生”压缩成简洁表达。它提供的是观察生活的一个角度，不要求每个人照着同一种人生脚本行走。
+historicalEvent: 伊丽莎白时代的英国戏剧繁荣，莎士比亚的作品在舞台上持续讨论权力、爱情、选择与人性。
+background: 莎士比亚戏剧以冲突和人物行动呈现人性的复杂性，许多台词因准确而长期流传。
+story: 此卡按可追溯出处筛选自莎士比亚语录条目，不以随机段落凑数；可从来源页回看上下文和引用作品。
+imageId: original-dawn-city
+sources:
+- name: 维基语录《莎士比亚》
+  url: https://zh.wikiquote.org/wiki/%E5%A8%81%E5%BB%89%C2%B7%E8%8E%8E%E5%A3%AB%E6%AF%94%E4%BA%9A
+  accessedAt: '2026-08-02'
+  type: authoritative
+- name: 维基百科《莎士比亚》
+  url: https://zh.wikipedia.org/wiki/%E8%8E%8E%E5%A3%AB%E6%AF%94%E4%BA%9A
+  accessedAt: '2026-08-02'
+  type: contextual
+review:
+  status: verified
+  checkedAt: '2026-08-02'

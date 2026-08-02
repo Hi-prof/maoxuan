@@ -1,0 +1,30 @@
+id: 0c000db8-7be3-5e84-857e-f629cf00c5a2
+revision: 1
+status: published
+quote: 无产阶级和小资产阶级积极参加了这次革命，但革命果实却落到了资产阶级手里。
+literature:
+  series: 马原思考
+  volume: 卡尔·马克思
+  workTitle: 《共产党宣言》
+  authoredAt: '1848'
+themes:
+- 马原思考
+interpretation:
+  inspiration: 关注人的现实处境和社会关系，不把个人选择孤立成脱离条件的道德判断。
+  explanation: 这句出自《共产党宣言》，可从“马原思考”角度理解。这句话提醒我们用现实关系和发展过程来理解问题，而不是满足于抽象判断。 阅读时应回到原文的论证对象，避免把一句话当成脱离历史和条件的万能答案。
+historicalEvent: 19世纪工业化加速发展，劳动、资本和社会结构的变化成为思想界的重要问题。
+background: 马克思的文本围绕实践、劳动、社会关系、历史发展和人的解放展开分析。
+story: 此卡从《共产党宣言》的原文中筛选，不以随机段落凑数；可从来源页回看上下文和论证对象。
+imageId: original-memorial-pine
+sources:
+- name: 中文马克思主义文库《共产党宣言》
+  url: https://www.marxists.org/chinese/marx/01.htm
+  accessedAt: '2026-08-02'
+  type: original
+- name: 维基百科《卡尔·马克思》
+  url: https://zh.wikipedia.org/wiki/%E5%8D%A1%E5%B0%94%C2%B7%E9%A9%AC%E5%85%8B%E6%80%9D
+  accessedAt: '2026-08-02'
+  type: contextual
+review:
+  status: verified
+  checkedAt: '2026-08-02'

@@ -1,0 +1,30 @@
+id: f2ac9b9a-6beb-5b42-ac57-e9fa1d26051f
+revision: 1
+status: published
+quote: 而新的更高的生产关系，在它的物质存在条件在旧社会的胎胞里成熟以前，是决不会出现的。
+literature:
+  series: 马原思考
+  volume: 卡尔·马克思
+  workTitle: 《政治经济学批判》序言
+  authoredAt: '1848'
+themes:
+- 社会关系
+interpretation:
+  inspiration: 关注人的现实处境和社会关系，不把个人选择孤立成脱离条件的道德判断。
+  explanation: 这句出自《政治经济学批判》序言，可从“社会关系”角度理解。个人并不生活在真空里，理解问题要把关系、制度和资源条件一并纳入。 阅读时应回到原文的论证对象，避免把一句话当成脱离历史和条件的万能答案。
+historicalEvent: 19世纪工业化加速发展，劳动、资本和社会结构的变化成为思想界的重要问题。
+background: 马克思的文本围绕实践、劳动、社会关系、历史发展和人的解放展开分析。
+story: 此卡从《政治经济学批判》序言的原文中筛选，不以随机段落凑数；可从来源页回看上下文和论证对象。
+imageId: original-field-paths
+sources:
+- name: 中文马克思主义文库《政治经济学批判》序言
+  url: https://www.marxists.org/chinese/marx/06.htm
+  accessedAt: '2026-08-02'
+  type: original
+- name: 维基百科《卡尔·马克思》
+  url: https://zh.wikipedia.org/wiki/%E5%8D%A1%E5%B0%94%C2%B7%E9%A9%AC%E5%85%8B%E6%80%9D
+  accessedAt: '2026-08-02'
+  type: contextual
+review:
+  status: verified
+  checkedAt: '2026-08-02'

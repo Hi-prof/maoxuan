@@ -1,0 +1,30 @@
+id: efaef195-7534-5285-a55d-fd5519d2dd6f
+revision: 1
+status: published
+quote: 在历史上，对立中的运动，在先进民族的一切存亡危急的时代中表现得特别显著。
+literature:
+  series: 马原思考
+  volume: 弗里德里希·恩格斯
+  workTitle: 《辩证法两部分札记》
+  authoredAt: '1878'
+themes:
+- 历史唯物主义
+interpretation:
+  inspiration: 不要用抽象口号跳过具体问题。把对象、条件、利益和变化过程放在一起看。
+  explanation: 这句出自《辩证法两部分札记》，可从“历史唯物主义”角度理解。历史分析要回到人们怎样生活、生产和组织社会的具体条件。 阅读时应回到原文的论证对象，避免把一句话当成脱离历史和条件的万能答案。
+historicalEvent: 19世纪的工人运动和自然科学进展推动了对社会历史与辩证思维的新讨论。
+background: 恩格斯与马克思共同发展历史唯物主义，也持续讨论自然、科学、劳动与社会变迁。
+story: 此卡从《辩证法两部分札记》的原文中筛选，不以随机段落凑数；可从来源页回看上下文和论证对象。
+imageId: original-memorial-pine
+sources:
+- name: 中文马克思主义文库《辩证法两部分札记》
+  url: https://www.marxists.org/chinese/engels/marxist.org-chinese-engels-1873.htm
+  accessedAt: '2026-08-02'
+  type: original
+- name: 维基百科《弗里德里希·恩格斯》
+  url: https://zh.wikipedia.org/wiki/%E5%BC%97%E9%87%8C%E5%BE%B7%E9%87%8C%E5%B8%8C%C2%B7%E6%81%A9%E6%A0%BC%E6%96%AF
+  accessedAt: '2026-08-02'
+  type: contextual
+review:
+  status: verified
+  checkedAt: '2026-08-02'

@@ -1,0 +1,30 @@
+id: 08a61cce-902e-59d3-a18a-205a1f1b16a6
+revision: 1
+status: published
+quote: 那么，社会主义的优越表现在哪里呢？主要是两个方面，一个是生产力比资本主义发展得更快一些、更高一些；一个是生产力发展的成果要落到人民生活水平的提高上，逐步实现共同富裕。
+literature:
+  series: 马原思考
+  volume: 邓小平
+  workTitle: 热门名人语录（出处见来源页）
+  authoredAt: '1978'
+themes:
+- 社会关系
+interpretation:
+  inspiration: 先看现实条件和关系，再提出判断；把立场落实为能被事实检验的分析。
+  explanation: 这句出自语录出处见维基语录条目，可从“社会关系”角度理解。个人并不生活在真空里，理解问题要把关系、制度和资源条件一并纳入。 阅读时应回到原文的论证对象，避免把一句话当成脱离历史和条件的万能答案。
+historicalEvent: 改革开放初期，解放思想、实事求是与发展问题成为中国社会的重要讨论。
+background: 邓小平的讲话常从实践标准、发展、改革和人民生活的实际改善来讨论马克思主义的方法论。
+story: 此卡按可追溯出处筛选自邓小平语录条目，不以随机段落凑数；可从来源页回看上下文和引用作品。
+imageId: original-field-paths
+sources:
+- name: 维基语录《邓小平》
+  url: https://zh.wikiquote.org/wiki/%E9%82%93%E5%B0%8F%E5%B9%B3
+  accessedAt: '2026-08-02'
+  type: authoritative
+- name: 维基百科《邓小平》
+  url: https://zh.wikipedia.org/wiki/%E9%82%93%E5%B0%8F%E5%B9%B3
+  accessedAt: '2026-08-02'
+  type: contextual
+review:
+  status: verified
+  checkedAt: '2026-08-02'

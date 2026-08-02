@@ -1,0 +1,30 @@
+id: 23cd9e3b-0e73-59b3-8f63-a20a083e76d5
+revision: 1
+status: published
+quote: 「因為如果你把非暴力當作一種信條，那麼無論在任何情況下，你都得堅持使用非暴力手段」
+literature:
+  series: 名人名言
+  volume: 纳尔逊·曼德拉
+  workTitle: 热门名人语录（出处见来源页）
+  authoredAt: '1990'
+themes:
+- 成长
+interpretation:
+  inspiration: 把感受转成一个可完成的动作：今天先推进最小的一步，再用结果校正方向。
+  explanation: 这句在网络上长期被转引，来源页可回看其作者、作品或演讲出处。它之所以容易被记住，是因为把“成长”压缩成简洁表达。成长常常表现为看法和做法的改进，不必把它包装成永远向上的情绪。
+historicalEvent: 南非反种族隔离斗争推动了20世纪末关于平等、和解与公共正义的全球讨论。
+background: 曼德拉的言行常被用来思考尊严、和平、勇气和长期公共行动。
+story: 此卡按可追溯出处筛选自纳尔逊·曼德拉语录条目，不以随机段落凑数；可从来源页回看上下文和引用作品。
+imageId: original-workshop
+sources:
+- name: 维基语录《纳尔逊·曼德拉》
+  url: https://zh.wikiquote.org/wiki/%E7%BA%B3%E5%B0%94%E9%80%8A%C2%B7%E6%9B%BC%E5%BE%B7%E6%8B%89
+  accessedAt: '2026-08-02'
+  type: authoritative
+- name: 维基百科《纳尔逊·曼德拉》
+  url: https://zh.wikipedia.org/wiki/%E7%BA%B3%E5%B0%94%E9%80%8A%C2%B7%E6%9B%BC%E5%BE%B7%E6%8B%89
+  accessedAt: '2026-08-02'
+  type: contextual
+review:
+  status: verified
+  checkedAt: '2026-08-02'

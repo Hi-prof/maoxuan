@@ -1,0 +1,30 @@
+id: 6c81868c-a1af-5f63-887c-1472e8559b7a
+revision: 1
+status: published
+quote: 正如在电、磁等等情形下，不可固执一面，而且也没有一个自然科学家想固执一面一样，在思想情形下也是如此。
+literature:
+  series: 马原思考
+  volume: 弗里德里希·恩格斯
+  workTitle: 《辩证法两部分札记》
+  authoredAt: '1878'
+themes:
+- 马原思考
+interpretation:
+  inspiration: 先看现实条件和关系，再提出判断；把立场落实为能被事实检验的分析。
+  explanation: 这句出自《辩证法两部分札记》，可从“马原思考”角度理解。这句话提醒我们用现实关系和发展过程来理解问题，而不是满足于抽象判断。 阅读时应回到原文的论证对象，避免把一句话当成脱离历史和条件的万能答案。
+historicalEvent: 19世纪的工人运动和自然科学进展推动了对社会历史与辩证思维的新讨论。
+background: 恩格斯与马克思共同发展历史唯物主义，也持续讨论自然、科学、劳动与社会变迁。
+story: 此卡从《辩证法两部分札记》的原文中筛选，不以随机段落凑数；可从来源页回看上下文和论证对象。
+imageId: original-workshop
+sources:
+- name: 中文马克思主义文库《辩证法两部分札记》
+  url: https://www.marxists.org/chinese/engels/marxist.org-chinese-engels-1873.htm
+  accessedAt: '2026-08-02'
+  type: original
+- name: 维基百科《弗里德里希·恩格斯》
+  url: https://zh.wikipedia.org/wiki/%E5%BC%97%E9%87%8C%E5%BE%B7%E9%87%8C%E5%B8%8C%C2%B7%E6%81%A9%E6%A0%BC%E6%96%AF
+  accessedAt: '2026-08-02'
+  type: contextual
+review:
+  status: verified
+  checkedAt: '2026-08-02'

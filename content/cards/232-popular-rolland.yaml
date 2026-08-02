@@ -1,0 +1,30 @@
+id: eb82d8a6-e2c7-5a9c-95ce-fc785e100944
+revision: 1
+status: published
+quote: 创造，或者酝酿未来的创造。这是一种必要性：幸福只能存在于这种必要性得到满足的时候。
+literature:
+  series: 名人名言
+  volume: 罗曼·罗兰
+  workTitle: 热门名人语录（出处见来源页）
+  authoredAt: '1915'
+themes:
+- 成长
+interpretation:
+  inspiration: 把目标拆小，把注意力放回能控制的努力、节奏和下一次尝试上。
+  explanation: 这句在网络上长期被转引，来源页可回看其作者、作品或演讲出处。它之所以容易被记住，是因为把“成长”压缩成简洁表达。成长常常表现为看法和做法的改进，不必把它包装成永远向上的情绪。
+historicalEvent: 第一次世界大战前后，欧洲知识界围绕战争、和平与人的尊严展开激烈讨论。
+background: 罗曼·罗兰以文学和公共写作关注英雄主义、良知、和平与普通人的精神力量。
+story: 此卡按可追溯出处筛选自罗曼·罗兰语录条目，不以随机段落凑数；可从来源页回看上下文和引用作品。
+imageId: original-distant-mountains
+sources:
+- name: 维基语录《罗曼·罗兰》
+  url: https://zh.wikiquote.org/wiki/%E7%BD%97%E6%9B%BC%C2%B7%E7%BD%97%E5%85%B0
+  accessedAt: '2026-08-02'
+  type: authoritative
+- name: 维基百科《罗曼·罗兰》
+  url: https://zh.wikipedia.org/wiki/%E7%BD%97%E6%9B%BC%C2%B7%E7%BD%97%E5%85%B0
+  accessedAt: '2026-08-02'
+  type: contextual
+review:
+  status: verified
+  checkedAt: '2026-08-02'

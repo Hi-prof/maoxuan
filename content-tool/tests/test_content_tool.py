@@ -235,6 +235,19 @@ def test_formal_content_accepts_declared_published_count(tmp_path: Path) -> None
     assert len(validated.published_cards) == 1
 
 
+def test_authored_at_accepts_bce_century_label(tmp_path: Path) -> None:
+    root = tmp_path / "content"
+    _write_fixture(root)
+    path = root / "cards" / "card.yaml"
+    card = yaml.safe_load(path.read_text(encoding="utf-8"))
+    card["literature"]["authoredAt"] = "前5世纪"
+    path.write_text(yaml.safe_dump(card, allow_unicode=True), encoding="utf-8")
+
+    validated = validate_content(root, formal=True)
+
+    assert validated.published_cards[0].payload["authoredAt"] == "前5世纪"
+
+
 @pytest.mark.parametrize("value", [None, 0, -1, True, "1"])
 def test_expected_published_cards_must_be_a_positive_integer(
     tmp_path: Path,

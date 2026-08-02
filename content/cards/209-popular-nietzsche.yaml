@@ -1,0 +1,30 @@
+id: ed0a9994-2ff8-5255-a8a8-d4d32c8f7582
+revision: 1
+status: published
+quote: 对真理而言，信服比流言更危险。
+literature:
+  series: 名人名言
+  volume: 尼采
+  workTitle: 热门名人语录（出处见来源页）
+  authoredAt: '1880'
+themes:
+- 成长
+interpretation:
+  inspiration: 把这句话当作一次提醒：认真生活，也认真分辨什么值得长期投入。
+  explanation: 这句在网络上长期被转引，来源页可回看其作者、作品或演讲出处。它之所以容易被记住，是因为把“成长”压缩成简洁表达。成长常常表现为看法和做法的改进，不必把它包装成永远向上的情绪。
+historicalEvent: 19世纪后期，欧洲哲学开始强烈反思传统道德、宗教与现代人的精神处境。
+background: 尼采的著作常以格言式语言讨论创造、自由、价值判断与自我超越。
+story: 此卡按可追溯出处筛选自尼采语录条目，不以随机段落凑数；可从来源页回看上下文和引用作品。
+imageId: original-field-paths
+sources:
+- name: 维基语录《尼采》
+  url: https://zh.wikiquote.org/wiki/%E5%B0%BC%E9%87%87
+  accessedAt: '2026-08-02'
+  type: authoritative
+- name: 维基百科《尼采》
+  url: https://zh.wikipedia.org/wiki/%E5%B0%BC%E9%87%87
+  accessedAt: '2026-08-02'
+  type: contextual
+review:
+  status: verified
+  checkedAt: '2026-08-02'

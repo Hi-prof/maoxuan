@@ -1,0 +1,30 @@
+id: d18c874d-251d-5ed0-b8ac-04d1c3ade272
+revision: 1
+status: published
+quote: 一个人只有在独处时才能成为自己。谁要是不爱独处，那他就不爱自由，因为一个人只有在独处时才是真正自由的。
+literature:
+  series: 名人名言
+  volume: 叔本华
+  workTitle: 热门名人语录（出处见来源页）
+  authoredAt: '1840'
+themes:
+- 自由
+interpretation:
+  inspiration: 把这句话当作一次提醒：认真生活，也认真分辨什么值得长期投入。
+  explanation: 这句在网络上长期被转引，来源页可回看其作者、作品或演讲出处。它之所以容易被记住，是因为把“自由”压缩成简洁表达。自由既意味着选择，也意味着对选择后果和他人边界的尊重。
+historicalEvent: 19世纪欧洲哲学在理性主义之外重新讨论欲望、痛苦、艺术与人生体验。
+background: 叔本华的观点常带有锋芒，适合用来反省欲望、判断和独处，而不宜被断章当成消极结论。
+story: 此卡按可追溯出处筛选自叔本华语录条目，不以随机段落凑数；可从来源页回看上下文和引用作品。
+imageId: original-memorial-pine
+sources:
+- name: 维基语录《叔本华》
+  url: https://zh.wikiquote.org/wiki/%E5%8F%94%E6%9C%AC%E5%8D%8E
+  accessedAt: '2026-08-02'
+  type: authoritative
+- name: 维基百科《叔本华》
+  url: https://zh.wikipedia.org/wiki/%E5%8F%94%E6%9C%AC%E5%8D%8E
+  accessedAt: '2026-08-02'
+  type: contextual
+review:
+  status: verified
+  checkedAt: '2026-08-02'

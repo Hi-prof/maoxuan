@@ -1,0 +1,30 @@
+id: f60ae9ce-33d4-5fb1-98da-1bd2e6ba81d3
+revision: 1
+status: published
+quote: 要一个骄傲的人看清他自己的嘴脸，只有用别人的骄傲给他做镜子；倘若向他卑躬屈膝，不过添长了他的气焰，徒然自取其辱。
+literature:
+  series: 名人名言
+  volume: 莎士比亚
+  workTitle: 热门名人语录（出处见来源页）
+  authoredAt: '1600'
+themes:
+- 成长
+interpretation:
+  inspiration: 把感受转成一个可完成的动作：今天先推进最小的一步，再用结果校正方向。
+  explanation: 这句在网络上长期被转引，来源页可回看其作者、作品或演讲出处。它之所以容易被记住，是因为把“成长”压缩成简洁表达。成长常常表现为看法和做法的改进，不必把它包装成永远向上的情绪。
+historicalEvent: 伊丽莎白时代的英国戏剧繁荣，莎士比亚的作品在舞台上持续讨论权力、爱情、选择与人性。
+background: 莎士比亚戏剧以冲突和人物行动呈现人性的复杂性，许多台词因准确而长期流传。
+story: 此卡按可追溯出处筛选自莎士比亚语录条目，不以随机段落凑数；可从来源页回看上下文和引用作品。
+imageId: original-workshop
+sources:
+- name: 维基语录《莎士比亚》
+  url: https://zh.wikiquote.org/wiki/%E5%A8%81%E5%BB%89%C2%B7%E8%8E%8E%E5%A3%AB%E6%AF%94%E4%BA%9A
+  accessedAt: '2026-08-02'
+  type: authoritative
+- name: 维基百科《莎士比亚》
+  url: https://zh.wikipedia.org/wiki/%E8%8E%8E%E5%A3%AB%E6%AF%94%E4%BA%9A
+  accessedAt: '2026-08-02'
+  type: contextual
+review:
+  status: verified
+  checkedAt: '2026-08-02'

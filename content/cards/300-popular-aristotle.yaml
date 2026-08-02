@@ -1,0 +1,30 @@
+id: 8b8d3589-8b3e-54ae-a024-09b5635d8dca
+revision: 1
+status: published
+quote: 吾爱吾师，吾更爱真理。
+literature:
+  series: 名人名言
+  volume: 亚里士多德
+  workTitle: 热门名人语录（出处见来源页）
+  authoredAt: 前4世纪
+themes:
+- 关系
+interpretation:
+  inspiration: 把感受转成一个可完成的动作：今天先推进最小的一步，再用结果校正方向。
+  explanation: 这句在网络上长期被转引，来源页可回看其作者、作品或演讲出处。它之所以容易被记住，是因为把“关系”压缩成简洁表达。关系的价值不在于迎合，而在于尊重、沟通和能否彼此成全。
+historicalEvent: 古希腊学术传统逐渐形成分类、观察和论证相结合的研究方式。
+background: 亚里士多德的著作横跨伦理、政治、逻辑与自然研究，强调习惯、实践和具体分析。
+story: 此卡按可追溯出处筛选自亚里士多德语录条目，不以随机段落凑数；可从来源页回看上下文和引用作品。
+imageId: original-reading-lamp
+sources:
+- name: 维基语录《亚里士多德》
+  url: https://zh.wikiquote.org/wiki/%E4%BA%9A%E9%87%8C%E5%A3%AB%E5%A4%9A%E5%BE%B7
+  accessedAt: '2026-08-02'
+  type: authoritative
+- name: 维基百科《亚里士多德》
+  url: https://zh.wikipedia.org/wiki/%E4%BA%9A%E9%87%8C%E5%A3%AB%E5%A4%9A%E5%BE%B7
+  accessedAt: '2026-08-02'
+  type: contextual
+review:
+  status: verified
+  checkedAt: '2026-08-02'

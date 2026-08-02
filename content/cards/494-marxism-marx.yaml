@@ -1,0 +1,30 @@
+id: 534467df-161b-59fb-9b4b-dc686d1d6511
+revision: 1
+status: published
+quote: 生产一个商品所必需的劳动量，是随着所用劳动的生产力的变化而不断变化的。
+literature:
+  series: 马原思考
+  volume: 卡尔·马克思
+  workTitle: 《工资、价格和利润》
+  authoredAt: '1848'
+themes:
+- 劳动
+interpretation:
+  inspiration: 关注人的现实处境和社会关系，不把个人选择孤立成脱离条件的道德判断。
+  explanation: 这句出自《工资、价格和利润》，可从“劳动”角度理解。劳动在这里不仅是个人付出，也关联生产、创造和社会关系。 阅读时应回到原文的论证对象，避免把一句话当成脱离历史和条件的万能答案。
+historicalEvent: 19世纪工业化加速发展，劳动、资本和社会结构的变化成为思想界的重要问题。
+background: 马克思的文本围绕实践、劳动、社会关系、历史发展和人的解放展开分析。
+story: 此卡从《工资、价格和利润》的原文中筛选，不以随机段落凑数；可从来源页回看上下文和论证对象。
+imageId: original-workshop
+sources:
+- name: 中文马克思主义文库《工资、价格和利润》
+  url: https://www.marxists.org/chinese/marx/marxist.org-chinese-marx-1865-5.htm
+  accessedAt: '2026-08-02'
+  type: original
+- name: 维基百科《卡尔·马克思》
+  url: https://zh.wikipedia.org/wiki/%E5%8D%A1%E5%B0%94%C2%B7%E9%A9%AC%E5%85%8B%E6%80%9D
+  accessedAt: '2026-08-02'
+  type: contextual
+review:
+  status: verified
+  checkedAt: '2026-08-02'

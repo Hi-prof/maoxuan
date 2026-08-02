@@ -1,0 +1,30 @@
+id: 969f1d22-3642-5cbb-b5ad-18a90cb32141
+revision: 1
+status: published
+quote: 我只知道自己一無所知。
+literature:
+  series: 名人名言
+  volume: 苏格拉底
+  workTitle: 热门名人语录（出处见来源页）
+  authoredAt: 前4世纪
+themes:
+- 成长
+interpretation:
+  inspiration: 允许过程不完美，但别把一次受挫误认成全部可能性的终点。
+  explanation: 这句在网络上长期被转引，来源页可回看其作者、作品或演讲出处。它之所以容易被记住，是因为把“成长”压缩成简洁表达。成长常常表现为看法和做法的改进，不必把它包装成永远向上的情绪。
+historicalEvent: 古希腊城邦的公共辩论塑造了哲学传统，苏格拉底式追问强调审视自己的判断。
+background: 苏格拉底的思想通过柏拉图等人的记述流传，核心方法是提问、辨析与承认无知。
+story: 此卡按可追溯出处筛选自苏格拉底语录条目，不以随机段落凑数；可从来源页回看上下文和引用作品。
+imageId: original-distant-mountains
+sources:
+- name: 维基语录《苏格拉底》
+  url: https://zh.wikiquote.org/wiki/%E8%8B%8F%E6%A0%BC%E6%8B%89%E5%BA%95
+  accessedAt: '2026-08-02'
+  type: authoritative
+- name: 维基百科《苏格拉底》
+  url: https://zh.wikipedia.org/wiki/%E8%8B%8F%E6%A0%BC%E6%8B%89%E5%BA%95
+  accessedAt: '2026-08-02'
+  type: contextual
+review:
+  status: verified
+  checkedAt: '2026-08-02'

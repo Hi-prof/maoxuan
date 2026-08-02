@@ -1,8 +1,8 @@
 schemaVersion: 3
-contentVersion: 1.4.1
-publishedAt: '2026-08-01T00:00:00Z'
-minimumAppVersionCode: 4
-expectedPublishedCards: 150
-releaseNotes: 版型更新，用于验证客户端手动检查更新和内容拉取
+contentVersion: 1.5.0
+publishedAt: '2026-08-02T00:00:00Z'
+minimumAppVersionCode: 7
+expectedPublishedCards: 600
+releaseNotes: 扩展至600张正式卡片，新增热门励志名人名言与马原思考内容
 repositoryOwner: Hi-prof
 repositoryName: maoxuan

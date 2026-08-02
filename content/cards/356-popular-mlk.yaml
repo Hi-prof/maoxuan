@@ -1,0 +1,30 @@
+id: 771a4dfc-f0ca-55a5-a447-be6ac57c4dee
+revision: 1
+status: published
+quote: 手段代表了在形成之中的理想和进行之中的目的，人们无法通过邪恶的手段来达到美好的目的。因为手段是种子，目的是树。
+literature:
+  series: 名人名言
+  volume: 马丁·路德·金
+  workTitle: 热门名人语录（出处见来源页）
+  authoredAt: '1960'
+themes:
+- 理想
+interpretation:
+  inspiration: 遇到停滞时，别急着给自己下结论；先保留行动、学习和重新选择的空间。
+  explanation: 这句在网络上长期被转引，来源页可回看其作者、作品或演讲出处。它之所以容易被记住，是因为把“理想”压缩成简洁表达。理想需要被拆成可以积累的行动，才不会只停留在口号或想象里。
+historicalEvent: 美国民权运动以非暴力抗争推动了公众对种族平等与公民权利的重新认识。
+background: 马丁·路德·金的演说聚焦正义、希望、非暴力行动和共同体责任。
+story: 此卡按可追溯出处筛选自马丁·路德·金语录条目，不以随机段落凑数；可从来源页回看上下文和引用作品。
+imageId: original-reading-lamp
+sources:
+- name: 维基语录《马丁·路德·金》
+  url: https://zh.wikiquote.org/wiki/%E9%A9%AC%E4%B8%81%C2%B7%E8%B7%AF%E5%BE%B7%C2%B7%E9%87%91
+  accessedAt: '2026-08-02'
+  type: authoritative
+- name: 维基百科《马丁·路德·金》
+  url: https://zh.wikipedia.org/wiki/%E9%A9%AC%E4%B8%81%C2%B7%E8%B7%AF%E5%BE%B7%C2%B7%E9%87%91
+  accessedAt: '2026-08-02'
+  type: contextual
+review:
+  status: verified
+  checkedAt: '2026-08-02'

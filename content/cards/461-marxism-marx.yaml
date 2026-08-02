@@ -1,0 +1,30 @@
+id: 7096f33b-ecd6-5851-8441-940653fb760b
+revision: 1
+status: published
+quote: 由于这些条件在历史发展的每一阶段都是与同一时期的生产力的发展相适应的，所以它们的历史同时也是发展着的、由每一个新的一代承受下来的生产力的历史，从而也是个人本身力量发展的历史。
+literature:
+  series: 马原思考
+  volume: 卡尔·马克思
+  workTitle: 《德意志意识形态》（节选）
+  authoredAt: '1848'
+themes:
+- 历史唯物主义
+interpretation:
+  inspiration: 不要用抽象口号跳过具体问题。把对象、条件、利益和变化过程放在一起看。
+  explanation: 这句出自《德意志意识形态》（节选），可从“历史唯物主义”角度理解。历史分析要回到人们怎样生活、生产和组织社会的具体条件。 阅读时应回到原文的论证对象，避免把一句话当成脱离历史和条件的万能答案。
+historicalEvent: 19世纪工业化加速发展，劳动、资本和社会结构的变化成为思想界的重要问题。
+background: 马克思的文本围绕实践、劳动、社会关系、历史发展和人的解放展开分析。
+story: 此卡从《德意志意识形态》（节选）的原文中筛选，不以随机段落凑数；可从来源页回看上下文和论证对象。
+imageId: original-river-bridge
+sources:
+- name: 中文马克思主义文库《德意志意识形态》（节选）
+  url: https://www.marxists.org/chinese/marx/marxist.org-chinese-marx-1846.htm
+  accessedAt: '2026-08-02'
+  type: original
+- name: 维基百科《卡尔·马克思》
+  url: https://zh.wikipedia.org/wiki/%E5%8D%A1%E5%B0%94%C2%B7%E9%A9%AC%E5%85%8B%E6%80%9D
+  accessedAt: '2026-08-02'
+  type: contextual
+review:
+  status: verified
+  checkedAt: '2026-08-02'

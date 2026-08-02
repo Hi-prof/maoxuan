@@ -1,0 +1,30 @@
+id: aea6854c-64d0-527f-acfb-543c3322143a
+revision: 1
+status: published
+quote: 社会的物质生产力发展到一定阶段，便同它们一直在其中运动的现存生产关系或财产关系（这只是生产关系的法律用语）发生矛盾。
+literature:
+  series: 马原思考
+  volume: 卡尔·马克思
+  workTitle: 《政治经济学批判》序言
+  authoredAt: '1848'
+themes:
+- 辩证思维
+interpretation:
+  inspiration: 不要用抽象口号跳过具体问题。把对象、条件、利益和变化过程放在一起看。
+  explanation: 这句出自《政治经济学批判》序言，可从“辩证思维”角度理解。辩证思维要求看到联系、变化和条件，不用静止标签代替分析。 阅读时应回到原文的论证对象，避免把一句话当成脱离历史和条件的万能答案。
+historicalEvent: 19世纪工业化加速发展，劳动、资本和社会结构的变化成为思想界的重要问题。
+background: 马克思的文本围绕实践、劳动、社会关系、历史发展和人的解放展开分析。
+story: 此卡从《政治经济学批判》序言的原文中筛选，不以随机段落凑数；可从来源页回看上下文和论证对象。
+imageId: original-workshop
+sources:
+- name: 中文马克思主义文库《政治经济学批判》序言
+  url: https://www.marxists.org/chinese/marx/06.htm
+  accessedAt: '2026-08-02'
+  type: original
+- name: 维基百科《卡尔·马克思》
+  url: https://zh.wikipedia.org/wiki/%E5%8D%A1%E5%B0%94%C2%B7%E9%A9%AC%E5%85%8B%E6%80%9D
+  accessedAt: '2026-08-02'
+  type: contextual
+review:
+  status: verified
+  checkedAt: '2026-08-02'

@@ -1,0 +1,30 @@
+id: 7df09742-0390-5b0e-9ce1-74fff7a8aa1f
+revision: 1
+status: published
+quote: 而在控制了自己的生存条件和社会全体成员的生存条件的革命无产者的共同体中，情况就完全不同了。
+literature:
+  series: 马原思考
+  volume: 卡尔·马克思
+  workTitle: 《德意志意识形态》（节选）
+  authoredAt: '1848'
+themes:
+- 社会关系
+interpretation:
+  inspiration: 面对复杂局面，先找主要矛盾和关键条件，避免把所有问题混成一团。
+  explanation: 这句出自《德意志意识形态》（节选），可从“社会关系”角度理解。个人并不生活在真空里，理解问题要把关系、制度和资源条件一并纳入。 阅读时应回到原文的论证对象，避免把一句话当成脱离历史和条件的万能答案。
+historicalEvent: 19世纪工业化加速发展，劳动、资本和社会结构的变化成为思想界的重要问题。
+background: 马克思的文本围绕实践、劳动、社会关系、历史发展和人的解放展开分析。
+story: 此卡从《德意志意识形态》（节选）的原文中筛选，不以随机段落凑数；可从来源页回看上下文和论证对象。
+imageId: original-reading-lamp
+sources:
+- name: 中文马克思主义文库《德意志意识形态》（节选）
+  url: https://www.marxists.org/chinese/marx/marxist.org-chinese-marx-1846.htm
+  accessedAt: '2026-08-02'
+  type: original
+- name: 维基百科《卡尔·马克思》
+  url: https://zh.wikipedia.org/wiki/%E5%8D%A1%E5%B0%94%C2%B7%E9%A9%AC%E5%85%8B%E6%80%9D
+  accessedAt: '2026-08-02'
+  type: contextual
+review:
+  status: verified
+  checkedAt: '2026-08-02'
