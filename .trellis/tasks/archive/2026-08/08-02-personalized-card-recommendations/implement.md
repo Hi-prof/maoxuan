@@ -180,13 +180,13 @@ fun InterestSelectionScreen(
 
 ### Task 6: Quality Gate And GitHub Delivery
 
-- [ ] Run `./gradlew.bat :app:testDebugUnitTest :app:lintDebug :app:assembleDebug --no-daemon` with JDK 17.
-- [ ] Run `./gradlew.bat :app:compileDebugAndroidTestKotlin --no-daemon` and
+- [x] Run `./gradlew.bat :app:testDebugUnitTest :app:lintDebug :app:assembleDebug --no-daemon` with JDK 17.
+- [x] Run `./gradlew.bat :app:compileDebugAndroidTestKotlin --no-daemon` and
   focused recommendation/database/repository/UI instrumentation on API 28 and
   the latest available API; document any environment-only gap.
-- [ ] Build `:app:assemblePersonal` locally for installation verification; use
+- [x] Build `:app:assemblePersonal` locally for installation verification; use
   the GitHub release workflow for the formally signed Release APK.
-- [ ] Commit only reviewed app-update/recommendation/release files in coherent
+- [x] Commit only reviewed app-update/recommendation/release files in coherent
   commits, archive completed Trellis tasks, and push `main`.
-- [ ] Create and push annotated tag `app-v1.8.0`, monitor the GitHub Actions run,
+- [x] Create and push annotated tag `app-v1.8.0`, monitor the GitHub Actions run,
   and verify the non-latest Release contains the signed APK and `.sha256` asset.
