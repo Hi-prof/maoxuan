@@ -175,3 +175,36 @@ Expanded the formal card library to 600 curated popular, motivational, and Marxi
 ### Next Steps
 
 - None - task complete
+
+
+## Session 6: 按书籍筛选阅读内容
+
+**Date**: 2026-08-04
+**Task**: 按书籍筛选阅读内容
+**Branch**: `task/1`
+
+### Summary
+
+新增阅读偏好内容范围多选、Room 6→7 无损迁移和主阅读流系列硬筛选；补充迁移、Repository、Compose 与轮次定位测试，并同步 README 和代码规范。
+
+### Main Changes
+
+(Add details)
+
+### Git Commits
+
+| Hash | Message |
+|------|---------|
+| `de90f3c` | (see git log) |
+
+### Testing
+
+- [OK] (Add test results)
+
+### Status
+
+[OK] **Completed**
+
+### Next Steps
+
+- None - task complete
