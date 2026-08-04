@@ -165,6 +165,7 @@ fun XinghuoApp() {
                     appVersion = BuildConfig.VERSION_NAME,
                     contentState = uiState.contentState,
                     selectedInterestCount = uiState.recommendationSettings.selected.size,
+                    selectedSeriesCount = uiState.recommendationSettings.selectedSeries.size,
                     onInterestPreferences = { navController.navigate("interests") },
                     onCheckAppUpdate = viewModel::checkForAppUpdate,
                     onCheckContentUpdate = viewModel::checkForUpdate,
@@ -176,12 +177,18 @@ fun XinghuoApp() {
                 LaunchedEffect(Unit) { viewModel.clearRecommendationOperationState() }
                 InterestPreferencesScreen(
                     initialSelected = uiState.recommendationSettings.selected,
+                    availableSeries = uiState.recommendationSettings.availableSeries,
+                    initialSelectedSeries = uiState.recommendationSettings.selectedSeries,
                     reducedCount = uiState.recommendationSettings.reducedCount,
                     isSaving = recommendationOperationState.inProgress,
                     errorMessage = recommendationOperationState.errorMessage,
                     onBack = navController::popBackStack,
-                    onSave = { selected ->
-                        viewModel.saveInterestPreferences(selected, navController::popBackStack)
+                    onSave = { selected, selectedSeries ->
+                        viewModel.saveRecommendationPreferences(
+                            selected = selected,
+                            selectedSeries = selectedSeries,
+                            onSaved = navController::popBackStack,
+                        )
                     },
                     onClearReduced = viewModel::clearReducedContentFeedback,
                 )

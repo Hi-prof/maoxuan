@@ -25,6 +25,9 @@ Room is the device source of truth for installed content, user state, and readin
   installation still requires interest onboarding.
 - `interest_preferences`: zero to five stable recommendation category IDs,
   replaced as a set when the user saves preferences.
+- `content_series_preferences`: a normalized set of selected card `series`
+  values. No rows means unrestricted content; any rows form the reader's hard
+  allowlist.
 - `reduced_cards`: one local negative-feedback row per stable card ID with a
   creation timestamp; it intentionally has no card foreign key.
 
@@ -96,6 +99,9 @@ WHERE roundId = :roundId AND cardId = :cardId
   preserves every existing table, reconstructs the furthest position from
   `currentPosition` and non-null `readAt` rows, and writes
   `onboardingCompleted = true` so upgrades never show fresh-install onboarding.
+- Database version 7 adds `content_series_preferences` through
+  `MIGRATION_6_7`. The empty migrated table preserves the prior unrestricted
+  reader behavior and every existing personal-data row.
 
 ## Scenario: Local Recommendation State And Unseen-Tail Replanning
 
@@ -116,7 +122,10 @@ data class InterestPreferenceEntity(@PrimaryKey val categoryId: String)
 data class ReducedCardEntity(@PrimaryKey val cardId: String, val createdAt: Long)
 
 suspend fun completeInterestOnboarding(selectedIds: Set<String>)
-suspend fun saveInterestPreferences(selectedIds: Set<String>)
+suspend fun saveRecommendationPreferences(
+    interestIds: Set<String>,
+    selectedSeries: Set<String>,
+)
 suspend fun reduceSimilarContent(cardId: String)
 suspend fun clearReducedContentFeedback()
 ```
@@ -129,9 +138,11 @@ suspend fun clearReducedContentFeedback()
 - A migrated schema-5 database receives `recommendation_state(0, true)` and
   keeps its existing round, cards, sources, content state, likes, favorites,
   notes, search history, positions, and `readAt` values.
-- Preference and feedback writes replan only positions strictly greater than
-  `furthestPosition`. Positions `0..furthestPosition`, `currentPosition`, and
-  every existing `readAt` remain unchanged.
+- Interest-only and feedback writes replan only positions strictly greater than
+  `furthestPosition`. A changed content-series allowlist is the explicit
+  exception: disallowed cards leave the entire round, while the nearest
+  eligible card becomes current and retained `readAt` values remain attached to
+  their original card IDs.
 - The replanned tail contains each active candidate once. Newly published cards
   may enter that tail; withdrawn cards leave it. All recommendation data stays
   on device and must not be logged or sent over the network.
@@ -144,7 +155,7 @@ suspend fun clearReducedContentFeedback()
 | Any unknown category ID | Reject before writing with `兴趣标签无效` |
 | Reduced card ID does not exist | Reject with `卡片不存在`; write no feedback |
 | Reduced card ID is withdrawn | Reject with `卡片已下架`; write no feedback |
-| Empty preference set | Persist it as a valid balanced-feed preference |
+| Empty interest set | Persist it as a valid balanced-feed preference |
 | Replanning has no candidates | Keep a valid empty tail and unchanged prefix |
 | Coroutine is cancelled | Propagate cancellation; do not report a user error |
 
@@ -183,6 +194,95 @@ dao.replaceRoundItems(round.id, rank(allActiveCards))
 val locked = existingItems.filter { it.position <= round.furthestPosition }
 val rankedTail = rank(activeCandidatesAfter(round.furthestPosition))
 dao.replaceRoundItems(round.id, locked + rankedTail)
+```
+
+## Scenario: Content-Series Reader Allowlist
+
+### 1. Scope / Trigger
+
+- Trigger: schema 7 lets the user restrict the main reader to one or more
+  installed card series without hiding search results or personal saved data.
+
+### 2. Signatures
+
+```kotlin
+data class ContentSeriesPreferenceEntity(@PrimaryKey val series: String)
+
+data class RecommendationSettings(
+    val availableSeries: List<String>,
+    val selectedSeries: Set<String>,
+)
+
+suspend fun saveRecommendationPreferences(
+    interestIds: Set<String>,
+    selectedSeries: Set<String>,
+)
+```
+
+### 3. Contracts
+
+- Room is the source of truth. Empty `selectedSeries` means `全部内容`; a
+  non-empty set is a hard allowlist applied before `RecommendationRanker`.
+- Saving interest and series sets plus replanning the active round is one Room
+  transaction. A failed write changes neither preferences nor round items.
+- Available UI options are active installed series plus saved stale selections.
+  New installed series enters an unrestricted reader automatically but cannot
+  bypass a non-empty allowlist.
+- Only `rankedActiveCardIds()` is filtered. Search, favorites, likes, notes, and
+  their recommendation signals continue to use all active/preserved cards.
+- A series restriction may remove visited round items. The planner keeps the
+  same current card when eligible; otherwise it selects the nearest eligible
+  card and preserves retained cards' `readAt` values.
+
+### 4. Validation & Error Matrix
+
+| Condition | Required result |
+| --- | --- |
+| Empty selected-series set | Persist unrestricted `全部内容` |
+| One or more non-blank series | Persist exact set and filter the reader |
+| Blank or surrounding-whitespace series | Reject with `内容范围无效`; write nothing |
+| Saved series has no active cards | Keep the selection and expose an empty reader |
+| Content update adds an unselected series | Show it as an option; keep it out of the filtered reader |
+| Current card becomes disallowed | Move to the nearest eligible retained card |
+
+### 5. Good/Base/Bad Cases
+
+- Good: selecting `毛泽东选集` removes every other series from the active round,
+  while a favorited `名人名言` card remains visible under 收藏.
+- Base: an upgraded schema-6 user has no series rows and sees all content.
+- Bad: deleting a stale final preference broadens the feed to all content without
+  an explicit `全部内容` choice.
+
+### 6. Tests Required
+
+- Migration: validate `6 -> 7`, assert the new table is empty, and reassert
+  cards, personal state, notes, interests, feedback, round position, and reads.
+- Repository: assert unrestricted, single-series, multi-series, restart, new
+  round, invalid-value atomicity, and unaffected search/favorite behavior.
+- Planner: assert a disallowed locked prefix is removed and the nearest eligible
+  card becomes current.
+- Compose: assert `全部内容`, multi-select, final-selection protection, exact save
+  payload, loading disablement, and scrolling at `360 x 640 dp`.
+
+### 7. Wrong vs Correct
+
+#### Wrong
+
+```kotlin
+RecommendationRanker.rank(allActiveCards, profile, random)
+    .filter { it.series in selectedSeries }
+```
+
+This can distort ranking/exploration because ranking decisions include
+disallowed candidates.
+
+#### Correct
+
+```kotlin
+val candidates = if (selectedSeries.isEmpty()) allActiveCards else {
+    allActiveCards.filter { it.series in selectedSeries }
+}
+RecommendationRanker.rank(candidates, profile, random)
 ```
 
 ## Scenario: Personal Notes And Withdrawal Retention
@@ -290,8 +390,9 @@ if (!state.liked && !state.favorited && dao.countNotesForCard(cardId) == 0) {
 - Reusing an image ID for different bytes.
 - Moving the database transaction before asset validation/writes, which can create references to missing files.
 - Rebuilding a reading round from a random seed instead of persisting its exact order.
-- Replanning positions at or before `furthestPosition`, which changes history
-  and can attach settled-page effects to the wrong card.
+- Replanning positions at or before `furthestPosition` for ranking-only signals.
+  Only an explicit content-series restriction may remove disallowed history,
+  and retained timestamps must stay attached to card IDs.
 - Raising the schema version without testing search history, round position,
   read timestamps, likes, favorites, and notes across the migration.
 - Adding a foreign-key cascade from notes to cards, which would erase personal

@@ -239,7 +239,7 @@ class AppRepositoryInstrumentedTest {
         repository.completeInterestOnboarding(
             setOf(InterestCategory.SelfGrowth.id, InterestCategory.Practice.id),
         )
-        repository.saveInterestPreferences(setOf(InterestCategory.Learning.id))
+        repository.saveRecommendationPreferences(setOf(InterestCategory.Learning.id), emptySet())
 
         assertEquals(
             setOf(InterestCategory.Learning),
@@ -256,6 +256,61 @@ class AppRepositoryInstrumentedTest {
             restarted.recommendationSettings.first().selected,
         )
         assertFalse(restarted.recommendationSettings.first().requiresOnboarding)
+    }
+
+    @Test
+    fun contentSeriesPreferencesFilterOnlyTheReaderAndPersistAcrossRepositories() = runBlocking {
+        repository.initialize()
+        repository.completeInterestOnboarding(emptySet())
+        val allCards = repository.activeCards.first()
+        val availableSeries = allCards.mapTo(mutableSetOf()) { it.series }
+        assertEquals(
+            setOf("毛泽东选集", "毛泽东诗词", "名人名言", "马原思考"),
+            availableSeries,
+        )
+        assertTrue(repository.recommendationSettings.first().selectedSeries.isEmpty())
+        assertEquals(availableSeries, repository.readerState.first().cards.mapTo(mutableSetOf()) { it.series })
+        try {
+            repository.saveRecommendationPreferences(emptySet(), setOf(" "))
+            fail("应拒绝空白内容系列")
+        } catch (error: IllegalArgumentException) {
+            assertEquals("内容范围无效", error.message)
+        }
+        assertTrue(repository.recommendationSettings.first().selectedSeries.isEmpty())
+
+        repository.saveRecommendationPreferences(
+            interestIds = setOf(InterestCategory.Practice.id),
+            selectedSeries = setOf("毛泽东选集"),
+        )
+
+        val singleSeriesReader = repository.readerState.first()
+        assertTrue(singleSeriesReader.cards.isNotEmpty())
+        assertTrue(singleSeriesReader.cards.all { it.series == "毛泽东选集" })
+        val outsideCard = allCards.first { it.series == "名人名言" }
+        repository.toggleFavorite(outsideCard.id)
+        assertTrue(repository.favorites.first().any { it.id == outsideCard.id })
+        assertTrue(repository.search(outsideCard.workTitle).first().any { it.id == outsideCard.id })
+        assertTrue(repository.readerState.first().cards.all { it.series == "毛泽东选集" })
+
+        val multiSelection = setOf("毛泽东选集", "毛泽东诗词")
+        repository.saveRecommendationPreferences(emptySet(), multiSelection)
+        repository.startNewRound()
+        assertEquals(
+            multiSelection,
+            repository.readerState.first().cards.mapTo(mutableSetOf()) { it.series },
+        )
+
+        val restarted = AppRepository(
+            context = isolatedContext,
+            database = database,
+            random = Random(11),
+            now = { currentTime },
+        )
+        assertEquals(multiSelection, restarted.recommendationSettings.first().selectedSeries)
+        assertEquals(
+            multiSelection,
+            restarted.readerState.first().cards.mapTo(mutableSetOf()) { it.series },
+        )
     }
 
     @Test

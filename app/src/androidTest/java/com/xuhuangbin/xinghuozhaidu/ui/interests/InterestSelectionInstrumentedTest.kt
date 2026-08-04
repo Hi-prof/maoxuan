@@ -5,6 +5,7 @@ import androidx.compose.foundation.layout.size
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.test.assertIsNotEnabled
 import androidx.compose.ui.test.assertIsDisplayed
+import androidx.compose.ui.test.assertIsSelected
 import androidx.compose.ui.test.junit4.createComposeRule
 import androidx.compose.ui.test.onNodeWithText
 import androidx.compose.ui.test.performClick
@@ -77,5 +78,39 @@ class InterestSelectionInstrumentedTest {
 
         composeRule.onNodeWithText("暂时跳过").assertIsDisplayed().performClick()
         composeRule.runOnIdle { assertTrue(skipped) }
+    }
+
+    @Test
+    fun preferenceScreenSupportsAllContentAndMultipleSeries() {
+        var savedSeries: Set<String>? = null
+        composeRule.setContent {
+            XinghuoTheme {
+                Box(Modifier.size(width = 360.dp, height = 640.dp)) {
+                    InterestPreferencesScreen(
+                        initialSelected = emptySet(),
+                        availableSeries = listOf("毛泽东选集", "毛泽东诗词", "名人名言", "马原思考"),
+                        initialSelectedSeries = emptySet(),
+                        reducedCount = 0,
+                        isSaving = false,
+                        errorMessage = null,
+                        onBack = {},
+                        onSave = { _, series -> savedSeries = series },
+                        onClearReduced = {},
+                    )
+                }
+            }
+        }
+
+        composeRule.onNodeWithText("全部内容").assertIsSelected()
+        composeRule.onNodeWithText("毛泽东选集").performScrollTo().performClick()
+        composeRule.onNodeWithText("毛泽东诗词").performScrollTo().performClick()
+        composeRule.onNodeWithText("毛泽东选集").performScrollTo().performClick()
+        composeRule.onNodeWithText("毛泽东诗词").performScrollTo().performClick()
+        composeRule.onNodeWithText("保存").performClick()
+        composeRule.runOnIdle { assertEquals(setOf("毛泽东诗词"), savedSeries) }
+
+        composeRule.onNodeWithText("全部内容").performScrollTo().performClick()
+        composeRule.onNodeWithText("保存").performClick()
+        composeRule.runOnIdle { assertTrue(checkNotNull(savedSeries).isEmpty()) }
     }
 }

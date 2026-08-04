@@ -143,6 +143,11 @@ data class InterestPreferenceEntity(
     @PrimaryKey val categoryId: String,
 )
 
+@Entity(tableName = "content_series_preferences")
+data class ContentSeriesPreferenceEntity(
+    @PrimaryKey val series: String,
+)
+
 @Entity(tableName = "reduced_cards")
 data class ReducedCardEntity(
     @PrimaryKey val cardId: String,

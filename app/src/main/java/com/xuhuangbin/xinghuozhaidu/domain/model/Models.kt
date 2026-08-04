@@ -63,5 +63,7 @@ data class PersonalNote(
 data class RecommendationSettings(
     val requiresOnboarding: Boolean = true,
     val selected: Set<InterestCategory> = emptySet(),
+    val availableSeries: List<String> = emptyList(),
+    val selectedSeries: Set<String> = emptySet(),
     val reducedCount: Int = 0,
 )

@@ -82,6 +82,23 @@ class ReadingRoundPlannerTest {
         assertEquals(2, plan.furthestPosition)
     }
 
+    @Test
+    fun removesIneligibleCardsFromTheLockedPrefix() {
+        val existing = items("a", "b", "c", "d")
+
+        val plan = ReadingRoundPlanner.reconcile(
+            roundId = 7,
+            existingItems = existing,
+            currentPosition = 1,
+            furthestPosition = 2,
+            rankedActiveCardIds = listOf("d", "c"),
+        )
+
+        assertEquals(listOf("c", "d"), plan.items.map { it.cardId })
+        assertEquals(0, plan.currentPosition)
+        assertEquals("c", plan.items[plan.currentPosition].cardId)
+    }
+
     private fun items(vararg ids: String) = ids.mapIndexed { index, id ->
         ReadingRoundItemEntity(
             roundId = 7,

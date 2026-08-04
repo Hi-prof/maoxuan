@@ -307,4 +307,89 @@ class XinghuoDatabaseMigrationInstrumentedTest {
         }
         migrated.close()
     }
+
+    @Test
+    fun migrationFromSixToSevenAddsEmptySeriesPreferencesAndPreservesPersonalState() {
+        helper.createDatabase(databaseName, 6).apply {
+            execSQL(
+                """
+                INSERT INTO cards(
+                    id, revision, quote, series, volume, workTitle, authoredAt, themes,
+                    interpretationInspiration, interpretationExplanation, historicalEvent,
+                    background, story, imageId, availability
+                ) VALUES (
+                    'card-1', 3, '引文', '毛泽东选集', '第一卷', '实践论', '1937-07', '实践',
+                    '启示', '解读', '历史事件', '背景', '故事', 'image-1', 'active'
+                )
+                """.trimIndent(),
+            )
+            execSQL(
+                """
+                INSERT INTO user_card_state(cardId, liked, favorited, likedAt, favoritedAt)
+                VALUES ('card-1', 1, 1, 100, 200)
+                """.trimIndent(),
+            )
+            execSQL("INSERT INTO search_history(keyword, searchedAt) VALUES ('实践', 300)")
+            execSQL(
+                """
+                INSERT INTO notes(cardId, title, body, createdAt, updatedAt)
+                VALUES ('card-1', '标题', '正文', 400, 500)
+                """.trimIndent(),
+            )
+            execSQL(
+                """
+                INSERT INTO reading_rounds(
+                    id, state, currentPosition, furthestPosition, createdAt, completedAt
+                ) VALUES (7, 'active', 1, 3, 600, NULL)
+                """.trimIndent(),
+            )
+            execSQL(
+                """
+                INSERT INTO reading_round_items(roundId, position, cardId, readAt)
+                VALUES (7, 3, 'card-1', 700)
+                """.trimIndent(),
+            )
+            execSQL("INSERT INTO recommendation_state(id, onboardingCompleted) VALUES (0, 1)")
+            execSQL("INSERT INTO interest_preferences(categoryId) VALUES ('practice')")
+            execSQL("INSERT INTO reduced_cards(cardId, createdAt) VALUES ('card-1', 800)")
+            close()
+        }
+
+        val migrated = helper.runMigrationsAndValidate(
+            databaseName,
+            7,
+            true,
+            XinghuoDatabase.MIGRATION_6_7,
+        )
+
+        migrated.query("SELECT COUNT(*) FROM content_series_preferences").use { cursor ->
+            assertTrue(cursor.moveToFirst())
+            assertEquals(0, cursor.getInt(0))
+        }
+        migrated.query("SELECT liked, favorited FROM user_card_state WHERE cardId = 'card-1'").use { cursor ->
+            assertTrue(cursor.moveToFirst())
+            assertEquals(1, cursor.getInt(0))
+            assertEquals(1, cursor.getInt(1))
+        }
+        migrated.query("SELECT title, body FROM notes").use { cursor ->
+            assertTrue(cursor.moveToFirst())
+            assertEquals("标题", cursor.getString(0))
+            assertEquals("正文", cursor.getString(1))
+        }
+        migrated.query("SELECT currentPosition, furthestPosition FROM reading_rounds WHERE id = 7").use { cursor ->
+            assertTrue(cursor.moveToFirst())
+            assertEquals(1, cursor.getInt(0))
+            assertEquals(3, cursor.getInt(1))
+        }
+        migrated.query("SELECT categoryId FROM interest_preferences").use { cursor ->
+            assertTrue(cursor.moveToFirst())
+            assertEquals("practice", cursor.getString(0))
+        }
+        migrated.query("SELECT cardId, createdAt FROM reduced_cards").use { cursor ->
+            assertTrue(cursor.moveToFirst())
+            assertEquals("card-1", cursor.getString(0))
+            assertEquals(800, cursor.getLong(1))
+        }
+        migrated.close()
+    }
 }

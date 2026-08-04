@@ -14,18 +14,22 @@ import com.xuhuangbin.xinghuozhaidu.domain.recommendation.InterestCategory
 @Composable
 fun InterestPreferencesScreen(
     initialSelected: Set<InterestCategory>,
+    availableSeries: List<String>,
+    initialSelectedSeries: Set<String>,
     reducedCount: Int,
     isSaving: Boolean,
     errorMessage: String?,
     onBack: () -> Unit,
-    onSave: (Set<InterestCategory>) -> Unit,
+    onSave: (Set<InterestCategory>, Set<String>) -> Unit,
     onClearReduced: () -> Unit,
     modifier: Modifier = Modifier,
 ) {
     var confirmClear by rememberSaveable { mutableStateOf(false) }
     InterestPickerLayout(
-        title = "兴趣偏好",
+        title = "阅读偏好",
         initialSelected = initialSelected,
+        availableSeries = availableSeries,
+        initialSelectedSeries = initialSelectedSeries,
         isSaving = isSaving,
         errorMessage = errorMessage,
         primaryLabel = "保存",

@@ -21,9 +21,10 @@ import androidx.sqlite.db.SupportSQLiteDatabase
         NoteEntity::class,
         RecommendationStateEntity::class,
         InterestPreferenceEntity::class,
+        ContentSeriesPreferenceEntity::class,
         ReducedCardEntity::class,
     ],
-    version = 6,
+    version = 7,
     exportSchema = true,
 )
 abstract class XinghuoDatabase : RoomDatabase() {
@@ -34,7 +35,13 @@ abstract class XinghuoDatabase : RoomDatabase() {
             context,
             XinghuoDatabase::class.java,
             "xinghuo.db",
-        ).addMigrations(MIGRATION_1_2, MIGRATION_2_3, MIGRATION_3_4, MIGRATION_5_6)
+        ).addMigrations(
+            MIGRATION_1_2,
+            MIGRATION_2_3,
+            MIGRATION_3_4,
+            MIGRATION_5_6,
+            MIGRATION_6_7,
+        )
             .fallbackToDestructiveMigration()
             .build()
 
@@ -150,6 +157,19 @@ abstract class XinghuoDatabase : RoomDatabase() {
                     """
                     INSERT OR REPLACE INTO `recommendation_state` (`id`, `onboardingCompleted`)
                     VALUES (0, 1)
+                    """.trimIndent(),
+                )
+            }
+        }
+
+        val MIGRATION_6_7 = object : Migration(6, 7) {
+            override fun migrate(db: SupportSQLiteDatabase) {
+                db.execSQL(
+                    """
+                    CREATE TABLE IF NOT EXISTS `content_series_preferences` (
+                        `series` TEXT NOT NULL,
+                        PRIMARY KEY(`series`)
+                    )
                     """.trimIndent(),
                 )
             }
