@@ -208,3 +208,36 @@ Expanded the formal card library to 600 curated popular, motivational, and Marxi
 ### Next Steps
 
 - None - task complete
+
+
+## Session 7: 发布 Android 1.9.0
+
+**Date**: 2026-08-05
+**Task**: 发布 Android 1.9.0
+**Branch**: `task/1`
+
+### Summary
+
+将书籍多选偏好版本提升至 Android 1.9.0/12，完成本地单测、Lint、构建及 API 28/35 设备测试；推送 app-v1.9.0 并验证正式签名 APK、SHA-256 与 content-v1.5.0 latest 通道。
+
+### Main Changes
+
+(Add details)
+
+### Git Commits
+
+| Hash | Message |
+|------|---------|
+| `c3dcbb5` | (see git log) |
+
+### Testing
+
+- [OK] (Add test results)
+
+### Status
+
+[OK] **Completed**
+
+### Next Steps
+
+- None - task complete
