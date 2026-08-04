@@ -21,10 +21,10 @@ the dedicated `task/1` branch.
 
 - [x] Local Android unit tests, lint, Debug assembly, and Android-test Kotlin
   compilation pass for the release source.
-- [ ] `task/1` contains the version preparation commit and is pushed to GitHub.
-- [ ] `app-v1.9.0` points at the final release commit and the tag workflow passes.
-- [ ] GitHub publishes `xinghuo-zhaidu-v1.9.0.apk` and its matching `.sha256`.
-- [ ] The published App Release is stable and non-latest, while the latest
+- [x] `task/1` contains the version preparation commit and is pushed to GitHub.
+- [x] `app-v1.9.0` points at the final release commit and the tag workflow passes.
+- [x] GitHub publishes `xinghuo-zhaidu-v1.9.0.apk` and its matching `.sha256`.
+- [x] The published App Release is stable and non-latest, while the latest
   repository Release remains a `content-v*` Release with `manifest.json`.
 
 ## Notes
