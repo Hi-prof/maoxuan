@@ -242,9 +242,16 @@ class MainViewModel(
         }
     }
 
-    fun saveInterestPreferences(selected: Set<InterestCategory>, onSaved: () -> Unit) {
+    fun saveRecommendationPreferences(
+        selected: Set<InterestCategory>,
+        selectedSeries: Set<String>,
+        onSaved: () -> Unit,
+    ) {
         runRecommendationAction(onSuccess = onSaved) {
-            repository.saveInterestPreferences(selected.mapTo(mutableSetOf(), InterestCategory::id))
+            repository.saveRecommendationPreferences(
+                interestIds = selected.mapTo(mutableSetOf(), InterestCategory::id),
+                selectedSeries = selectedSeries,
+            )
         }
     }
 

@@ -12,6 +12,7 @@ import com.xuhuangbin.xinghuozhaidu.data.local.CardEntity
 import com.xuhuangbin.xinghuozhaidu.data.local.CardSourceEntity
 import com.xuhuangbin.xinghuozhaidu.data.local.CardWithSources
 import com.xuhuangbin.xinghuozhaidu.data.local.ContentStateEntity
+import com.xuhuangbin.xinghuozhaidu.data.local.ContentSeriesPreferenceEntity
 import com.xuhuangbin.xinghuozhaidu.data.local.ImageAssetEntity
 import com.xuhuangbin.xinghuozhaidu.data.local.NoteEntity
 import com.xuhuangbin.xinghuozhaidu.data.local.InterestPreferenceEntity
@@ -93,13 +94,20 @@ class AppRepository(
     val recommendationSettings: Flow<RecommendationSettings> = combine(
         dao.observeRecommendationState(),
         dao.observeInterestPreferences(),
+        dao.observeContentSeriesPreferences(),
+        dao.observeActiveSeries(),
         dao.observeReducedCards(),
-    ) { state, preferences, reducedCards ->
+    ) { state, preferences, seriesPreferences, activeSeries, reducedCards ->
+        val selectedSeries = seriesPreferences.mapTo(linkedSetOf()) { preference ->
+            preference.series
+        }
         RecommendationSettings(
             requiresOnboarding = state?.onboardingCompleted != true,
             selected = preferences.mapNotNullTo(mutableSetOf()) { preference ->
                 InterestCategory.fromId(preference.categoryId)
             },
+            availableSeries = (activeSeries + selectedSeries).distinct().sorted(),
+            selectedSeries = selectedSeries,
             reducedCount = reducedCards.size,
         )
     }
@@ -333,10 +341,15 @@ class AppRepository(
         }
     }
 
-    suspend fun saveInterestPreferences(selectedIds: Set<String>) = withContext(Dispatchers.IO) {
-        val normalized = validateInterestIds(selectedIds)
+    suspend fun saveRecommendationPreferences(
+        interestIds: Set<String>,
+        selectedSeries: Set<String>,
+    ) = withContext(Dispatchers.IO) {
+        val normalizedInterests = validateInterestIds(interestIds)
+        val normalizedSeries = validateSeriesPreferences(selectedSeries)
         database.withTransaction {
-            replaceInterestPreferences(normalized)
+            replaceInterestPreferences(normalizedInterests)
+            replaceContentSeriesPreferences(normalizedSeries)
             dao.upsertRecommendationState(RecommendationStateEntity(onboardingCompleted = true))
             if (dao.getActiveRound() == null) createRecommendedRound() else replanUnseenTail()
         }
@@ -540,8 +553,16 @@ class AppRepository(
     }
 
     private suspend fun rankedActiveCardIds(): List<String> {
-        val cards = loadCards().filterNot(QuoteCard::isWithdrawn)
-        val cardById = cards.associateBy(QuoteCard::id)
+        val activeCards = loadCards().filterNot(QuoteCard::isWithdrawn)
+        val cardById = activeCards.associateBy(QuoteCard::id)
+        val selectedSeries = dao.getContentSeriesPreferences().mapTo(mutableSetOf()) { preference ->
+            preference.series
+        }
+        val candidates = if (selectedSeries.isEmpty()) {
+            activeCards
+        } else {
+            activeCards.filter { card -> card.series in selectedSeries }
+        }
         val selected = dao.getInterestPreferences().mapNotNullTo(mutableSetOf()) { preference ->
             InterestCategory.fromId(preference.categoryId)
         }
@@ -550,13 +571,13 @@ class AppRepository(
         val profile = RecommendationProfileBuilder.build(
             RecommendationSignals(
                 selected = selected,
-                likedCards = cards.filter(QuoteCard::isLiked),
-                favoriteCards = cards.filter(QuoteCard::isFavorited),
+                likedCards = activeCards.filter(QuoteCard::isLiked),
+                favoriteCards = activeCards.filter(QuoteCard::isFavorited),
                 linkedNoteCards = noteCards,
                 reducedCards = reducedCards,
             ),
         )
-        return RecommendationRanker.rank(cards, profile, random)
+        return RecommendationRanker.rank(candidates, profile, random)
     }
 
     private suspend fun loadCards(): List<QuoteCard> {
@@ -570,10 +591,20 @@ class AppRepository(
         dao.insertInterestPreferences(categoryIds.sorted().map(::InterestPreferenceEntity))
     }
 
+    private suspend fun replaceContentSeriesPreferences(series: Set<String>) {
+        dao.clearContentSeriesPreferences()
+        dao.insertContentSeriesPreferences(series.sorted().map(::ContentSeriesPreferenceEntity))
+    }
+
     private fun validateInterestIds(categoryIds: Set<String>): Set<String> {
         require(categoryIds.size <= MAX_SELECTED_INTERESTS) { "最多选择 5 个兴趣标签" }
         require(categoryIds.all { InterestCategory.fromId(it) != null }) { "兴趣标签无效" }
         return categoryIds
+    }
+
+    private fun validateSeriesPreferences(series: Set<String>): Set<String> {
+        require(series.all { value -> value.isNotBlank() && value == value.trim() }) { "内容范围无效" }
+        return series
     }
 
     private suspend fun updateUserState(

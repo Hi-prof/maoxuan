@@ -56,7 +56,7 @@ fun InterestSelectionScreen(
         isSaving = isSaving,
         errorMessage = errorMessage,
         primaryLabel = "开始阅读",
-        onPrimary = onContinue,
+        onPrimary = { selected, _ -> onContinue(selected) },
         secondaryLabel = "暂时跳过",
         onSecondary = onSkip,
         modifier = modifier,
@@ -68,10 +68,12 @@ fun InterestSelectionScreen(
 internal fun InterestPickerLayout(
     title: String,
     initialSelected: Set<InterestCategory>,
+    availableSeries: List<String> = emptyList(),
+    initialSelectedSeries: Set<String> = emptySet(),
     isSaving: Boolean,
     errorMessage: String?,
     primaryLabel: String,
-    onPrimary: (Set<InterestCategory>) -> Unit,
+    onPrimary: (Set<InterestCategory>, Set<String>) -> Unit,
     modifier: Modifier = Modifier,
     onBack: (() -> Unit)? = null,
     secondaryLabel: String? = null,
@@ -83,6 +85,10 @@ internal fun InterestPickerLayout(
         mutableStateOf(initialSelected.map(InterestCategory::id))
     }
     val selected = selectedIds.mapNotNullTo(linkedSetOf(), InterestCategory::fromId)
+    var selectedSeriesValues by rememberSaveable(initialSelectedSeries) {
+        mutableStateOf(initialSelectedSeries.toList())
+    }
+    val selectedSeries = selectedSeriesValues.toSet()
 
     Column(
         modifier = modifier
@@ -109,19 +115,63 @@ internal fun InterestPickerLayout(
                 letterSpacing = 0.sp,
             )
         }
-        Text(
-            text = "已选 ${selected.size}/$MAX_SELECTED_INTERESTS",
-            color = MutedInk,
-            fontSize = 13.sp,
-            letterSpacing = 0.sp,
-            modifier = Modifier.padding(top = 6.dp, bottom = 12.dp),
-        )
         Column(
             modifier = Modifier
                 .weight(1f)
                 .fillMaxWidth()
                 .verticalScroll(rememberScrollState()),
         ) {
+            if (availableSeries.isNotEmpty()) {
+                PreferenceSectionTitle("内容范围")
+                Text(
+                    text = if (selectedSeries.isEmpty()) {
+                        "当前显示全部内容"
+                    } else {
+                        "已选 ${selectedSeries.size} 个内容系列"
+                    },
+                    color = MutedInk,
+                    fontSize = 13.sp,
+                    letterSpacing = 0.sp,
+                    modifier = Modifier.padding(top = 4.dp, bottom = 8.dp),
+                )
+                FlowRow(
+                    modifier = Modifier.fillMaxWidth(),
+                    horizontalArrangement = Arrangement.spacedBy(8.dp),
+                    verticalArrangement = Arrangement.spacedBy(4.dp),
+                ) {
+                    FilterChip(
+                        selected = selectedSeries.isEmpty(),
+                        onClick = { selectedSeriesValues = emptyList() },
+                        enabled = !isSaving,
+                        label = { Text("全部内容", letterSpacing = 0.sp) },
+                    )
+                    availableSeries.forEach { series ->
+                        val isSelected = series in selectedSeries
+                        FilterChip(
+                            selected = isSelected,
+                            onClick = {
+                                selectedSeriesValues = when {
+                                    !isSelected && selectedSeries.isEmpty() -> listOf(series)
+                                    !isSelected -> selectedSeriesValues + series
+                                    selectedSeries.size > 1 -> selectedSeriesValues - series
+                                    else -> selectedSeriesValues
+                                }
+                            },
+                            enabled = !isSaving,
+                            label = { Text(series, letterSpacing = 0.sp) },
+                        )
+                    }
+                }
+                Spacer(Modifier.height(20.dp))
+            }
+            PreferenceSectionTitle("兴趣标签")
+            Text(
+                text = "已选 ${selected.size}/$MAX_SELECTED_INTERESTS",
+                color = MutedInk,
+                fontSize = 13.sp,
+                letterSpacing = 0.sp,
+                modifier = Modifier.padding(top = 4.dp, bottom = 8.dp),
+            )
             FlowRow(
                 modifier = Modifier.fillMaxWidth(),
                 horizontalArrangement = Arrangement.spacedBy(8.dp),
@@ -163,7 +213,7 @@ internal fun InterestPickerLayout(
             )
         }
         Button(
-            onClick = { onPrimary(selected) },
+            onClick = { onPrimary(selected, selectedSeries) },
             enabled = !isSaving,
             modifier = Modifier.fillMaxWidth(),
         ) {
@@ -179,6 +229,17 @@ internal fun InterestPickerLayout(
             }
         }
     }
+}
+
+@Composable
+private fun PreferenceSectionTitle(text: String) {
+    Text(
+        text = text,
+        color = Ink,
+        fontWeight = FontWeight.SemiBold,
+        fontSize = 16.sp,
+        letterSpacing = 0.sp,
+    )
 }
 
 private const val MAX_SELECTED_INTERESTS = 5

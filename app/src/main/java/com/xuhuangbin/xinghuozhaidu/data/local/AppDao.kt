@@ -212,6 +212,21 @@ interface AppDao {
     @Query("DELETE FROM interest_preferences")
     suspend fun clearInterestPreferences()
 
+    @Query("SELECT * FROM content_series_preferences ORDER BY series")
+    fun observeContentSeriesPreferences(): Flow<List<ContentSeriesPreferenceEntity>>
+
+    @Query("SELECT * FROM content_series_preferences ORDER BY series")
+    suspend fun getContentSeriesPreferences(): List<ContentSeriesPreferenceEntity>
+
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    suspend fun insertContentSeriesPreferences(values: List<ContentSeriesPreferenceEntity>)
+
+    @Query("DELETE FROM content_series_preferences")
+    suspend fun clearContentSeriesPreferences()
+
+    @Query("SELECT DISTINCT series FROM cards WHERE availability = 'active' ORDER BY series")
+    fun observeActiveSeries(): Flow<List<String>>
+
     @Query("SELECT * FROM reduced_cards ORDER BY createdAt, cardId")
     fun observeReducedCards(): Flow<List<ReducedCardEntity>>
 

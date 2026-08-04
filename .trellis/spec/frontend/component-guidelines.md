@@ -133,9 +133,13 @@ front/back states on API 28 and the latest API.
   both commands remain visible at `360 x 640 dp`, including three-button system
   navigation. Disable unselected chips after five choices while keeping selected
   chips available for deselection.
-- `MineScreen` exposes one `兴趣偏好` row for both new and upgraded users. The
-  destination edits the same zero-to-five set and conditionally offers
+- `MineScreen` exposes one `阅读偏好` row for both new and upgraded users. The
+  destination edits the same zero-to-five interest set, adds a separate
+  `内容范围` multi-select with an explicit `全部内容` state, and conditionally offers
   `清除“减少此类”记录` behind a confirmation dialog.
+- The final concrete content-series chip cannot be deselected; returning to an
+  unrestricted reader requires the visible `全部内容` choice. Keep series and
+  interest chips inside the same vertically scrollable content area.
 - The reader header places `MoreVert` beside search and puts `减少此类` in its
   menu. Bind the command to the pager's actual settled card, disable it for
   loading/error/completion states, and advance only after persistence succeeds.

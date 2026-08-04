@@ -3,7 +3,8 @@
 ## State Owners
 
 - Room owns installed content, likes, favorites, personal notes, interest
-  preferences, reduced-content feedback, onboarding completion, reading-round
+  preferences, content-series preferences, reduced-content feedback,
+  onboarding completion, reading-round
   order, read timestamps, current/furthest positions, content version, and
   submitted search history.
 - `AppRepository` combines DAO `Flow`s and maps entities to immutable domain models.
@@ -80,10 +81,12 @@ the user explicitly starts a new one.
 
 ## Recommendation State
 
-`RecommendationSettings(requiresOnboarding, selected, reducedCount)` is derived
-from Room flows and included in `MainUiState`. Screens never retain their own
-durable copy. Unknown persisted category IDs are omitted when mapping to the
-domain model and rejected on the next explicit save.
+`RecommendationSettings(requiresOnboarding, selected, availableSeries,
+selectedSeries, reducedCount)` is derived from Room flows and included in
+`MainUiState`. Screens never retain their own durable copy. Unknown persisted
+category IDs are omitted when mapping to the domain model and rejected on the
+next explicit save. Empty `selectedSeries` means unrestricted content; a
+non-empty set filters only the persisted reader candidate order.
 
 `RecommendationOperationUiState(inProgress, errorMessage)` owns onboarding,
 preference save, reduce, and clear operations. While `inProgress` is true,

@@ -38,6 +38,7 @@ Keep `isMinifyEnabled = true` and `isShrinkResources = true` explicit on `person
   confirmation/cancel/error, reader overflow feedback, and interest editing.
 - Recommendations: fresh-install 12-chip onboarding, zero-selection skip,
   five-selection limit, migrated-user bypass, Mine preference entry,
+  content-series all/single/multi selection, final-selection protection,
   reduce-feedback confirmation/clear, operation error, and completion-page
   disabled state.
 - Saved/notes: independent favorite/liked segment switching, four-item bottom
@@ -112,4 +113,6 @@ threshold on both API 28 and current high-density devices.
 - Room `3 -> 4` migration and note CRUD/withdrawal lifecycle tests run on API 28
   and the latest configured API.
 - Room `5 -> 6`, recommendation repository, and interest/reader Compose tests
+  run on API 28 and the latest configured API.
+- Room `6 -> 7`, content-series repository, and reading-preference Compose tests
   run on API 28 and the latest configured API.

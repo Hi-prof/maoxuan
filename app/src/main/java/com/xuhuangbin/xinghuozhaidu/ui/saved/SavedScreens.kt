@@ -80,6 +80,7 @@ fun MineScreen(
     appVersion: String,
     contentState: InstalledContentState?,
     selectedInterestCount: Int = 0,
+    selectedSeriesCount: Int = 0,
     onInterestPreferences: () -> Unit = {},
     onCheckAppUpdate: () -> Unit,
     onCheckContentUpdate: () -> Unit,
@@ -101,12 +102,28 @@ fun MineScreen(
                     .verticalScroll(rememberScrollState()),
             ) {
                 Text(
-                    "兴趣偏好",
+                    "阅读偏好",
                     fontWeight = FontWeight.SemiBold,
                     fontSize = 15.sp,
                 )
                 Text(
-                    if (selectedInterestCount == 0) "尚未选择兴趣标签" else "已选择 $selectedInterestCount 个兴趣标签",
+                    buildString {
+                        append(
+                            if (selectedInterestCount == 0) {
+                                "尚未选择兴趣标签"
+                            } else {
+                                "已选 $selectedInterestCount 个兴趣标签"
+                            },
+                        )
+                        append(" · ")
+                        append(
+                            if (selectedSeriesCount == 0) {
+                                "全部内容"
+                            } else {
+                                "已选 $selectedSeriesCount 个内容系列"
+                            },
+                        )
+                    },
                     color = MutedInk,
                     fontSize = 12.sp,
                     modifier = Modifier.padding(top = 4.dp, bottom = 12.dp),
@@ -114,7 +131,7 @@ fun MineScreen(
                 OutlinedButton(onClick = onInterestPreferences) {
                     Icon(Icons.Outlined.Tune, contentDescription = null)
                     Spacer(Modifier.width(8.dp))
-                    Text("调整兴趣标签")
+                    Text("调整阅读偏好")
                 }
                 HorizontalDivider(Modifier.padding(vertical = 16.dp))
                 Text(
