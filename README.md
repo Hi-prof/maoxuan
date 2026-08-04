@@ -64,7 +64,7 @@ ANDROID_RELEASE_KEY_ALIAS
 ANDROID_RELEASE_KEY_PASSWORD
 ```
 
-四项配置缺一时，Gradle 会在正式打包任务执行前失败；debug、personal 和 lint 不依赖正式密钥。keystore 与密码不得写入仓库、Gradle 属性或构建日志。当前 App 版本为 `1.8.1`（version code 11），APK 内置内容版本为 `1.5.0`，源码内容版本为 `1.5.0`；`dist/` 仍是忽略的本地构建目录，不提交 APK 到源码仓库。
+四项配置缺一时，Gradle 会在正式打包任务执行前失败；debug、personal 和 lint 不依赖正式密钥。keystore 与密码不得写入仓库、Gradle 属性或构建日志。当前 App 版本为 `1.9.0`（version code 12），APK 内置内容版本为 `1.5.0`，源码内容版本为 `1.5.0`；`dist/` 仍是忽略的本地构建目录，不提交 APK 到源码仓库。
 
 客户端当前配置的内容地址为：
 
@@ -72,7 +72,7 @@ ANDROID_RELEASE_KEY_PASSWORD
 https://github.com/Hi-prof/maoxuan/releases/latest/download/manifest.json
 ```
 
-最近已发布的内容 Release 为 [`content-v1.4.1`](https://github.com/Hi-prof/maoxuan/releases/tag/content-v1.4.1)。源码当前准备 `content-v1.5.0`；发布对应标签前，稳定清单地址仍指向线上最新 Release。GitHub 暂时不可访问时仍不影响内置内容和本地阅读。
+最近已发布的内容 Release 为 [`content-v1.5.0`](https://github.com/Hi-prof/maoxuan/releases/tag/content-v1.5.0)，源码内容版本与其一致。GitHub 暂时不可访问时仍不影响内置内容和本地阅读。
 
 ## 编辑内容
 
