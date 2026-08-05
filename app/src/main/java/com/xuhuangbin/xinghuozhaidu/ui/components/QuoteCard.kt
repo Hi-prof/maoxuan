@@ -70,6 +70,7 @@ import kotlinx.coroutines.launch
 private const val DegreesPerFlip = 180f
 private const val DragWidthPerFlip = 0.72f
 private const val FlipDistanceThreshold = 0.22f
+private const val HorizontalDirectionLockRatio = 1.25f
 
 private val FlipSpring = spring<Float>(
     dampingRatio = Spring.DampingRatioNoBouncy,
@@ -174,7 +175,10 @@ fun FlippableQuoteCard(
             }
             .pointerInput(card.id, flipped, cardWidthPx) {
                 awaitEachGesture {
-                    val down = awaitFirstDown(requireUnconsumed = false)
+                    val down = awaitFirstDown(
+                        requireUnconsumed = false,
+                        pass = PointerEventPass.Initial,
+                    )
                     val velocityTracker = VelocityTracker()
                     velocityTracker.addPosition(down.uptimeMillis, down.position)
                     var pointerId = down.id
@@ -184,7 +188,7 @@ fun FlippableQuoteCard(
 
                     try {
                         while (true) {
-                            val event = awaitPointerEvent(PointerEventPass.Main)
+                            val event = awaitPointerEvent(PointerEventPass.Initial)
                             val trackedChange = event.changes.firstOrNull { it.id == pointerId }
                             val change = if (trackedChange?.pressed == true) {
                                 trackedChange
@@ -202,17 +206,19 @@ fun FlippableQuoteCard(
                                 totalDrag += delta
                                 val absX = abs(totalDrag.x)
                                 val absY = abs(totalDrag.y)
-                                if (absY > viewConfiguration.touchSlop && absY > absX) {
-                                    return@awaitEachGesture
-                                }
-                                if (absX > viewConfiguration.touchSlop && absX > absY) {
+                                if (maxOf(absX, absY) > viewConfiguration.touchSlop) {
+                                    if (absX < absY * HorizontalDirectionLockRatio) {
+                                        return@awaitEachGesture
+                                    }
                                     horizontalDragActive = true
                                     shouldSettle = true
+                                    change.consume()
                                     val overSlop = totalDrag.x - totalDrag.x.sign *
                                         viewConfiguration.touchSlop
                                     beginHorizontalDrag(overSlop)
                                 }
                             } else {
+                                change.consume()
                                 applyHorizontalDrag(delta.x)
                             }
                         }

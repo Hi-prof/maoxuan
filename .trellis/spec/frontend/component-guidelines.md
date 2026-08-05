@@ -63,18 +63,25 @@ The compact threshold and font tiers are a tested system. Any change must update
 - Do not attach a whole-card click handler. The quote/interpretation faces toggle only through horizontal dragging, and the interpretation face has no visible return icon.
 - Drag distance directly drives `rotationY`. One 180-degree flip spans 72% of card width, and release settles with a non-bouncy medium-low-stiffness spring.
 - Switch front/back content only after the rotation crosses 90 degrees, and rotate back content by 180 degrees so text is never mirrored.
-- Horizontal dragging must not consume vertical motion. Interpretation content
-  keeps its own `verticalScroll`, and the reader keeps `VerticalPager` user
-  scrolling enabled while the interpretation face is open so nested scrolling
-  can pass edge drags to the pager.
+- Resolve drag direction after touch slop. Lock to a horizontal flip only when
+  horizontal travel is at least `1.25` times vertical travel; once locked, the
+  card consumes the rest of that gesture so its vertical component cannot also
+  move the pager or interpretation content. Vertical-dominant drags remain
+  unconsumed by the flip recognizer.
+- Interpretation content keeps its own `verticalScroll`, and the reader keeps
+  `VerticalPager` user scrolling enabled while the interpretation face is open.
+  Nested scrolling passes edge remainder to the pager; the back face uses a
+  `25%` low-velocity snap threshold while the front keeps the default `50%`.
 - Keep the perspective layer's shadow elevation at zero and use the `Surface`'s stable `2.dp` shadow. A transformed dynamic shadow produces an oversized rectangular projection on API 28.
 - Release settling must clear transient state in `finally`, so an interrupted animation cannot block later gestures.
 
 Required instrumentation assertions: swipe left to back, swipe right to front,
-a slow short drag returns to its starting face, an upward edge drag from the
-interpretation face can page forward, and the compact quote/source bounds remain
-valid. Device review must include an in-motion frame on API 28 plus settled
-front/back states on API 28 and the latest API.
+a slow short drag returns to its starting face, a mostly horizontal diagonal
+drag flips without paging, horizontal lock prevents same-gesture back scrolling,
+and one slow drag can scroll a long interpretation to its edge then page forward.
+The compact quote/source bounds remain valid. Device review must include an
+in-motion frame on API 28 plus settled front/back states on API 28 and the latest
+API.
 
 ## Styling
 
@@ -159,8 +166,8 @@ front/back states on API 28 and the latest API.
 
 - Using a fixed quote box height that clips the source on 360 x 640.
 - Letting the back scroll and `VerticalPager` fight before the back content has
-  first chance to scroll, or disabling pager scrolling so the back face traps
-  the reader.
+  first chance to scroll, failing to consume a direction-locked horizontal drag,
+  or disabling pager scrolling so the back face traps the reader.
 - Adding animated `shadowElevation` to the rotating perspective layer instead of keeping shadow on the stable card `Surface`.
 - Shrinking all normal cards because only the compact viewport needs a smaller tier.
 - Putting like/favorite/share controls over quote text.
