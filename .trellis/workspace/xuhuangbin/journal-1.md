@@ -241,3 +241,37 @@ Expanded the formal card library to 600 curated popular, motivational, and Marxi
 ### Next Steps
 
 - None - task complete
+
+
+## Session 8: Refresh card and summary UI
+
+**Date**: 2026-08-05
+**Task**: Refresh card and summary UI
+**Branch**: `task/3`
+
+### Summary
+
+Added licensed archive imagery, attribution, and no-thumbnail summary UI.
+
+### Main Changes
+
+(Add details)
+
+### Git Commits
+
+| Hash | Message |
+|------|---------|
+| `29fc281` | (see git log) |
+| `d26afde` | (see git log) |
+
+### Testing
+
+- [OK] (Add test results)
+
+### Status
+
+[OK] **Completed**
+
+### Next Steps
+
+- None - task complete
