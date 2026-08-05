@@ -1,0 +1,4 @@
+{"_example": "Fill with {\"file\": \"<path>\", \"reason\": \"<why>\"}. Put spec/research files only — no code paths. Run `python .trellis/scripts/get_context.py --mode packages` to list available specs. Delete this line once real entries are added."}
+{"file": ".trellis/spec/frontend/index.md", "reason": "Compose 前端预开发约束与手势质量检查"}
+{"file": ".trellis/spec/frontend/component-guidelines.md", "reason": "卡片翻面、背面滚动和分页交互契约"}
+{"file": ".trellis/tasks/08-06-card-gesture-conflicts/research/compose-gesture-flow.md", "reason": "Compose 1.7.6 嵌套滚动与分页阈值源码结论"}

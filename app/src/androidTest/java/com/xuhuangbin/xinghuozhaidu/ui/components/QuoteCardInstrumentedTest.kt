@@ -13,6 +13,7 @@ import androidx.compose.ui.test.onNodeWithContentDescription
 import androidx.compose.ui.test.onNodeWithTag
 import androidx.compose.ui.test.onNodeWithText
 import androidx.compose.ui.test.performTouchInput
+import androidx.compose.ui.test.swipe
 import androidx.compose.ui.test.swipeLeft
 import androidx.compose.ui.test.swipeRight
 import androidx.compose.ui.unit.dp
@@ -172,7 +173,38 @@ class QuoteCardInstrumentedTest {
     }
 
     @Test
-    fun verticalScrollContinuesAfterHorizontalFlipDragStarts() {
+    fun mostlyVerticalSwipeDoesNotFlip() {
+        val card = testCard()
+        var flipped by mutableStateOf(false)
+
+        composeRule.setContent {
+            XinghuoTheme {
+                FlippableQuoteCard(
+                    card = card,
+                    flipped = flipped,
+                    onFlippedChange = { flipped = it },
+                    modifier = Modifier
+                        .size(width = 360.dp, height = 520.dp)
+                        .testTag("verticalSwipeQuoteCard"),
+                )
+            }
+        }
+
+        composeRule.onNodeWithTag("verticalSwipeQuoteCard").performTouchInput {
+            swipe(
+                start = Offset(width * 0.45f, height * 0.82f),
+                end = Offset(width * 0.55f, height * 0.18f),
+                durationMillis = 300,
+            )
+        }
+        composeRule.waitForIdle()
+
+        assertFalse("a mostly vertical swipe must not flip the card", flipped)
+        composeRule.onNodeWithText(card.quote).assertIsDisplayed()
+    }
+
+    @Test
+    fun horizontalDirectionLockPreventsBackScrollFromJoiningTheSameGesture() {
         val card = testCard(longInterpretation = true)
         var flipped by mutableStateOf(true)
 
@@ -215,8 +247,8 @@ class QuoteCardInstrumentedTest {
             .top
 
         assertTrue(
-            "the back face must keep scrolling after a horizontal flip drag starts",
-            afterTop < beforeTop - 20f,
+            "vertical movement must not scroll the back after horizontal direction lock",
+            kotlin.math.abs(afterTop - beforeTop) <= 1f,
         )
         assertTrue("a short horizontal drag should settle back on the interpretation face", flipped)
     }

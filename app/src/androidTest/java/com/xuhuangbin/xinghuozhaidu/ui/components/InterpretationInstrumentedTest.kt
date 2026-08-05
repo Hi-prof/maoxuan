@@ -9,6 +9,7 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.test.assertIsDisplayed
+import androidx.compose.ui.test.assertIsNotDisplayed
 import androidx.compose.ui.test.isRoot
 import androidx.compose.ui.test.junit4.createComposeRule
 import androidx.compose.ui.test.onAllNodesWithText
@@ -199,10 +200,115 @@ class InterpretationInstrumentedTest {
         composeRule.onNodeWithText(secondCard.quote).assertIsDisplayed()
     }
 
+    @Test
+    fun mostlyHorizontalSwipeFlipsWithoutPaging() {
+        val firstCard = testCard(id = "first-card", quote = "第一张名言。")
+        val secondCard = testCard(id = "second-card", quote = "第二张名言。")
+        var position by mutableIntStateOf(0)
+
+        composeRule.setContent {
+            XinghuoTheme {
+                Box(Modifier.size(width = 360.dp, height = 640.dp)) {
+                    ReaderScreen(
+                        state = ReaderState(
+                            roundId = 1L,
+                            cards = listOf(firstCard, secondCard),
+                            currentIndex = position,
+                        ),
+                        isLoading = false,
+                        errorMessage = null,
+                        onRetry = {},
+                        onSearch = {},
+                        onPositionChanged = { position = it },
+                        onRead = {},
+                        onLike = {},
+                        onFavorite = {},
+                        onNote = {},
+                        onNewRound = {},
+                    )
+                }
+            }
+        }
+
+        composeRule.onNodeWithTag("readerPager").performTouchInput {
+            swipe(
+                start = Offset(width * 0.82f, height * 0.68f),
+                end = Offset(width * 0.18f, height * 0.46f),
+                durationMillis = 150,
+            )
+        }
+        composeRule.waitForIdle()
+
+        check(position == 0) { "横向为主的斜拖不应切换卡片：position=$position" }
+        composeRule.onNodeWithText("解读").assertIsDisplayed()
+        composeRule.onNodeWithText(secondCard.quote).assertIsNotDisplayed()
+    }
+
+    @Test
+    fun oneSlowDragPagesAfterLongInterpretationReachesItsEdge() {
+        val firstCard = testCard(
+            id = "first-card",
+            quote = "第一张名言。",
+            longInterpretation = true,
+        )
+        val secondCard = testCard(id = "second-card", quote = "第二张名言。")
+        var position by mutableIntStateOf(0)
+
+        composeRule.setContent {
+            XinghuoTheme {
+                Box(Modifier.size(width = 360.dp, height = 640.dp)) {
+                    ReaderScreen(
+                        state = ReaderState(
+                            roundId = 1L,
+                            cards = listOf(firstCard, secondCard),
+                            currentIndex = position,
+                        ),
+                        isLoading = false,
+                        errorMessage = null,
+                        onRetry = {},
+                        onSearch = {},
+                        onPositionChanged = { position = it },
+                        onRead = {},
+                        onLike = {},
+                        onFavorite = {},
+                        onNote = {},
+                        onNewRound = {},
+                    )
+                }
+            }
+        }
+
+        composeRule.onNodeWithText(firstCard.quote).performTouchInput { swipeLeft() }
+        composeRule.onNodeWithText("解读").assertIsDisplayed()
+        composeRule.onNodeWithText("启示").performScrollTo()
+
+        composeRule.onNodeWithTag("readerPager").performTouchInput {
+            val totalDrag = height * 0.44f
+            down(Offset(center.x, height * 0.72f))
+            repeat(8) {
+                advanceEventTime(100)
+                moveBy(Offset(0f, -totalDrag / 8f))
+            }
+            repeat(4) {
+                advanceEventTime(250)
+                moveBy(Offset(0f, -1f))
+            }
+            advanceEventTime(250)
+            up()
+        }
+        composeRule.waitForIdle()
+
+        check(position == 1) {
+            "背面内容到达底部后，同一次连续拖动应进入下一张：position=$position"
+        }
+        composeRule.onNodeWithText(secondCard.quote).assertIsDisplayed()
+    }
+
     private fun testCard(
         id: String = "8a3e739a-9b89-5840-a47a-6bb2c6435c1c",
         quote: String = "没有调查，没有发言权。",
         longBackground: Boolean = false,
+        longInterpretation: Boolean = false,
     ) = QuoteCard(
         id = id,
         revision = 2,
@@ -214,7 +320,11 @@ class InterpretationInstrumentedTest {
         themes = listOf("调查研究"),
         interpretation = CardInterpretation(
             inspiration = "在工作中，可以先明确问题，再收集直接证据，并根据新事实修正原有判断。",
-            explanation = "对问题的判断必须建立在实际调查上。这句话批评的是脱离实际的发言和决策。",
+            explanation = if (longInterpretation) {
+                "对问题的判断必须建立在实际调查上。这句话批评的是脱离实际的发言和决策。".repeat(8)
+            } else {
+                "对问题的判断必须建立在实际调查上。这句话批评的是脱离实际的发言和决策。"
+            },
         ),
         historicalEvent = "1930年5月，毛泽东针对脱离实际的倾向写下这篇文章。",
         background = if (longBackground) {

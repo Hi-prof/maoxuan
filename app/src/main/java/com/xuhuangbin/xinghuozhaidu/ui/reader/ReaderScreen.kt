@@ -12,6 +12,7 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.pager.VerticalPager
+import androidx.compose.foundation.pager.PagerDefaults
 import androidx.compose.foundation.pager.rememberPagerState
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.outlined.Refresh
@@ -52,6 +53,8 @@ import com.xuhuangbin.xinghuozhaidu.ui.theme.MutedInk
 import com.xuhuangbin.xinghuozhaidu.ui.theme.SpiritRed
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
+
+private const val BackFacePagerSnapThreshold = 0.25f
 
 @OptIn(ExperimentalFoundationApi::class)
 @Composable
@@ -174,6 +177,11 @@ private fun ReaderPager(
     var backgroundCardId by remember(state.roundId) { mutableStateOf<String?>(null) }
     val pageCount = state.cards.size + if (state.isComplete) 1 else 0
     val pagerState = rememberPagerState(pageCount = { pageCount })
+    val frontFlingBehavior = PagerDefaults.flingBehavior(state = pagerState)
+    val backFlingBehavior = PagerDefaults.flingBehavior(
+        state = pagerState,
+        snapPositionalThreshold = BackFacePagerSnapThreshold,
+    )
 
     LaunchedEffect(state.roundId, state.cards.size) {
         if (state.cards.isNotEmpty()) pagerState.scrollToPage(state.currentIndex)
@@ -221,6 +229,7 @@ private fun ReaderPager(
             .fillMaxSize()
             .testTag("readerPager"),
         userScrollEnabled = backgroundCardId == null,
+        flingBehavior = if (flippedCardId == null) frontFlingBehavior else backFlingBehavior,
         beyondViewportPageCount = 1,
     ) { page ->
         if (page == state.cards.size) {
