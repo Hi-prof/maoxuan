@@ -375,3 +375,36 @@ Published the signed Android 1.10.0 GitHub Release, verified its checksum, versi
 ### Next Steps
 
 - None - task complete
+
+
+## Session 12: 优化毛选卡片解读与启示
+
+**Date**: 2026-08-06
+**Task**: 优化毛选卡片解读与启示
+**Branch**: `task/5`
+
+### Summary
+
+逐条审阅220张《毛泽东选集》卡片，保留31张优质内容，重写189张薄弱卡片的解读与启示并递增revision；完成结构化差异审计、模板扫描、Ruff、28项pytest、700张正式内容校验及确定性构建。
+
+### Main Changes
+
+(Add details)
+
+### Git Commits
+
+| Hash | Message |
+|------|---------|
+| `934c0d2` | (see git log) |
+
+### Testing
+
+- [OK] (Add test results)
+
+### Status
+
+[OK] **Completed**
+
+### Next Steps
+
+- None - task complete

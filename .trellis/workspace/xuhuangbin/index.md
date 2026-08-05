@@ -8,7 +8,7 @@
 
 <!-- @@@auto:current-status -->
 - **Active File**: `journal-1.md`
-- **Total Sessions**: 11
+- **Total Sessions**: 12
 - **Last Active**: 2026-08-06
 <!-- @@@/auto:current-status -->
 
@@ -19,7 +19,7 @@
 <!-- @@@auto:active-documents -->
 | File | Lines | Status |
 |------|-------|--------|
-| `journal-1.md` | ~377 | Active |
+| `journal-1.md` | ~410 | Active |
 <!-- @@@/auto:active-documents -->
 
 ---
@@ -29,6 +29,7 @@
 <!-- @@@auto:session-history -->
 | # | Date | Title | Commits | Branch |
 |---|------|-------|---------|--------|
+| 12 | 2026-08-06 | 优化毛选卡片解读与启示 | `934c0d2` | `task/5` |
 | 11 | 2026-08-06 | 优化卡片手势冲突 | `500dc27` | `task/7` |
 | 10 | 2026-08-05 | Release Android 1.10.0 | `b839f6d`, `0989faa` | `main` |
 | 9 | 2026-08-05 | Refresh card and summary UI | `29fc281`, `d26afde` | `task/3` |
