@@ -48,6 +48,13 @@ AppRepository.importPackage(
     expectedPublishedAt: String? = null,
     requireNewerVersion: Boolean = false,
 )
+
+data class ImageAttribution(
+    val creator: String,
+    val sourceUrl: String,
+    val licenseName: String,
+    val licenseEvidence: String,
+)
 ```
 
 ## 3. Contracts
@@ -96,11 +103,13 @@ Required invariants:
   rejected as unknown fields by both producer and consumer.
 - Each published card has at least two distinct HTTP(S) source URLs from two hosts and at least one `original` or `authoritative` source.
 - Images are content-hashed, 720 to 8192 pixels per edge, at most 40 million pixels, and explicitly permit share-image redistribution.
+- The repository maps each referenced `ImageAssetEntity` to both `QuoteCard.imagePath` and `QuoteCard.imageAttribution`. Missing image rows produce an empty path and null attribution; Compose never reads rights fields from DTOs or Room entities directly.
+- An attributed card exposes creator/source/license evidence in the background sheet, includes `图片：<creator> · <license>` in the generated share image, and includes both source and license-evidence URLs in `Intent.EXTRA_TEXT`.
 - A published ID and a withdrawal ID cannot coexist in one package.
 - Removing a previously active card requires an explicit withdrawal. Snapshot omission alone is invalid.
 - Restoring a withdrawn ID requires a revision greater than the recorded withdrawal revision.
 - Image IDs are immutable: an existing ID cannot point to different bytes.
-- Content `1.5.0` requires Android `versionCode >= 7` because ancient-thinker
+- Content `1.5.0` and later schema-3 packages require Android `versionCode >= 7` because ancient-thinker
   cards use `authoredAt` values such as `前4世纪`. App `1.6.0` reads package schema 3 only;
   older package schemas are not silently accepted as partial data.
 
@@ -170,6 +179,7 @@ Assets are decoded and written to a content-addressed internal directory before 
   and normal same-schema preservation of like/favorite/search/round state. The
   one-user `4 -> 5` release intentionally rebuilds the database and does not
   require a data-preserving migration regression.
+- Attribution instrumentation: import an image with all rights fields, assert the exact `QuoteCard.imageAttribution` projection, verify both background-sheet links and accessibility descriptions, and verify share-image credit plus complete share text URLs.
 - Cross-layer: build a package with the Python tool and parse/import that exact artifact on Android.
 - Release workflow: `content-vX.Y.Z` must equal `project.yaml` version; publish only after all assets upload.
 
@@ -204,4 +214,18 @@ val interpretation = CardInterpretation(
     inspiration = entity.interpretationInspiration,
     explanation = entity.interpretationExplanation,
 )
+```
+
+Wrong: let UI or sharing code recover attribution by parsing YAML, DTOs, or a local filename.
+
+```kotlin
+val creator = File(card.imagePath).name.substringBefore('-')
+```
+
+Correct: project the persisted rights fields once at the repository boundary.
+
+```kotlin
+val imageAttribution = image?.let {
+    ImageAttribution(it.creator, it.sourceUrl, it.licenseName, it.licenseEvidence)
+}
 ```

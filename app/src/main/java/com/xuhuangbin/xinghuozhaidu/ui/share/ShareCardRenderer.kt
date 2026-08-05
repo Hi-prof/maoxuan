@@ -6,6 +6,8 @@ import android.graphics.Bitmap
 import android.graphics.BitmapFactory
 import android.graphics.Canvas
 import android.graphics.Color
+import android.graphics.ColorMatrix
+import android.graphics.ColorMatrixColorFilter
 import android.graphics.Paint
 import android.graphics.Rect
 import android.graphics.Typeface
@@ -13,6 +15,7 @@ import android.net.Uri
 import android.text.Layout
 import android.text.StaticLayout
 import android.text.TextPaint
+import android.text.TextUtils
 import androidx.core.content.FileProvider
 import androidx.core.content.res.ResourcesCompat
 import com.xuhuangbin.xinghuozhaidu.R
@@ -36,6 +39,7 @@ object ShareCardRenderer {
         val intent = Intent(Intent.ACTION_SEND).apply {
             type = "image/png"
             putExtra(Intent.EXTRA_STREAM, uri)
+            putExtra(Intent.EXTRA_TEXT, shareText(card))
             addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION)
         }
         context.startActivity(Intent.createChooser(intent, "分享名言卡片"))
@@ -99,6 +103,29 @@ object ShareCardRenderer {
             textSize = 29f
         }
         canvas.drawText("星火摘读", 110f, 1325f, brandPaint)
+        attributionText(card)?.let { attribution ->
+            val attributionPaint = TextPaint(Paint.ANTI_ALIAS_FLAG).apply {
+                color = muted
+                typeface = Typeface.create(Typeface.SANS_SERIF, Typeface.NORMAL)
+                textSize = 22f
+            }
+            val attributionLayout = StaticLayout.Builder.obtain(
+                attribution,
+                0,
+                attribution.length,
+                attributionPaint,
+                610,
+            )
+                .setAlignment(Layout.Alignment.ALIGN_OPPOSITE)
+                .setEllipsize(TextUtils.TruncateAt.END)
+                .setMaxLines(2)
+                .setIncludePad(false)
+                .build()
+            canvas.save()
+            canvas.translate(360f, 1280f)
+            attributionLayout.draw(canvas)
+            canvas.restore()
+        }
 
         val directory = File(context.cacheDir, "shares").apply { mkdirs() }
         cleanShareCache(directory)
@@ -141,7 +168,10 @@ object ShareCardRenderer {
             val top = (source.height - targetHeight) / 2
             Rect(0, top, source.width, top + targetHeight)
         }
-        val paint = Paint(Paint.ANTI_ALIAS_FLAG or Paint.FILTER_BITMAP_FLAG).apply { alpha = 43 }
+        val paint = Paint(Paint.ANTI_ALIAS_FLAG or Paint.FILTER_BITMAP_FLAG).apply {
+            alpha = 46
+            colorFilter = ColorMatrixColorFilter(ColorMatrix().apply { setSaturation(0.12f) })
+        }
         canvas.drawBitmap(source, src, Rect(0, 0, WIDTH, HEIGHT), paint)
         source.recycle()
     }
@@ -152,4 +182,29 @@ object ShareCardRenderer {
             .setIncludePad(false)
             .setLineSpacing(12f, 1.18f)
             .build()
+
+    fun attributionText(card: QuoteCard): String? = card.imageAttribution?.let { attribution ->
+        "图片：${attribution.creator} · ${attribution.licenseName}"
+    }
+
+    internal fun shareText(card: QuoteCard): String = buildString {
+        append('“')
+        append(card.quote)
+        append("”\n《")
+        append(card.workTitle)
+        append("》 · ")
+        append(card.series)
+        append(' ')
+        append(card.volume)
+        card.imageAttribution?.let { attribution ->
+            append("\n\n图片：")
+            append(attribution.creator)
+            append(" · ")
+            append(attribution.licenseName)
+            append("\n来源：")
+            append(attribution.sourceUrl)
+            append("\n许可：")
+            append(attribution.licenseEvidence)
+        }
+    }
 }

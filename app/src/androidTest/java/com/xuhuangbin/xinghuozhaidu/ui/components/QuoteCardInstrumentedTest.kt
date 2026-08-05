@@ -82,6 +82,7 @@ class QuoteCardInstrumentedTest {
 
         assertTrue("quote must not overlap source", quoteBounds.bottom <= sourceBounds.top)
         assertTrue("source must remain inside card", sourceBounds.bottom <= cardBounds.bottom)
+        composeRule.onNodeWithText("卷一 · 1930").assertDoesNotExist()
     }
 
     @Test
@@ -109,6 +110,7 @@ class QuoteCardInstrumentedTest {
         }
         composeRule.waitForIdle()
         assertFalse("tapping the card must not flip it", flipped)
+        composeRule.onNodeWithText("卷一 · 1930").assertIsDisplayed()
 
         composeRule.onNodeWithTag("swipeQuoteCard").performTouchInput { swipeLeft() }
         composeRule.waitUntil(timeoutMillis = 3_000) { flipped }

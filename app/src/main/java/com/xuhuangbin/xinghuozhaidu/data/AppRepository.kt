@@ -28,6 +28,7 @@ import com.xuhuangbin.xinghuozhaidu.data.network.ContentUpdateClient
 import com.xuhuangbin.xinghuozhaidu.domain.model.CardSource
 import com.xuhuangbin.xinghuozhaidu.domain.model.CardInterpretation
 import com.xuhuangbin.xinghuozhaidu.domain.model.InstalledContentState
+import com.xuhuangbin.xinghuozhaidu.domain.model.ImageAttribution
 import com.xuhuangbin.xinghuozhaidu.domain.model.PersonalNote
 import com.xuhuangbin.xinghuozhaidu.domain.model.QuoteCard
 import com.xuhuangbin.xinghuozhaidu.domain.model.ReaderState
@@ -66,9 +67,9 @@ class AppRepository(
         dao.observeImages(),
         dao.observeUserStates(),
     ) { cards, images, states ->
-        val imagePaths = images.associate { it.id to it.localPath }
+        val imageById = images.associateBy(ImageAssetEntity::id)
         val stateByCard = states.associateBy { it.cardId }
-        cards.map { value -> value.toDomain(imagePaths, stateByCard[value.card.id]) }
+        cards.map { value -> value.toDomain(imageById, stateByCard[value.card.id]) }
     }
 
     val activeCards: Flow<List<QuoteCard>> = allCards.map { cards ->
@@ -581,9 +582,9 @@ class AppRepository(
     }
 
     private suspend fun loadCards(): List<QuoteCard> {
-        val imagePaths = dao.getImages().associate { image -> image.id to image.localPath }
+        val imageById = dao.getImages().associateBy(ImageAssetEntity::id)
         val stateByCard = dao.getUserStates().associateBy(UserCardStateEntity::cardId)
-        return dao.getCards().map { value -> value.toDomain(imagePaths, stateByCard[value.card.id]) }
+        return dao.getCards().map { value -> value.toDomain(imageById, stateByCard[value.card.id]) }
     }
 
     private suspend fun replaceInterestPreferences(categoryIds: Set<String>) {
@@ -688,34 +689,45 @@ class AppRepository(
     }
 
     private fun CardWithSources.toDomain(
-        imagePaths: Map<String, String>,
+        imageById: Map<String, ImageAssetEntity>,
         state: UserCardStateEntity?,
-    ): QuoteCard = QuoteCard(
-        id = card.id,
-        revision = card.revision,
-        quote = card.quote,
-        series = card.series,
-        volume = card.volume,
-        workTitle = card.workTitle,
-        authoredAt = card.authoredAt,
-        themes = card.themes.split("\u001f").filter(String::isNotBlank),
-        interpretation = CardInterpretation(
-            inspiration = card.interpretationInspiration,
-            explanation = card.interpretationExplanation,
-        ),
-        historicalEvent = card.historicalEvent,
-        background = card.background,
-        story = card.story,
-        imagePath = imagePaths[card.imageId].orEmpty(),
-        sources = sources.sortedBy { it.position }.map { source ->
-            CardSource(source.name, source.url, source.accessedAt, source.evidenceType)
-        },
-        isWithdrawn = card.availability == "withdrawn",
-        isLiked = state?.liked == true,
-        isFavorited = state?.favorited == true,
-        likedAt = state?.likedAt,
-        favoritedAt = state?.favoritedAt,
-    )
+    ): QuoteCard {
+        val image = imageById[card.imageId]
+        return QuoteCard(
+            id = card.id,
+            revision = card.revision,
+            quote = card.quote,
+            series = card.series,
+            volume = card.volume,
+            workTitle = card.workTitle,
+            authoredAt = card.authoredAt,
+            themes = card.themes.split("\u001f").filter(String::isNotBlank),
+            interpretation = CardInterpretation(
+                inspiration = card.interpretationInspiration,
+                explanation = card.interpretationExplanation,
+            ),
+            historicalEvent = card.historicalEvent,
+            background = card.background,
+            story = card.story,
+            imagePath = image?.localPath.orEmpty(),
+            sources = sources.sortedBy { it.position }.map { source ->
+                CardSource(source.name, source.url, source.accessedAt, source.evidenceType)
+            },
+            isWithdrawn = card.availability == "withdrawn",
+            isLiked = state?.liked == true,
+            isFavorited = state?.favorited == true,
+            likedAt = state?.likedAt,
+            favoritedAt = state?.favoritedAt,
+            imageAttribution = image?.let { asset ->
+                ImageAttribution(
+                    creator = asset.creator,
+                    sourceUrl = asset.sourceUrl,
+                    licenseName = asset.licenseName,
+                    licenseEvidence = asset.licenseEvidence,
+                )
+            },
+        )
+    }
 
     private fun NoteEntity.toDomain() = PersonalNote(
         id = id,

@@ -17,6 +17,7 @@ val Paper = Color(0xFFF8F6F0)
 val Canvas = Color(0xFFF0F0ED)
 val Divider = Color(0xFFD9D7D1)
 val SoftRed = Color(0xFFF1E4E3)
+val ArchiveGreen = Color(0xFF58665C)
 
 val QuoteFontFamily = FontFamily(
     Font(R.font.noto_serif_sc, weight = FontWeight.Normal),

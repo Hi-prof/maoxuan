@@ -33,8 +33,9 @@ import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.draw.alpha
 import androidx.compose.ui.geometry.Offset
+import androidx.compose.ui.graphics.ColorFilter
+import androidx.compose.ui.graphics.ColorMatrix
 import androidx.compose.ui.graphics.graphicsLayer
 import androidx.compose.ui.input.pointer.PointerEventPass
 import androidx.compose.ui.input.pointer.pointerInput
@@ -52,6 +53,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import coil.compose.AsyncImage
 import com.xuhuangbin.xinghuozhaidu.domain.model.QuoteCard
+import com.xuhuangbin.xinghuozhaidu.ui.theme.ArchiveGreen
 import com.xuhuangbin.xinghuozhaidu.ui.theme.Divider as DividerColor
 import com.xuhuangbin.xinghuozhaidu.ui.theme.Ink
 import com.xuhuangbin.xinghuozhaidu.ui.theme.MutedInk
@@ -248,14 +250,17 @@ private fun QuoteFront(card: QuoteCard) {
         val quoteLength = card.quote.codePointCount(0, card.quote.length)
         val compactHeight = maxHeight < 480.dp
         if (card.imagePath.isNotBlank()) {
+            val archivePhotoFilter = remember {
+                ColorFilter.colorMatrix(ColorMatrix().apply { setToSaturation(0.12f) })
+            }
             AsyncImage(
                 model = File(card.imagePath),
                 contentDescription = null,
-                modifier = Modifier
-                    .fillMaxSize()
-                    .alpha(0.17f),
+                modifier = Modifier.fillMaxSize(),
                 contentScale = ContentScale.Crop,
+                colorFilter = archivePhotoFilter,
             )
+            Box(Modifier.fillMaxSize().background(Paper.copy(alpha = 0.82f)))
         }
         Column(
             modifier = Modifier
@@ -265,6 +270,17 @@ private fun QuoteFront(card: QuoteCard) {
                     vertical = if (compactHeight) 24.dp else 34.dp,
                 ),
         ) {
+            if (!compactHeight) {
+                Text(
+                    text = "${summaryIndexLabel(card)} · ${summaryDateLabel(card.authoredAt)}",
+                    color = ArchiveGreen,
+                    fontSize = 12.sp,
+                    lineHeight = 18.sp,
+                    fontWeight = FontWeight.SemiBold,
+                    letterSpacing = 0.sp,
+                )
+                Spacer(Modifier.height(14.dp))
+            }
             Box(
                 modifier = Modifier
                     .fillMaxWidth()

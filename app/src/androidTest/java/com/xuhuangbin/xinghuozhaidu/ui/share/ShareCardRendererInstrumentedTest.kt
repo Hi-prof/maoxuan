@@ -8,6 +8,7 @@ import androidx.test.core.app.ApplicationProvider
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import com.xuhuangbin.xinghuozhaidu.domain.model.CardInterpretation
 import com.xuhuangbin.xinghuozhaidu.domain.model.CardSource
+import com.xuhuangbin.xinghuozhaidu.domain.model.ImageAttribution
 import com.xuhuangbin.xinghuozhaidu.domain.model.QuoteCard
 import java.io.File
 import java.io.FileOutputStream
@@ -51,6 +52,12 @@ class ShareCardRendererInstrumentedTest {
             isFavorited = false,
             likedAt = null,
             favoritedAt = null,
+            imageAttribution = ImageAttribution(
+                creator = "测试档案馆",
+                sourceUrl = "https://example.com/archive-photo",
+                licenseName = "Public domain",
+                licenseEvidence = "https://example.com/archive-photo#Licensing",
+            ),
         )
 
         val output = ShareCardRenderer.render(context, card)
@@ -58,6 +65,8 @@ class ShareCardRendererInstrumentedTest {
 
         assertEquals(1080, rendered.width)
         assertEquals(1440, rendered.height)
+        assertEquals("图片：测试档案馆 · Public domain", ShareCardRenderer.attributionText(card))
+        assertTrue(ShareCardRenderer.shareText(card).contains("https://example.com/archive-photo#Licensing"))
         assertNotEquals(Color.rgb(247, 245, 239), rendered.getPixel(900, 900))
         var quotePixelFound = false
         for (x in 90 until 990 step 8) {

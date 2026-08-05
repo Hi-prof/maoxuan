@@ -1,16 +1,21 @@
 package com.xuhuangbin.xinghuozhaidu.ui.saved
 
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.layout.heightIn
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.layout.widthIn
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.foundation.lazy.rememberLazyListState
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.outlined.BookmarkBorder
 import androidx.compose.material.icons.outlined.CloudDownload
+import androidx.compose.material.icons.outlined.FavoriteBorder
 import androidx.compose.material.icons.outlined.SystemUpdateAlt
 import androidx.compose.material.icons.outlined.Tune
 import androidx.compose.material3.HorizontalDivider
@@ -26,6 +31,7 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.compose.runtime.mutableIntStateOf
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
@@ -33,8 +39,12 @@ import androidx.compose.ui.unit.sp
 import com.xuhuangbin.xinghuozhaidu.domain.model.InstalledContentState
 import com.xuhuangbin.xinghuozhaidu.domain.model.QuoteCard
 import com.xuhuangbin.xinghuozhaidu.ui.components.CardSummaryList
+import com.xuhuangbin.xinghuozhaidu.ui.theme.ArchiveGreen
+import com.xuhuangbin.xinghuozhaidu.ui.theme.Ink
 import com.xuhuangbin.xinghuozhaidu.ui.theme.MutedInk
 import com.xuhuangbin.xinghuozhaidu.ui.theme.Paper
+import com.xuhuangbin.xinghuozhaidu.ui.theme.SoftRed
+import com.xuhuangbin.xinghuozhaidu.ui.theme.SpiritRed
 import java.time.Instant
 import java.time.ZoneId
 import java.time.format.DateTimeFormatter
@@ -48,25 +58,58 @@ fun SavedScreen(
     var selectedIndex by rememberSaveable { mutableIntStateOf(0) }
     val favoriteListState = rememberLazyListState()
     val likedListState = rememberLazyListState()
-    val options = listOf("收藏", "点赞")
+    val options = listOf(
+        "收藏" to Icons.Outlined.BookmarkBorder,
+        "点赞" to Icons.Outlined.FavoriteBorder,
+    )
+    val currentCards = if (selectedIndex == 0) favorites else liked
     Column(Modifier.fillMaxSize()) {
         ScreenTitle("收藏与点赞")
-        SingleChoiceSegmentedButtonRow(
-            modifier = Modifier
-                .fillMaxWidth()
-                .padding(horizontal = 18.dp, vertical = 4.dp),
+        Box(
+            modifier = Modifier.fillMaxWidth(),
+            contentAlignment = Alignment.Center,
         ) {
-            options.forEachIndexed { index, label ->
-                SegmentedButton(
-                    selected = selectedIndex == index,
-                    onClick = { selectedIndex = index },
-                    shape = SegmentedButtonDefaults.itemShape(index, options.size),
-                    label = { Text(label, letterSpacing = 0.sp) },
-                )
+            SingleChoiceSegmentedButtonRow(
+                modifier = Modifier
+                    .widthIn(max = 286.dp)
+                    .fillMaxWidth()
+                    .padding(horizontal = 16.dp, vertical = 2.dp),
+            ) {
+                options.forEachIndexed { index, (label, imageVector) ->
+                    SegmentedButton(
+                        selected = selectedIndex == index,
+                        onClick = { selectedIndex = index },
+                        modifier = Modifier.heightIn(min = 48.dp),
+                        shape = SegmentedButtonDefaults.itemShape(index, options.size),
+                        colors = SegmentedButtonDefaults.colors(
+                            activeContainerColor = SoftRed,
+                            activeContentColor = SpiritRed,
+                            inactiveContainerColor = Paper,
+                            inactiveContentColor = Ink,
+                        ),
+                        icon = {
+                            Icon(
+                                imageVector = imageVector,
+                                contentDescription = "$label 分段",
+                                modifier = Modifier.width(18.dp),
+                            )
+                        },
+                        label = { Text(label, letterSpacing = 0.sp) },
+                    )
+                }
             }
         }
+        Text(
+            text = "${options[selectedIndex].first} ${currentCards.size} 条",
+            color = ArchiveGreen,
+            fontSize = 13.sp,
+            lineHeight = 18.sp,
+            fontWeight = FontWeight.SemiBold,
+            letterSpacing = 0.sp,
+            modifier = Modifier.padding(start = 18.dp, end = 18.dp, top = 8.dp, bottom = 2.dp),
+        )
         CardSummaryList(
-            cards = if (selectedIndex == 0) favorites else liked,
+            cards = currentCards,
             emptyText = if (selectedIndex == 0) "还没有收藏内容" else "还没有点赞内容",
             onCardClick = onCardClick,
             state = if (selectedIndex == 0) favoriteListState else likedListState,

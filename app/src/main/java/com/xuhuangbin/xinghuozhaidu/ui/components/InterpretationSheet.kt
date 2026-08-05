@@ -34,6 +34,9 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalConfiguration
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.testTag
+import androidx.compose.ui.semantics.Role
+import androidx.compose.ui.semantics.contentDescription
+import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -113,6 +116,28 @@ fun BackgroundSheet(
                 }
                 HorizontalDivider(color = Divider)
                 BackgroundSection("相关故事") { BackgroundBody(card.story) }
+                card.imageAttribution?.let { attribution ->
+                    HorizontalDivider(color = Divider)
+                    BackgroundSection("图片来源与许可") {
+                        Text(
+                            text = attribution.creator,
+                            color = MutedInk,
+                            fontSize = 13.sp,
+                            lineHeight = 20.sp,
+                            letterSpacing = 0.sp,
+                        )
+                        AttributionLink(
+                            label = "查看图片来源",
+                            contentDescription = "在浏览器打开图片来源",
+                            url = attribution.sourceUrl,
+                        )
+                        AttributionLink(
+                            label = "查看许可说明：${attribution.licenseName}",
+                            contentDescription = "在浏览器打开图片许可说明",
+                            url = attribution.licenseEvidence,
+                        )
+                    }
+                }
                 HorizontalDivider(color = Divider)
                 Column {
                     Row(
@@ -183,6 +208,41 @@ fun BackgroundSheet(
                 }
             }
         }
+    }
+}
+
+@Composable
+private fun AttributionLink(
+    label: String,
+    contentDescription: String,
+    url: String,
+) {
+    val context = LocalContext.current
+    Row(
+        modifier = Modifier
+            .fillMaxWidth()
+            .clickable(role = Role.Button) {
+                context.startActivity(Intent(Intent.ACTION_VIEW, Uri.parse(url)))
+            }
+            .semantics { this.contentDescription = contentDescription }
+            .padding(vertical = 6.dp),
+        horizontalArrangement = Arrangement.spacedBy(8.dp),
+        verticalAlignment = Alignment.CenterVertically,
+    ) {
+        Text(
+            text = label,
+            color = SpiritRed,
+            fontSize = 14.sp,
+            lineHeight = 20.sp,
+            letterSpacing = 0.sp,
+            modifier = Modifier.weight(1f),
+        )
+        Icon(
+            imageVector = Icons.AutoMirrored.Outlined.OpenInNew,
+            contentDescription = null,
+            modifier = Modifier.size(18.dp),
+            tint = SpiritRed,
+        )
     }
 }
 

@@ -44,6 +44,7 @@ class SearchScreenInstrumentedTest {
         }
 
         composeRule.onNode(hasSetTextAction()).performTextInput("实践")
+        composeRule.onNodeWithText("找到 0 条").assertExists()
         composeRule.runOnIdle {
             assertEquals("实践", query)
             assertEquals(0, submitCount)

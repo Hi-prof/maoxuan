@@ -70,6 +70,14 @@ class AppRepositoryInstrumentedTest {
     @Test
     fun revisionWithdrawalRestoreAndFinalStateRemovalStayConsistent() = runBlocking {
         repository.importPackage(buildPackage("1.0.0", 1, "实践是检验真理的标准。"))
+        val attribution = requireNotNull(repository.allCards.first().single().imageAttribution)
+        assertEquals("Integration fixture", attribution.creator)
+        assertEquals("https://example.com/image", attribution.sourceUrl)
+        assertEquals("CC0-1.0", attribution.licenseName)
+        assertEquals(
+            "https://creativecommons.org/publicdomain/zero/1.0/",
+            attribution.licenseEvidence,
+        )
         repository.toggleLike(cardId)
         repository.toggleFavorite(cardId)
 
@@ -172,9 +180,9 @@ class AppRepositoryInstrumentedTest {
         repository.initialize()
 
         val installed = database.appDao().getContentState()
-        assertEquals("1.5.0", installed?.contentVersion)
+        assertEquals("1.6.0", installed?.contentVersion)
         val upgraded = repository.allCards.first().first { it.id == cardId }
-        assertEquals(3, upgraded.revision)
+        assertEquals(4, upgraded.revision)
         assertTrue(upgraded.isLiked)
         assertTrue(upgraded.isFavorited)
         val round = database.appDao().getActiveRound()

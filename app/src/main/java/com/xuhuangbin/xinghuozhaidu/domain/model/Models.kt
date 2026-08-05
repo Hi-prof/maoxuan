@@ -14,6 +14,13 @@ data class CardInterpretation(
     val explanation: String,
 )
 
+data class ImageAttribution(
+    val creator: String,
+    val sourceUrl: String,
+    val licenseName: String,
+    val licenseEvidence: String,
+)
+
 data class QuoteCard(
     val id: String,
     val revision: Int,
@@ -34,6 +41,7 @@ data class QuoteCard(
     val isFavorited: Boolean,
     val likedAt: Long?,
     val favoritedAt: Long?,
+    val imageAttribution: ImageAttribution? = null,
 )
 
 data class ReaderState(

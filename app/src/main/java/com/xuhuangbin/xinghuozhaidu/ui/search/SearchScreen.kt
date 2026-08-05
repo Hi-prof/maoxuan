@@ -13,6 +13,7 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.outlined.ArrowBack
 import androidx.compose.material.icons.outlined.Clear
@@ -23,8 +24,9 @@ import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material.icons.outlined.Search
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
-import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Text
+import androidx.compose.material3.TextField
+import androidx.compose.material3.TextFieldDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
@@ -36,6 +38,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.focus.FocusRequester
 import androidx.compose.ui.focus.focusRequester
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalSoftwareKeyboardController
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.ImeAction
@@ -49,6 +52,8 @@ import com.xuhuangbin.xinghuozhaidu.ui.components.CardSummaryList
 import com.xuhuangbin.xinghuozhaidu.ui.theme.Divider
 import com.xuhuangbin.xinghuozhaidu.ui.theme.Ink
 import com.xuhuangbin.xinghuozhaidu.ui.theme.MutedInk
+import com.xuhuangbin.xinghuozhaidu.ui.theme.Paper
+import com.xuhuangbin.xinghuozhaidu.ui.theme.SpiritRed
 
 @Composable
 fun SearchScreen(
@@ -78,7 +83,7 @@ fun SearchScreen(
             .fillMaxSize()
             .imePadding(),
     ) {
-        OutlinedTextField(
+        TextField(
             value = query,
             onValueChange = onQueryChange,
             modifier = Modifier
@@ -94,6 +99,16 @@ fun SearchScreen(
                 },
             ),
             placeholder = { Text("搜索名言或篇名") },
+            shape = RoundedCornerShape(8.dp),
+            colors = TextFieldDefaults.colors(
+                focusedContainerColor = Paper,
+                unfocusedContainerColor = Paper,
+                disabledContainerColor = Paper,
+                focusedIndicatorColor = SpiritRed,
+                unfocusedIndicatorColor = Color.Transparent,
+                disabledIndicatorColor = Color.Transparent,
+                cursorColor = SpiritRed,
+            ),
             leadingIcon = {
                 IconButton(onClick = onBack) {
                     Icon(Icons.AutoMirrored.Outlined.ArrowBack, contentDescription = "返回")
@@ -118,6 +133,14 @@ fun SearchScreen(
                 modifier = Modifier.weight(1f),
             )
         } else {
+            Text(
+                text = "找到 ${results.size} 条",
+                color = MutedInk,
+                fontSize = 13.sp,
+                lineHeight = 18.sp,
+                letterSpacing = 0.sp,
+                modifier = Modifier.padding(horizontal = 18.dp, vertical = 4.dp),
+            )
             CardSummaryList(
                 cards = results,
                 emptyText = "没有找到相关内容",

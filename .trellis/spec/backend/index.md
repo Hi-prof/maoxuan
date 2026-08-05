@@ -37,7 +37,7 @@ Personal reading state never leaves the device.
 
 - Run the commands in `quality-guidelines.md`.
 - Confirm formal validation reports the exact `expectedPublishedCards` count
-  declared by the project (600 for content `1.5.0`) and all referenced images.
+  declared by the project (600 for content `1.6.0`) and all referenced images.
 - Confirm two deterministic builds produce identical ZIP and manifest bytes.
 - Run parser, repository, and instrumentation tests when the package or database contract changes.
 - Verify a failed or cancelled update leaves the prior `content_state` and readable cards intact.

@@ -24,6 +24,7 @@ import androidx.compose.ui.test.swipeUp
 import androidx.compose.ui.unit.dp
 import com.xuhuangbin.xinghuozhaidu.domain.model.CardInterpretation
 import com.xuhuangbin.xinghuozhaidu.domain.model.CardSource
+import com.xuhuangbin.xinghuozhaidu.domain.model.ImageAttribution
 import com.xuhuangbin.xinghuozhaidu.domain.model.QuoteCard
 import com.xuhuangbin.xinghuozhaidu.domain.model.ReaderState
 import com.xuhuangbin.xinghuozhaidu.ui.detail.CardDetailScreen
@@ -106,6 +107,7 @@ class InterpretationInstrumentedTest {
             "篇名",
             "出处",
             "相关故事",
+            "图片来源与许可",
             "参考来源（1）",
         )
         val observedSectionOrder = mutableListOf<String>()
@@ -144,6 +146,9 @@ class InterpretationInstrumentedTest {
 
         composeRule.onNodeWithText("读背景").performClick()
         composeRule.onNodeWithText("参考来源（1）").performScrollTo().assertIsDisplayed()
+        composeRule.onNodeWithText("图片来源与许可").performScrollTo().assertIsDisplayed()
+        composeRule.onNodeWithContentDescription("在浏览器打开图片来源").assertIsDisplayed()
+        composeRule.onNodeWithContentDescription("在浏览器打开图片许可说明").assertIsDisplayed()
     }
 
     @Test
@@ -232,5 +237,11 @@ class InterpretationInstrumentedTest {
         isFavorited = false,
         likedAt = null,
         favoritedAt = null,
+        imageAttribution = ImageAttribution(
+            creator = "档案馆",
+            sourceUrl = "https://example.com/image",
+            licenseName = "Public domain",
+            licenseEvidence = "https://example.com/image#Licensing",
+        ),
     )
 }

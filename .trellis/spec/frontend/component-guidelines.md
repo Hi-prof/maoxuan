@@ -42,12 +42,20 @@ fun BackgroundSheet(
 - Normal height font tiers are 34/31/28 sp for lengths `1-32`, `33-60`, and `61-90`.
 - When `maxHeight < 480.dp`, compact tiers are 25/22/20 sp for `33-60`, `61-75`, and `76-90`.
 - The quote area uses `weight(1f)` so the title/source block always retains space.
-- Background images fill the card at approximately 17% alpha and remain visual context, not a separate illustration panel.
+- Background images fill the card at approximately 17% visible strength, use a low-saturation color matrix, and remain visual context rather than a separate illustration panel. A missing image path renders only the paper surface, with no placeholder container.
 - The interpretation face owns vertical scrolling. When that content reaches a
   vertical edge, the parent pager may consume the remaining drag so readers can
   continue to adjacent cards without returning to the front face.
 
 The compact threshold and font tiers are a tested system. Any change must update the 90-character bounds test and screenshots for all target viewports.
+
+## Summary List Contract
+
+- Search, favorite, and liked results share `CardSummaryList`; do not fork feature-specific summary rows.
+- Summary rows contain no image or placeholder. Their stable structure is a `46.dp` index column, a `2.dp` `SpiritRed` rule, quote/work/metadata text, and a bottom divider.
+- Mao selection cards use `卷一` through `卷四`; poetry, Marxism, and general quotes use stable `诗词`, `马原`, and `名言` labels. Modern dates reduce to the four-digit year while values such as `前4世纪` remain complete.
+- Quote text is limited to three lines, work title and metadata to one line each, and withdrawn state is plain small red text rather than a chip.
+- The row minimum height is `112.dp`, but content may grow; tests at `360.dp` must assert that the index and text columns do not overlap.
 
 ### Flip Gesture Contract
 
@@ -77,6 +85,7 @@ front/back states on API 28 and the latest API.
 - Background uses a Material 3 modal bottom sheet with an `8.dp` top radius,
   a fixed text header, no close icon, and one independently scrolling column. Its
   source/context/background/story sections are unframed; do not wrap them in nested cards.
+- When `QuoteCard.imageAttribution` is present, the background sheet exposes the creator plus separate accessible links for the image source and license evidence. Share images show a short creator/license credit, while the share Intent text carries both complete URLs.
 - Keep the standard drag handle visible. Swipe-down is the primary dismiss
   interaction; scrim taps and system back retain Material 3 default behavior.
 
@@ -161,3 +170,5 @@ front/back states on API 28 and the latest API.
 - Letting system back leave a note editor while save/delete is in progress.
 - Binding `减少此类` to a stale repository index while the pager is still
   settling, or leaving the action enabled on the completion page.
+- Reintroducing thumbnails or placeholder image boxes into search, favorite, or liked summaries.
+- Showing a licensed archive photo without propagating its source and license evidence to both the background sheet and share flow.
