@@ -24,13 +24,13 @@ installed `1.9.0` clients can discover and install the update from GitHub.
 
 - [x] Android unit tests, Release lint, Debug assembly, Personal assembly, and
   Android-test Kotlin compilation pass locally.
-- [ ] `main` is pushed to `origin` without rewriting remote history.
-- [ ] `app-v1.10.0` points at the final release commit and its GitHub Actions
+- [x] `main` is pushed to `origin` without rewriting remote history.
+- [x] `app-v1.10.0` points at the final release commit and its GitHub Actions
   workflow succeeds.
-- [ ] GitHub publishes `xinghuo-zhaidu-v1.10.0.apk` and its matching
+- [x] GitHub publishes `xinghuo-zhaidu-v1.10.0.apk` and its matching
   `.sha256` asset in a non-draft, non-prerelease, non-latest Release.
-- [ ] The uploaded APK checksum matches the published sidecar.
-- [ ] The repository latest Release remains a `content-v*` Release whose
+- [x] The uploaded APK checksum matches the published sidecar.
+- [x] The repository latest Release remains a `content-v*` Release whose
   `manifest.json` is still downloadable.
 
 ## Notes
