@@ -4,7 +4,7 @@
 
 ## MVP 能力
 
-- APK 当前内置 600 张正式卡片和 8 张原创背景图，其中包括 150 条毛泽东著作、讲话和诗词名句、300 条热门励志名人名言，以及 150 条马原思考卡，首次安装即可离线阅读。
+- APK 当前内置 700 张正式卡片和 8 张原创背景图，其中包括 220 条《毛泽东选集》正文、30 条毛泽东诗词、300 条热门励志名人名言和 150 条马原思考卡，首次安装即可离线阅读。
 - 新用户可从 12 个兴趣标签中选择最多 5 个，也可直接跳过；已有用户升级后不会被兴趣选择页打断。
 - 现有阅读流会根据兴趣选择、点赞、收藏和关联笔记在本地调整未读内容顺序，同时保留约 20% 的探索内容和单轮不重复体验。
 - 阅读页可对当前卡片选择“减少此类”；“我的”中的“阅读偏好”支持修改兴趣标签、多选内容系列、恢复全部内容和清除这类反馈。
@@ -64,7 +64,7 @@ ANDROID_RELEASE_KEY_ALIAS
 ANDROID_RELEASE_KEY_PASSWORD
 ```
 
-四项配置缺一时，Gradle 会在正式打包任务执行前失败；debug、personal 和 lint 不依赖正式密钥。keystore 与密码不得写入仓库、Gradle 属性或构建日志。当前 App 版本为 `1.9.0`（version code 12），APK 内置内容版本为 `1.5.0`，源码内容版本为 `1.5.0`；`dist/` 仍是忽略的本地构建目录，不提交 APK 到源码仓库。
+四项配置缺一时，Gradle 会在正式打包任务执行前失败；debug、personal 和 lint 不依赖正式密钥。keystore 与密码不得写入仓库、Gradle 属性或构建日志。当前 App 源版本为 `1.10.0`（version code 13），APK 内置与源码内容版本均为 `1.6.0`；`dist/` 仍是忽略的本地构建目录，不提交 APK 到源码仓库。
 
 客户端当前配置的内容地址为：
 
@@ -72,12 +72,12 @@ ANDROID_RELEASE_KEY_PASSWORD
 https://github.com/Hi-prof/maoxuan/releases/latest/download/manifest.json
 ```
 
-最近已发布的内容 Release 为 [`content-v1.5.0`](https://github.com/Hi-prof/maoxuan/releases/tag/content-v1.5.0)，源码内容版本与其一致。GitHub 暂时不可访问时仍不影响内置内容和本地阅读。
+最近已发布的内容 Release 为 [`content-v1.5.0`](https://github.com/Hi-prof/maoxuan/releases/tag/content-v1.5.0)；当前工作树已准备待发布的 `1.6.0` 内容。GitHub 暂时不可访问时仍不影响内置内容和本地阅读。
 
 ## 编辑内容
 
 1. 参考 `content/templates/card.yaml` 新建卡片 YAML，使用不可复用的 UUID，并在修改既有卡片时递增 `revision`。
-2. 为正式卡片记录准确系列、作者或卷次、篇名、日期和至少两个独立来源；引文须可追溯、可独立阅读且不超过 90 个 Unicode code point。现代作品日期使用 `YYYY`、`YYYY-MM` 或 `YYYY-MM-DD`，古代人物可使用 `前N` 或 `前N世纪`。
+2. 为正式卡片记录准确系列、作者或卷次、篇名、日期和至少一个来源，其中至少一个必须是 `original` 或 `authoritative`；引文须可追溯、可独立阅读且不超过 90 个 Unicode code point。现代作品日期使用 `YYYY`、`YYYY-MM` 或 `YYYY-MM-DD`，古代人物可使用 `前N` 或 `前N世纪`。
 3. 新图片放入 `content/images/`，同时创建同名 YAML，记录来源、作者、许可和 `shareAllowed: true`。
 4. 修改 `content/project.yaml` 中的 `contentVersion`、发布时间、发布说明和 `expectedPublishedCards`；正式校验要求声明数量与实际发布卡片数完全一致。
 
@@ -105,7 +105,7 @@ python -m xinghuo_content build content `
 
 普通 push 和 pull request 只运行 Python、正式内容、Android 单元测试、lint 与构建检查，不会发布内容或 APK。
 
-内容发布由与源版本完全一致的标签触发，例如 `content/project.yaml` 中为 `1.5.0` 时，标签必须是 `content-v1.5.0`。工作流先完成正式校验和确定性构建，再创建草稿 Release、上传 `content-v1.5.0.zip` 与 `manifest.json`，最后才公开 Release。创建标签和推送属于人工发布操作。
+内容发布由与源版本完全一致的标签触发，例如 `content/project.yaml` 中为 `1.6.0` 时，标签必须是 `content-v1.6.0`。工作流先完成正式校验和确定性构建，再创建草稿 Release、上传 `content-v1.6.0.zip` 与 `manifest.json`，最后才公开 Release。schema 4 内容要求 Android version code 13，因此必须先发布 App `1.10.0`，再发布内容 `1.6.0`。创建标签和推送属于人工发布操作。
 
 正式 APK 由与 Android `versionName` 完全一致的 `app-vX.Y.Z` 标签触发。工作流从 GitHub Secrets 临时恢复 keystore，运行单元测试、release lint、R8 构建、`apksigner` 和包版本校验，再上传 `xinghuo-zhaidu-vX.Y.Z.apk` 及 SHA-256。APK Release 明确设为非 latest，确保客户端的 `releases/latest/download/manifest.json` 始终继续指向内容 Release。
 
@@ -115,7 +115,7 @@ python -m xinghuo_content build content `
 
 ## 内容与版权边界
 
-本仓库只保存卡片阅读所需的适量短引文、出处、来源记录和原创说明，不镜像或重新发布完整著作。每条正式内容仍需人工核对连续原文、篇名卷次、双源独立性及背景叙述；自动校验不能代替事实审核。
+本仓库只保存卡片阅读所需的适量短引文、出处、来源记录和原创说明，不镜像或重新发布完整著作。每条正式内容仍需人工核对连续原文、篇名卷次、原文或权威来源及背景叙述；自动校验不能代替事实审核。
 
 背景图是本项目确定性生成的原创素材，图片元数据登记为 CC0 1.0。卡片正文使用随 APK 附带的 Noto Serif SC 字体，字体来源记录和 SIL Open Font License 1.1 全文位于 `app/src/main/assets/licenses/`。
 

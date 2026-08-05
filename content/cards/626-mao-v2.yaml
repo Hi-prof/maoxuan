@@ -1,0 +1,26 @@
+id: a7946d46-cc6e-43fa-8bdc-d44d29f40dfd
+revision: 1
+status: published
+quote: 在国共两党合作的基础上，建立全国各党各派各界各军的抗日民族统一战线，领导抗日战争，精诚团结，共赴国难。
+literature:
+  series: 毛泽东选集
+  volume: 第二卷
+  workTitle: 为动员一切力量争取抗战胜利而斗争
+  authoredAt: '1937-08-25'
+themes:
+- 团结
+interpretation:
+  inspiration: 从“在国共两党合作的基础上”出发，可以把态度转成行动：围绕共同目标处理差异并形成协作，并让事实、分工和实际结果检验原先的判断。
+  explanation: 《为动员一切力量争取抗战胜利而斗争》讨论的是特定历史条件下的团结问题。这里用“在国共两党合作的基础上”指出行动应有的着力点，核心在于围绕共同目标处理差异并形成协作。原文并不支持脱离对象的简单化理解，因为团结需要原则、沟通和清楚的任务。阅读这句话时，应把结论、依据和适用条件放在一起。
+historicalEvent: 1937年8月25日，《为动员一切力量争取抗战胜利而斗争》形成，集中讨论团结及其现实任务。
+background: 全面抗战时期，民族危机、统一战线、战争进程和新民主主义道路需要持续分析。《为动员一切力量争取抗战胜利而斗争》从当时的具体问题出发讨论团结，本卡从“在国共两党合作的基础上”切入全文的一层论证。
+story: 《为动员一切力量争取抗战胜利而斗争》并非名句汇编，而是针对现实任务展开的完整论述。所选句子把其中一个关键判断压缩得很鲜明，前后段落则补足了对象和条件。
+imageId: original-distant-mountains
+sources:
+- name: 中文马克思主义文库《为动员一切力量争取抗战胜利而斗争》全文
+  url: https://www.marxists.org/chinese/maozedong/marxist.org-chinese-mao-19370825.htm
+  accessedAt: '2026-08-05'
+  type: original
+review:
+  status: verified
+  checkedAt: '2026-08-05'

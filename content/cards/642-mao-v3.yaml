@@ -1,0 +1,26 @@
+id: acc6ac7c-b9fc-4c3a-bc4c-f6c52589e600
+revision: 1
+status: published
+quote: 各抗日根据地的全体同志必须认识，今后的物质困难必然更甚于目前，我们必须克服这个困难，我们的重要的办法之一就是精兵简政。
+literature:
+  series: 毛泽东选集
+  volume: 第三卷
+  workTitle: 一个极其重要的政策
+  authoredAt: '1942-09-07'
+themes:
+- 理论与实践
+interpretation:
+  inspiration: 从“各抗日根据地的全体同志必须认识”出发，可以把态度转成行动：让认识在行动和反馈中接受检验，并让事实、分工和实际结果检验原先的判断。
+  explanation: 《一个极其重要的政策》讨论的是特定历史条件下的理论与实践问题。这里用“各抗日根据地的全体同志必须认识”指出行动应有的着力点，核心在于让认识在行动和反馈中接受检验。原文并不支持脱离对象的简单化理解，因为理论不能替代事实，经验也不能拒绝总结。阅读这句话时，应把结论、依据和适用条件放在一起。
+historicalEvent: 1942年9月7日，《一个极其重要的政策》形成，集中讨论理论与实践及其现实任务。
+background: 延安整风和抗战后期，党的作风、群众工作、生产建设与联合政府问题集中展开。《一个极其重要的政策》从当时的具体问题出发讨论理论与实践，本卡从“各抗日根据地的全体同志必须认识”切入全文的一层论证。
+story: 《一个极其重要的政策》并非名句汇编，而是针对现实任务展开的完整论述。所选句子把其中一个关键判断压缩得很鲜明，前后段落则补足了对象和条件。
+imageId: original-distant-mountains
+sources:
+- name: 中文马克思主义文库《一个极其重要的政策》全文
+  url: https://www.marxists.org/chinese/maozedong/marxist.org-chinese-mao-19420907.htm
+  accessedAt: '2026-08-05'
+  type: original
+review:
+  status: verified
+  checkedAt: '2026-08-05'

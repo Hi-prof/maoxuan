@@ -21,10 +21,6 @@ sources:
     url: https://example.com/source-a
     accessedAt: '2026-07-28'
     type: original
-  - name: 独立交叉核验来源
-    url: https://example.org/source-b
-    accessedAt: '2026-07-28'
-    type: authoritative
 review:
   status: draft
   checkedAt: '2026-07-28'

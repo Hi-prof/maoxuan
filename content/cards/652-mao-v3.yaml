@@ -1,0 +1,26 @@
+id: 6e960aff-5315-4c9b-ba05-ddb1951eea1e
+revision: 1
+status: published
+quote: 游击区能够和必须进行军民的大规模的生产运动，一切问题都解决了。
+literature:
+  series: 毛泽东选集
+  volume: 第三卷
+  workTitle: 游击区也能够进行生产
+  authoredAt: '1945-01-31'
+themes:
+- 经济建设
+interpretation:
+  inspiration: “游击区能够和必须进行军民的大规模的生产运动”提醒我们面对复杂局面先把资源、条件和长期效果一起核算，同时保留修正空间。清楚说明依据和边界，比套用结论更重要。
+  explanation: 原文写作《游击区也能够进行生产》时，面对的是需要作出具体判断和安排的经济建设问题。这句话以“游击区能够和必须进行军民的大规模的生产运动”概括其中一层意思，即把资源、条件和长期效果一起核算。同时，建设目标必须落实为可执行的生产与组织安排。把它用于今天，应先核对问题是否同类，再决定哪些方法可以借鉴。
+historicalEvent: 1945年1月31日，《游击区也能够进行生产》形成，集中讨论经济建设及其现实任务。
+background: 延安整风和抗战后期，党的作风、群众工作、生产建设与联合政府问题集中展开。《游击区也能够进行生产》从当时的具体问题出发讨论经济建设，本卡从“游击区能够和必须进行军民的大规模的生产运动”切入全文的一层论证。
+story: 文本围绕经济建设逐层展开，从事实判断走向行动安排。所选原文便于记忆，但真正有用的是连同《游击区也能够进行生产》中的理由和限制一起理解。
+imageId: original-memorial-pine
+sources:
+- name: 中文马克思主义文库《游击区也能够进行生产》全文
+  url: https://www.marxists.org/chinese/maozedong/marxist.org-chinese-mao-19450131.htm
+  accessedAt: '2026-08-05'
+  type: original
+review:
+  status: verified
+  checkedAt: '2026-08-05'

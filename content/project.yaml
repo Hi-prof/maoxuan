@@ -1,8 +1,8 @@
-schemaVersion: 3
-contentVersion: 1.5.0
-publishedAt: '2026-08-02T00:00:00Z'
-minimumAppVersionCode: 7
-expectedPublishedCards: 600
-releaseNotes: 扩展至600张正式卡片，新增热门励志名人名言与马原思考内容
+schemaVersion: 4
+contentVersion: 1.6.0
+publishedAt: '2026-08-05T00:00:00Z'
+minimumAppVersionCode: 13
+expectedPublishedCards: 700
+releaseNotes: 扩展至700张正式卡片，新增100张毛泽东选集正文卡片并支持单个权威来源
 repositoryOwner: Hi-prof
 repositoryName: maoxuan

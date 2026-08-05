@@ -220,8 +220,8 @@ class ContentPackageReader(
             }
         }
         requireText(card.imageId, "卡片 ${card.id} 的图片 ID")
-        if (card.sources.size < 2) {
-            throw ContentPackageException("卡片 ${card.id} 缺少双源核验")
+        if (card.sources.isEmpty()) {
+            throw ContentPackageException("卡片 ${card.id} 缺少来源")
         }
         val sourceUrls = mutableSetOf<String>()
         card.sources.forEachIndexed { index, source ->
@@ -317,7 +317,7 @@ class ContentPackageReader(
         .joinToString("") { byte -> "%02x".format(byte) }
 
     private companion object {
-        const val SUPPORTED_SCHEMA = 3
+        const val SUPPORTED_SCHEMA = 4
         const val MAX_PACKAGE_BYTES = 50 * 1024 * 1024
         const val MAX_ENTRY_BYTES = 10 * 1024 * 1024
         const val MAX_TOTAL_BYTES = 75 * 1024 * 1024
