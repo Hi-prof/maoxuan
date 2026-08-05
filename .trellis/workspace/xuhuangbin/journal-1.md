@@ -241,3 +241,36 @@ Expanded the formal card library to 600 curated popular, motivational, and Marxi
 ### Next Steps
 
 - None - task complete
+
+
+## Session 8: Expand Mao Selected Works content
+
+**Date**: 2026-08-05
+**Task**: Expand Mao Selected Works content
+**Branch**: `task/2`
+
+### Summary
+
+新增100张《毛泽东选集》正文卡片，将内容包升级到schema 4和700张，并同步Android 1.10.0、bootstrap、测试与内容契约。
+
+### Main Changes
+
+(Add details)
+
+### Git Commits
+
+| Hash | Message |
+|------|---------|
+| `123cc58` | (see git log) |
+
+### Testing
+
+- [OK] (Add test results)
+
+### Status
+
+[OK] **Completed**
+
+### Next Steps
+
+- None - task complete
