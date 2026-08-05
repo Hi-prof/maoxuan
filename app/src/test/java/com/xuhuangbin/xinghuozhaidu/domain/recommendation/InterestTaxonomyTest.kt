@@ -54,7 +54,7 @@ class InterestTaxonomyTest {
             .cards
             .map { card -> testCard(card.id, card.series, card.themes) }
 
-        assertEquals(600, cards.size)
+        assertEquals(700, cards.size)
         assertTrue(cards.all { InterestTaxonomy.categoriesFor(it).isNotEmpty() })
         InterestCategory.entries.forEach { category ->
             val candidateCount = cards.count { category in InterestTaxonomy.categoriesFor(it) }

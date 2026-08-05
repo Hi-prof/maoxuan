@@ -1,0 +1,26 @@
+id: 0fd50e1f-8544-46dd-a2f4-a0b297cfb9db
+revision: 2
+status: published
+quote: 片面抗战是一定要引导战争趋于失败的，是决然不能保卫祖国的。
+literature:
+  series: 毛泽东选集
+  volume: 第二卷
+  workTitle: 上海太原失陷以后抗日战争的形势和任务
+  authoredAt: '1937-11-12'
+themes:
+- 战略
+interpretation:
+  inspiration: “片面抗战是一定要引导战争趋于失败的”提示我们，遇到相似问题时先分清长期趋势、当前力量和行动节奏。把目标、对象和现实条件写清楚，再检查办法是否真正回应了问题。
+  explanation: 这句话出自《上海太原失陷以后抗日战争的形势和任务》，原文围绕战略的具体任务展开。“片面抗战是一定要引导战争趋于失败的”不是孤立口号，而是论证中的一个判断。它强调分清长期趋势、当前力量和行动节奏；理解时也要看到，历史战争经验不能脱离时代直接套用。今天借鉴的是分析和行动方法，不能把当时的对象、力量关系和历史条件原样搬到新的场景。
+historicalEvent: 1937年11月12日，《上海太原失陷以后抗日战争的形势和任务》形成，集中讨论战略及其现实任务。
+background: 全面抗战时期，民族危机、统一战线、战争进程和新民主主义道路需要持续分析。《上海太原失陷以后抗日战争的形势和任务》从当时的具体问题出发讨论战略，本卡从“片面抗战是一定要引导战争趋于失败的”切入全文的一层论证。
+story: 文章先交代现实矛盾，再提出判断和办法。这句以“片面抗战是一定要引导战争趋于失败的”留下清晰抓手，回看上下文可以看到它回答了什么问题、依靠什么条件。
+imageId: archive-mao-selection-war-army
+sources:
+- name: 中文马克思主义文库《上海太原失陷以后抗日战争的形势和任务》全文
+  url: https://www.marxists.org/chinese/maozedong/marxist.org-chinese-mao-19371112.htm
+  accessedAt: '2026-08-05'
+  type: original
+review:
+  status: verified
+  checkedAt: '2026-08-05'

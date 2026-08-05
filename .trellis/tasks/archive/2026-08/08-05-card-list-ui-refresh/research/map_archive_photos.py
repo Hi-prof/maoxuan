@@ -9,7 +9,7 @@ import yaml
 
 
 ROOT = Path(__file__).resolve().parent
-PROJECT_ROOT = ROOT.parents[3]
+PROJECT_ROOT = next(parent for parent in ROOT.parents if (parent / "content" / "cards").is_dir())
 CARD_DIR = PROJECT_ROOT / "content" / "cards"
 
 SERIES_RULES = {
@@ -201,8 +201,8 @@ def main() -> None:
         for rules in SERIES_RULES.values()
         for image_id, _ in rules
     }
-    if published_count != 600:
-        raise AssertionError(f"Expected 600 published cards, found {published_count}")
+    if published_count != 700:
+        raise AssertionError(f"Expected 700 published cards, found {published_count}")
     if set(counts) != expected_ids:
         raise AssertionError(f"Unused image IDs: {sorted(expected_ids - set(counts))}")
 

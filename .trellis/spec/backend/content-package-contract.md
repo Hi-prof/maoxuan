@@ -71,7 +71,7 @@ withdrawals.json
 assets/<sha256>.<jpg|jpeg|png|webp>
 ```
 
-The four JSON envelopes inside the ZIP use `schemaVersion: 3`. The remote
+The four JSON envelopes inside the ZIP use `schemaVersion: 4`. The remote
 `manifest.json` remains `schemaVersion: 1` so an older client can reject the
 package by `minimumAppVersionCode` before downloading it. Its fields are:
 
@@ -99,9 +99,11 @@ Required invariants:
 - Every published card contains a one-paragraph `historicalEvent` of at most
   100 code points plus non-empty NFC `background` and `story` values.
 - `contextExcerpt`, `interpretation.coreMeaning`, `interpretation.keyPoint`,
-  and `interpretation.contemporaryRelevance` are not part of schema 3 and are
+  and `interpretation.contemporaryRelevance` are not part of schema 4 and are
   rejected as unknown fields by both producer and consumer.
-- Each published card has at least two distinct HTTP(S) source URLs from two hosts and at least one `original` or `authoritative` source.
+- Each published card has one or more HTTP(S) sources and at least one
+  `original` or `authoritative` source. Multiple sources must have distinct
+  URLs; they are not required to use distinct hosts.
 - Images are content-hashed, 720 to 8192 pixels per edge, at most 40 million pixels, and explicitly permit share-image redistribution.
 - The repository maps each referenced `ImageAssetEntity` to both `QuoteCard.imagePath` and `QuoteCard.imageAttribution`. Missing image rows produce an empty path and null attribution; Compose never reads rights fields from DTOs or Room entities directly.
 - An attributed card exposes creator/source/license evidence in the background sheet, includes `图片：<creator> · <license>` in the generated share image, and includes both source and license-evidence URLs in `Intent.EXTRA_TEXT`.
@@ -109,9 +111,9 @@ Required invariants:
 - Removing a previously active card requires an explicit withdrawal. Snapshot omission alone is invalid.
 - Restoring a withdrawn ID requires a revision greater than the recorded withdrawal revision.
 - Image IDs are immutable: an existing ID cannot point to different bytes.
-- Content `1.5.0` and later schema-3 packages require Android `versionCode >= 7` because ancient-thinker
-  cards use `authoredAt` values such as `前4世纪`. App `1.6.0` reads package schema 3 only;
-  older package schemas are not silently accepted as partial data.
+- Content `1.7.0` declares 700 published cards and requires Android
+  `versionCode >= 13`. App `1.10.0` reads package schema 4 only; older package
+  schemas are not silently accepted as partial data.
 
 The builder sorts payloads, serializes compact sorted-key JSON with a trailing
 newline, fixes ZIP timestamps to `1980-01-01`, and writes regular-file
@@ -128,6 +130,9 @@ authoritative download contract.
 | Unknown YAML/JSON field | Validation error | Strict serialization error |
 | Unsupported schema | Validation error | `ContentPackageException` |
 | Published count differs from `expectedPublishedCards` | Formal validation error | N/A; producer must not emit the package |
+| Published card has zero sources | Validation error | `ContentPackageException` reporting a missing source |
+| Published card has only `contextual` sources | Validation error | `ContentPackageException` reporting a missing original or authoritative source |
+| Multiple sources repeat the same URL | Validation error | `ContentPackageException` reporting duplicate source URLs |
 | Quote over 90 code points | Validation error | `ContentPackageException` |
 | Missing interpretation object/child or blank child | Field-specific validation error | Strict serialization or `ContentPackageException` |
 | Interpretation is non-NFC or exceeds 600 code points | Validation error | `ContentPackageException` |
@@ -148,10 +153,11 @@ Assets are decoded and written to a content-addressed internal directory before 
 
 ## 5. Good / Base / Bad Cases
 
-- Good: publish a new UUID at revision 1 with two sources and a licensed image; it joins the current unread tail after import.
-- Base: rebuild unchanged `1.4.0`; ZIP SHA-256 and manifest bytes remain identical.
+- Good: publish a new UUID at revision 1 with one original source and a licensed
+  image; it joins the current unread tail after import.
+- Base: rebuild unchanged `1.6.0`; ZIP SHA-256 and manifest bytes remain identical.
 - Good: revise a card, provide both interpretation fields and all required
-  background fields; App `1.3.0` imports it.
+  background fields; App `1.10.0` imports it.
 - Bad: omit `inspiration`, leave a required background field blank, retain
   `contextExcerpt`, or exceed any field/combined limit; both producer and
   Android consumer reject the package.
@@ -163,7 +169,8 @@ Assets are decoded and written to a content-addressed internal directory before 
 
 ## 6. Tests Required
 
-- Python: schema, UUID/revision, source independence, quote and interpretation
+- Python: schema, UUID/revision, non-empty source lists, strong-source evidence,
+  duplicate source URLs, quote and interpretation
   length/NFC, required interpretation/background children, removed-field
   rejection, image bounds/license, and exact declared formal-count validation,
   including both missing and surplus cards. Exact duplicate published quotes are
@@ -171,7 +178,8 @@ Assets are decoded and written to a content-addressed internal directory before 
 - Python report: summarize published cards by `workTitle` so editorial checks can
   enforce per-work limits before building a release.
 - Python: build twice and assert identical package SHA-256 and identical manifest bytes.
-- JVM: valid schema-3 package parse plus blank/oversized interpretation and
+- JVM: valid schema-4 single-source package parse, explicit schema-3 rejection,
+  zero-source and contextual-only rejection, plus blank/oversized interpretation and
   historical event, missing background fields, removed-field rejection,
   traversal, duplicate entry, unknown schema, bad hash, invalid revision, and
   semantic-version cases.
@@ -182,6 +190,9 @@ Assets are decoded and written to a content-addressed internal directory before 
 - Attribution instrumentation: import an image with all rights fields, assert the exact `QuoteCard.imageAttribution` projection, verify both background-sheet links and accessibility descriptions, and verify share-image credit plus complete share text URLs.
 - Cross-layer: build a package with the Python tool and parse/import that exact artifact on Android.
 - Release workflow: `content-vX.Y.Z` must equal `project.yaml` version; publish only after all assets upload.
+- Instrumentation fixtures that construct package JSON must use the same package
+  schema as `ContentPackageReader`; stale fixtures otherwise fail before reaching
+  the repository behavior they intend to test.
 
 ## 7. Wrong vs Correct
 

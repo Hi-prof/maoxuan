@@ -1,0 +1,26 @@
+id: a2ff5b6f-f624-441d-9312-ee33ece8d4d0
+revision: 2
+status: published
+quote: 党委要完成自己的领导任务，就必须依靠党委这“一班人”，充分发挥他们的作用。
+literature:
+  series: 毛泽东选集
+  volume: 第四卷
+  workTitle: 党委会的工作方法
+  authoredAt: '1949-03-13'
+themes:
+- 领导方法
+interpretation:
+  inspiration: 可以把“党委要完成自己的领导任务”转成一个工作问题：怎样让方向、分工、沟通和执行彼此衔接？答案要经得起事实、协作过程和实际结果的检验。
+  explanation: 在《党委会的工作方法》中，这句话服务于对领导方法问题的分析。它把“党委要完成自己的领导任务”同实际任务联系起来，要求让方向、分工、沟通和执行彼此衔接。它的现实启发主要是一种工作方法；领导不是包办，决定也必须建立在信息和协作上，因此不能只保留有力量的措辞而省略前后的事实和限制。
+historicalEvent: 1949年3月13日，《党委会的工作方法》形成，集中讨论领导方法及其现实任务。
+background: 解放战争时期，战略转折、土地政策、组织建设和新中国前途成为现实任务。《党委会的工作方法》从当时的具体问题出发讨论领导方法，本卡从“党委要完成自己的领导任务”切入全文的一层论证。
+story: 这句话在全文中承担承上启下或归纳判断的作用。沿着《党委会的工作方法》的论证继续阅读，可以分清历史结论、工作方法和今天可借鉴的部分。
+imageId: archive-mao-selection-victory-city
+sources:
+- name: 中文马克思主义文库《党委会的工作方法》全文
+  url: https://www.marxists.org/chinese/maozedong/marxist.org-chinese-mao-19490313.htm
+  accessedAt: '2026-08-05'
+  type: original
+review:
+  status: verified
+  checkedAt: '2026-08-05'

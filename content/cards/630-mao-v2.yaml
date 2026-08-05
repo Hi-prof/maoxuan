@@ -1,0 +1,26 @@
+id: 351e27b5-c0f6-4f46-bc46-3a6f56b1ae72
+revision: 2
+status: published
+quote: 判断一个地方的社会性质是不是新民主主义的，主要地是以那里的政权是否有人民大众的代表参加以及是否有共产党的领导为原则。
+literature:
+  series: 毛泽东选集
+  volume: 第二卷
+  workTitle: 关于打退第二次反共高潮的总结
+  authoredAt: '1941-05-08'
+themes:
+- 群众路线
+interpretation:
+  inspiration: 从“判断一个地方的社会性质是不是新民主主义的”出发，可以把态度转成行动：把当事人的处境和实际需要放进决策，并让事实、分工和实际结果检验原先的判断。
+  explanation: 《关于打退第二次反共高潮的总结》讨论的是特定历史条件下的群众路线问题。这里用“判断一个地方的社会性质是不是新民主主义的”指出行动应有的着力点，核心在于把当事人的处境和实际需要放进决策。原文并不支持脱离对象的简单化理解，因为尊重群众不等于放弃分析和责任边界。阅读这句话时，应把结论、依据和适用条件放在一起。
+historicalEvent: 1941年5月8日，《关于打退第二次反共高潮的总结》形成，集中讨论群众路线及其现实任务。
+background: 全面抗战时期，民族危机、统一战线、战争进程和新民主主义道路需要持续分析。《关于打退第二次反共高潮的总结》从当时的具体问题出发讨论群众路线，本卡从“判断一个地方的社会性质是不是新民主主义的”切入全文的一层论证。
+story: 《关于打退第二次反共高潮的总结》并非名句汇编，而是针对现实任务展开的完整论述。所选句子把其中一个关键判断压缩得很鲜明，前后段落则补足了对象和条件。
+imageId: archive-mao-selection-survey-masses
+sources:
+- name: 中文马克思主义文库《关于打退第二次反共高潮的总结》全文
+  url: https://www.marxists.org/chinese/maozedong/marxist.org-chinese-mao-19410508.htm
+  accessedAt: '2026-08-05'
+  type: original
+review:
+  status: verified
+  checkedAt: '2026-08-05'

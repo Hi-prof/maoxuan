@@ -1,0 +1,26 @@
+id: c67c7aa3-155f-4f2e-aedb-1c839fa36d19
+revision: 2
+status: published
+quote: 我们应该讲，我们这次大会是关系全中国四亿五千万人民命运的一次大会。
+literature:
+  series: 毛泽东选集
+  volume: 第三卷
+  workTitle: 两个中国之命运
+  authoredAt: '1945-04-23'
+themes:
+- 群众路线
+interpretation:
+  inspiration: 可以把“我们应该讲，我们这次大会是关系全中国四亿五千万人民命运的一次大会”转成一个工作问题：怎样把当事人的处境和实际需要放进决策？答案要经得起事实、协作过程和实际结果的检验。
+  explanation: 在《两个中国之命运》中，这句话服务于对群众路线问题的分析。它把“我们应该讲，我们这次大会是关系全中国四亿五千万人民命运的一次大会”同实际任务联系起来，要求把当事人的处境和实际需要放进决策。它的现实启发主要是一种工作方法；尊重群众不等于放弃分析和责任边界，因此不能只保留有力量的措辞而省略前后的事实和限制。
+historicalEvent: 1945年4月23日，《两个中国之命运》形成，集中讨论群众路线及其现实任务。
+background: 延安整风和抗战后期，党的作风、群众工作、生产建设与联合政府问题集中展开。《两个中国之命运》从当时的具体问题出发讨论群众路线，本卡从“我们应该讲，我们这次大会是关系全中国四亿五千万人民命运的一次大会”切入全文的一层论证。
+story: 这句话在全文中承担承上启下或归纳判断的作用。沿着《两个中国之命运》的论证继续阅读，可以分清历史结论、工作方法和今天可借鉴的部分。
+imageId: archive-mao-selection-survey-masses
+sources:
+- name: 中文马克思主义文库《两个中国之命运》全文
+  url: https://www.marxists.org/chinese/maozedong/marxist.org-chinese-mao-19450423.htm
+  accessedAt: '2026-08-05'
+  type: original
+review:
+  status: verified
+  checkedAt: '2026-08-05'

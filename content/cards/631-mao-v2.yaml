@@ -1,0 +1,26 @@
+id: 29c40768-ff99-4c2c-bcde-d416d5ed2048
+revision: 2
+status: published
+quote: 民族战争而不依靠人民大众，毫无疑义将不能取得胜利。
+literature:
+  series: 毛泽东选集
+  volume: 第二卷
+  workTitle: 反对日本进攻的方针、办法和前途
+  authoredAt: '1937-07-23'
+themes:
+- 群众路线
+interpretation:
+  inspiration: 可以把“民族战争而不依靠人民大众”转成一个工作问题：怎样把当事人的处境和实际需要放进决策？答案要经得起事实、协作过程和实际结果的检验。
+  explanation: 在《反对日本进攻的方针、办法和前途》中，这句话服务于对群众路线问题的分析。它把“民族战争而不依靠人民大众”同实际任务联系起来，要求把当事人的处境和实际需要放进决策。它的现实启发主要是一种工作方法；尊重群众不等于放弃分析和责任边界，因此不能只保留有力量的措辞而省略前后的事实和限制。
+historicalEvent: 1937年7月23日，《反对日本进攻的方针、办法和前途》形成，集中讨论群众路线及其现实任务。
+background: 全面抗战时期，民族危机、统一战线、战争进程和新民主主义道路需要持续分析。《反对日本进攻的方针、办法和前途》从当时的具体问题出发讨论群众路线，本卡从“民族战争而不依靠人民大众”切入全文的一层论证。
+story: 这句话在全文中承担承上启下或归纳判断的作用。沿着《反对日本进攻的方针、办法和前途》的论证继续阅读，可以分清历史结论、工作方法和今天可借鉴的部分。
+imageId: archive-mao-selection-survey-masses
+sources:
+- name: 中文马克思主义文库《反对日本进攻的方针、办法和前途》全文
+  url: https://www.marxists.org/chinese/maozedong/marxist.org-chinese-mao-19370723.htm
+  accessedAt: '2026-08-05'
+  type: original
+review:
+  status: verified
+  checkedAt: '2026-08-05'

@@ -1,0 +1,26 @@
+id: d6df44ef-242c-42e5-8731-70f58bdba782
+revision: 2
+status: published
+quote: 至于党内的主观主义的批评，不要证据的乱说，或互相猜忌，往往酿成党内的无原则纠纷，破坏党的组织。
+literature:
+  series: 毛泽东选集
+  volume: 第一卷
+  workTitle: 关于纠正党内的错误思想
+  authoredAt: 1929-12
+themes:
+- 团结
+interpretation:
+  inspiration: 从“至于党内的主观主义的批评”出发，可以把态度转成行动：围绕共同目标处理差异并形成协作，并让事实、分工和实际结果检验原先的判断。
+  explanation: 《关于纠正党内的错误思想》讨论的是特定历史条件下的团结问题。这里用“至于党内的主观主义的批评”指出行动应有的着力点，核心在于围绕共同目标处理差异并形成协作。原文并不支持脱离对象的简单化理解，因为团结需要原则、沟通和清楚的任务。阅读这句话时，应把结论、依据和适用条件放在一起。
+historicalEvent: 1929年12月，《关于纠正党内的错误思想》形成，集中讨论团结及其现实任务。
+background: 第一次国内革命战争后到全面抗战前，革命道路、调查研究和认识方法成为重要议题。《关于纠正党内的错误思想》从当时的具体问题出发讨论团结，本卡从“至于党内的主观主义的批评”切入全文的一层论证。
+story: 《关于纠正党内的错误思想》并非名句汇编，而是针对现实任务展开的完整论述。所选句子把其中一个关键判断压缩得很鲜明，前后段落则补足了对象和条件。
+imageId: archive-mao-selection-international
+sources:
+- name: 中文马克思主义文库《关于纠正党内的错误思想》全文
+  url: https://www.marxists.org/chinese/maozedong/marxist.org-chinese-mao-192912.htm
+  accessedAt: '2026-08-05'
+  type: original
+review:
+  status: verified
+  checkedAt: '2026-08-05'

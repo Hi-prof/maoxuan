@@ -1,0 +1,26 @@
+id: 0bd3198a-6c4b-439b-aa37-a2a88e814d44
+revision: 2
+status: published
+quote: 于是，淮海战役发展成为中国人民解放战争中三个有决定意义的最大战役之一。
+literature:
+  series: 毛泽东选集
+  volume: 第四卷
+  workTitle: 关于淮海战役的作战方针
+  authoredAt: '1948-10-11'
+themes:
+- 群众路线
+interpretation:
+  inspiration: “于是，淮海战役发展成为中国人民解放战争中三个有决定意义的最大战役之一”提醒我们面对复杂局面先把当事人的处境和实际需要放进决策，同时保留修正空间。清楚说明依据和边界，比套用结论更重要。
+  explanation: 原文写作《关于淮海战役的作战方针》时，面对的是需要作出具体判断和安排的群众路线问题。这句话以“于是，淮海战役发展成为中国人民解放战争中三个有决定意义的最大战役之一”概括其中一层意思，即把当事人的处境和实际需要放进决策。同时，尊重群众不等于放弃分析和责任边界。把它用于今天，应先核对问题是否同类，再决定哪些方法可以借鉴。
+historicalEvent: 1948年10月11日，《关于淮海战役的作战方针》形成，集中讨论群众路线及其现实任务。
+background: 解放战争时期，战略转折、土地政策、组织建设和新中国前途成为现实任务。《关于淮海战役的作战方针》从当时的具体问题出发讨论群众路线，本卡从“于是，淮海战役发展成为中国人民解放战争中三个有决定意义的最大战役之一”切入全文的一层论证。
+story: 文本围绕群众路线逐层展开，从事实判断走向行动安排。所选原文便于记忆，但真正有用的是连同《关于淮海战役的作战方针》中的理由和限制一起理解。
+imageId: archive-mao-selection-survey-masses
+sources:
+- name: 中文马克思主义文库《关于淮海战役的作战方针》全文
+  url: https://www.marxists.org/chinese/maozedong/marxist.org-chinese-mao-19481011.htm
+  accessedAt: '2026-08-05'
+  type: original
+review:
+  status: verified
+  checkedAt: '2026-08-05'

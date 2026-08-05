@@ -145,6 +145,33 @@ class QuoteCardInstrumentedTest {
     }
 
     @Test
+    fun backFaceDisplaysExplanationBeforeInspiration() {
+        composeRule.setContent {
+            XinghuoTheme {
+                FlippableQuoteCard(
+                    card = testCard(),
+                    flipped = true,
+                    onFlippedChange = {},
+                    modifier = Modifier.size(width = 360.dp, height = 520.dp),
+                )
+            }
+        }
+
+        val explanationTop = composeRule.onNodeWithText("解读")
+            .assertIsDisplayed()
+            .fetchSemanticsNode()
+            .boundsInRoot
+            .top
+        val inspirationTop = composeRule.onNodeWithText("启示")
+            .assertIsDisplayed()
+            .fetchSemanticsNode()
+            .boundsInRoot
+            .top
+
+        assertTrue("explanation must appear before inspiration", explanationTop < inspirationTop)
+    }
+
+    @Test
     fun verticalScrollContinuesAfterHorizontalFlipDragStarts() {
         val card = testCard(longInterpretation = true)
         var flipped by mutableStateOf(true)

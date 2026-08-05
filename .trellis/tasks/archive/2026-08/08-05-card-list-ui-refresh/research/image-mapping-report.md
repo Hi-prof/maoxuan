@@ -2,9 +2,9 @@
 
 - 映射输入：`literature.series + themes`；主题无明确关键词时使用系列、主题和卡片 ID 的稳定哈希回退。
 - 写入范围：仅修改根级 `revision:` 与 `imageId:` 两行；脚本逐文件断言行数不变且不存在第三处差异。
-- 已发布卡片：`600`
-- 本次提升 revision：`600`
-- 关键词命中：`317`；稳定回退：`283`
+- 已发布卡片：`700`
+- 本次提升 revision：`100`
+- 关键词命中：`401`；稳定回退：`299`
 
 ## 图片引用
 
@@ -16,12 +16,12 @@
 | `archive-mao-poetry-plum-nature` | 4 |
 | `archive-mao-poetry-river` | 6 |
 | `archive-mao-poetry-snow` | 5 |
-| `archive-mao-selection-international` | 13 |
-| `archive-mao-selection-production` | 17 |
-| `archive-mao-selection-survey-masses` | 38 |
-| `archive-mao-selection-victory-city` | 17 |
-| `archive-mao-selection-war-army` | 13 |
-| `archive-mao-selection-yanan-study` | 22 |
+| `archive-mao-selection-international` | 23 |
+| `archive-mao-selection-production` | 32 |
+| `archive-mao-selection-survey-masses` | 93 |
+| `archive-mao-selection-victory-city` | 20 |
+| `archive-mao-selection-war-army` | 22 |
+| `archive-mao-selection-yanan-study` | 30 |
 | `archive-marxism-books` | 16 |
 | `archive-marxism-city-society` | 44 |
 | `archive-marxism-industry` | 23 |
@@ -57,12 +57,12 @@
 
 ### 毛泽东选集
 
-- `archive-mao-selection-international`：13
-- `archive-mao-selection-production`：17
-- `archive-mao-selection-survey-masses`：38
-- `archive-mao-selection-victory-city`：17
-- `archive-mao-selection-war-army`：13
-- `archive-mao-selection-yanan-study`：22
+- `archive-mao-selection-international`：23
+- `archive-mao-selection-production`：32
+- `archive-mao-selection-survey-masses`：93
+- `archive-mao-selection-victory-city`：20
+- `archive-mao-selection-war-army`：22
+- `archive-mao-selection-yanan-study`：30
 
 ### 马原思考
 

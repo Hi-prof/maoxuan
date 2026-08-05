@@ -389,10 +389,10 @@ class AppRepositoryInstrumentedTest {
         val imageHash = imageBytes.sha256()
         val assetName = "assets/$imageHash.png"
         val cardsJson = if (revision == null) {
-            """{"schemaVersion":3,"cards":[]}"""
+            """{"schemaVersion":4,"cards":[]}"""
         } else {
             """
-                {"schemaVersion":3,"cards":[{
+                {"schemaVersion":4,"cards":[{
                   "id":"$cardId",
                   "revision":$revision,
                   "status":"published",
@@ -419,16 +419,16 @@ class AppRepositoryInstrumentedTest {
             """.trimIndent()
         }
         val withdrawalsJson = if (withdrawalRevision == null) {
-            """{"schemaVersion":3,"withdrawals":[]}"""
+            """{"schemaVersion":4,"withdrawals":[]}"""
         } else {
-            """{"schemaVersion":3,"withdrawals":[{"id":"$cardId","revision":$withdrawalRevision,"withdrawnAt":"2026-07-28"}]}"""
+            """{"schemaVersion":4,"withdrawals":[{"id":"$cardId","revision":$withdrawalRevision,"withdrawnAt":"2026-07-28"}]}"""
         }
         return zipOf(
             linkedMapOf(
-                "package.json" to """{"schemaVersion":3,"contentVersion":"$contentVersion","publishedAt":"2026-07-28T00:00:00Z"}""".encodeToByteArray(),
+                "package.json" to """{"schemaVersion":4,"contentVersion":"$contentVersion","publishedAt":"2026-07-28T00:00:00Z"}""".encodeToByteArray(),
                 "cards.json" to cardsJson.encodeToByteArray(),
                 "images.json" to """
-                    {"schemaVersion":3,"images":[{
+                    {"schemaVersion":4,"images":[{
                       "id":"$imageId",
                       "localFile":"$assetName",
                       "sha256":"$imageHash",

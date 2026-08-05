@@ -19,8 +19,54 @@ class ContentPackageReaderTest {
 
         assertEquals("1.3.0", parsed.info.contentVersion)
         assertEquals(1, parsed.cards.size)
+        assertEquals(1, parsed.cards.single().sources.size)
         assertEquals("先依据事实行动，再根据结果调整判断。", parsed.cards.single().interpretation.inspiration)
         assertEquals(imageBytes.toList(), parsed.assets.values.single().toList())
+    }
+
+    @Test
+    fun rejectsSchemaThreePackage() {
+        val entries = validEntries().toMutableMap()
+        entries["package.json"] = entries.getValue("package.json")
+            .decodeToString()
+            .replace("\"schemaVersion\":4", "\"schemaVersion\":3")
+            .encodeToByteArray()
+
+        val error = assertThrows(ContentPackageException::class.java) {
+            ContentPackageReader().read(zipOf(entries))
+        }
+
+        assertTrueMessage(error.message, "不支持的内容 schema：3")
+    }
+
+    @Test
+    fun rejectsCardWithoutSources() {
+        val entries = validEntries().withCardsJson {
+            replace(
+                "{\"name\":\"原文\",\"url\":\"https://example.com/a\"," +
+                    "\"accessedAt\":\"2026-07-28\",\"type\":\"original\"}",
+                "",
+            )
+        }
+
+        val error = assertThrows(ContentPackageException::class.java) {
+            ContentPackageReader().read(zipOf(entries))
+        }
+
+        assertTrueMessage(error.message, "缺少来源")
+    }
+
+    @Test
+    fun rejectsCardWithoutOriginalOrAuthoritativeSource() {
+        val entries = validEntries().withCardsJson {
+            replace("\"type\":\"original\"", "\"type\":\"contextual\"")
+        }
+
+        val error = assertThrows(ContentPackageException::class.java) {
+            ContentPackageReader().read(zipOf(entries))
+        }
+
+        assertTrueMessage(error.message, "缺少原文或权威来源")
     }
 
     @Test
@@ -40,8 +86,8 @@ class ContentPackageReaderTest {
             File("src/main/assets/bootstrap.zip").readBytes(),
         )
 
-        assertEquals("1.6.0", parsed.info.contentVersion)
-        assertEquals(600, parsed.cards.size)
+        assertEquals("1.7.0", parsed.info.contentVersion)
+        assertEquals(700, parsed.cards.size)
         assertEquals(
             "人的思维是否具有客观的真理性，这不是一个理论的问题，而是一个实践的问题。",
             parsed.cards.single {
@@ -75,7 +121,7 @@ class ContentPackageReaderTest {
     fun rejectsPublishedAndWithdrawnConflict() {
         val entries = validEntries().toMutableMap()
         entries["withdrawals.json"] = """
-            {"schemaVersion":3,"withdrawals":[{
+            {"schemaVersion":4,"withdrawals":[{
               "id":"b85d8407-3b74-4c5e-b516-b032a22d73aa",
               "revision":2,
               "withdrawnAt":"2026-07-28"
@@ -219,10 +265,10 @@ class ContentPackageReaderTest {
         val assetName = "assets/$imageHash.jpg"
         return linkedMapOf(
             "package.json" to """
-                {"schemaVersion":3,"contentVersion":"1.3.0","publishedAt":"2026-07-29T00:00:00Z"}
+                {"schemaVersion":4,"contentVersion":"1.3.0","publishedAt":"2026-07-29T00:00:00Z"}
             """.trimIndent().encodeToByteArray(),
             "cards.json" to """
-                {"schemaVersion":3,"cards":[{
+                {"schemaVersion":4,"cards":[{
                   "id":"b85d8407-3b74-4c5e-b516-b032a22d73aa",
                   "revision":1,
                   "status":"published",
@@ -241,14 +287,13 @@ class ContentPackageReaderTest {
                   "story":"讲授内容后来整理为《实践论》。",
                   "imageId":"paper",
                   "sources":[
-                    {"name":"原文","url":"https://example.com/a","accessedAt":"2026-07-28","type":"original"},
-                    {"name":"校核","url":"https://example.org/b","accessedAt":"2026-07-28","type":"authoritative"}
+                    {"name":"原文","url":"https://example.com/a","accessedAt":"2026-07-28","type":"original"}
                   ],
                   "reviewedAt":"2026-07-28"
                 }]}
             """.trimIndent().encodeToByteArray(),
             "images.json" to """
-                {"schemaVersion":3,"images":[{
+                {"schemaVersion":4,"images":[{
                   "id":"paper",
                   "localFile":"$assetName",
                   "sha256":"$imageHash",
@@ -263,7 +308,7 @@ class ContentPackageReaderTest {
                   "shareAllowed":true
                 }]}
             """.trimIndent().encodeToByteArray(),
-            "withdrawals.json" to """{"schemaVersion":3,"withdrawals":[]}"""
+            "withdrawals.json" to """{"schemaVersion":4,"withdrawals":[]}"""
                 .encodeToByteArray(),
             assetName to imageBytes,
         )

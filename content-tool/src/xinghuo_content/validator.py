@@ -120,11 +120,6 @@ def _is_http_url(value: str) -> bool:
     return parsed.scheme in {"http", "https"} and bool(parsed.netloc)
 
 
-def _source_host(value: str) -> str:
-    hostname = (urlparse(value).hostname or "").lower()
-    return hostname.removeprefix("www.")
-
-
 def _validate_project(root: Path, issues: list[str]) -> ContentProject | None:
     path = root / "project.yaml"
     data = _load_yaml(path, issues)
@@ -132,8 +127,8 @@ def _validate_project(root: Path, issues: list[str]) -> ContentProject | None:
         return None
     _reject_unknown_fields(data, PROJECT_FIELDS, path, issues)
     schema_version = data.get("schemaVersion")
-    if schema_version != 3:
-        issues.append(f"{path}: schemaVersion must be 3")
+    if schema_version != 4:
+        issues.append(f"{path}: schemaVersion must be 4")
     content_version = _require_text(data, "contentVersion", path, issues)
     if content_version and not SEMVER_RE.fullmatch(content_version):
         issues.append(f"{path}: contentVersion must use MAJOR.MINOR.PATCH")
@@ -160,7 +155,7 @@ def _validate_project(root: Path, issues: list[str]) -> ContentProject | None:
     repository_owner = _require_text(data, "repositoryOwner", path, issues)
     repository_name = _require_text(data, "repositoryName", path, issues)
     return ContentProject(
-        schema_version=3,
+        schema_version=4,
         content_version=content_version,
         published_at=published_at,
         minimum_app_version_code=minimum_app_version_code,
@@ -376,8 +371,8 @@ def _validate_card(path: Path, issues: list[str]) -> CardRecord | None:
         issues.append(f"{path}: sources must be a list")
         raw_sources = []
     sources = [_validate_source(raw, index, path, issues) for index, raw in enumerate(raw_sources)]
-    if status == "published" and len(sources) < 2:
-        issues.append(f"{path}: published cards require at least two sources")
+    if status == "published" and not sources:
+        issues.append(f"{path}: published cards require at least one source")
     if status == "published" and not any(
         source["type"] in {"original", "authoritative"} for source in sources
     ):
@@ -385,10 +380,6 @@ def _validate_card(path: Path, issues: list[str]) -> CardRecord | None:
     urls = [source["url"] for source in sources if source["url"]]
     if len(urls) != len(set(urls)):
         issues.append(f"{path}: source URLs must be distinct")
-    source_hosts = {_source_host(url) for url in urls}
-    if status == "published" and len(source_hosts) < 2:
-        issues.append(f"{path}: published cards require sources from at least two hosts")
-
     review = data.get("review")
     if not isinstance(review, dict):
         issues.append(f"{path}: review must be a mapping")

@@ -1,8 +1,8 @@
-schemaVersion: 3
-contentVersion: 1.6.0
+schemaVersion: 4
+contentVersion: 1.7.0
 publishedAt: '2026-08-05T00:00:00Z'
-minimumAppVersionCode: 7
-expectedPublishedCards: 600
-releaseNotes: 新增24张可追溯授权的历史档案照片，支持图片来源与许可署名，并优化卡片与摘要列表视觉
+minimumAppVersionCode: 13
+expectedPublishedCards: 700
+releaseNotes: 扩展至700张正式卡片，新增100张毛泽东选集正文卡片与24张可追溯授权的历史档案照片，并支持图片署名与摘要列表新视觉
 repositoryOwner: Hi-prof
 repositoryName: maoxuan

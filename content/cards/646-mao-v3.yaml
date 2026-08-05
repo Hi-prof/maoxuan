@@ -1,0 +1,26 @@
+id: f3601a24-763a-477e-9d67-6093a1c3c66c
+revision: 2
+status: published
+quote: 中国民族解放战争的新阶段已经到来了，全国人民应该加强团结，为夺取最后胜利而斗争。
+literature:
+  series: 毛泽东选集
+  volume: 第三卷
+  workTitle: 对日寇的最后一战
+  authoredAt: '1945-08-09'
+themes:
+- 群众路线
+interpretation:
+  inspiration: 从“中国民族解放战争的新阶段已经到来了”出发，可以把态度转成行动：把当事人的处境和实际需要放进决策，并让事实、分工和实际结果检验原先的判断。
+  explanation: 《对日寇的最后一战》讨论的是特定历史条件下的群众路线问题。这里用“中国民族解放战争的新阶段已经到来了”指出行动应有的着力点，核心在于把当事人的处境和实际需要放进决策。原文并不支持脱离对象的简单化理解，因为尊重群众不等于放弃分析和责任边界。阅读这句话时，应把结论、依据和适用条件放在一起。
+historicalEvent: 1945年8月9日，《对日寇的最后一战》形成，集中讨论群众路线及其现实任务。
+background: 延安整风和抗战后期，党的作风、群众工作、生产建设与联合政府问题集中展开。《对日寇的最后一战》从当时的具体问题出发讨论群众路线，本卡从“中国民族解放战争的新阶段已经到来了”切入全文的一层论证。
+story: 《对日寇的最后一战》并非名句汇编，而是针对现实任务展开的完整论述。所选句子把其中一个关键判断压缩得很鲜明，前后段落则补足了对象和条件。
+imageId: archive-mao-selection-survey-masses
+sources:
+- name: 中文马克思主义文库《对日寇的最后一战》全文
+  url: https://www.marxists.org/chinese/maozedong/marxist.org-chinese-mao-19450809.htm
+  accessedAt: '2026-08-05'
+  type: original
+review:
+  status: verified
+  checkedAt: '2026-08-05'

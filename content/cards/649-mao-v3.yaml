@@ -1,0 +1,26 @@
+id: d85e6efc-1645-41a3-9d74-f0528f5648d4
+revision: 2
+status: published
+quote: 财政困难，只有从切切实实的有效的经济发展上才能解决。
+literature:
+  series: 毛泽东选集
+  volume: 第三卷
+  workTitle: 抗日时期的经济问题和财政问题
+  authoredAt: 1942-12
+themes:
+- 经济建设
+interpretation:
+  inspiration: “财政困难，只有从切切实实的有效的经济发展上才能解决”提示我们，遇到相似问题时先把资源、条件和长期效果一起核算。把目标、对象和现实条件写清楚，再检查办法是否真正回应了问题。
+  explanation: 这句话出自《抗日时期的经济问题和财政问题》，原文围绕经济建设的具体任务展开。“财政困难，只有从切切实实的有效的经济发展上才能解决”不是孤立口号，而是论证中的一个判断。它强调把资源、条件和长期效果一起核算；理解时也要看到，建设目标必须落实为可执行的生产与组织安排。今天借鉴的是分析和行动方法，不能把当时的对象、力量关系和历史条件原样搬到新的场景。
+historicalEvent: 1942年12月，《抗日时期的经济问题和财政问题》形成，集中讨论经济建设及其现实任务。
+background: 延安整风和抗战后期，党的作风、群众工作、生产建设与联合政府问题集中展开。《抗日时期的经济问题和财政问题》从当时的具体问题出发讨论经济建设，本卡从“财政困难，只有从切切实实的有效的经济发展上才能解决”切入全文的一层论证。
+story: 文章先交代现实矛盾，再提出判断和办法。这句以“财政困难，只有从切切实实的有效的经济发展上才能解决”留下清晰抓手，回看上下文可以看到它回答了什么问题、依靠什么条件。
+imageId: archive-mao-selection-production
+sources:
+- name: 中文马克思主义文库《抗日时期的经济问题和财政问题》全文
+  url: https://www.marxists.org/chinese/maozedong/marxist.org-chinese-mao-194212.htm
+  accessedAt: '2026-08-05'
+  type: original
+review:
+  status: verified
+  checkedAt: '2026-08-05'

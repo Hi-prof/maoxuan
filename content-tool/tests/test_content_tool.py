@@ -22,7 +22,7 @@ def _write_fixture(root: Path, *, quote: str = "实践是检验真理的标准�
     (root / "project.yaml").write_text(
         yaml.safe_dump(
             {
-                "schemaVersion": 3,
+                "schemaVersion": 4,
                 "contentVersion": "1.3.0",
                 "publishedAt": "2026-07-28T00:00:00Z",
                 "minimumAppVersionCode": 4,
@@ -339,15 +339,59 @@ def test_unknown_card_field_is_rejected(tmp_path: Path) -> None:
         validate_content(root)
 
 
-def test_published_sources_must_use_independent_hosts(tmp_path: Path) -> None:
+def test_schema_three_is_rejected(tmp_path: Path) -> None:
+    root = tmp_path / "content"
+    _write_fixture(root)
+    path = root / "project.yaml"
+    project = yaml.safe_load(path.read_text(encoding="utf-8"))
+    project["schemaVersion"] = 3
+    path.write_text(yaml.safe_dump(project, allow_unicode=True), encoding="utf-8")
+
+    with pytest.raises(ValidationError, match="schemaVersion must be 4"):
+        validate_content(root)
+
+
+def test_published_card_accepts_single_strong_source(tmp_path: Path) -> None:
     root = tmp_path / "content"
     _write_fixture(root)
     path = root / "cards" / "card.yaml"
     card = yaml.safe_load(path.read_text(encoding="utf-8"))
-    card["sources"][1]["url"] = "https://example.com/b"
+    card["sources"] = card["sources"][:1]
     path.write_text(yaml.safe_dump(card, allow_unicode=True), encoding="utf-8")
 
-    with pytest.raises(ValidationError, match="at least two hosts"):
+    validated = validate_content(root)
+
+    assert len(validated.published_cards[0].payload["sources"]) == 1
+
+
+def test_published_card_requires_at_least_one_source(tmp_path: Path) -> None:
+    root = tmp_path / "content"
+    _write_fixture(root)
+    path = root / "cards" / "card.yaml"
+    card = yaml.safe_load(path.read_text(encoding="utf-8"))
+    card["sources"] = []
+    path.write_text(yaml.safe_dump(card, allow_unicode=True), encoding="utf-8")
+
+    with pytest.raises(ValidationError, match="at least one source"):
+        validate_content(root)
+
+
+def test_published_card_requires_strong_source(tmp_path: Path) -> None:
+    root = tmp_path / "content"
+    _write_fixture(root)
+    path = root / "cards" / "card.yaml"
+    card = yaml.safe_load(path.read_text(encoding="utf-8"))
+    card["sources"] = [
+        {
+            "name": "Context",
+            "url": "https://example.com/context",
+            "accessedAt": "2026-07-28",
+            "type": "contextual",
+        }
+    ]
+    path.write_text(yaml.safe_dump(card, allow_unicode=True), encoding="utf-8")
+
+    with pytest.raises(ValidationError, match="original or authoritative"):
         validate_content(root)
 
 
@@ -378,10 +422,10 @@ def test_package_contains_only_declared_files(tmp_path: Path) -> None:
 
     assert {"package.json", "cards.json", "images.json", "withdrawals.json"} < names
     assert len([name for name in names if name.startswith("assets/")]) == 1
-    assert package_info["schemaVersion"] == 3
-    assert cards["schemaVersion"] == 3
-    assert images["schemaVersion"] == 3
-    assert withdrawals["schemaVersion"] == 3
+    assert package_info["schemaVersion"] == 4
+    assert cards["schemaVersion"] == 4
+    assert images["schemaVersion"] == 4
+    assert withdrawals["schemaVersion"] == 4
     assert cards["cards"][0]["interpretation"]["inspiration"]
     assert cards["cards"][0]["historicalEvent"]
     assert "contextExcerpt" not in cards["cards"][0]

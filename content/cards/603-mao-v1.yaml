@@ -1,0 +1,26 @@
+id: d71b73ff-30e2-487b-8782-ccd42e03947e
+revision: 2
+status: published
+quote: 边界党如不能对经济问题有一个适当的办法，在敌人势力的稳定还有一个比较长的期间的条件下，割据将要遇到很大的困难。
+literature:
+  series: 毛泽东选集
+  volume: 第一卷
+  workTitle: 中国的红色政权为什么能够存在？
+  authoredAt: '1928-10-05'
+themes:
+- 经济建设
+interpretation:
+  inspiration: 可以把“边界党如不能对经济问题有一个适当的办法”转成一个工作问题：怎样把资源、条件和长期效果一起核算？答案要经得起事实、协作过程和实际结果的检验。
+  explanation: 在《中国的红色政权为什么能够存在？》中，这句话服务于对经济建设问题的分析。它把“边界党如不能对经济问题有一个适当的办法”同实际任务联系起来，要求把资源、条件和长期效果一起核算。它的现实启发主要是一种工作方法；建设目标必须落实为可执行的生产与组织安排，因此不能只保留有力量的措辞而省略前后的事实和限制。
+historicalEvent: 1928年10月5日，《中国的红色政权为什么能够存在？》形成，集中讨论经济建设及其现实任务。
+background: 第一次国内革命战争后到全面抗战前，革命道路、调查研究和认识方法成为重要议题。《中国的红色政权为什么能够存在？》从当时的具体问题出发讨论经济建设，本卡从“边界党如不能对经济问题有一个适当的办法”切入全文的一层论证。
+story: 这句话在全文中承担承上启下或归纳判断的作用。沿着《中国的红色政权为什么能够存在？》的论证继续阅读，可以分清历史结论、工作方法和今天可借鉴的部分。
+imageId: archive-mao-selection-production
+sources:
+- name: 中文马克思主义文库《中国的红色政权为什么能够存在？》全文
+  url: https://www.marxists.org/chinese/maozedong/marxist.org-chinese-mao-19281005.htm
+  accessedAt: '2026-08-05'
+  type: original
+review:
+  status: verified
+  checkedAt: '2026-08-05'

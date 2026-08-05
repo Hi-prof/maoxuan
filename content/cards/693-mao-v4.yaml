@@ -1,0 +1,26 @@
+id: a04efea5-d021-4d02-9968-3f3a9a078595
+revision: 2
+status: published
+quote: 如果我们的干部不能迅速学会管理城市，则我们将会发生极大困难。
+literature:
+  series: 毛泽东选集
+  volume: 第四卷
+  workTitle: 把军队变为工作队
+  authoredAt: '1949-02-08'
+themes:
+- 领导方法
+interpretation:
+  inspiration: “如果我们的干部不能迅速学会管理城市”提示我们，遇到相似问题时先让方向、分工、沟通和执行彼此衔接。把目标、对象和现实条件写清楚，再检查办法是否真正回应了问题。
+  explanation: 这句话出自《把军队变为工作队》，原文围绕领导方法的具体任务展开。“如果我们的干部不能迅速学会管理城市”不是孤立口号，而是论证中的一个判断。它强调让方向、分工、沟通和执行彼此衔接；理解时也要看到，领导不是包办，决定也必须建立在信息和协作上。今天借鉴的是分析和行动方法，不能把当时的对象、力量关系和历史条件原样搬到新的场景。
+historicalEvent: 1949年2月8日，《把军队变为工作队》形成，集中讨论领导方法及其现实任务。
+background: 解放战争时期，战略转折、土地政策、组织建设和新中国前途成为现实任务。《把军队变为工作队》从当时的具体问题出发讨论领导方法，本卡从“如果我们的干部不能迅速学会管理城市”切入全文的一层论证。
+story: 文章先交代现实矛盾，再提出判断和办法。这句以“如果我们的干部不能迅速学会管理城市”留下清晰抓手，回看上下文可以看到它回答了什么问题、依靠什么条件。
+imageId: archive-mao-selection-victory-city
+sources:
+- name: 中文马克思主义文库《把军队变为工作队》全文
+  url: https://www.marxists.org/chinese/maozedong/marxist.org-chinese-mao-19490208a.htm
+  accessedAt: '2026-08-05'
+  type: original
+review:
+  status: verified
+  checkedAt: '2026-08-05'

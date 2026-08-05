@@ -333,9 +333,9 @@ private fun InterpretationBack(card: QuoteCard) {
             .padding(horizontal = 24.dp, vertical = 28.dp),
         verticalArrangement = Arrangement.spacedBy(22.dp),
     ) {
-        InterpretationSection("启示", card.interpretation.inspiration, prominent = true)
-        HorizontalDivider(color = DividerColor)
         InterpretationSection("解读", card.interpretation.explanation)
+        HorizontalDivider(color = DividerColor)
+        InterpretationSection("启示", card.interpretation.inspiration, prominent = true)
         Spacer(Modifier.height(8.dp))
     }
 }

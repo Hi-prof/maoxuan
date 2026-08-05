@@ -1,0 +1,26 @@
+id: bb1dbaac-eb34-4fe0-8da8-247cbd2d0d77
+revision: 2
+status: published
+quote: 我们应当向人民群众指出战争的胜利前途，使他们明白失败和困难的暂时性，只要百折不回地奋斗下去，最后的胜利必属于我们。
+literature:
+  series: 毛泽东选集
+  volume: 第二卷
+  workTitle: 和英国记者贝特兰的谈话
+  authoredAt: '1937-10-25'
+themes:
+- 群众路线
+interpretation:
+  inspiration: 从“我们应当向人民群众指出战争的胜利前途”出发，可以把态度转成行动：把当事人的处境和实际需要放进决策，并让事实、分工和实际结果检验原先的判断。
+  explanation: 《和英国记者贝特兰的谈话》讨论的是特定历史条件下的群众路线问题。这里用“我们应当向人民群众指出战争的胜利前途”指出行动应有的着力点，核心在于把当事人的处境和实际需要放进决策。原文并不支持脱离对象的简单化理解，因为尊重群众不等于放弃分析和责任边界。阅读这句话时，应把结论、依据和适用条件放在一起。
+historicalEvent: 1937年10月25日，《和英国记者贝特兰的谈话》形成，集中讨论群众路线及其现实任务。
+background: 全面抗战时期，民族危机、统一战线、战争进程和新民主主义道路需要持续分析。《和英国记者贝特兰的谈话》从当时的具体问题出发讨论群众路线，本卡从“我们应当向人民群众指出战争的胜利前途”切入全文的一层论证。
+story: 《和英国记者贝特兰的谈话》并非名句汇编，而是针对现实任务展开的完整论述。所选句子把其中一个关键判断压缩得很鲜明，前后段落则补足了对象和条件。
+imageId: archive-mao-selection-survey-masses
+sources:
+- name: 中文马克思主义文库《和英国记者贝特兰的谈话》全文
+  url: https://www.marxists.org/chinese/maozedong/marxist.org-chinese-mao-19371025.htm
+  accessedAt: '2026-08-05'
+  type: original
+review:
+  status: verified
+  checkedAt: '2026-08-05'

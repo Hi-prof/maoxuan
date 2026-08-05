@@ -1,0 +1,26 @@
+id: 0c75fa9c-239e-4acf-996a-d9d372905a03
+revision: 2
+status: published
+quote: 工人中间应该教育出大批的干部，他们应该有知识，有能力，不务空名，会干实事。
+literature:
+  series: 毛泽东选集
+  volume: 第二卷
+  workTitle: 《中国工人》发刊词
+  authoredAt: '1940-02-07'
+themes:
+- 群众路线
+interpretation:
+  inspiration: “工人中间应该教育出大批的干部”提醒我们面对复杂局面先把当事人的处境和实际需要放进决策，同时保留修正空间。清楚说明依据和边界，比套用结论更重要。
+  explanation: 原文写作《《中国工人》发刊词》时，面对的是需要作出具体判断和安排的群众路线问题。这句话以“工人中间应该教育出大批的干部”概括其中一层意思，即把当事人的处境和实际需要放进决策。同时，尊重群众不等于放弃分析和责任边界。把它用于今天，应先核对问题是否同类，再决定哪些方法可以借鉴。
+historicalEvent: 1940年2月7日，《《中国工人》发刊词》形成，集中讨论群众路线及其现实任务。
+background: 全面抗战时期，民族危机、统一战线、战争进程和新民主主义道路需要持续分析。《《中国工人》发刊词》从当时的具体问题出发讨论群众路线，本卡从“工人中间应该教育出大批的干部”切入全文的一层论证。
+story: 文本围绕群众路线逐层展开，从事实判断走向行动安排。所选原文便于记忆，但真正有用的是连同《《中国工人》发刊词》中的理由和限制一起理解。
+imageId: archive-mao-selection-survey-masses
+sources:
+- name: 中文马克思主义文库《《中国工人》发刊词》全文
+  url: https://www.marxists.org/chinese/maozedong/marxist.org-chinese-mao-19400207.htm
+  accessedAt: '2026-08-05'
+  type: original
+review:
+  status: verified
+  checkedAt: '2026-08-05'

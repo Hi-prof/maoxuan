@@ -1,0 +1,26 @@
+id: e577ebf3-4983-4f48-861e-4113ec2818cb
+revision: 2
+status: published
+quote: 必须努力生产，使一切必需品，首先是粮食和布匹，完全自给。
+literature:
+  series: 毛泽东选集
+  volume: 第四卷
+  workTitle: 以自卫战争粉碎蒋介石的进攻
+  authoredAt: '1946-07-20'
+themes:
+- 经济建设
+interpretation:
+  inspiration: 从“必须努力生产，使一切必需品，首先是粮食和布匹，完全自给”出发，可以把态度转成行动：把资源、条件和长期效果一起核算，并让事实、分工和实际结果检验原先的判断。
+  explanation: 《以自卫战争粉碎蒋介石的进攻》讨论的是特定历史条件下的经济建设问题。这里用“必须努力生产，使一切必需品，首先是粮食和布匹，完全自给”指出行动应有的着力点，核心在于把资源、条件和长期效果一起核算。原文并不支持脱离对象的简单化理解，因为建设目标必须落实为可执行的生产与组织安排。阅读这句话时，应把结论、依据和适用条件放在一起。
+historicalEvent: 1946年7月20日，《以自卫战争粉碎蒋介石的进攻》形成，集中讨论经济建设及其现实任务。
+background: 解放战争时期，战略转折、土地政策、组织建设和新中国前途成为现实任务。《以自卫战争粉碎蒋介石的进攻》从当时的具体问题出发讨论经济建设，本卡从“必须努力生产，使一切必需品，首先是粮食和布匹，完全自给”切入全文的一层论证。
+story: 《以自卫战争粉碎蒋介石的进攻》并非名句汇编，而是针对现实任务展开的完整论述。所选句子把其中一个关键判断压缩得很鲜明，前后段落则补足了对象和条件。
+imageId: archive-mao-selection-production
+sources:
+- name: 中文马克思主义文库《以自卫战争粉碎蒋介石的进攻》全文
+  url: https://www.marxists.org/chinese/maozedong/marxist.org-chinese-mao-19460720.htm
+  accessedAt: '2026-08-05'
+  type: original
+review:
+  status: verified
+  checkedAt: '2026-08-05'
