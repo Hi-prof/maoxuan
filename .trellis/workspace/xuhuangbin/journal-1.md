@@ -308,3 +308,37 @@ Added licensed archive imagery, attribution, and no-thumbnail summary UI.
 ### Next Steps
 
 - None - task complete
+
+
+## Session 10: Release Android 1.10.0
+
+**Date**: 2026-08-05
+**Task**: Release Android 1.10.0
+**Branch**: `main`
+
+### Summary
+
+Published the signed Android 1.10.0 GitHub Release, verified its checksum, version, signing certificate continuity, and preserved the content latest channel.
+
+### Main Changes
+
+(Add details)
+
+### Git Commits
+
+| Hash | Message |
+|------|---------|
+| `b839f6d` | (see git log) |
+| `0989faa` | (see git log) |
+
+### Testing
+
+- [OK] (Add test results)
+
+### Status
+
+[OK] **Completed**
+
+### Next Steps
+
+- None - task complete

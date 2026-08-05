@@ -8,7 +8,7 @@
 
 <!-- @@@auto:current-status -->
 - **Active File**: `journal-1.md`
-- **Total Sessions**: 9
+- **Total Sessions**: 10
 - **Last Active**: 2026-08-05
 <!-- @@@/auto:current-status -->
 
@@ -19,7 +19,7 @@
 <!-- @@@auto:active-documents -->
 | File | Lines | Status |
 |------|-------|--------|
-| `journal-1.md` | ~310 | Active |
+| `journal-1.md` | ~344 | Active |
 <!-- @@@/auto:active-documents -->
 
 ---
@@ -29,6 +29,7 @@
 <!-- @@@auto:session-history -->
 | # | Date | Title | Commits | Branch |
 |---|------|-------|---------|--------|
+| 10 | 2026-08-05 | Release Android 1.10.0 | `b839f6d`, `0989faa` | `main` |
 | 9 | 2026-08-05 | Refresh card and summary UI | `29fc281`, `d26afde` | `task/3` |
 | 8 | 2026-08-05 | Expand Mao Selected Works content | `123cc58` | `task/2` |
 | 7 | 2026-08-05 | 发布 Android 1.9.0 | `c3dcbb5` | `task/1` |
