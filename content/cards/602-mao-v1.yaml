@@ -1,0 +1,26 @@
+id: 7caf6797-5e77-4258-be3a-5b8f8947524a
+revision: 1
+status: published
+quote: 阿比西尼亚主要地是因为封建制度的统治，不能巩固内部的团结，不能发动人民的积极性，所以失败了。
+literature:
+  series: 毛泽东选集
+  volume: 第一卷
+  workTitle: 中国共产党在抗日时期的任务
+  authoredAt: '1937-05-03'
+themes:
+- 群众路线
+interpretation:
+  inspiration: 从“阿比西尼亚主要地是因为封建制度的统治”出发，可以把态度转成行动：把当事人的处境和实际需要放进决策，并让事实、分工和实际结果检验原先的判断。
+  explanation: 《中国共产党在抗日时期的任务》讨论的是特定历史条件下的群众路线问题。这里用“阿比西尼亚主要地是因为封建制度的统治”指出行动应有的着力点，核心在于把当事人的处境和实际需要放进决策。原文并不支持脱离对象的简单化理解，因为尊重群众不等于放弃分析和责任边界。阅读这句话时，应把结论、依据和适用条件放在一起。
+historicalEvent: 1937年5月3日，《中国共产党在抗日时期的任务》形成，集中讨论群众路线及其现实任务。
+background: 第一次国内革命战争后到全面抗战前，革命道路、调查研究和认识方法成为重要议题。《中国共产党在抗日时期的任务》从当时的具体问题出发讨论群众路线，本卡从“阿比西尼亚主要地是因为封建制度的统治”切入全文的一层论证。
+story: 《中国共产党在抗日时期的任务》并非名句汇编，而是针对现实任务展开的完整论述。所选句子把其中一个关键判断压缩得很鲜明，前后段落则补足了对象和条件。
+imageId: original-distant-mountains
+sources:
+- name: 中文马克思主义文库《中国共产党在抗日时期的任务》全文
+  url: https://www.marxists.org/chinese/maozedong/marxist.org-chinese-mao-19370503.htm
+  accessedAt: '2026-08-05'
+  type: original
+review:
+  status: verified
+  checkedAt: '2026-08-05'

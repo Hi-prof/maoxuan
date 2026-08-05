@@ -1,0 +1,26 @@
+id: 821f6fb4-f603-485d-a1a8-ee8442f45b2d
+revision: 1
+status: published
+quote: 做一个真正能干的高级指挥员，不是初出茅庐或仅仅善于在纸上谈兵的角色所能办到的，必须在战争中学习才能办得到。
+literature:
+  series: 毛泽东选集
+  volume: 第一卷
+  workTitle: 中国革命战争的战略问题
+  authoredAt: 1936-12
+themes:
+- 理论与实践
+interpretation:
+  inspiration: 从“做一个真正能干的高级指挥员”出发，可以把态度转成行动：让认识在行动和反馈中接受检验，并让事实、分工和实际结果检验原先的判断。
+  explanation: 《中国革命战争的战略问题》讨论的是特定历史条件下的理论与实践问题。这里用“做一个真正能干的高级指挥员”指出行动应有的着力点，核心在于让认识在行动和反馈中接受检验。原文并不支持脱离对象的简单化理解，因为理论不能替代事实，经验也不能拒绝总结。阅读这句话时，应把结论、依据和适用条件放在一起。
+historicalEvent: 1936年12月，《中国革命战争的战略问题》形成，集中讨论理论与实践及其现实任务。
+background: 第一次国内革命战争后到全面抗战前，革命道路、调查研究和认识方法成为重要议题。《中国革命战争的战略问题》从当时的具体问题出发讨论理论与实践，本卡从“做一个真正能干的高级指挥员”切入全文的一层论证。
+story: 《中国革命战争的战略问题》并非名句汇编，而是针对现实任务展开的完整论述。所选句子把其中一个关键判断压缩得很鲜明，前后段落则补足了对象和条件。
+imageId: original-reading-lamp
+sources:
+- name: 中文马克思主义文库《中国革命战争的战略问题》全文
+  url: https://www.marxists.org/chinese/maozedong/marxist.org-chinese-mao-193612.htm
+  accessedAt: '2026-08-05'
+  type: original
+review:
+  status: verified
+  checkedAt: '2026-08-05'

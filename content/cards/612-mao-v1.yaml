@@ -1,0 +1,26 @@
+id: 21fcd578-2d2c-4354-8779-10dd5f19a8d0
+revision: 1
+status: published
+quote: 蒋氏如欲在抗日问题上徘徊，推迟其诺言的实践，则全国人民的革命浪潮势将席卷蒋氏以去。
+literature:
+  series: 毛泽东选集
+  volume: 第一卷
+  workTitle: 关于蒋介石声明的声明
+  authoredAt: '1936-12-28'
+themes:
+- 群众路线
+interpretation:
+  inspiration: “蒋氏如欲在抗日问题上徘徊”提醒我们面对复杂局面先把当事人的处境和实际需要放进决策，同时保留修正空间。清楚说明依据和边界，比套用结论更重要。
+  explanation: 原文写作《关于蒋介石声明的声明》时，面对的是需要作出具体判断和安排的群众路线问题。这句话以“蒋氏如欲在抗日问题上徘徊”概括其中一层意思，即把当事人的处境和实际需要放进决策。同时，尊重群众不等于放弃分析和责任边界。把它用于今天，应先核对问题是否同类，再决定哪些方法可以借鉴。
+historicalEvent: 1936年12月28日，《关于蒋介石声明的声明》形成，集中讨论群众路线及其现实任务。
+background: 第一次国内革命战争后到全面抗战前，革命道路、调查研究和认识方法成为重要议题。《关于蒋介石声明的声明》从当时的具体问题出发讨论群众路线，本卡从“蒋氏如欲在抗日问题上徘徊”切入全文的一层论证。
+story: 文本围绕群众路线逐层展开，从事实判断走向行动安排。所选原文便于记忆，但真正有用的是连同《关于蒋介石声明的声明》中的理由和限制一起理解。
+imageId: original-memorial-pine
+sources:
+- name: 中文马克思主义文库《关于蒋介石声明的声明》全文
+  url: https://www.marxists.org/chinese/maozedong/marxist.org-chinese-mao-19361228.htm
+  accessedAt: '2026-08-05'
+  type: original
+review:
+  status: verified
+  checkedAt: '2026-08-05'

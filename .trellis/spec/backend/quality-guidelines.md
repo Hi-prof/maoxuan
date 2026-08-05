@@ -41,7 +41,7 @@ Run instrumentation on API 28 and the latest configured API before release.
 - User state survives content revision, withdrawal snapshot retention, and restoration.
 - File writes precede the Room reference switch; cleanup follows commit/failure.
 - Formal content has exactly the positive `expectedPublishedCards` count declared
-  in `content/project.yaml`; current content `1.5.0` declares 600 published cards.
+  in `content/project.yaml`; current content `1.6.0` declares 700 published cards.
 - Published quotes are unique after NFC normalization, and the content report
   includes sorted `workTitles` counts for editorial limit review.
 - Every active card has both interpretation fields plus historical event,
@@ -52,9 +52,12 @@ Run instrumentation on API 28 and the latest configured API before release.
 - Parser tests include valid, malformed, oversized, duplicate, traversal, bad-hash, and unknown-schema cases.
 - Repository tests cover first import, revision, withdrawal, restoration, and local state preservation.
 - Reading-round tests cover stable order, backtracking, additions, withdrawals, completion, and restart semantics.
-- Recommendation JVM tests cover all 12 taxonomy pools against the bundled 600
+- Recommendation JVM tests cover all 12 taxonomy pools against the bundled 700
   cards, bounded explicit-signal weights, 4:1 exploration mixing, diversity,
   deterministic randomness, and duplicate-free output.
+- Package fixtures in JVM and instrumentation tests use the current package
+  schema. A reader schema bump must update both fixture sets before repository
+  and UI behavior can be tested meaningfully.
 - Room and repository instrumentation covers schema `5 -> 6`, fresh versus
   migrated onboarding, locked-prefix tail replanning, preference replacement,
   negative-feedback clearing, restart persistence, and content add/withdraw on

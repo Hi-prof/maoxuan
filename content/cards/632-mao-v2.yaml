@@ -1,0 +1,26 @@
+id: cdf57f9e-fca7-4b29-979e-52baf9f499e8
+revision: 1
+status: published
+quote: 此皆将士寒心、敌人拊掌之怪现象，断乎不能容许者也。
+literature:
+  series: 毛泽东选集
+  volume: 第二卷
+  workTitle: 向国民党的十点要求
+  authoredAt: '1940-02-01'
+themes:
+- 战略
+interpretation:
+  inspiration: “此皆将士寒心、敌人拊掌之怪现象”提醒我们面对复杂局面先分清长期趋势、当前力量和行动节奏，同时保留修正空间。清楚说明依据和边界，比套用结论更重要。
+  explanation: 原文写作《向国民党的十点要求》时，面对的是需要作出具体判断和安排的战略问题。这句话以“此皆将士寒心、敌人拊掌之怪现象”概括其中一层意思，即分清长期趋势、当前力量和行动节奏。同时，历史战争经验不能脱离时代直接套用。把它用于今天，应先核对问题是否同类，再决定哪些方法可以借鉴。
+historicalEvent: 1940年2月1日，《向国民党的十点要求》形成，集中讨论战略及其现实任务。
+background: 全面抗战时期，民族危机、统一战线、战争进程和新民主主义道路需要持续分析。《向国民党的十点要求》从当时的具体问题出发讨论战略，本卡从“此皆将士寒心、敌人拊掌之怪现象”切入全文的一层论证。
+story: 文本围绕战略逐层展开，从事实判断走向行动安排。所选原文便于记忆，但真正有用的是连同《向国民党的十点要求》中的理由和限制一起理解。
+imageId: original-workshop
+sources:
+- name: 中文马克思主义文库《向国民党的十点要求》全文
+  url: https://www.marxists.org/chinese/maozedong/marxist.org-chinese-mao-19400201b.htm
+  accessedAt: '2026-08-05'
+  type: original
+review:
+  status: verified
+  checkedAt: '2026-08-05'

@@ -1,0 +1,26 @@
+id: 7da31304-db82-4f76-8ba5-2469b642b523
+revision: 1
+status: published
+quote: 然而不管怎样，过程发展的各个阶段中，只有一种主要的矛盾起着领导的作用，是完全没有疑义的。
+literature:
+  series: 毛泽东选集
+  volume: 第一卷
+  workTitle: 矛盾论
+  authoredAt: 1937-08
+themes:
+- 领导方法
+interpretation:
+  inspiration: 从“然而不管怎样，过程发展的各个阶段中，只有一种主要的矛盾起着领导的作用，是完全没有疑义的”出发，可以把态度转成行动：让方向、分工、沟通和执行彼此衔接，并让事实、分工和实际结果检验原先的判断。
+  explanation: 《矛盾论》讨论的是特定历史条件下的领导方法问题。这里用“然而不管怎样，过程发展的各个阶段中，只有一种主要的矛盾起着领导的作用，是完全没有疑义的”指出行动应有的着力点，核心在于让方向、分工、沟通和执行彼此衔接。原文并不支持脱离对象的简单化理解，因为领导不是包办，决定也必须建立在信息和协作上。阅读这句话时，应把结论、依据和适用条件放在一起。
+historicalEvent: 1937年8月，《矛盾论》形成，集中讨论领导方法及其现实任务。
+background: 第一次国内革命战争后到全面抗战前，革命道路、调查研究和认识方法成为重要议题。《矛盾论》从当时的具体问题出发讨论领导方法，本卡从“然而不管怎样，过程发展的各个阶段中，只有一种主要的矛盾起着领导的作用，是完全没有疑义的”切入全文的一层论证。
+story: 《矛盾论》并非名句汇编，而是针对现实任务展开的完整论述。所选句子把其中一个关键判断压缩得很鲜明，前后段落则补足了对象和条件。
+imageId: original-reading-lamp
+sources:
+- name: 中文马克思主义文库《矛盾论》全文
+  url: https://www.marxists.org/chinese/maozedong/marxist.org-chinese-mao-193708.htm
+  accessedAt: '2026-08-05'
+  type: original
+review:
+  status: verified
+  checkedAt: '2026-08-05'

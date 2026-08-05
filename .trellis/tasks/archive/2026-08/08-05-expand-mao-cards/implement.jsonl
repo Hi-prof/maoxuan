@@ -1,0 +1,6 @@
+{"_example": "Fill with {\"file\": \"<path>\", \"reason\": \"<why>\"}. Put spec/research files only — no code paths. Run `python .trellis/scripts/get_context.py --mode packages` to list available specs. Delete this line once real entries are added."}
+{"file": ".trellis/spec/backend/index.md", "reason": "加载后端内容流水线入口与预开发清单"}
+{"file": ".trellis/spec/backend/content-package-contract.md", "reason": "遵循生产端、schema、来源、版本与 Android 消费端契约"}
+{"file": ".trellis/spec/backend/app-update-contract.md", "reason": "正确提升 App 版本并保持内容发布兼容顺序"}
+{"file": ".trellis/spec/backend/quality-guidelines.md", "reason": "执行内容和 Android 的必要质量门"}
+{"file": ".trellis/spec/guides/cross-layer-thinking-guide.md", "reason": "同步 Python 生产端、包格式与 Android 消费端"}

@@ -1,0 +1,26 @@
+id: c784395d-c676-43c1-a0b5-9732ea98b65b
+revision: 1
+status: published
+quote: 各纵均须构筑两面阻击阵地，务使敌人不能跑掉，然后休整部队，恢复疲劳，然后攻歼几部分较小之敌。
+literature:
+  series: 毛泽东选集
+  volume: 第四卷
+  workTitle: 关于平津战役的作战方针
+  authoredAt: '1948-12-11'
+themes:
+- 政策
+interpretation:
+  inspiration: “各纵均须构筑两面阻击阵地”提示我们，遇到相似问题时先根据对象、阶段和条件选择具体办法。把目标、对象和现实条件写清楚，再检查办法是否真正回应了问题。
+  explanation: 这句话出自《关于平津战役的作战方针》，原文围绕政策的具体任务展开。“各纵均须构筑两面阻击阵地”不是孤立口号，而是论证中的一个判断。它强调根据对象、阶段和条件选择具体办法；理解时也要看到，原则稳定不等于方法僵化。今天借鉴的是分析和行动方法，不能把当时的对象、力量关系和历史条件原样搬到新的场景。
+historicalEvent: 1948年12月11日，《关于平津战役的作战方针》形成，集中讨论政策及其现实任务。
+background: 解放战争时期，战略转折、土地政策、组织建设和新中国前途成为现实任务。《关于平津战役的作战方针》从当时的具体问题出发讨论政策，本卡从“各纵均须构筑两面阻击阵地”切入全文的一层论证。
+story: 文章先交代现实矛盾，再提出判断和办法。这句以“各纵均须构筑两面阻击阵地”留下清晰抓手，回看上下文可以看到它回答了什么问题、依靠什么条件。
+imageId: original-printing-press
+sources:
+- name: 中文马克思主义文库《关于平津战役的作战方针》全文
+  url: https://www.marxists.org/chinese/maozedong/marxist.org-chinese-mao-19481211.htm
+  accessedAt: '2026-08-05'
+  type: original
+review:
+  status: verified
+  checkedAt: '2026-08-05'

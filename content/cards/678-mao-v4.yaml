@@ -1,0 +1,26 @@
+id: e7d52fc6-3711-4321-a051-95052e67815b
+revision: 1
+status: published
+quote: 只有党的政策和策略全部走上正轨，中国革命才有胜利的可能。
+literature:
+  series: 毛泽东选集
+  volume: 第四卷
+  workTitle: 关于情况的通报
+  authoredAt: '1948-03-20'
+themes:
+- 政策
+interpretation:
+  inspiration: 从“只有党的政策和策略全部走上正轨”出发，可以把态度转成行动：根据对象、阶段和条件选择具体办法，并让事实、分工和实际结果检验原先的判断。
+  explanation: 《关于情况的通报》讨论的是特定历史条件下的政策问题。这里用“只有党的政策和策略全部走上正轨”指出行动应有的着力点，核心在于根据对象、阶段和条件选择具体办法。原文并不支持脱离对象的简单化理解，因为原则稳定不等于方法僵化。阅读这句话时，应把结论、依据和适用条件放在一起。
+historicalEvent: 1948年3月20日，《关于情况的通报》形成，集中讨论政策及其现实任务。
+background: 解放战争时期，战略转折、土地政策、组织建设和新中国前途成为现实任务。《关于情况的通报》从当时的具体问题出发讨论政策，本卡从“只有党的政策和策略全部走上正轨”切入全文的一层论证。
+story: 《关于情况的通报》并非名句汇编，而是针对现实任务展开的完整论述。所选句子把其中一个关键判断压缩得很鲜明，前后段落则补足了对象和条件。
+imageId: original-reading-lamp
+sources:
+- name: 中文马克思主义文库《关于情况的通报》全文
+  url: https://www.marxists.org/chinese/maozedong/marxist.org-chinese-mao-19480320.htm
+  accessedAt: '2026-08-05'
+  type: original
+review:
+  status: verified
+  checkedAt: '2026-08-05'
