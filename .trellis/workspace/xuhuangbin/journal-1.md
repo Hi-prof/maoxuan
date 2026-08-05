@@ -342,3 +342,36 @@ Published the signed Android 1.10.0 GitHub Release, verified its checksum, versi
 ### Next Steps
 
 - None - task complete
+
+
+## Session 11: 优化卡片手势冲突
+
+**Date**: 2026-08-06
+**Task**: 优化卡片手势冲突
+**Branch**: `task/7`
+
+### Summary
+
+为卡片翻面增加横纵方向锁定，并降低背面边缘分页吸附阈值；新增 API 28/35 手势回归并同步前端规范。
+
+### Main Changes
+
+(Add details)
+
+### Git Commits
+
+| Hash | Message |
+|------|---------|
+| `500dc27` | (see git log) |
+
+### Testing
+
+- [OK] (Add test results)
+
+### Status
+
+[OK] **Completed**
+
+### Next Steps
+
+- None - task complete
