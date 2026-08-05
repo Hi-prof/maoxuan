@@ -1,5 +1,5 @@
 id: 7c2649e1-f13a-5039-a59d-e9c8367fe04e
-revision: 1
+revision: 2
 status: published
 quote: 在现今的资产阶级生产关系的范围内，所谓自由就是自由贸易、自由买卖。
 literature:
@@ -15,7 +15,7 @@ interpretation:
 historicalEvent: 19世纪工业化加速发展，劳动、资本和社会结构的变化成为思想界的重要问题。
 background: 马克思的文本围绕实践、劳动、社会关系、历史发展和人的解放展开分析。
 story: 此卡从《共产党宣言》的原文中筛选，不以随机段落凑数；可从来源页回看上下文和论证对象。
-imageId: original-dawn-city
+imageId: archive-marxism-labor
 sources:
 - name: 中文马克思主义文库《共产党宣言》
   url: https://www.marxists.org/chinese/marx/01.htm

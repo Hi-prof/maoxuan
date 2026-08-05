@@ -1,5 +1,5 @@
 id: 0cc98b81-bcd6-5e6c-b2cc-3c5c4e3a315d
-revision: 3
+revision: 4
 status: published
 quote: '党八股的第一条罪状是：空话连篇，言之无物。'
 literature:
@@ -16,7 +16,7 @@ interpretation:
 historicalEvent: '1942年2月8日，毛泽东在延安干部会上演说，集中批评党八股的八类表现。'
 background: '这篇演说延续整风主题，以“八大罪状”逐项分析空洞冗长、装腔作势、无的放矢和语言无味等问题。'
 story: '文章故意借八股文的形式“以毒攻毒”，但论证落点很实际：文章必须有人看、有人懂，并能解决问题；长短本身不是标准，内容才是。'
-imageId: original-printing-press
+imageId: archive-mao-selection-yanan-study
 sources:
   - name: 中文马克思主义文库《反对党八股》全文
     url: https://www.marxists.org/chinese/maozedong/marxist.org-chinese-mao-19420208.htm

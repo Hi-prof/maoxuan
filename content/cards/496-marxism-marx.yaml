@@ -1,5 +1,5 @@
 id: fd47f2c6-a5ff-5bf1-8513-f32ef14a612e
-revision: 1
+revision: 2
 status: published
 quote: 在一定的劳动时间内或由一定的劳动量所生产的商品的数或量，取决于所用的劳动的生产力，而不取决于劳动的延伸或长度。
 literature:
@@ -15,7 +15,7 @@ interpretation:
 historicalEvent: 19世纪工业化加速发展，劳动、资本和社会结构的变化成为思想界的重要问题。
 background: 马克思的文本围绕实践、劳动、社会关系、历史发展和人的解放展开分析。
 story: 此卡从《工资、价格和利润》的原文中筛选，不以随机段落凑数；可从来源页回看上下文和论证对象。
-imageId: original-distant-mountains
+imageId: archive-marxism-industry
 sources:
 - name: 中文马克思主义文库《工资、价格和利润》
   url: https://www.marxists.org/chinese/marx/marxist.org-chinese-marx-1865-5.htm

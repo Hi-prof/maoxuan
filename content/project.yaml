@@ -1,8 +1,8 @@
 schemaVersion: 3
-contentVersion: 1.5.0
-publishedAt: '2026-08-02T00:00:00Z'
+contentVersion: 1.6.0
+publishedAt: '2026-08-05T00:00:00Z'
 minimumAppVersionCode: 7
 expectedPublishedCards: 600
-releaseNotes: 扩展至600张正式卡片，新增热门励志名人名言与马原思考内容
+releaseNotes: 新增24张可追溯授权的历史档案照片，支持图片来源与许可署名，并优化卡片与摘要列表视觉
 repositoryOwner: Hi-prof
 repositoryName: maoxuan

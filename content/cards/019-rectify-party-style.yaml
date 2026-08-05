@@ -1,5 +1,5 @@
 id: fda228fb-3afc-56d6-b3c5-eeee7ac2fe65
-revision: 3
+revision: 4
 status: published
 quote: '反对主观主义以整顿学风，反对宗派主义以整顿党风，反对党八股以整顿文风，这就是我们的任务。'
 literature:
@@ -16,7 +16,7 @@ interpretation:
 historicalEvent: '1942年2月1日，毛泽东在中共中央党校开学典礼上演说，延安整风由此深入展开。'
 background: '这是毛泽东在中共中央党校开学典礼上的演说，也是延安整风的重要文献。文章把学风、党风和文风放在同一套作风问题中检查。'
 story: '演说先用“窑洞有风”的比喻引出三股不良作风，随后分别分析其历史根源、思想方法和组织表现，要求通过研究和教育加以克服。'
-imageId: original-reading-lamp
+imageId: archive-mao-selection-production
 sources:
   - name: 中文马克思主义文库《整顿党的作风》全文
     url: https://www.marxists.org/chinese/maozedong/marxist.org-chinese-mao-19420201.htm

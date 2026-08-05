@@ -1,5 +1,5 @@
 id: 53e3ba1c-a8b4-5826-bf48-713409f4249d
-revision: 1
+revision: 2
 status: published
 quote: 权利永远不能超出社会的经济结构以及由经济结构所制约的社会的文化发展。
 literature:
@@ -15,7 +15,7 @@ interpretation:
 historicalEvent: 19世纪工业化加速发展，劳动、资本和社会结构的变化成为思想界的重要问题。
 background: 马克思的文本围绕实践、劳动、社会关系、历史发展和人的解放展开分析。
 story: 此卡从《哥达纲领批判》的原文中筛选，不以随机段落凑数；可从来源页回看上下文和论证对象。
-imageId: original-river-bridge
+imageId: archive-marxism-city-society
 sources:
 - name: 中文马克思主义文库《哥达纲领批判》
   url: https://www.marxists.org/chinese/marx/marxist.org-chinese-marx-1875-4.htm

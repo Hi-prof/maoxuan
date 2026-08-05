@@ -1,5 +1,5 @@
 id: 5445d10b-f308-58c8-8e00-00c57b734f04
-revision: 1
+revision: 2
 status: published
 quote: 几十年来的工业和商业的历史，只不过是现代生产力反抗现代生产关系、反抗作为资产阶级及其统治的存在条件的所有制关系的历史。
 literature:
@@ -15,7 +15,7 @@ interpretation:
 historicalEvent: 19世纪工业化加速发展，劳动、资本和社会结构的变化成为思想界的重要问题。
 background: 马克思的文本围绕实践、劳动、社会关系、历史发展和人的解放展开分析。
 story: 此卡从《共产党宣言》的原文中筛选，不以随机段落凑数；可从来源页回看上下文和论证对象。
-imageId: original-field-paths
+imageId: archive-marxism-international-movement
 sources:
 - name: 中文马克思主义文库《共产党宣言》
   url: https://www.marxists.org/chinese/marx/01.htm

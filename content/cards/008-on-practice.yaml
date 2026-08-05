@@ -1,5 +1,5 @@
 id: 0aa241e5-e429-5e9e-8912-dcf8d1ba78a0
-revision: 3
+revision: 4
 status: published
 quote: '实践、认识、再实践、再认识，这种形式，循环往复以至无穷，而实践和认识之每一循环的内容，都比较地进到了高一级的程度。'
 literature:
@@ -16,7 +16,7 @@ interpretation:
 historicalEvent: '1937年7月，毛泽东在延安抗日军事政治大学讲授哲学问题，随后形成《实践论》。'
 background: '这篇哲学论文源于延安抗日军事政治大学的讲演，旨在从认识论角度批评轻视实践的教条主义和轻视理论的经验主义。'
 story: '全文从生产活动、阶级斗争和科学实验谈认识的来源，再讨论感性认识上升为理性认识、理性认识回到实践接受检验的循环。'
-imageId: original-reading-lamp
+imageId: archive-mao-selection-war-army
 sources:
   - name: 中文马克思主义文库《实践论》全文
     url: https://www.marxists.org/chinese/maozedong/marxist.org-chinese-mao-193707.htm

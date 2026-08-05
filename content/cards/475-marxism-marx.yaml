@@ -1,5 +1,5 @@
 id: 45b1a58a-99ee-56da-8476-78fcdd651633
-revision: 1
+revision: 2
 status: published
 quote: 由于阶级对立的发展是同工业的发展步调一致的，所以这些发明家也不可能看到无产阶级解放的物质条件，于是他们就去探求某种社会科学、社会规律，以便创造这些条件。
 literature:
@@ -15,7 +15,7 @@ interpretation:
 historicalEvent: 19世纪工业化加速发展，劳动、资本和社会结构的变化成为思想界的重要问题。
 background: 马克思的文本围绕实践、劳动、社会关系、历史发展和人的解放展开分析。
 story: 此卡从《共产党宣言》的原文中筛选，不以随机段落凑数；可从来源页回看上下文和论证对象。
-imageId: original-printing-press
+imageId: archive-marxism-city-society
 sources:
 - name: 中文马克思主义文库《共产党宣言》
   url: https://www.marxists.org/chinese/marx/01.htm

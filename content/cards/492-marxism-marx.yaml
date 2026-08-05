@@ -1,5 +1,5 @@
 id: 0d248c92-f9b1-5272-8f56-695af7607e6c
-revision: 1
+revision: 2
 status: published
 quote: 我学的专业本来是法律，但我只是把它排在哲学和历史之次当作辅助学科来研究。
 literature:
@@ -15,7 +15,7 @@ interpretation:
 historicalEvent: 19世纪工业化加速发展，劳动、资本和社会结构的变化成为思想界的重要问题。
 background: 马克思的文本围绕实践、劳动、社会关系、历史发展和人的解放展开分析。
 story: 此卡从《政治经济学批判》序言的原文中筛选，不以随机段落凑数；可从来源页回看上下文和论证对象。
-imageId: original-reading-lamp
+imageId: archive-marxism-international-movement
 sources:
 - name: 中文马克思主义文库《政治经济学批判》序言
   url: https://www.marxists.org/chinese/marx/06.htm

@@ -1,5 +1,5 @@
 id: c135be6c-2fe9-5dfb-949c-8d0cde4d3ea4
-revision: 1
+revision: 2
 status: published
 quote: 例如，资本主义生产方式的基础就在于：物质的生产条件以资本和地产的形式掌握在非劳动者的手中，而人民大众则只有人身的生产条件，即劳动力。
 literature:
@@ -15,7 +15,7 @@ interpretation:
 historicalEvent: 19世纪工业化加速发展，劳动、资本和社会结构的变化成为思想界的重要问题。
 background: 马克思的文本围绕实践、劳动、社会关系、历史发展和人的解放展开分析。
 story: 此卡从《哥达纲领批判》的原文中筛选，不以随机段落凑数；可从来源页回看上下文和论证对象。
-imageId: original-printing-press
+imageId: archive-marxism-industry
 sources:
 - name: 中文马克思主义文库《哥达纲领批判》
   url: https://www.marxists.org/chinese/marx/marxist.org-chinese-marx-1875-4.htm

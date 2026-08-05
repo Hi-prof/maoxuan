@@ -1,5 +1,5 @@
 id: 4388cd1b-bf75-57ea-8b68-abae9bb422ac
-revision: 3
+revision: 4
 status: published
 quote: '当着天空中出现乌云的时候，我们就指出：这不过是暂时的现象，黑暗即将过去，曙光即在前头。'
 literature:
@@ -16,7 +16,7 @@ interpretation:
 historicalEvent: '1947年12月25日，人民解放军转入战略进攻后，毛泽东在陕北杨家沟会议作报告。'
 background: '报告作于陕北杨家沟会议。人民解放军由战略防御转入全国规模的进攻后，文章总结形势、军事原则、土地改革和经济政策。'
 story: '引文回顾全面内战开始时的判断：不能只看一时的兵力和装备，还要看战争性质、人心向背等持续起作用的因素。'
-imageId: original-dawn-city
+imageId: archive-mao-selection-victory-city
 sources:
   - name: 中文马克思主义文库《目前形势和我们的任务》全文
     url: https://www.marxists.org/chinese/maozedong/marxist.org-chinese-mao-19471225.htm

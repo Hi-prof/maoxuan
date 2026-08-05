@@ -1,5 +1,5 @@
 id: 94f95bca-d87f-5ff9-bd1d-0e48c5d9bfa2
-revision: 1
+revision: 2
 status: published
 quote: 经验的所得的结果无论好坏，都要很大的牺牲，虽是小事情，也免不掉要付惊人的代价。
 literature:
@@ -15,7 +15,7 @@ interpretation:
 historicalEvent: 五四新文化运动推动白话文学、思想启蒙与社会批评，鲁迅是其中的重要作家。
 background: 鲁迅的杂文、小说与书信常从个人处境切入，追问麻木、勇气、学习与社会责任。
 story: 此卡按可追溯出处筛选自鲁迅语录条目，不以随机段落凑数；可从来源页回看上下文和引用作品。
-imageId: original-field-paths
+imageId: archive-quotes-reading-writing
 sources:
 - name: 维基语录《鲁迅》
   url: https://zh.wikiquote.org/wiki/%E9%B2%81%E8%BF%85

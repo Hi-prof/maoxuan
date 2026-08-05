@@ -1,5 +1,5 @@
 id: f18b9594-8592-50ed-84f5-836cecf659bd
-revision: 3
+revision: 4
 status: published
 quote: '读书是学习，使用也是学习，而且是更重要的学习。'
 literature:
@@ -16,7 +16,7 @@ interpretation:
 historicalEvent: '1936年12月，长征结束后，毛泽东系统总结国内革命战争经验并讨论战略问题。'
 background: '长征结束后，毛泽东系统总结国内革命战争的经验，讨论怎样研究战争、战略防御和反“围剿”等问题。引文位于第一章“如何研究战争”。'
 story: '文章把书本结论视作需要回到自身经验中检验的知识：吸收适用的，拒绝不适用的，并补充自身实际中独有的部分。'
-imageId: original-river-bridge
+imageId: archive-mao-selection-yanan-study
 sources:
   - name: 中文马克思主义文库《中国革命战争的战略问题》全文
     url: https://www.marxists.org/chinese/maozedong/marxist.org-chinese-mao-193612.htm

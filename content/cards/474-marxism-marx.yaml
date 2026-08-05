@@ -1,5 +1,5 @@
 id: 0c000db8-7be3-5e84-857e-f629cf00c5a2
-revision: 1
+revision: 2
 status: published
 quote: 无产阶级和小资产阶级积极参加了这次革命，但革命果实却落到了资产阶级手里。
 literature:
@@ -15,7 +15,7 @@ interpretation:
 historicalEvent: 19世纪工业化加速发展，劳动、资本和社会结构的变化成为思想界的重要问题。
 background: 马克思的文本围绕实践、劳动、社会关系、历史发展和人的解放展开分析。
 story: 此卡从《共产党宣言》的原文中筛选，不以随机段落凑数；可从来源页回看上下文和论证对象。
-imageId: original-memorial-pine
+imageId: archive-marxism-speech-organization
 sources:
 - name: 中文马克思主义文库《共产党宣言》
   url: https://www.marxists.org/chinese/marx/01.htm

@@ -1,5 +1,5 @@
 id: f8988df2-c35a-58e9-99a7-bca215e9b7ef
-revision: 3
+revision: 4
 status: published
 quote: '“实事”就是客观存在着的一切事物，“是”就是客观事物的内部联系，即规律性，“求”就是我们去研究。'
 literature:
@@ -16,7 +16,7 @@ interpretation:
 historicalEvent: '1941年5月19日，毛泽东在延安干部会议上作报告，推动整顿脱离实际的学习方法。'
 background: '这篇报告在延安干部会议上作出，针对只会背诵个别词句、不了解国内外实际情况以及理论与实践相分离的学习方法。'
 story: '文章借“有的放矢”解释理论与中国实际的关系，又对“实事求是”逐字说明，使它从传统表述转化为调查、研究和行动的方法。'
-imageId: original-reading-lamp
+imageId: archive-mao-selection-yanan-study
 sources:
   - name: 中文马克思主义文库《改造我们的学习》全文
     url: https://www.marxists.org/chinese/maozedong/marxist.org-chinese-mao-19410519.htm

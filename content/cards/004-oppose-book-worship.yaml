@@ -1,5 +1,5 @@
 id: 41e48840-c462-5053-8ad3-2dbbd8e029c9
-revision: 3
+revision: 4
 status: published
 quote: '没有调查，没有发言权'
 literature:
@@ -16,7 +16,7 @@ interpretation:
 historicalEvent: '1930年5月，毛泽东针对红军中照搬书本和上级指示的倾向，写下《反对本本主义》。'
 background: '文章针对红军中照搬书本和上级指示、不了解实际情况的倾向而写。当时尚未普遍使用“教条主义”一词，文中称之为“本本主义”。'
 story: '正文不仅提出调查的重要性，还连续讨论怎样开调查会、怎样选择对象和怎样记录问题，把原则落到了可执行的方法上。'
-imageId: original-field-paths
+imageId: archive-mao-selection-survey-masses
 sources:
   - name: 中文马克思主义文库《反对本本主义》全文
     url: https://www.marxists.org/chinese/maozedong/marxist.org-chinese-mao-193005.htm

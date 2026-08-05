@@ -1,5 +1,5 @@
 id: 9d79ff91-4e31-5e8c-b783-536300367ccf
-revision: 3
+revision: 4
 status: published
 quote: '中国革命的历史进程，必须分为两步，其第一步是民主主义的革命，其第二步是社会主义的革命，这是性质不同的两个革命过程。'
 literature:
@@ -16,7 +16,7 @@ interpretation:
 historicalEvent: '1940年1月，抗战进入相持阶段，各界讨论中国前途，毛泽东系统阐述新民主主义主张。'
 background: '抗日战争相持阶段，社会各界都在讨论“中国向何处去”。文章从政治、经济和文化三个方面系统阐述新民主主义共和国的构想。'
 story: '全文把近代中国革命放进世界历史进程中考察，并用“两步”区分民主主义革命和社会主义革命，说明两者性质不同又前后衔接。'
-imageId: original-dawn-city
+imageId: archive-mao-selection-victory-city
 sources:
   - name: 中文马克思主义文库《新民主主义论》全文
     url: https://www.marxists.org/chinese/maozedong/marxist.org-chinese-mao-194001.htm

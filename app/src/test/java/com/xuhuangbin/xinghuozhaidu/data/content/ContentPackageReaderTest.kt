@@ -40,7 +40,7 @@ class ContentPackageReaderTest {
             File("src/main/assets/bootstrap.zip").readBytes(),
         )
 
-        assertEquals("1.5.0", parsed.info.contentVersion)
+        assertEquals("1.6.0", parsed.info.contentVersion)
         assertEquals(600, parsed.cards.size)
         assertEquals(
             "人的思维是否具有客观的真理性，这不是一个理论的问题，而是一个实践的问题。",

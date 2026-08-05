@@ -1,5 +1,5 @@
 id: 9db2e7ee-7442-5d2b-a631-0c0f2fa1adc5
-revision: 1
+revision: 2
 status: published
 quote: 商品的价值与生产这些商品所耗费的劳动时间成正比，而与所耗费的劳动的生产力成反比。
 literature:
@@ -15,7 +15,7 @@ interpretation:
 historicalEvent: 19世纪工业化加速发展，劳动、资本和社会结构的变化成为思想界的重要问题。
 background: 马克思的文本围绕实践、劳动、社会关系、历史发展和人的解放展开分析。
 story: 此卡从《工资、价格和利润》的原文中筛选，不以随机段落凑数；可从来源页回看上下文和论证对象。
-imageId: original-field-paths
+imageId: archive-marxism-industry
 sources:
 - name: 中文马克思主义文库《工资、价格和利润》
   url: https://www.marxists.org/chinese/marx/marxist.org-chinese-marx-1865-5.htm

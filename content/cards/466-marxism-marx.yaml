@@ -1,5 +1,5 @@
 id: e738efe3-754b-5cc5-891b-1add70f6780d
-revision: 1
+revision: 2
 status: published
 quote: 一定时代的革命思想的存在是以革命阶级的存在为前提的，关于这个革命阶级的前提所必须讲的，在前面已经讲过了。
 literature:
@@ -15,7 +15,7 @@ interpretation:
 historicalEvent: 19世纪工业化加速发展，劳动、资本和社会结构的变化成为思想界的重要问题。
 background: 马克思的文本围绕实践、劳动、社会关系、历史发展和人的解放展开分析。
 story: 此卡从《德意志意识形态》（节选）的原文中筛选，不以随机段落凑数；可从来源页回看上下文和论证对象。
-imageId: original-memorial-pine
+imageId: archive-marxism-speech-organization
 sources:
 - name: 中文马克思主义文库《德意志意识形态》（节选）
   url: https://www.marxists.org/chinese/marx/marxist.org-chinese-marx-1846.htm

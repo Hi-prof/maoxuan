@@ -1,5 +1,5 @@
 id: be265ba6-e30f-5dbc-ad6f-15ffb0183c34
-revision: 1
+revision: 2
 status: published
 quote: 限制工人劳动力价值的劳动量，决不能限制他的劳动力所能完成的劳动量。
 literature:
@@ -15,7 +15,7 @@ interpretation:
 historicalEvent: 19世纪工业化加速发展，劳动、资本和社会结构的变化成为思想界的重要问题。
 background: 马克思的文本围绕实践、劳动、社会关系、历史发展和人的解放展开分析。
 story: 此卡从《工资、价格和利润》的原文中筛选，不以随机段落凑数；可从来源页回看上下文和论证对象。
-imageId: original-dawn-city
+imageId: archive-marxism-industry
 sources:
 - name: 中文马克思主义文库《工资、价格和利润》
   url: https://www.marxists.org/chinese/marx/marxist.org-chinese-marx-1865-5.htm

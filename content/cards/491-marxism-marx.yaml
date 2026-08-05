@@ -1,5 +1,5 @@
 id: 38e78814-9a07-5db5-8a87-58bf16cbf323
-revision: 1
+revision: 2
 status: published
 quote: 大体说来，亚细亚的、古代的、封建的和现代资产阶级的生产方式可以看作是经济的社会形态演进的几个时代。
 literature:
@@ -15,7 +15,7 @@ interpretation:
 historicalEvent: 19世纪工业化加速发展，劳动、资本和社会结构的变化成为思想界的重要问题。
 background: 马克思的文本围绕实践、劳动、社会关系、历史发展和人的解放展开分析。
 story: 此卡从《政治经济学批判》序言的原文中筛选，不以随机段落凑数；可从来源页回看上下文和论证对象。
-imageId: original-printing-press
+imageId: archive-marxism-city-society
 sources:
 - name: 中文马克思主义文库《政治经济学批判》序言
   url: https://www.marxists.org/chinese/marx/06.htm
